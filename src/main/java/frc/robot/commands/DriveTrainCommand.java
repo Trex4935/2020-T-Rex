@@ -6,8 +6,8 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
-public class DriveTrain extends CommandBase {
-  public DriveTrain() {
+public class DriveTrainCommand extends CommandBase {
+  public DriveTrainCommand() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
   }
