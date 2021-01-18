@@ -28,7 +28,7 @@ public class DriveTrain extends CommandBase {
 
   // Called once after isFinished returns true
   @Override
-  public void end() {}
+  public void end(boolean interrupted) {}
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
