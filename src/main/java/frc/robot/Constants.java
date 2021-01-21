@@ -12,4 +12,17 @@ package frc.robot;
  * <p>It is advised to statically import this class (or one of its inner classes) wherever the
  * constants are needed, to reduce verbosity.
  */
-public final class Constants {}
+public final class Constants {
+
+    // Can IDs for the drivetrain motors
+    public static final int leftFrontCanID = 21;
+    public static final int rightFrontCanID = 22;
+	public static final int leftRearCanID = 23;
+	public static final int rightRearCanID = 24;
+    
+    // Controller axis values for controlling the drive
+    public static final int leftTankAxis = 1;
+	public static final int rightTankAxis = 5;
+	
+
+}
