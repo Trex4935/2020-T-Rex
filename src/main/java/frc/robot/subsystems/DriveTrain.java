@@ -4,9 +4,7 @@
 
 package frc.robot.subsystems;
 
-import com.ctre.phoenix.motorcontrol.can.TalonFX;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
-
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
@@ -64,9 +62,22 @@ public class DriveTrain extends SubsystemBase {
   }
 
   // Method to control the drive with the controller
-  public void driveWithController(XboxController controller, double speed) 
+  // controller = Input controller
+  // speedLimiter = value to limit the speed of the motors
+  public void driveWithController(XboxController controller, double speedLimiter)
   {
-    drive.tankDrive(controller.getRawAxis(Constants.leftTankAxis), controller.getRawAxis(Constants.rightTankAxis));
+    drive.tankDrive(controller.getRawAxis(Constants.leftTankAxis)*speedLimiter, controller.getRawAxis(Constants.rightTankAxis)*speedLimiter);
   }
-  
+
+  // Move us forward during auto
+  public void autoForward(double seconds)
+  {
+    drive.tankDrive(Constants.autoLeftSpeed, Constants.autoRightSpeed);
+  }
+
+  // Method to just stop the drive
+  public void stop(){
+    drive.stopMotor();
+  }
+
 }

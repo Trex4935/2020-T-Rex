@@ -23,6 +23,19 @@ public final class Constants {
     // Controller axis values for controlling the drive
     public static final int leftTankAxis = 1;
 	public static final int rightTankAxis = 5;
+    
+    // Used to limit speed of the robot
+    public static final double speedLimit = 0.5;
+
+    // USB port as shown in the dashboard that the xbox controller is connected to
+	public static final int xboxControllerPort = 0;
+    
+    // How fast we move forward in auto
+    public static final double autoLeftSpeed = 0.9;
+    public static final double autoRightSpeed = 0.9;
+    
+    // How long we move forward
+	public static final double secondForward = 10;
 	
 
 }
