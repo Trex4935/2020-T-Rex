@@ -13,7 +13,7 @@ import frc.robot.Constants;
 
 public class DriveTrain extends SubsystemBase {
   // Declare all of our variables
-  
+
   // Motors
   WPI_TalonFX leftFront;
   WPI_TalonFX rightFront;
@@ -64,24 +64,24 @@ public class DriveTrain extends SubsystemBase {
   // Method to control the drive with the controller
   // controller = Input controller
   // speedLimiter = value to limit the speed of the motors
-  public void driveWithController(XboxController controller, double speedLimiter)
-  {
-  if (Constants.arcadeDrive) {
-    drive.arcadeDrive(controller.getRawAxis(Constants.leftTankAxis)*speedLimiter, controller.getRawAxis(Constants.rightArcadeAxis)*speedLimiter);
-  } else {
-    drive.tankDrive(controller.getRawAxis(Constants.leftTankAxis)*speedLimiter, controller.getRawAxis(Constants.rightTankAxis)*speedLimiter);
-  }
-    
+  public void driveWithController(XboxController controller, double speedLimiter) {
+    if (Constants.arcadeDrive) {
+      drive.arcadeDrive(controller.getRawAxis(Constants.leftTankAxis) * speedLimiter,
+          controller.getRawAxis(Constants.rightArcadeAxis) * speedLimiter);
+    } else {
+      drive.tankDrive(controller.getRawAxis(Constants.leftTankAxis) * speedLimiter,
+          controller.getRawAxis(Constants.rightTankAxis) * speedLimiter);
+    }
+
   }
 
   // Move us forward during auto
-  public void autoForward(double seconds)
-  {
+  public void autoForward(double seconds) {
     drive.tankDrive(Constants.autoLeftSpeed, Constants.autoRightSpeed);
   }
 
   // Method to just stop the drive
-  public void stop(){
+  public void stop() {
     drive.stopMotor();
   }
 
