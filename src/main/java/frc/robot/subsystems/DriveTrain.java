@@ -31,7 +31,7 @@ public class DriveTrain extends SubsystemBase {
   public DriveTrain() {
 
     // Setup each of the motors for use later
-    // Going to set any whole game settings here as well (like moter inversion)
+    // Going to set any whole game settings here as well (like motor inversion)
     leftFront = new WPI_TalonFX(Constants.leftFrontCanID);
     leftFront.setInverted(false);
 
