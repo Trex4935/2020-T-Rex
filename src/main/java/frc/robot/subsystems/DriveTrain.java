@@ -13,7 +13,7 @@ import frc.robot.Constants;
 
 public class DriveTrain extends SubsystemBase {
   // Declare all of our variables
-  
+
   // Motors
   WPI_TalonFX leftFront;
   WPI_TalonFX rightFront;
@@ -31,7 +31,7 @@ public class DriveTrain extends SubsystemBase {
   public DriveTrain() {
 
     // Setup each of the motors for use later
-    // Going to set any whole game settings here as well (like moter inversion)
+    // Going to set any whole game settings here as well (like motor inversion)
     leftFront = new WPI_TalonFX(Constants.leftFrontCanID);
     leftFront.setInverted(false);
 
@@ -76,13 +76,12 @@ public class DriveTrain extends SubsystemBase {
   }
 
   // Move us forward during auto
-  public void autoForward(double seconds)
-  {
+  public void autoForward(double seconds) {
     drive.tankDrive(Constants.autoLeftSpeed, Constants.autoRightSpeed);
   }
 
   // Method to just stop the drive
-  public void stop(){
+  public void stop() {
     drive.stopMotor();
   }
 
