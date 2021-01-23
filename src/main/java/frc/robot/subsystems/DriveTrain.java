@@ -64,6 +64,7 @@ public class DriveTrain extends SubsystemBase {
   // Method to control the drive with the controller
   // controller = Input controller
   // speedLimiter = value to limit the speed of the motors
+  // if else statement to swap between arcade and tank
   public void driveWithController(XboxController controller, double speedLimiter)
   {
   if (Constants.arcadeDrive) {
