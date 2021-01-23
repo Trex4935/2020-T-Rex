@@ -8,8 +8,11 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.AutoForward;
 import frc.robot.commands.DriveWithController;
+import frc.robot.commands.Shoot;
 import frc.robot.subsystems.DriveTrain;
+import frc.robot.subsystems.Shooter;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -23,6 +26,8 @@ public class RobotContainer {
   private final DriveWithController driveWithController;
   public static XboxController controller;
   private final AutoForward autoFoward;
+  private final Shooter shooter;
+  private final Shoot shoot;
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
@@ -39,6 +44,12 @@ public class RobotContainer {
     // Declare auto method
     autoFoward = new AutoForward(driveTrain);
 
+    // Set up shooter
+    shooter = new Shooter();
+
+    // Set up shoot
+    shoot = new Shoot(shooter);
+
     // Configure the button bindings
     configureButtonBindings();
   }
@@ -49,7 +60,9 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj.Joystick} or {@link XboxController}), and then passing it to a {@link
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
-  private void configureButtonBindings() {}
+  private void configureButtonBindings() {
+    new JoystickButton(controller, XboxController.Button.kA.value).whenActive(new AutoForward(driveTrain));
+  }
 
   /**
    * Use this to pass the autonomous command to the main {@link Robot} class.
