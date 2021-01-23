@@ -4,11 +4,15 @@
 
 package frc.robot;
 
+import javax.xml.namespace.QName;
+
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.AutoForward;
 import frc.robot.commands.DriveWithController;
+import frc.robot.commands.SpitBall;
 import frc.robot.subsystems.DriveTrain;
+import frc.robot.subsystems.Magazine;
 import edu.wpi.first.wpilibj2.command.Command;
 
 /**
@@ -23,6 +27,8 @@ public class RobotContainer {
   private final DriveWithController driveWithController;
   public static XboxController controller;
   private final AutoForward autoFoward;
+  private final Magazine magazine;
+  private final SpitBall spitBall;
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
@@ -38,6 +44,10 @@ public class RobotContainer {
 
     // Declare auto method
     autoFoward = new AutoForward(driveTrain);
+
+    // Declare magazine
+    magazine = new Magazine();
+    spitBall = new SpitBall(magazine);
 
     // Configure the button bindings
     configureButtonBindings();

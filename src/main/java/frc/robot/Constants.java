@@ -21,8 +21,8 @@ public final class Constants {
 	public static final int rightRearCanID = 24;
     
     // Magazine motors
-    public static final int beltMotorCanID = 0;
-    public static final int intakeMotorCanID = 0;
+    public static final int beltMotorCanID = 31;
+    public static final int intakeMotorCanID = 32;
 
     // Magazine motor speed
     public static final double beltMotorSpeed = 0;
@@ -44,13 +44,8 @@ public final class Constants {
     public static final double autoRightSpeed = 0.9;
     
     // How long we move forward
-<<<<<<< HEAD
-    public static final double secondForward = 10;
-
-=======
 	public static final double secondForward = 10;
     
     //Changes from tank drive to arcade drive
     public static final boolean arcadeDrive = false;
->>>>>>> 72383b764842072f3607ab6cf9a343f2e8fcc827
 }
