@@ -5,21 +5,23 @@
 package frc.robot;
 
 /**
- * The Constants class provides a convenient place for teams to hold robot-wide numerical or boolean
- * constants. This class should not be used for any other purpose. All constants should be declared
- * globally (i.e. public static). Do not put anything functional in this class.
+ * The Constants class provides a convenient place for teams to hold robot-wide
+ * numerical or boolean constants. This class should not be used for any other
+ * purpose. All constants should be declared globally (i.e. public static). Do
+ * not put anything functional in this class.
  *
- * <p>It is advised to statically import this class (or one of its inner classes) wherever the
- * constants are needed, to reduce verbosity.
+ * <p>
+ * It is advised to statically import this class (or one of its inner classes)
+ * wherever the constants are needed, to reduce verbosity.
  */
 public final class Constants {
 
     // Can IDs for the drivetrain motors
     public static final int leftFrontCanID = 21;
     public static final int rightFrontCanID = 22;
-	public static final int leftRearCanID = 23;
-	public static final int rightRearCanID = 24;
-    
+    public static final int leftRearCanID = 23;
+    public static final int rightRearCanID = 24;
+
     // Magazine motors
     public static final int beltMotorCanID = 31;
     public static final int intakeMotorCanID = 32;
@@ -32,20 +34,20 @@ public final class Constants {
     public static final int leftTankAxis = 1;
     public static final int rightTankAxis = 5;
     public static final int rightArcadeAxis = 4;
-    
+
     // Used to limit speed of the robot
     public static final double speedLimit = 0.5;
 
     // USB port as shown in the dashboard that the xbox controller is connected to
-	public static final int xboxControllerPort = 0;
-    
+    public static final int xboxControllerPort = 0;
+
     // How fast we move forward in auto
     public static final double autoLeftSpeed = 0.9;
     public static final double autoRightSpeed = 0.9;
-    
+
     // How long we move forward
-	public static final double secondForward = 10;
-    
-    //Changes from tank drive to arcade drive
+    public static final double secondForward = 10;
+
+    // Changes from tank drive to arcade drive
     public static final boolean arcadeDrive = false;
 }
