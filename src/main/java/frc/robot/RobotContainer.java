@@ -31,7 +31,7 @@ public class RobotContainer {
   private final DriveTrain driveTrain;
   private final DriveWithControllerCommand driveWithController;
   public static XboxController controller;
-  private final AutoForwardCommand autoFoward;
+  private final AutoForwardCommand autoForward;
   private final Shooter shooter;
   private final ShootCommand shoot;
   private final Magazine magazine;
@@ -50,7 +50,7 @@ public class RobotContainer {
     controller = new XboxController(Constants.xboxControllerPort);
 
     // Declare auto method
-    autoFoward = new AutoForwardCommand(driveTrain);
+    autoForward = new AutoForwardCommand(driveTrain);
 
     // Set up shooter
     shooter = new Shooter();
@@ -73,6 +73,9 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
+   
+    // Turn the shooter on
+    // Hold the Button down and it stays on .... one button on / one button off
     new JoystickButton(controller, XboxController.Button.kA.value).whenActive(shoot);
   }
 
@@ -83,6 +86,6 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
-    return autoFoward;
+    return autoForward;
   }
 }
