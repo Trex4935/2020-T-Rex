@@ -7,16 +7,16 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Shooter;
 
-public class Shoot extends CommandBase {
+public class ShootCommand extends CommandBase {
   /** Creates a new Shoot. */
   private final Shooter shooter;
   
-  public Shoot(Shooter sh) {
+  public ShootCommand(Shooter sh) {
     // Use addRequirements() here to declare subsystem dependencies.
     shooter = sh;
     addRequirements(shooter);
   }
-
+  
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {}

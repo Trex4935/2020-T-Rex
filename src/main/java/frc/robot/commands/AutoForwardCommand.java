@@ -8,11 +8,11 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
 import frc.robot.subsystems.DriveTrain;
 
-public class AutoForward extends CommandBase {
+public class AutoForwardCommand extends CommandBase {
   private final DriveTrain driveTrain;
 
   /** Creates a new AutoForward. */
-  public AutoForward(DriveTrain dt) {
+  public AutoForwardCommand(DriveTrain dt) {
     // Use addRequirements() here to declare subsystem dependencies.
     driveTrain = dt;
     addRequirements(driveTrain);

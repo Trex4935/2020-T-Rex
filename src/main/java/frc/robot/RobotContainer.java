@@ -7,14 +7,14 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
-import frc.robot.commands.AutoForward;
-import frc.robot.commands.DriveWithController;
+import frc.robot.commands.AutoForwardCommand;
+import frc.robot.commands.DriveWithControllerCommand;
 
-import frc.robot.commands.Shoot;
+import frc.robot.commands.ShootCommand;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.Shooter;
 
-import frc.robot.commands.SpitBall;
+import frc.robot.commands.SpitBallCommand;
 import frc.robot.subsystems.Magazine;
 
 import edu.wpi.first.wpilibj2.command.Command;
@@ -29,20 +29,20 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   private final DriveTrain driveTrain;
-  private final DriveWithController driveWithController;
+  private final DriveWithControllerCommand driveWithController;
   public static XboxController controller;
-  private final AutoForward autoFoward;
+  private final AutoForwardCommand autoFoward;
   private final Shooter shooter;
-  private final Shoot shoot;
+  private final ShootCommand shoot;
   private final Magazine magazine;
-  private final SpitBall spitBall;
+  private final SpitBallCommand spitBall;
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
 
     // Declare the drivetrain
     driveTrain = new DriveTrain();
-    driveWithController = new DriveWithController(driveTrain);
+    driveWithController = new DriveWithControllerCommand(driveTrain);
     driveWithController.addRequirements(driveTrain);
     driveTrain.setDefaultCommand(driveWithController);
 
@@ -50,16 +50,17 @@ public class RobotContainer {
     controller = new XboxController(Constants.xboxControllerPort);
 
     // Declare auto method
-    autoFoward = new AutoForward(driveTrain);
+    autoFoward = new AutoForwardCommand(driveTrain);
 
     // Set up shooter
     shooter = new Shooter();
 
     // Set up shoot
-    shoot = new Shoot(shooter);
+    shoot = new ShootCommand(shooter);
+    
     // Declare magazine
     magazine = new Magazine();
-    spitBall = new SpitBall(magazine);
+    spitBall = new SpitBallCommand(magazine);
 
     // Configure the button bindings
     configureButtonBindings();
@@ -72,7 +73,7 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    new JoystickButton(controller, XboxController.Button.kA.value).whenActive(new AutoForward(driveTrain));
+    new JoystickButton(controller, XboxController.Button.kA.value).whenActive(shoot);
   }
 
   /**

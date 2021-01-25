@@ -7,12 +7,12 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Magazine;
 
-public class SpitBall extends CommandBase {
+public class SpitBallCommand extends CommandBase {
   /** Creates a new spitBall. */
   
   private final Magazine magazine;
   
-  public SpitBall(Magazine mag) {
+  public SpitBallCommand(Magazine mag) {
     // Use addRequirements() here to declare subsystem dependencies.
     magazine = mag;
     addRequirements(magazine);
