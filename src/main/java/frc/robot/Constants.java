@@ -56,7 +56,4 @@ public final class Constants {
 
     // Shooter motor speed
     public static final double shooterSpeed = 0.5;
-    
-    // Right trigger values
-    public static final int rightTrigger = 6;
 }
