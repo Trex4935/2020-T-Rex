@@ -27,7 +27,10 @@ public class Shooter extends SubsystemBase {
   // Press button to shoot ball
   
   public void shoot(){
-  
-    shooterMotor.set(ControlMode.PercentOutput, Constants.shooterSpeed);
+      shooterMotor.set(ControlMode.PercentOutput, Constants.shooterSpeed);
+  }
+
+  public void shootStop(){
+    shooterMotor.stopMotor();
   }
 }

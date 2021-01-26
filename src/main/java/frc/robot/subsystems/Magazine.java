@@ -12,7 +12,6 @@
 
 package frc.robot.subsystems;
 
-import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
@@ -42,13 +41,13 @@ public class Magazine extends SubsystemBase {
 
   // Make belt motor go wrrrr
   public void spitBall() {
-    beltMotor.set(ControlMode.PercentOutput, Constants.beltMotorSpeed);
+    beltMotor.set(Constants.beltMotorSpeed);
   }
 
   // Make intake motor also go wrrrr
   public void intakeBall() {
-    //intakeMotor.set(ControlMode.PercentOutput, Constants.intakeMotorSpeed);
-    intakeMotor.set(0.5);
+    intakeMotor.set(Constants.intakeMotorSpeed);
+    
   }
 
   // Method to just stop the drive

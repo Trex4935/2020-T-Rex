@@ -4,7 +4,6 @@
 
 package frc.robot;
 
-
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.AutoForwardCommand;
@@ -19,6 +18,7 @@ import frc.robot.subsystems.Magazine;
 
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+import edu.wpi.first.wpilibj2.command.button.Trigger;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -77,11 +77,10 @@ public class RobotContainer {
   private void configureButtonBindings() {
     // Turn the shooter on
     // Hold the Button down and it stays on .... one button on / one button off
-<<<<<<< HEAD
     new JoystickButton(controller, XboxController.Button.kA.value).whenActive(intakeBall);
-=======
-    new JoystickButton(controller, XboxController.Axis.kRightTrigger.value).whenHeld(shoot);
->>>>>>> 606f024f55196175e8fb44a14ce8caf150bbf623
+    
+    
+    
   }
 
   /**
