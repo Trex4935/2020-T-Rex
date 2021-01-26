@@ -81,7 +81,7 @@ public class RobotContainer {
     new JoystickButton(controller, XboxController.Button.kA.value).whenActive(intakeBall);
 
    //kRightTrigger Suggestion
-   new Trigger(()->controller.getRawAxis(3)<=0.5).whenActive(shoot);
+   new Trigger(()->controller.getRawAxis(3)<=0.5).whileActiveContinuous(shoot);
   }
   /**
    * Use this to pass the autonomous command to the main {@link Robot} class.
