@@ -80,8 +80,7 @@ public class RobotContainer {
     // Hold the Button down and it stays on .... one button on / one button off
     new JoystickButton(controller, XboxController.Button.kA.value).whenActive(intakeBall);
 
-   //kRightTrigger Suggestion
-   new Trigger(()->controller.getRawAxis(3)<=0.5).whileActiveContinuous(shoot);
+
   }
   /**
    * Use this to pass the autonomous command to the main {@link Robot} class.
