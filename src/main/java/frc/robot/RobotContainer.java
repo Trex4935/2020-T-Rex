@@ -78,7 +78,7 @@ public class RobotContainer {
    
     // Turn the shooter on
     // Hold the Button down and it stays on .... one button on / one button off
-    new JoystickButton(controller, XboxController.Button.kA.value).whenActive(shoot);
+    new JoystickButton(controller, XboxController.Button.kA.value).whenActive(intakeBall);
   }
 
   /**

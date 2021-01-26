@@ -27,8 +27,8 @@ public final class Constants {
     public static final int intakeMotorCanID = 32;
 
     // Magazine motor speed
-    public static final double beltMotorSpeed = 0;
-    public static final double intakeMotorSpeed = 0;
+    public static final double beltMotorSpeed = 0.6;
+    public static final double intakeMotorSpeed = 0.6;
 
     // Controller axis values for controlling the drive
     public static final int leftTankAxis = 1;

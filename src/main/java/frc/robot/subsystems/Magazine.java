@@ -47,7 +47,8 @@ public class Magazine extends SubsystemBase {
 
   // Make intake motor also go wrrrr
   public void intakeBall() {
-    intakeMotor.set(ControlMode.PercentOutput, Constants.intakeMotorSpeed);
+    //intakeMotor.set(ControlMode.PercentOutput, Constants.intakeMotorSpeed);
+    intakeMotor.set(0.5);
   }
 
   // Method to just stop the drive
