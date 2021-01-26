@@ -9,7 +9,7 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.AutoForwardCommand;
 import frc.robot.commands.DriveWithControllerCommand;
-
+import frc.robot.commands.IntakeBallCommand;
 import frc.robot.commands.ShootCommand;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.Shooter;
@@ -36,6 +36,7 @@ public class RobotContainer {
   private final ShootCommand shoot;
   private final Magazine magazine;
   private final SpitBallCommand spitBall;
+  private final IntakeBallCommand intakeBall;
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
@@ -61,6 +62,7 @@ public class RobotContainer {
     // Declare magazine
     magazine = new Magazine();
     spitBall = new SpitBallCommand(magazine);
+    intakeBall = new IntakeBallCommand(magazine);
 
     // Configure the button bindings
     configureButtonBindings();
