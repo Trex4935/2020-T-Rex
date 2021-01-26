@@ -80,7 +80,7 @@ public class RobotContainer {
     new JoystickButton(controller, XboxController.Button.kA.value).whenActive(intakeBall);
 
     new JoystickButton(controller, XboxController.Axis.kRightTrigger.value).whenHeld(shoot);
-
+  }
   /**
    * Use this to pass the autonomous command to the main {@link Robot} class.
    *
