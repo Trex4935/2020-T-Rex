@@ -50,4 +50,9 @@ public class Magazine extends SubsystemBase {
     intakeMotor.set(ControlMode.PercentOutput, Constants.intakeMotorSpeed);
   }
 
+  // Method to just stop the drive
+  public void stopIntake() {
+    intakeMotor.stopMotor();
+  }
+
 }
