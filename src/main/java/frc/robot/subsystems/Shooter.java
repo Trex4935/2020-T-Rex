@@ -30,4 +30,8 @@ public class Shooter extends SubsystemBase {
   
     shooterMotor.set(ControlMode.PercentOutput, Constants.shooterSpeed);
   }
+  public void shootStop(){
+  
+    shooterMotor.set(ControlMode.PercentOutput, 0);
+  }
 }
