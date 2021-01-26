@@ -5,6 +5,7 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.RobotContainer;
 import frc.robot.subsystems.Shooter;
 
 public class ShootCommand extends CommandBase {
@@ -25,11 +26,15 @@ public class ShootCommand extends CommandBase {
   @Override
   public void execute() {
     shooter.shoot();
+    System.out.println(RobotContainer.controller.getRawAxis(3));
   }
 
   // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {}
+  public void end(boolean interrupted) {
+    shooter.shootStop();
+    System.out.println(RobotContainer.controller.getRawAxis(3));
+  }
 
   // Returns true when the command should end.
   @Override
