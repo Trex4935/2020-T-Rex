@@ -75,10 +75,13 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-   
     // Turn the shooter on
     // Hold the Button down and it stays on .... one button on / one button off
+<<<<<<< HEAD
     new JoystickButton(controller, XboxController.Button.kA.value).whenActive(intakeBall);
+=======
+    new JoystickButton(controller, XboxController.Axis.kRightTrigger.value).whenHeld(shoot);
+>>>>>>> 606f024f55196175e8fb44a14ce8caf150bbf623
   }
 
   /**
