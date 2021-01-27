@@ -6,6 +6,7 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
+import frc.robot.Extensions.RightTriggerBool;
 import frc.robot.commands.AutoForwardCommand;
 import frc.robot.commands.DriveWithControllerCommand;
 import frc.robot.commands.IntakeBallCommand;
@@ -79,7 +80,8 @@ public class RobotContainer {
     // Hold the Button down and it stays on .... one button on / one button off
     new JoystickButton(controller, XboxController.Button.kA.value).whenActive(intakeBall);
     
-    
+    // new Trigger(()->controller.getRawAxis(3)>=0.25).whileActiveContinuous(shoot);
+    new RightTriggerBool().whileActiveContinuous(shoot);
     
   }
 
