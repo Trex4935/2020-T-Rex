@@ -22,10 +22,11 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 
 /**
- * This class is where the bulk of the robot should be declared. Since Command-based is a
- * "declarative" paradigm, very little robot logic should actually be handled in the {@link Robot}
- * periodic methods (other than the scheduler calls). Instead, the structure of the robot (including
- * subsystems, commands, and button mappings) should be declared here.
+ * This class is where the bulk of the robot should be declared. Since
+ * Command-based is a "declarative" paradigm, very little robot logic should
+ * actually be handled in the {@link Robot} periodic methods (other than the
+ * scheduler calls). Instead, the structure of the robot (including subsystems,
+ * commands, and button mappings) should be declared here.
  */
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
@@ -39,7 +40,9 @@ public class RobotContainer {
   private final SpitBallCommand spitBall;
   private final IntakeBallCommand intakeBall;
 
-  /** The container for the robot. Contains subsystems, OI devices, and commands. */
+  /**
+   * The container for the robot. Contains subsystems, OI devices, and commands.
+   */
   public RobotContainer() {
 
     // Declare the drivetrain
@@ -59,7 +62,7 @@ public class RobotContainer {
 
     // Set up shoot
     shoot = new ShootCommand(shooter);
-    
+
     // Declare magazine
     magazine = new Magazine();
     spitBall = new SpitBallCommand(magazine);
@@ -70,19 +73,19 @@ public class RobotContainer {
   }
 
   /**
-   * Use this method to define your button->command mappings. Buttons can be created by
-   * instantiating a {@link GenericHID} or one of its subclasses ({@link
-   * edu.wpi.first.wpilibj.Joystick} or {@link XboxController}), and then passing it to a {@link
-   * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
+   * Use this method to define your button->command mappings. Buttons can be
+   * created by instantiating a {@link GenericHID} or one of its subclasses
+   * ({@link edu.wpi.first.wpilibj.Joystick} or {@link XboxController}), and then
+   * passing it to a {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
     // Turn the shooter on
     // Hold the Button down and it stays on .... one button on / one button off
     new JoystickButton(controller, XboxController.Button.kA.value).whenActive(intakeBall);
-    
+
     // new Trigger(()->controller.getRawAxis(3)>=0.25).whileActiveContinuous(shoot);
     new RightTriggerBool().whileActiveContinuous(shoot);
-    
+
   }
 
   /**
