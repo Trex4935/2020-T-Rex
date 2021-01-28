@@ -13,13 +13,12 @@ import frc.robot.commands.IntakeBallCommand;
 import frc.robot.commands.ShootCommand;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.Shooter;
-
 import frc.robot.commands.SpitBallCommand;
 import frc.robot.subsystems.Magazine;
-
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
-import edu.wpi.first.wpilibj2.command.button.Trigger;
+import frc.robot.commands.RunBothMotorsCommand;
+
 
 /**
  * This class is where the bulk of the robot should be declared. Since
@@ -39,6 +38,8 @@ public class RobotContainer {
   private final Magazine magazine;
   private final SpitBallCommand spitBall;
   private final IntakeBallCommand intakeBall;
+  private final RunBothMotorsCommand runBothMotors;
+
 
   /**
    * The container for the robot. Contains subsystems, OI devices, and commands.
@@ -67,6 +68,7 @@ public class RobotContainer {
     magazine = new Magazine();
     spitBall = new SpitBallCommand(magazine);
     intakeBall = new IntakeBallCommand(magazine);
+    runBothMotors = new RunBothMotorsCommand(magazine);
 
     // Configure the button bindings
     configureButtonBindings();
@@ -81,9 +83,13 @@ public class RobotContainer {
   private void configureButtonBindings() {
     // Turn the shooter on
     // Hold the Button down and it stays on .... one button on / one button off
-    new JoystickButton(controller, XboxController.Button.kA.value).whenHeld(intakeBall);
     
-    new JoystickButton(controller, XboxController.Button.kX.value).whenHeld(spitBall);
+    // new JoystickButton(controller, XboxController.Button.kA.value).whenHeld(intakeBall);
+    // new JoystickButton(controller, XboxController.Button.kX.value).whenHeld(spitBall);
+
+    new JoystickButton(controller, XboxController.Button.kA.value).whenHeld(runBothMotors);
+
+    // new JoystickButton(controller, XboxController.Button.kA.value).whenHeld(new ParallelCommandGroup(intakeBall,spitBall));
    
     //new Trigger(()->controller.getRawAxis(3)>=0.25).whileActiveContinuous(shoot);
     new RightTriggerBool().whileActiveContinuous(shoot);
