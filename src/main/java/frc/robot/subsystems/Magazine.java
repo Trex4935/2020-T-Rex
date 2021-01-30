@@ -47,23 +47,12 @@ public class Magazine extends SubsystemBase {
   // Make intake motor also go wrrrr
   public void intakeBall() {
     intakeMotor.set(Constants.intakeMotorSpeed);
-  }
-
-  // Run both
-  public void runBothMotors() {
-    intakeBall();
-    spitBall();
+    
   }
 
   // Method to just stop the drive
   public void stopIntake() {
     intakeMotor.stopMotor();
-    ;
-  }
-
-  // method to stop the belt motor
-  public void stopSpitBall() {
-    beltMotor.stopMotor();
   }
 
 }
