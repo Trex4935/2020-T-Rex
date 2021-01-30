@@ -47,7 +47,6 @@ public class RobotContainer {
   private final ReverseMagazineCommand reverseMagazine;
 
 
-   */
   public RobotContainer() {
 
     // Declare the drivetrain
