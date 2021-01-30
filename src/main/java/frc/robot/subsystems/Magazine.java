@@ -70,6 +70,7 @@ public class Magazine extends SubsystemBase {
   // reverse intake motor
   public void releaseBall() {
     intakeMotor.set(-Constants.intakeMotorSpeed);
+    beltMotor.set(-Constants.beltMotorSpeed);
   }
 
 }
