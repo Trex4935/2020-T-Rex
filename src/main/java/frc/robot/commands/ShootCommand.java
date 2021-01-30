@@ -11,13 +11,13 @@ import frc.robot.subsystems.Shooter;
 public class ShootCommand extends CommandBase {
   /** Creates a new Shoot. */
   private final Shooter shooter;
-  
+
   public ShootCommand(Shooter sh) {
     // Use addRequirements() here to declare subsystem dependencies.
     shooter = sh;
     addRequirements(shooter);
   }
-  
+
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {

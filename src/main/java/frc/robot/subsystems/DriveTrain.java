@@ -65,14 +65,15 @@ public class DriveTrain extends SubsystemBase {
   // controller = Input controller
   // speedLimiter = value to limit the speed of the motors
   // if else statement to swap between arcade and tank
-  public void driveWithController(XboxController controller, double speedLimiter)
-  {
-  if (Constants.arcadeDrive) {
-    drive.arcadeDrive(controller.getRawAxis(Constants.leftTankAxis)*speedLimiter, controller.getRawAxis(Constants.rightArcadeAxis)*speedLimiter);
-  } else {
-    drive.tankDrive(controller.getRawAxis(Constants.leftTankAxis)*speedLimiter, controller.getRawAxis(Constants.rightTankAxis)*speedLimiter);
-  }
-    
+  public void driveWithController(XboxController controller, double speedLimiter) {
+    if (Constants.arcadeDrive) {
+      drive.arcadeDrive(controller.getRawAxis(Constants.leftTankAxis) * speedLimiter,
+          controller.getRawAxis(Constants.rightArcadeAxis) * speedLimiter);
+    } else {
+      drive.tankDrive(controller.getRawAxis(Constants.leftTankAxis) * speedLimiter,
+          controller.getRawAxis(Constants.rightTankAxis) * speedLimiter);
+    }
+
   }
 
   // Move us forward during auto

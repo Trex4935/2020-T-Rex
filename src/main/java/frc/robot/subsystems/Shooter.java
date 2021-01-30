@@ -18,6 +18,7 @@ public class Shooter extends SubsystemBase {
     shooterMotor = new WPI_TalonFX(Constants.shooterMotorID);
     shooterMotor.setInverted(false);
   }
+
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
@@ -25,12 +26,12 @@ public class Shooter extends SubsystemBase {
 
   // Shoot the ball at a certain speed
   // Press button to shoot ball
-  
-  public void shoot(){
-      shooterMotor.set(ControlMode.PercentOutput, Constants.shooterSpeed);
+
+  public void shoot() {
+    shooterMotor.set(ControlMode.PercentOutput, Constants.shooterSpeed);
   }
 
-  public void shootStop(){
+  public void shootStop() {
     shooterMotor.stopMotor();
   }
 }

@@ -34,7 +34,6 @@ public class RobotContainer {
   private final ReverseMagazineCommand reverseMagazine;
   private final RunBothMotorsCommand runBothMotors;
 
-
   public RobotContainer() {
 
     // Drivetrain
@@ -78,12 +77,14 @@ public class RobotContainer {
     // Runs shooter motor when the right trigger is pulled
     new RightTriggerBool().whileActiveContinuous(shoot);
 
-
     // Not using
     // new Trigger(()->controller.getRawAxis(3)>=0.25).whileActiveContinuous(shoot);
-    // new JoystickButton(controller, XboxController.Button.kA.value).whenHeld(intakeBall);
-    // new JoystickButton(controller, XboxController.Button.kX.value).whenHeld(spitBall);
-    // new JoystickButton(controller, XboxController.Button.kA.value).whenHeld(new ParallelCommandGroup(intakeBall,spitBall));
+    // new JoystickButton(controller,
+    // XboxController.Button.kA.value).whenHeld(intakeBall);
+    // new JoystickButton(controller,
+    // XboxController.Button.kX.value).whenHeld(spitBall);
+    // new JoystickButton(controller, XboxController.Button.kA.value).whenHeld(new
+    // ParallelCommandGroup(intakeBall,spitBall));
 
   }
 
