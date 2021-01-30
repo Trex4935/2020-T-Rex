@@ -31,36 +31,30 @@ public class RobotContainer {
   private final Shooter shooter;
   private final ShootCommand shoot;
   private final Magazine magazine;
-  private final SpitBallCommand spitBall;
-  private final IntakeBallCommand intakeBall;
   private final ReverseMagazineCommand reverseMagazine;
   private final RunBothMotorsCommand runBothMotors;
 
 
   public RobotContainer() {
 
-    // Declare the drivetrain
+    // Drivetrain
     driveTrain = new DriveTrain();
     driveWithController = new DriveWithControllerCommand(driveTrain);
     driveWithController.addRequirements(driveTrain);
     driveTrain.setDefaultCommand(driveWithController);
 
-    // Declare the controller
+    // Controller
     controller = new XboxController(Constants.xboxControllerPort);
 
-    // Declare auto method
+    // Autonomous
     autoForward = new AutoForwardCommand(driveTrain);
 
-    // Set up shooter
+    // Shooter
     shooter = new Shooter();
-
-    // Set up shoot
     shoot = new ShootCommand(shooter);
 
-    // Declare magazine
+    // Magazine
     magazine = new Magazine();
-    spitBall = new SpitBallCommand(magazine);
-    intakeBall = new IntakeBallCommand(magazine);
     runBothMotors = new RunBothMotorsCommand(magazine);
     reverseMagazine = new ReverseMagazineCommand(magazine);
 
