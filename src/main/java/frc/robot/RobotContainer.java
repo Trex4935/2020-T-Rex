@@ -13,12 +13,18 @@ import frc.robot.commands.IntakeBallCommand;
 import frc.robot.commands.ShootCommand;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.Shooter;
+
 import frc.robot.commands.SpitBallCommand;
 import frc.robot.subsystems.Magazine;
+
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+<<<<<<< HEAD
 import frc.robot.commands.RunBothMotorsCommand;
 import frc.robot.commands.ReverseMagazineCommand;
+=======
+import edu.wpi.first.wpilibj2.command.button.Trigger;
+>>>>>>> afdb8e0d7c2bbaf717342a3c3e56f0fe5bb1556d
 
 /**
  * This class is where the bulk of the robot should be declared. Since
@@ -38,12 +44,9 @@ public class RobotContainer {
   private final Magazine magazine;
   private final SpitBallCommand spitBall;
   private final IntakeBallCommand intakeBall;
-  private final RunBothMotorsCommand runBothMotors;
   private final ReverseMagazineCommand reverseMagazine;
 
 
-  /**
-   * The container for the robot. Contains subsystems, OI devices, and commands.
    */
   public RobotContainer() {
 
@@ -69,8 +72,11 @@ public class RobotContainer {
     magazine = new Magazine();
     spitBall = new SpitBallCommand(magazine);
     intakeBall = new IntakeBallCommand(magazine);
+<<<<<<< HEAD
     runBothMotors = new RunBothMotorsCommand(magazine);
     reverseMagazine = new ReverseMagazineCommand(magazine);
+=======
+>>>>>>> afdb8e0d7c2bbaf717342a3c3e56f0fe5bb1556d
 
     // Configure the button bindings
     configureButtonBindings();
@@ -85,6 +91,7 @@ public class RobotContainer {
   private void configureButtonBindings() {
     // Turn the shooter on
     // Hold the Button down and it stays on .... one button on / one button off
+<<<<<<< HEAD
     
     // new JoystickButton(controller, XboxController.Button.kA.value).whenHeld(intakeBall);
     // new JoystickButton(controller, XboxController.Button.kX.value).whenHeld(spitBall);
@@ -94,6 +101,11 @@ public class RobotContainer {
     // new JoystickButton(controller, XboxController.Button.kA.value).whenHeld(new ParallelCommandGroup(intakeBall,spitBall));
    
     //new Trigger(()->controller.getRawAxis(3)>=0.25).whileActiveContinuous(shoot);
+=======
+    new JoystickButton(controller, XboxController.Button.kA.value).whenActive(intakeBall);
+
+    // new Trigger(()->controller.getRawAxis(3)>=0.25).whileActiveContinuous(shoot);
+>>>>>>> afdb8e0d7c2bbaf717342a3c3e56f0fe5bb1556d
     new RightTriggerBool().whileActiveContinuous(shoot);
 
   }
