@@ -6,7 +6,7 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
-import frc.robot.Extensions.RightTriggerBool;
+import frc.robot.Extensions.TriggerBool;
 import frc.robot.commands.AutoForwardCommand;
 import frc.robot.commands.DriveWithControllerCommand;
 import frc.robot.commands.IntakeBallCommand;
@@ -84,7 +84,7 @@ public class RobotContainer {
     new JoystickButton(controller, XboxController.Button.kA.value).whenActive(intakeBall);
 
     // new Trigger(()->controller.getRawAxis(3)>=0.25).whileActiveContinuous(shoot);
-    new RightTriggerBool().whileActiveContinuous(shoot);
+    new TriggerBool().whileActiveContinuous(shoot);
 
   }
 
