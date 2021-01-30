@@ -58,4 +58,7 @@ public final class Constants {
     public static final double shooterSpeed = 0.5;
     public static final int rtTrigger = 3;
     public static final int ltTrigger = 2;
+
+    // Smacna location on the roborio
+    public static final int smaknaLocation = 9;
 }
