@@ -21,6 +21,7 @@ public class Magazine extends SubsystemBase {
   /// Motors
   WPI_TalonSRX beltMotor;
   WPI_TalonSRX intakeMotor;
+  WPI_TalonSRX reverseIntakeMotor;
 
   /** Creates a new Magazine. */
   public Magazine() {
@@ -64,6 +65,11 @@ public class Magazine extends SubsystemBase {
   // method to stop the belt motor
   public void stopSpitBall() {
     beltMotor.stopMotor();
+  }
+
+  // reverse intake motor
+  public void releaseBall() {
+    intakeMotor.set(-Constants.intakeMotorSpeed);
   }
 
 }

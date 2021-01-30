@@ -7,11 +7,11 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Magazine;
 
-public class RunBothMotorsCommand extends CommandBase {
-  /** Creates a new RunBothMotorsCommand. */
+public class ReverseMagazineCommand extends CommandBase {
+  /** Creates a new ReverseMagazineCommand. */
   private final Magazine magazine;
 
-  public RunBothMotorsCommand(Magazine mag) {
+  public ReverseMagazineCommand(Magazine mag) {
     // Use addRequirements() here to declare subsystem dependencies.
     magazine = mag;
     addRequirements(magazine);
@@ -24,9 +24,9 @@ public class RunBothMotorsCommand extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    magazine.runBothMotors();
+    magazine.releaseBall();
   }
-
+  
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {

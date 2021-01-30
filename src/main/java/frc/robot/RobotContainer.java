@@ -18,7 +18,7 @@ import frc.robot.subsystems.Magazine;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.RunBothMotorsCommand;
-
+import frc.robot.commands.ReverseMagazineCommand;
 
 /**
  * This class is where the bulk of the robot should be declared. Since
@@ -39,6 +39,7 @@ public class RobotContainer {
   private final SpitBallCommand spitBall;
   private final IntakeBallCommand intakeBall;
   private final RunBothMotorsCommand runBothMotors;
+  private final ReverseMagazineCommand reverseMagazine;
 
 
   /**
@@ -69,6 +70,7 @@ public class RobotContainer {
     spitBall = new SpitBallCommand(magazine);
     intakeBall = new IntakeBallCommand(magazine);
     runBothMotors = new RunBothMotorsCommand(magazine);
+    reverseMagazine = new ReverseMagazineCommand(magazine);
 
     // Configure the button bindings
     configureButtonBindings();
@@ -88,7 +90,7 @@ public class RobotContainer {
     // new JoystickButton(controller, XboxController.Button.kX.value).whenHeld(spitBall);
 
     new JoystickButton(controller, XboxController.Button.kA.value).whenHeld(runBothMotors);
-
+    new JoystickButton(controller, XboxController.Button.kX.value).whenHeld(reverseMagazine);
     // new JoystickButton(controller, XboxController.Button.kA.value).whenHeld(new ParallelCommandGroup(intakeBall,spitBall));
    
     //new Trigger(()->controller.getRawAxis(3)>=0.25).whileActiveContinuous(shoot);
