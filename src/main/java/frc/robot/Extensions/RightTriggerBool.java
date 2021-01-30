@@ -5,15 +5,15 @@
 package frc.robot.Extensions;
 
 import edu.wpi.first.wpilibj2.command.button.Trigger;
+import frc.robot.Constants;
 import frc.robot.RobotContainer;
 
-/** Add your docs here. */
-// Convert analog input to boolean output
-public class TriggerBool extends Trigger {
-
-    public boolean getBool(int triggers) {
-
-        if (RobotContainer.controller.getRawAxis(triggers) >= 0.25) {
+// Class to extend the Trigger class and allow us to move the right trigger to 
+public class RightTriggerBool extends Trigger {
+       
+    @Override
+    public boolean get() {
+        if (RobotContainer.controller.getRawAxis(Constants.rtTrigger) >= 0.25) {
             return true;
         } else {
             return false;
