@@ -23,8 +23,8 @@ public final class Constants {
     public static final int rightRearCanID = 14;
 
     // Magazine motors
-    public static final int beltMotorCanID = 12;
-    public static final int intakeMotorCanID = 14;
+    public static final int beltMotorCanID = 2;
+    public static final int intakeMotorCanID = 4;
 
     // Magazine motor speed
     public static final double beltMotorSpeed = 0.6;
