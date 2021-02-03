@@ -30,7 +30,7 @@ public class RobotContainer {
   private final AutoForwardCommand autoForward;
   private final Shooter shooter;
   private final ShootCommand shoot;
-  private final Magazine magazine;
+  public final Magazine magazine;
   private final ReverseMagazineCommand reverseMagazine;
   private final RunBothMotorsCommand runBothMotors;
 

@@ -13,6 +13,8 @@
 package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
@@ -23,6 +25,9 @@ public class Magazine extends SubsystemBase {
   WPI_TalonSRX intakeMotor;
   WPI_TalonSRX reverseIntakeMotor;
 
+  /// Smacna
+  DigitalInput Smacna; 
+
   /** Creates a new Magazine. */
   public Magazine() {
 
@@ -31,6 +36,8 @@ public class Magazine extends SubsystemBase {
 
     intakeMotor = new WPI_TalonSRX(Constants.intakeMotorCanID);
     intakeMotor.setInverted(false);
+
+    Smacna = new DigitalInput(Constants.smaknaLocation); 
 
   }
 
@@ -73,4 +80,9 @@ public class Magazine extends SubsystemBase {
     beltMotor.set(-Constants.beltMotorSpeed);
   }
 
+  // getting a smacna value and
+  public boolean getInput() {
+    boolean a = Smacna.get();
+    return (a);
+  }
 }
