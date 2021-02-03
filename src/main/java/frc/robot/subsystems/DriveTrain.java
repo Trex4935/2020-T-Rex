@@ -52,7 +52,6 @@ public class DriveTrain extends SubsystemBase {
     rightRear.setInverted(true);
 
     ahrs = new AHRS(SPI.Port.kMXP);
-    SmartDashboard.putNumber("Gyro Angle", ahrs.getAngle());
 
     // create the speed controller groups for use in the differential drive
     // each one should be a pairing of the motors on a given side of the robot
@@ -85,6 +84,7 @@ public class DriveTrain extends SubsystemBase {
           //Added SmartDashboard support to read out controller data - Edit by Smiths
           SmartDashboard.putNumber("Drive Left Axis", controller.getRawAxis(Constants.leftTankAxis));
           SmartDashboard.putNumber("Drive Right Axis", controller.getRawAxis(Constants.rightTankAxis));
+          SmartDashboard.putNumber("Gyro Angle", ahrs.getAngle());
     }
 
   }
