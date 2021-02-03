@@ -9,9 +9,9 @@ import frc.robot.subsystems.Magazine;
 
 public class SpitBallCommand extends CommandBase {
   /** Creates a new spitBall. */
-  
+
   private final Magazine magazine;
-  
+
   public SpitBallCommand(Magazine mag) {
     // Use addRequirements() here to declare subsystem dependencies.
     magazine = mag;
@@ -20,7 +20,8 @@ public class SpitBallCommand extends CommandBase {
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {}
+  public void initialize() {
+  }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
@@ -30,7 +31,8 @@ public class SpitBallCommand extends CommandBase {
 
   // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {}
+  public void end(boolean interrupted) {
+  }
 
   // Returns true when the command should end.
   @Override

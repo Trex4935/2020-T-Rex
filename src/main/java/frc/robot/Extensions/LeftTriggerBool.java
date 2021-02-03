@@ -10,7 +10,7 @@ import frc.robot.RobotContainer;
 
 // Class to extend the Trigger class and allow us to move the left trigger to 
 public class LeftTriggerBool extends Trigger {
-       
+
     @Override
     public boolean get() {
         if (RobotContainer.controller.getRawAxis(Constants.ltTrigger) >= 0.25) {

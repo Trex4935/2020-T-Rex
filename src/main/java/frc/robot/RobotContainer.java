@@ -31,36 +31,29 @@ public class RobotContainer {
   private final Shooter shooter;
   private final ShootCommand shoot;
   private final Magazine magazine;
-  private final SpitBallCommand spitBall;
-  private final IntakeBallCommand intakeBall;
   private final ReverseMagazineCommand reverseMagazine;
   private final RunBothMotorsCommand runBothMotors;
 
-
   public RobotContainer() {
 
-    // Declare the drivetrain
+    // Drivetrain
     driveTrain = new DriveTrain();
     driveWithController = new DriveWithControllerCommand(driveTrain);
     driveWithController.addRequirements(driveTrain);
     driveTrain.setDefaultCommand(driveWithController);
 
-    // Declare the controller
+    // Controller
     controller = new XboxController(Constants.xboxControllerPort);
 
-    // Declare auto method
+    // Autonomous
     autoForward = new AutoForwardCommand(driveTrain);
 
-    // Set up shooter
+    // Shooter
     shooter = new Shooter();
-
-    // Set up shoot
     shoot = new ShootCommand(shooter);
 
-    // Declare magazine
+    // Magazine
     magazine = new Magazine();
-    spitBall = new SpitBallCommand(magazine);
-    intakeBall = new IntakeBallCommand(magazine);
     runBothMotors = new RunBothMotorsCommand(magazine);
     reverseMagazine = new ReverseMagazineCommand(magazine);
 
@@ -84,12 +77,14 @@ public class RobotContainer {
     // Runs shooter motor when the right trigger is pulled
     new RightTriggerBool().whileActiveContinuous(shoot);
 
-
     // Not using
     // new Trigger(()->controller.getRawAxis(3)>=0.25).whileActiveContinuous(shoot);
-    // new JoystickButton(controller, XboxController.Button.kA.value).whenHeld(intakeBall);
-    // new JoystickButton(controller, XboxController.Button.kX.value).whenHeld(spitBall);
-    // new JoystickButton(controller, XboxController.Button.kA.value).whenHeld(new ParallelCommandGroup(intakeBall,spitBall));
+    // new JoystickButton(controller,
+    // XboxController.Button.kA.value).whenHeld(intakeBall);
+    // new JoystickButton(controller,
+    // XboxController.Button.kX.value).whenHeld(spitBall);
+    // new JoystickButton(controller, XboxController.Button.kA.value).whenHeld(new
+    // ParallelCommandGroup(intakeBall,spitBall));
 
   }
 
