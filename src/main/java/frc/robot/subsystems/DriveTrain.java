@@ -5,11 +5,14 @@
 package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
+import com.kauailabs.navx.frc.AHRS;
+
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
+import edu.wpi.first.wpilibj.SPI;
 
 public class DriveTrain extends SubsystemBase {
   // Declare all of our variables
@@ -27,6 +30,9 @@ public class DriveTrain extends SubsystemBase {
   // Drives
   DifferentialDrive drive;
 
+  // Gyro
+  AHRS ahrs;
+
   /** Creates a new DriveTrain. */
   public DriveTrain() {
 
@@ -43,6 +49,8 @@ public class DriveTrain extends SubsystemBase {
 
     rightRear = new WPI_TalonFX(Constants.rightRearCanID);
     rightRear.setInverted(false);
+
+    ahrs = new AHRS(SPI.Port.kMXP);
 
     // create the speed controller groups for use in the differential drive
     // each one should be a pairing of the motors on a given side of the robot
