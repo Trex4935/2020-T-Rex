@@ -5,11 +5,15 @@
 package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
+import com.kauailabs.navx.frc.AHRS;
+
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
+import edu.wpi.first.wpilibj.SPI;
 
 public class DriveTrain extends SubsystemBase {
   // Declare all of our variables
@@ -27,22 +31,27 @@ public class DriveTrain extends SubsystemBase {
   // Drives
   DifferentialDrive drive;
 
+  // Gyro
+  AHRS ahrs;
+
   /** Creates a new DriveTrain. */
   public DriveTrain() {
 
     // Setup each of the motors for use later
     // Going to set any whole game settings here as well (like motor inversion)
     leftFront = new WPI_TalonFX(Constants.leftFrontCanID);
-    leftFront.setInverted(false);
+    leftFront.setInverted(true);
 
     rightFront = new WPI_TalonFX(Constants.rightFrontCanID);
-    rightFront.setInverted(false);
+    rightFront.setInverted(true);
 
     leftRear = new WPI_TalonFX(Constants.leftRearCanID);
-    leftRear.setInverted(false);
+    leftRear.setInverted(true);
 
     rightRear = new WPI_TalonFX(Constants.rightRearCanID);
-    rightRear.setInverted(false);
+    rightRear.setInverted(true);
+
+    ahrs = new AHRS(SPI.Port.kMXP);
 
     // create the speed controller groups for use in the differential drive
     // each one should be a pairing of the motors on a given side of the robot
@@ -72,6 +81,10 @@ public class DriveTrain extends SubsystemBase {
     } else {
       drive.tankDrive(controller.getRawAxis(Constants.leftTankAxis) * speedLimiter,
           controller.getRawAxis(Constants.rightTankAxis) * speedLimiter);
+          //Added SmartDashboard support to read out controller data - Edit by Smiths
+          SmartDashboard.putNumber("Drive Left Axis", controller.getRawAxis(Constants.leftTankAxis));
+          SmartDashboard.putNumber("Drive Right Axis", controller.getRawAxis(Constants.rightTankAxis));
+          SmartDashboard.putNumber("Gyro Angle", ahrs.getAngle());
     }
 
   }

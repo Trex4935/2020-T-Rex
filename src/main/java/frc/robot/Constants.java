@@ -17,14 +17,14 @@ package frc.robot;
 public final class Constants {
 
     // Can IDs for the drivetrain motors
-    public static final int leftFrontCanID = 21;
-    public static final int rightFrontCanID = 22;
-    public static final int leftRearCanID = 23;
-    public static final int rightRearCanID = 24;
+    public static final int leftFrontCanID = 11;
+    public static final int rightFrontCanID = 12;
+    public static final int leftRearCanID = 13;
+    public static final int rightRearCanID = 14;
 
     // Magazine motors
-    public static final int beltMotorCanID = 31;
-    public static final int intakeMotorCanID = 32;
+    public static final int beltMotorCanID = 2;
+    public static final int intakeMotorCanID = 4;
 
     // Magazine motor speed
     public static final double beltMotorSpeed = 0.6;
@@ -52,7 +52,7 @@ public final class Constants {
     public static final boolean arcadeDrive = false;
 
     // Shooter motors
-    public static final int shooterMotorID = 10;
+    public static final int shooterMotorID = 21;
 
     // Shooter motor speed
     public static final double shooterSpeed = 0.5;

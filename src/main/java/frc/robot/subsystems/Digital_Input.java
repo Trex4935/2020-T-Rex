@@ -7,11 +7,11 @@ package frc.robot.subsystems;
 /** Add your docs here. */
 public class Digital_Input {
 
-    smacna = new DigitalInput(Constants.smaknaLocation); // why is this variable not working??
+    // smacna = new DigitalInput(Constants.smaknaLocation); // why is this variable not working??
 
-    Digital_Input(int value){
-        get(value);
-        System.out.println(value);
-    }
+    // Digital_Input(int value){
+    //     get(value);
+    //     System.out.println(value);
+    // }
 
 }
