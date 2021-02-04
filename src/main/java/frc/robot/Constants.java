@@ -4,6 +4,8 @@
 
 package frc.robot;
 
+import frc.robot.Extensions.Gains;
+
 /**
  * The Constants class provides a convenient place for teams to hold robot-wide
  * numerical or boolean constants. This class should not be used for any other
@@ -61,4 +63,12 @@ public final class Constants {
 
     // Smacna location on the roborio
     public static final int smaknaLocation = 9;
+
+    // PID stuff 
+    public static final int kSlotIdx = 0;
+    public static final int kPIDLoopIdx = 0;
+    public static final int kTimeoutMs = 30;
+    
+    // 	                                    			  kP   	 kI    kD      kF          Iz    PeakOut 
+    public final static Gains kGains_Velocit  = new Gains( 0.1, 0.001, 5, 1023.0/20660.0,  300,  1.00);
 }
