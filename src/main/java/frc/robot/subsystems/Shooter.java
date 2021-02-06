@@ -9,6 +9,7 @@ import com.ctre.phoenix.motorcontrol.TalonFXControlMode;
 import com.ctre.phoenix.motorcontrol.TalonFXFeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
@@ -69,6 +70,10 @@ public class Shooter extends SubsystemBase {
      */
     double targetUnits_100ms = (2048 * Constants.targetRPM) / 600;
     shooterMotor.set(TalonFXControlMode.Velocity, targetUnits_100ms);
+    
+    // publish target RPM and current RPM to smart dashboard
+    SmartDashboard.putNumber("Target RPM", Constants.targetRPM);
+    SmartDashboard.putNumber("Current RPM",shooterMotor.getSelectedSensorVelocity(Constants.kPIDLoopIdx) / 2048 );
   }
 
   public void shootStop() {
