@@ -17,25 +17,30 @@ public class Shooter extends SubsystemBase {
 
   /** Creates a new Shooter. */
   public Shooter() {
+    // initilize the motor
     shooterMotor = new TalonFX(Constants.shooterMotorID);
     shooterMotor.setInverted(false);
-
     shooterMotor.configFactoryDefault();
-
     shooterMotor.configNeutralDeadband(0.001);
 
+    // setting up the pid
     shooterMotor.configSelectedFeedbackSensor(TalonFXFeedbackDevice.IntegratedSensor, Constants.kPIDLoopIdx,
         Constants.kTimeoutMs);
 
+    // set motor limits
+    // normal output forward and reverse = 0% ... i.e. stopped
     shooterMotor.configNominalOutputForward(0, Constants.kTimeoutMs);
     shooterMotor.configNominalOutputReverse(0, Constants.kTimeoutMs);
+
+    // Max output forward and reverse = 100%
     shooterMotor.configPeakOutputForward(1, Constants.kTimeoutMs);
     shooterMotor.configPeakOutputReverse(-1, Constants.kTimeoutMs);
 
-    shooterMotor.config_kF(Constants.kPIDLoopIdx, Constants.kGains_Velocit.kF, Constants.kTimeoutMs);
+    // put in the values for the PIDF ... they are coming
     shooterMotor.config_kP(Constants.kPIDLoopIdx, Constants.kGains_Velocit.kP, Constants.kTimeoutMs);
     shooterMotor.config_kI(Constants.kPIDLoopIdx, Constants.kGains_Velocit.kI, Constants.kTimeoutMs);
     shooterMotor.config_kD(Constants.kPIDLoopIdx, Constants.kGains_Velocit.kD, Constants.kTimeoutMs);
+    shooterMotor.config_kF(Constants.kPIDLoopIdx, Constants.kGains_Velocit.kF, Constants.kTimeoutMs);
 
   }
 

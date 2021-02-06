@@ -61,7 +61,7 @@ public final class Constants {
     public static final int rtTrigger = 3;
     public static final int ltTrigger = 2;
 
-    // Smacna location on the roborio
+    // Smacna DIO location on the roborio
     public static final int smaknaLocation = 9;
 
     // PID stuff 
@@ -69,6 +69,7 @@ public final class Constants {
     public static final int kPIDLoopIdx = 0;
     public static final int kTimeoutMs = 30;
     
+    // Pid values
     // 	                                    			  kP   	 kI    kD      kF          Iz    PeakOut 
     public final static Gains kGains_Velocit  = new Gains( 0.1, 0.001, 5, 1023.0/20660.0,  300,  1.00);
 }
