@@ -54,6 +54,21 @@ public class Shooter extends SubsystemBase {
 
   public void shoot() {
     shooterMotor.set(ControlMode.PercentOutput, Constants.shooterSpeed);
+
+    // _sb.append(_talon.getSelectedSensorVelocity(Constants.kPIDLoopIdx));
+    // _talon.set(TalonFXControlMode.Velocity, targetVelocity_UnitsPer100ms);
+
+  }
+
+  public void shootPID() {
+    /**
+     * Convert 500 RPM to units / 100ms.
+     * 2048 Encoder Units / Revolution
+     * 600msu (100ms units) / minute
+     * So targetUnits_100ms = (2048 * TargetRPM) / 600msu
+     */
+    double targetUnits_100ms = (2048 * Constants.targetRPM) / 600;
+    shooterMotor.set(TalonFXControlMode.Velocity, targetUnits_100ms);
   }
 
   public void shootStop() {
@@ -61,43 +76,3 @@ public class Shooter extends SubsystemBase {
   }
 
 }
-/*
- * 
- * /* Hardware *\ TalonFX _talon = new TalonFX(1); Joystick _joy = new
- * Joystick(0);
- * 
- * /* String for output *\ StringBuilder _sb = new StringBuilder(); - DONT NEED
- * 
- * /* Loop tracker for prints *\ int _loops = 0; - DONT NEED
- * 
- * public void robotInit() { /* Factory Default all hardware to prevent
- * unexpected behaviour *\ _talon.configFactoryDefault();
- * 
- * /* Config neutral deadband to be the smallest possible *\
- * _talon.configNeutralDeadband(0.001);
- * 
- * /* Config sensor used for Primary PID [Velocity] *\
- * _talon.configSelectedFeedbackSensor(TalonFXFeedbackDevice.IntegratedSensor,
- * Constants.kPIDLoopIdx, Constants.kTimeoutMs);
- * 
- * 
- * /* Config the peak and nominal outputs *\
- * _talon.configNominalOutputForward(0, Constants.kTimeoutMs);
- * _talon.configNominalOutputReverse(0, Constants.kTimeoutMs);
- * _talon.configPeakOutputForward(1, Constants.kTimeoutMs);
- * _talon.configPeakOutputReverse(-1, Constants.kTimeoutMs);
- * ---------------------------------------------- /* Config the Velocity closed
- * loop gains in slot0 *\ _talon.config_kF(Constants.kPIDLoopIdx,
- * Constants.kGains_Velocit.kF, Constants.kTimeoutMs);
- * _talon.config_kP(Constants.kPIDLoopIdx, Constants.kGains_Velocit.kP,
- * Constants.kTimeoutMs); _talon.config_kI(Constants.kPIDLoopIdx,
- * Constants.kGains_Velocit.kI, Constants.kTimeoutMs);
- * _talon.config_kD(Constants.kPIDLoopIdx, Constants.kGains_Velocit.kD,
- * Constants.kTimeoutMs); /* Talon FX does not need sensor phase set for its
- * integrated sensor This is because it will always be correct if the selected
- * feedback device is integrated sensor (default value) and the user calls
- * getSelectedSensor* to get the sensor's position/velocity.
- * 
- * https://phoenix-documentation.readthedocs.io/en/latest/ch14_MCSensor.html#
- * sensor-phase \ // _talon.setSensorPhase(true);
- */
