@@ -50,7 +50,7 @@ public class Shooter extends SubsystemBase {
     // This method will be called once per scheduler run
     // publish target RPM and current RPM to smart dashboard
     SmartDashboard.putNumber("Target RPM", Constants.targetRPM);
-    SmartDashboard.putNumber("Current RPM",shooterMotor.getSelectedSensorVelocity(Constants.kPIDLoopIdx) / 2048 );
+    SmartDashboard.putNumber("Current RPM",(shooterMotor.getSelectedSensorVelocity(Constants.kPIDLoopIdx)*600)/2048);
     SmartDashboard.putNumber("Current RPM Raw",shooterMotor.getSelectedSensorVelocity(Constants.kPIDLoopIdx));
   }
 
