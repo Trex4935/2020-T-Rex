@@ -7,6 +7,7 @@ package frc.robot;
 // import trex code
 import frc.robot.commands.*;
 import frc.robot.subsystems.*;
+import frc.robot.Extensions.LeftTriggerBool;
 import frc.robot.Extensions.RightTriggerBool;
 
 // import needed WPI methods
@@ -33,6 +34,7 @@ public class RobotContainer {
   public final Magazine magazine;
   private final ReverseMagazineCommand reverseMagazine;
   private final RunBothMotorsCommand runBothMotors;
+  private final ShootPIDCommand shootPID;
 
   public RobotContainer() {
 
@@ -51,6 +53,7 @@ public class RobotContainer {
     // Shooter
     shooter = new Shooter();
     shoot = new ShootCommand(shooter);
+    shootPID = new ShootPIDCommand(shooter);
 
     // Magazine
     magazine = new Magazine();
@@ -76,6 +79,9 @@ public class RobotContainer {
 
     // Runs shooter motor when the right trigger is pulled
     new RightTriggerBool().whileActiveContinuous(shoot);
+
+    // Runs shootPID when left trigger is pulled
+    new LeftTriggerBool().whileActiveContinuous(shootPID);
 
     // Not using
     // new Trigger(()->controller.getRawAxis(3)>=0.25).whileActiveContinuous(shoot);
