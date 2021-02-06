@@ -48,6 +48,9 @@ public class Shooter extends SubsystemBase {
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
+    // publish target RPM and current RPM to smart dashboard
+    SmartDashboard.putNumber("Target RPM", Constants.targetRPM);
+    SmartDashboard.putNumber("Current RPM",shooterMotor.getSelectedSensorVelocity(Constants.kPIDLoopIdx) / 2048 );
   }
 
   // Shoot the ball at a certain speed
@@ -71,9 +74,7 @@ public class Shooter extends SubsystemBase {
     double targetUnits_100ms = (2048 * Constants.targetRPM) / 600;
     shooterMotor.set(TalonFXControlMode.Velocity, targetUnits_100ms);
     
-    // publish target RPM and current RPM to smart dashboard
-    SmartDashboard.putNumber("Target RPM", Constants.targetRPM);
-    SmartDashboard.putNumber("Current RPM",shooterMotor.getSelectedSensorVelocity(Constants.kPIDLoopIdx) / 2048 );
+    
   }
 
   public void shootStop() {
