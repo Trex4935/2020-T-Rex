@@ -42,6 +42,52 @@
               "_source0": "network_table:///SmartDashboard/Gyro Angle",
               "_title": "Gyro Angle"
             }
+          },
+          "3,0": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Target RPM",
+              "_title": "Target RPM"
+            }
+          },
+          "4,0": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Current RPM",
+              "_title": "Current RPM"
+            }
+          },
+          "5,0": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Current RPM Raw",
+              "_title": "Current RPM Raw"
+            }
+          },
+          "6,0": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Boolean Box",
+              "_source0": "network_table:///SmartDashboard/Shooter Sensor",
+              "_title": "Shooter Sensor",
+              "Colors/Color when true": "#7CFC00FF",
+              "Colors/Color when false": "#8B0000FF"
+            }
           }
         }
       }
@@ -172,6 +218,19 @@
                 }
               ]
             }
+          },
+          "8,2": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Boolean Box",
+              "_source0": "network_table:///LiveWindow/Ungrouped/DigitalInput[9]/Value",
+              "_title": "Ungrouped/DigitalInput[9]/Value",
+              "Colors/Color when true": "#7CFC00FF",
+              "Colors/Color when false": "#8B0000FF"
+            }
           }
         }
       }
@@ -223,7 +282,22 @@
         "hgap": 16.0,
         "vgap": 16.0,
         "tiles": {
-          "3,0": {
+          "0,0": {
+            "size": [
+              2,
+              2
+            ],
+            "content": {
+              "_type": "Gyro",
+              "_source0": "network_table:///LiveWindow/Ungrouped/navX-Sensor",
+              "_title": "Ungrouped/navX-Sensor",
+              "Visuals/Major tick spacing": 45.0,
+              "Visuals/Starting angle": 180.0,
+              "Visuals/Show tick mark ring": true,
+              "Visuals/Counter clockwise": false
+            }
+          },
+          "2,0": {
             "size": [
               3,
               2
@@ -237,7 +311,7 @@
               "Visuals/Show velocity vectors": true
             }
           },
-          "3,2": {
+          "5,0": {
             "size": [
               3,
               1
@@ -253,9 +327,9 @@
     }
   ],
   "windowGeometry": {
-    "x": 112.0,
-    "y": 2.0,
-    "width": 1187.0,
-    "height": 681.0
+    "x": 8.0,
+    "y": 42.0,
+    "width": 1336.0,
+    "height": 632.0
   }
 }
