@@ -32,6 +32,7 @@ public class Robot extends TimedRobot {
     // and put our
     // autonomous chooser on the dashboard.
     m_robotContainer = new RobotContainer();
+    //Initializing the Shuffleboard Dashboard to that values can be pulled for other systems
     dashboard = new Init_Dashboard();
   }
 

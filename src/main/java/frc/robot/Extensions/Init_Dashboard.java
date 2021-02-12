@@ -4,15 +4,21 @@
 
 package frc.robot.Extensions;
 
+import java.util.Map;
+
 import edu.wpi.first.networktables.NetworkTableEntry;
+import edu.wpi.first.wpilibj.shuffleboard.BuiltInWidgets;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 import frc.robot.Constants;
 
 /** Add your docs here. */
+// Creating a class and methods to be able to load data from Shuffleboard to running robot code.
 public class Init_Dashboard {
-    private ShuffleboardTab tab = Shuffleboard.getTab("Drive");
+    private ShuffleboardTab tab = Shuffleboard.getTab("Drivetrain");
     public NetworkTableEntry maxSpeed =
         tab.add("Max Speed", Constants.speedLimitDefault)
-           .getEntry();
+        .withWidget(BuiltInWidgets.kNumberSlider) // specify the widget of number slider
+        .withProperties(Map.of("min", 0, "max", 1)) // specify widget properties of min 0 max 1
+        .getEntry();
 }

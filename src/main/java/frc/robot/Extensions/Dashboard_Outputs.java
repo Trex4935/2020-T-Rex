@@ -12,7 +12,7 @@ import frc.robot.Constants;
 
 public class Dashboard_Outputs {
     public double getMaxSpeed(){
-        NetworkTable table=NetworkTableInstance.getDefault().getTable("Shuffleboard/Drive");
+        NetworkTable table=NetworkTableInstance.getDefault().getTable("Shuffleboard/Drivetrain");
         double maxSpeed = table.getEntry("Max Speed").getDouble(Constants.speedLimitDefault);
         return maxSpeed;
     }
