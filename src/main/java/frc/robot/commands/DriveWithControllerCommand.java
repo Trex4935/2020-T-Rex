@@ -5,18 +5,20 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.Constants;
 import frc.robot.RobotContainer;
+import frc.robot.Extensions.Dashboard_Outputs;
 import frc.robot.subsystems.DriveTrain;
 
 public class DriveWithControllerCommand extends CommandBase {
   /** Creates a new DriveWithController. */
   private final DriveTrain driveTrain;
+  private Dashboard_Outputs di;
 
   public DriveWithControllerCommand(DriveTrain dt) {
     // Use addRequirements() here to declare subsystem dependencies.
     driveTrain = dt;
     addRequirements(driveTrain);
+    di = new Dashboard_Outputs();
   }
 
   // Called when the command is initially scheduled.
@@ -28,7 +30,7 @@ public class DriveWithControllerCommand extends CommandBase {
   @Override
   public void execute() {
 
-    driveTrain.driveWithController(RobotContainer.controller, Constants.speedLimit);
+    driveTrain.driveWithController(RobotContainer.controller, di.getMaxSpeed());
   }
 
   // Called once the command ends or is interrupted.

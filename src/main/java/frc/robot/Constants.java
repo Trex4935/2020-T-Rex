@@ -38,7 +38,7 @@ public final class Constants {
     public static final int rightArcadeAxis = 4;
 
     // Used to limit speed of the robot
-    public static final double speedLimit = 0.5;
+    public static final double speedLimitDefault = 0.25;
 
     // USB port as shown in the dashboard that the xbox controller is connected to
     public static final int xboxControllerPort = 0;

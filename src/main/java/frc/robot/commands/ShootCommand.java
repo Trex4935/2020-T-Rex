@@ -7,6 +7,7 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Shooter;
 
+
 public class ShootCommand extends CommandBase {
   /** Creates a new Shoot. */
   private final Shooter shooter;
