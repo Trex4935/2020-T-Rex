@@ -12,6 +12,7 @@ import frc.robot.subsystems.DriveTrain;
 public class DriveWithControllerCommand extends CommandBase {
   /** Creates a new DriveWithController. */
   private final DriveTrain driveTrain;
+  // Allows use of inputs from Shuffleboard
   private Dashboard_Outputs di;
 
   public DriveWithControllerCommand(DriveTrain dt) {

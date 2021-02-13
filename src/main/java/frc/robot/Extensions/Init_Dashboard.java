@@ -15,10 +15,18 @@ import frc.robot.Constants;
 /** Add your docs here. */
 // Creating a class and methods to be able to load data from Shuffleboard to running robot code.
 public class Init_Dashboard {
-    private ShuffleboardTab tab = Shuffleboard.getTab("Drivetrain");
+    private ShuffleboardTab tab = Shuffleboard.getTab("Inputs");
     public NetworkTableEntry maxSpeed =
         tab.add("Max Speed", Constants.speedLimitDefault)
         .withWidget(BuiltInWidgets.kNumberSlider) // specify the widget of number slider
         .withProperties(Map.of("min", 0, "max", 1)) // specify widget properties of min 0 max 1
+        .withPosition(3,3) // set widget position
         .getEntry();
+
+    private ShuffleboardTab tab2 = Shuffleboard.getTab("Inputs");
+    public NetworkTableEntry driveType =     
+    tab2.add("Drive Type = Tank", Constants.arcadeDrive)
+    .withWidget(BuiltInWidgets.kToggleButton)
+    .getEntry();
+        
 }

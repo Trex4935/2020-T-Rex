@@ -324,12 +324,24 @@
           }
         }
       }
+    },
+    {
+      "title": "Drivetrain",
+      "autoPopulate": false,
+      "autoPopulatePrefix": "",
+      "widgetPane": {
+        "gridSize": 128.0,
+        "showGrid": true,
+        "hgap": 16.0,
+        "vgap": 16.0,
+        "tiles": {}
+      }
     }
   ],
   "windowGeometry": {
-    "x": -8.0,
-    "y": -8.0,
+    "x": -7.0,
+    "y": 9.0,
     "width": 1382.0,
-    "height": 744.0
+    "height": 788.0
   }
 }
