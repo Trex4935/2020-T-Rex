@@ -15,7 +15,10 @@ import frc.robot.Constants;
 /** Add your docs here. */
 // Creating a class and methods to be able to load data from Shuffleboard to running robot code.
 public class Init_Dashboard {
+    // Access the shuffleboard tab
     private ShuffleboardTab tab = Shuffleboard.getTab("Drivetrain");
+    
+    // create a widget on the tab named maxspeed
     public NetworkTableEntry maxSpeed =
         tab.add("Max Speed", Constants.speedLimitDefault)
         .withWidget(BuiltInWidgets.kNumberSlider) // specify the widget of number slider
