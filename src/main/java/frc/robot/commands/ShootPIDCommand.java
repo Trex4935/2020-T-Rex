@@ -5,38 +5,32 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.RobotContainer;
-import frc.robot.Extensions.Dashboard_Outputs;
-import frc.robot.subsystems.DriveTrain;
+import frc.robot.subsystems.Shooter;
 
-public class DriveWithControllerCommand extends CommandBase {
-  /** Creates a new DriveWithController. */
-  private final DriveTrain driveTrain;
-  // Allows use of inputs from Shuffleboard
-  private Dashboard_Outputs di;
-
-  public DriveWithControllerCommand(DriveTrain dt) {
+public class ShootPIDCommand extends CommandBase {
+  private final Shooter shooter;
+  
+  /** Creates a new ShootPID. */
+  public ShootPIDCommand(Shooter sh) {
     // Use addRequirements() here to declare subsystem dependencies.
-    driveTrain = dt;
-    addRequirements(driveTrain);
-    di = new Dashboard_Outputs();
+    shooter = sh;
+    addRequirements(shooter);
   }
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {
-  }
+  public void initialize() {}
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-
-    driveTrain.driveWithController(RobotContainer.controller, di.getMaxSpeed());
+    shooter.shootPID();    
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
+    shooter.shootStop();
   }
 
   // Returns true when the command should end.
