@@ -18,7 +18,10 @@ import frc.robot.Extensions.Gains;
  */
 public final class Constants {
 
-    // Can IDs for the drivetrain motors
+    // region CAN IDS
+    // ================================
+
+    // Drivetrain motors
     public static final int leftFrontCanID = 11;
     public static final int rightFrontCanID = 12;
     public static final int leftRearCanID = 13;
@@ -28,9 +31,27 @@ public final class Constants {
     public static final int beltMotorCanID = 6;
     public static final int intakeMotorCanID = 2;
 
+    // Shooter motors
+    public static final int shooterMotorID = 21;
+
+    // Elevator Motors
+    // Not currently implemented
+    // endregion
+
+    // region Magazine
+    // ================================
+
     // Magazine motor speed
     public static final double beltMotorSpeed = 0.6;
     public static final double intakeMotorSpeed = 0.6;
+
+    // Smacna DIO location on the roborio
+    public static final int smaknaLocation = 9;
+
+    // endregion
+
+    // region Drivetrain
+    // ================================
 
     // Controller axis values for controlling the drive
     public static final int leftTankAxis = 1;
@@ -40,8 +61,43 @@ public final class Constants {
     // Used to limit speed of the robot
     public static final double speedLimitDefault = 0.25;
 
+    // Changes from tank drive to arcade drive
+    public static final boolean arcadeDrive = false;
+
+    // endregion
+
+    // region Shooter
+    // ================================
+
+    // Shooter motor speed
+    public static final double shooterSpeed = 0.5;
+    public static final int rtTrigger = 3;
+    public static final int ltTrigger = 2;
+
+    // PID stuff
+    public static final int kSlotIdx = 0;
+    public static final int kPIDLoopIdx = 0;
+    public static final int kTimeoutMs = 30;
+
+    // Pid values
+    // kP kI kD kF Iz PeakOut
+    public final static Gains kGains_Velocit = new Gains(0.1, 0.001, 5, 1023.0 / 20660.0, 300, 1.00);
+
+    // Target RPM value for shooter motor
+    public static final int targetRPM = 1000;
+
+    // endregion
+
+    // region Controller
+    // ================================
+
     // USB port as shown in the dashboard that the xbox controller is connected to
     public static final int xboxControllerPort = 0;
+
+    // endregion
+
+    // region Autonomous
+    // ================================
 
     // How fast we move forward in auto
     public static final double autoLeftSpeed = 0.9;
@@ -50,29 +106,6 @@ public final class Constants {
     // How long we move forward
     public static final double secondForward = 10;
 
-    // Changes from tank drive to arcade drive
-    public static final boolean arcadeDrive = false;
+    // endregion
 
-    // Shooter motors
-    public static final int shooterMotorID = 21;
-
-    // Shooter motor speed
-    public static final double shooterSpeed = 0.5;
-    public static final int rtTrigger = 3;
-    public static final int ltTrigger = 2;
-
-    // Smacna DIO location on the roborio
-    public static final int smaknaLocation = 9;
-
-    // PID stuff 
-    public static final int kSlotIdx = 0;
-    public static final int kPIDLoopIdx = 0;
-    public static final int kTimeoutMs = 30;
-    
-    // Pid values
-    // 	                                    			  kP   	 kI    kD      kF          Iz    PeakOut 
-    public final static Gains kGains_Velocit  = new Gains( 0.1, 0.001, 5, 1023.0/20660.0,  300,  1.00);
-    
-    // Target RPM value for shooter motor
-    public static final int targetRPM = 1000;
 }

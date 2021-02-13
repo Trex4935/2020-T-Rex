@@ -17,10 +17,11 @@ import frc.robot.Extensions.Init_Dashboard;
  * project.
  */
 public class Robot extends TimedRobot {
-  private Command m_autonomousCommand;
 
+  // Create Variables
+  private Command m_autonomousCommand;
   private RobotContainer m_robotContainer;
-  public Init_Dashboard  dashboard;
+  public Init_Dashboard dashboard;
 
   /**
    * This function is run when the robot is first started up and should be used
@@ -32,7 +33,9 @@ public class Robot extends TimedRobot {
     // and put our
     // autonomous chooser on the dashboard.
     m_robotContainer = new RobotContainer();
-    //Initializing the Shuffleboard Dashboard to that values can be pulled for other systems
+
+    // Initializing the Shuffleboard Dashboard to that values can be pulled for
+    // other systems
     dashboard = new Init_Dashboard();
   }
 
@@ -60,7 +63,6 @@ public class Robot extends TimedRobot {
   /** This function is called once each time the robot enters Disabled mode. */
   @Override
   public void disabledInit() {
-    System.out.println(m_robotContainer.magazine.getInput());
   }
 
   @Override
@@ -95,13 +97,13 @@ public class Robot extends TimedRobot {
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
     }
-    
+
   }
 
   /** This function is called periodically during operator control. */
   @Override
   public void teleopPeriodic() {
-   // System.out.println(dashboard.maxSpeed.getDouble(Constants.speedLimitDefault));
+    // System.out.println(dashboard.maxSpeed.getDouble(Constants.speedLimitDefault));
   }
 
   @Override
