@@ -81,8 +81,7 @@ public final class Constants {
     public static final int kPIDLoopIdx = 0;
     public static final int kTimeoutMs = 30;
 
-    // Pid values
-    // kP kI kD kF Iz PeakOut
+    // Pid values                                        kP    kI   kD        kF          Iz  PeakOut
     public final static Gains kGains_Velocit = new Gains(0.1, 0.001, 5, 1023.0 / 20660.0, 300, 1.00);
 
     // Target RPM value for shooter motor
