@@ -23,9 +23,8 @@ public class Init_Dashboard {
         .withPosition(3,3) // set widget position
         .getEntry();
 
-    private ShuffleboardTab tab2 = Shuffleboard.getTab("Inputs");
     public NetworkTableEntry driveType =     
-    tab2.add("Drive Type = Tank", Constants.arcadeDrive)
+    tab.add("Drive Type = Tank", Constants.arcadeDrive)
     .withWidget(BuiltInWidgets.kToggleButton)
     .getEntry();
         

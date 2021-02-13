@@ -18,8 +18,8 @@ public class Dashboard_Outputs {
         return maxSpeed;
     }
     public boolean getDriveType(){
-        NetworkTable table2=NetworkTableInstance.getDefault().getTable("Shuffleboard/Inputs");
-        boolean driveType = table2.getEntry("Drive Type = Tank").getBoolean(Constants.arcadeDrive);
+        NetworkTable table=NetworkTableInstance.getDefault().getTable("Shuffleboard/Inputs");
+        boolean driveType = table.getEntry("Drive Type = Tank").getBoolean(Constants.arcadeDrive);
         return driveType;
     } 
 }

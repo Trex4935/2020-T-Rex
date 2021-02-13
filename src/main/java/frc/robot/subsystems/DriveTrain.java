@@ -13,6 +13,7 @@ import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
+import frc.robot.Extensions.Dashboard_Outputs;
 import edu.wpi.first.wpilibj.SPI;
 
 public class DriveTrain extends SubsystemBase {
@@ -33,6 +34,9 @@ public class DriveTrain extends SubsystemBase {
 
   // Gyro
   AHRS ahrs;
+
+  // Drive Type
+  Dashboard_Outputs dashOut;
 
   /** Creates a new DriveTrain. */
   public DriveTrain() {
@@ -63,6 +67,8 @@ public class DriveTrain extends SubsystemBase {
     // file:///C:/Users/Public/wpilib/2021/documentation/java/edu/wpi/first/wpilibj/drive/DifferentialDrive.html
     drive = new DifferentialDrive(rightSide, leftSide);
 
+    dashOut = new Dashboard_Outputs();
+
   }
 
   @Override
@@ -75,7 +81,7 @@ public class DriveTrain extends SubsystemBase {
   // speedLimiter = value to limit the speed of the motors
   // if else statement to swap between arcade and tank
   public void driveWithController(XboxController controller, double speedLimiter) {
-    if (Constants.arcadeDrive) {
+    if (dashOut.getDriveType()) {
       drive.arcadeDrive(controller.getRawAxis(Constants.leftTankAxis) * speedLimiter,
           controller.getRawAxis(Constants.rightArcadeAxis) * speedLimiter);
     } else {
