@@ -8,9 +8,10 @@ import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.networktables.NetworkTable;
 import frc.robot.Constants;
 
-/** Add your docs here. */
-
+/** Methods to get values off of the network tables/shuffleboard */
 public class Dashboard_Outputs {
+    
+    // Get Max speed value
     public double getMaxSpeed(){
         NetworkTable table=NetworkTableInstance.getDefault().getTable("Shuffleboard/Drivetrain");
         double maxSpeed = table.getEntry("Max Speed").getDouble(Constants.speedLimitDefault);
