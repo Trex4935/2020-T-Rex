@@ -41,7 +41,7 @@ public class Magazine extends SubsystemBase {
     intakeMotor = new WPI_TalonSRX(Constants.intakeMotorCanID);
     intakeMotor.setInverted(false);
 
-    intakeSensor = new DigitalInput(Constants.intakeSensorDIO); 
+    intakeSensor = new DigitalInput(Constants.intakeSensorDIO);
     magazineSensor = new DigitalInput(Constants.magazineSensorDIO);
     shooterSensor = new DigitalInput(Constants.shooterSensorDIO);
   }
@@ -49,8 +49,6 @@ public class Magazine extends SubsystemBase {
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
-    SmartDashboard.putBoolean("Shooter Sensor", Smacna.get());
-
   }
 
   // Make belt motor go wrrrr
@@ -102,13 +100,14 @@ public class Magazine extends SubsystemBase {
     return (!a);
   }
 
-  // If there is an object in front of the smacna sensor, it's read as false. Samething goes vice versa.
+  // If there is an object in front of the smacna sensor, it's read as false.
+  // Samething goes vice versa.
 
   public void oneBall() {
-    if (getIntakeSensor()){
+    if (getIntakeSensor()) {
       runBothMotors();
     } else {
 
-    } 
+    }
   }
 }
