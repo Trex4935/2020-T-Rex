@@ -60,5 +60,7 @@ public final class Constants {
     public static final int ltTrigger = 2;
 
     // Smacna location on the roborio
-    public static final int smaknaLocation = 9;
+    public static final int intakeSensorDIO = 9;
+    public static final int magazineSensorDIO = 10;
+    public static final int shooterSensorDIO = 11;
 }

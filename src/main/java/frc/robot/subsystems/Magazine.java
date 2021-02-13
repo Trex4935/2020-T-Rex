@@ -15,6 +15,7 @@ package frc.robot.subsystems;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
@@ -26,7 +27,9 @@ public class Magazine extends SubsystemBase {
   WPI_TalonSRX reverseIntakeMotor;
 
   /// Smacna
-  DigitalInput Smacna; 
+  DigitalInput intakeSensor;
+  DigitalInput magazineSensor;
+  DigitalInput shooterSensor;
 
   /** Creates a new Magazine. */
   public Magazine() {
@@ -37,8 +40,9 @@ public class Magazine extends SubsystemBase {
     intakeMotor = new WPI_TalonSRX(Constants.intakeMotorCanID);
     intakeMotor.setInverted(false);
 
-    Smacna = new DigitalInput(Constants.smaknaLocation); 
-
+    intakeSensor = new DigitalInput(Constants.intakeSensorDIO); 
+    magazineSensor = new DigitalInput(Constants.magazineSensorDIO);
+    shooterSensor = new DigitalInput(Constants.shooterSensorDIO);
   }
 
   @Override
@@ -81,8 +85,28 @@ public class Magazine extends SubsystemBase {
   }
 
   // getting a smacna value and
-  public boolean getInput() {
-    boolean a = Smacna.get();
-    return (a);
+  public boolean getIntakeSensor() {
+    boolean a = intakeSensor.get();
+    return (!a);
+  }
+
+  public boolean getMagazineSensor() {
+    boolean a = magazineSensor.get();
+    return (!a);
+  }
+
+  public boolean getShooterSensor() {
+    boolean a = shooterSensor.get();
+    return (!a);
+  }
+
+  // If there is an object in front of the smacna sensor, it's read as false. Samething goes vice versa.
+
+  public void oneBall() {
+    if (getIntakeSensor()){
+      runBothMotors();
+    } else {
+
+    } 
   }
 }

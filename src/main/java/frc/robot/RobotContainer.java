@@ -33,6 +33,7 @@ public class RobotContainer {
   public final Magazine magazine;
   private final ReverseMagazineCommand reverseMagazine;
   private final RunBothMotorsCommand runBothMotors;
+  private final IntakeBallTimeCommand intakeBallTime;
 
   public RobotContainer() {
 
@@ -56,6 +57,7 @@ public class RobotContainer {
     magazine = new Magazine();
     runBothMotors = new RunBothMotorsCommand(magazine);
     reverseMagazine = new ReverseMagazineCommand(magazine);
+    intakeBallTime = new IntakeBallTimeCommand(magazine);
 
     // Configure the button bindings
     configureButtonBindings();
@@ -76,6 +78,8 @@ public class RobotContainer {
 
     // Runs shooter motor when the right trigger is pulled
     new RightTriggerBool().whileActiveContinuous(shoot);
+
+    new JoystickButton(controller, XboxController.Button.kY.value).whenPressed(intakeBallTime);
 
     // Not using
     // new Trigger(()->controller.getRawAxis(3)>=0.25).whileActiveContinuous(shoot);
