@@ -52,6 +52,7 @@ public class Shooter extends SubsystemBase {
     SmartDashboard.putNumber("Target RPM", Constants.targetRPM);
     SmartDashboard.putNumber("Current RPM",(shooterMotor.getSelectedSensorVelocity(Constants.kPIDLoopIdx)*600)/2048);
     SmartDashboard.putNumber("Current RPM Raw",shooterMotor.getSelectedSensorVelocity(Constants.kPIDLoopIdx));
+    
   }
 
   // Shoot the ball at a certain speed

@@ -26,6 +26,15 @@ public class Init_Dashboard {
     public NetworkTableEntry driveType =     
     tab.add("Drive Type = Tank", Constants.arcadeDrive)
     .withWidget(BuiltInWidgets.kToggleButton)
+    .withPosition(6,0)
+    .withSize(2,2)
     .getEntry();
         
+    public NetworkTableEntry differentialDriveWidget = 
+    tab.add("Differential Drive", 0) 
+    .withWidget(BuiltInWidgets.kDifferentialDrive)
+    .withProperties(Map.of("Wheels/Number of wheels", 4,"Wheels/Wheel diameter", 80.0,"Visuals/Show velocity vectors", true))
+    .withPosition(0,0) 
+    .getEntry();
+
 }
