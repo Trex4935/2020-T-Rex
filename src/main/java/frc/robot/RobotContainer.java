@@ -86,6 +86,7 @@ public class RobotContainer {
     // Runs shootPID when left trigger is pulled
     new LeftTriggerBool().whileActiveContinuous(shootPID);
 
+
     // Not using
     // new Trigger(()->controller.getRawAxis(3)>=0.25).whileActiveContinuous(shoot);
     // new JoystickButton(controller,
