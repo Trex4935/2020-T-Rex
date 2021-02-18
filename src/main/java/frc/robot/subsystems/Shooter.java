@@ -15,6 +15,7 @@ import frc.robot.Constants;
 
 public class Shooter extends SubsystemBase {
   TalonFX shooterMotor;
+  public static double currentRpm;
 
   /** Creates a new Shooter. */
   public Shooter() {
@@ -52,7 +53,6 @@ public class Shooter extends SubsystemBase {
     SmartDashboard.putNumber("Target RPM", Constants.targetRPM);
     SmartDashboard.putNumber("Current RPM",(shooterMotor.getSelectedSensorVelocity(Constants.kPIDLoopIdx)*600)/2048);
     SmartDashboard.putNumber("Current RPM Raw",shooterMotor.getSelectedSensorVelocity(Constants.kPIDLoopIdx));
-    
   }
 
   // Shoot the ball at a certain speed
@@ -60,6 +60,7 @@ public class Shooter extends SubsystemBase {
 
   public void shoot() {
     shooterMotor.set(ControlMode.PercentOutput, Constants.shooterSpeed);
+    currentRpm = (shooterMotor.getSelectedSensorVelocity(Constants.kPIDLoopIdx)*600)/2048;
 
     // _sb.append(_talon.getSelectedSensorVelocity(Constants.kPIDLoopIdx));
     // _talon.set(TalonFXControlMode.Velocity, targetVelocity_UnitsPer100ms);
