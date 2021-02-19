@@ -35,6 +35,7 @@ public class RobotContainer {
   private final ReverseMagazineCommand reverseMagazine;
   private final RunBothMotorsCommand runBothMotors;
   private final ShootPIDCommand shootPID;
+  private final DriveWithWPCommand driveWithWPCommand;
 
   public RobotContainer() {
 
@@ -43,6 +44,7 @@ public class RobotContainer {
     driveWithController = new DriveWithControllerCommand(driveTrain);
     driveWithController.addRequirements(driveTrain);
     driveTrain.setDefaultCommand(driveWithController);
+    driveWithWPCommand = new DriveWithWPCommand(driveTrain);
 
     // Controller
     controller = new XboxController(Constants.xboxControllerPort);
@@ -104,6 +106,6 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
-    return autoForward;
+    return driveWithWPCommand;
   }
 }

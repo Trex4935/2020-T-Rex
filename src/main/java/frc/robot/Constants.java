@@ -4,6 +4,7 @@
 
 package frc.robot;
 
+import edu.wpi.first.wpilibj.kinematics.DifferentialDriveKinematics;
 import frc.robot.Extensions.Gains;
 
 /**
@@ -109,7 +110,18 @@ public final class Constants {
 
     // How long we move forward
     public static final double secondForward = 10;
+
+    // Trajectory 
     
+	public static final double ksVolts = 0.22;
+	public static final double kvVoltSecondsPerMeter = 1.98;
+    public static final double kaVoltSecondsSquaredPerMeter = 0.2;
+    public static final double kPDriveVel = 8.5;
+	public static final double kMaxSpeedMetersPerSecond = 3;
+    public static final double kMaxAccelerationMetersPerSecondSquared = 3;
+    public static final double kTrackwidthMeters = 0.69;
+	public static final DifferentialDriveKinematics kDriveKinematics = new DifferentialDriveKinematics(kTrackwidthMeters);;
+
     // endregion
 
 }
