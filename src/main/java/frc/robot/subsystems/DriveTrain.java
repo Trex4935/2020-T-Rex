@@ -4,6 +4,8 @@
 
 package frc.robot.subsystems;
 
+import java.io.IOException;
+import java.nio.file.Path;
 import java.util.List;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
@@ -20,10 +22,13 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.trajectory.Trajectory;
 import edu.wpi.first.wpilibj.trajectory.TrajectoryConfig;
 import edu.wpi.first.wpilibj.trajectory.TrajectoryGenerator;
+import edu.wpi.first.wpilibj.trajectory.TrajectoryUtil;
 import edu.wpi.first.wpilibj.trajectory.constraint.DifferentialDriveVoltageConstraint;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 import frc.robot.Extensions.Dashboard_Outputs;
+import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj.Filesystem;
 import edu.wpi.first.wpilibj.SPI;
 
 public class DriveTrain extends SubsystemBase {
@@ -104,20 +109,28 @@ public class DriveTrain extends SubsystemBase {
         .addConstraint(autoVoltageConstraint);
 
     // An example trajectory to follow.  All units in meters.
-    trajectory = TrajectoryGenerator.generateTrajectory(
-      // Start at the origin facing the +X direction
-      new Pose2d(0, 0, new Rotation2d(0)),
-      // Pass through these two interior waypoints, making an 's' curve path
-      List.of(
-          new Translation2d(1, 1),
-          new Translation2d(2, -1)
-      ),
-      // End 3 meters straight ahead of where we started, facing forward
-      new Pose2d(3, 0, new Rotation2d(0)),
-      // Pass config
-      config
-);
+//     trajectory = TrajectoryGenerator.generateTrajectory(
+//       // Start at the origin facing the +X direction
+//       new Pose2d(0, 0, new Rotation2d(0)),
+//       // Pass through these two interior waypoints, making an 's' curve path
+//       List.of(
+//           new Translation2d(1, 1),
+//           new Translation2d(2, -1)
+//       ),
+//       // End 3 meters straight ahead of where we started, facing forward
+//       new Pose2d(3, 0, new Rotation2d(0)),
+//       // Pass config
+//       config
+// );
         
+String trajectoryJSON = "C:\\2021\\trex\\PathWeaver\\Paths\\Unnamed.path";
+trajectory = new Trajectory();
+try {
+  Path trajectoryPath = Filesystem.getDeployDirectory().toPath().resolve(trajectoryJSON);
+  trajectory = TrajectoryUtil.fromPathweaverJson(trajectoryPath);
+} catch (IOException ex) {
+  DriverStation.reportError("Unable to open trajectory: " + trajectoryJSON, ex.getStackTrace());
+}
 
   }
 
