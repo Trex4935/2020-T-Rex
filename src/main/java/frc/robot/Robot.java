@@ -4,10 +4,15 @@
 
 package frc.robot;
 
+import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.shuffleboard.BuiltInWidgets;
+import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
+import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.Extensions.Init_Dashboard;
+import frc.robot.commands.DriveWithControllerCommand;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -22,6 +27,11 @@ public class Robot extends TimedRobot {
   private RobotContainer m_robotContainer;
   public Init_Dashboard  dashboard;
 
+  public static ShuffleboardTab driverInfoTab;
+  NetworkTableEntry driveRightAxisWidget, driveLeftAxisWidget;
+
+
+
   /**
    * This function is run when the robot is first started up and should be used
    * for any initialization code.
@@ -34,6 +44,9 @@ public class Robot extends TimedRobot {
     m_robotContainer = new RobotContainer();
     //Initializing the Shuffleboard Dashboard to that values can be pulled for other systems
     dashboard = new Init_Dashboard();
+    driverInfoTab = Shuffleboard.getTab("Driver_Info")
+    driveRightAxisWidget = driverInfoTab.add("Drive Right Axis", 0.0).withWidget(BuiltInWidgets.kTextView).getEntry();
+    driveLeftAxisWidget = driverInfoTab.add("Drive Left Axis", 0.0).withWidget(BuiltInWidgets.kTextView).getEntry();
   }
 
   /**
@@ -55,6 +68,8 @@ public class Robot extends TimedRobot {
     // robot's periodic
     // block in order for anything in the Command-based framework to work.
     CommandScheduler.getInstance().run();
+    driveLeftAxisWidget.setNumber(RobotContainer.controller.getRawAxis(Constants.leftTankAxis));
+    driveRightAxisWidget.setNumber(RobotContainer.controller.getRawAxis(Constants.rightTankAxis));
   }
 
   /** This function is called once each time the robot enters Disabled mode. */
