@@ -77,6 +77,12 @@ public class Magazine extends SubsystemBase {
     beltMotor.stopMotor();
   }
 
+// method to stop both intake motors
+public void stopBothMotors(){
+  stopIntake();
+  stopSpitBall();
+}
+
   // reverse intake motor
   public void releaseBall() {
     intakeMotor.set(-Constants.intakeMotorSpeed);
