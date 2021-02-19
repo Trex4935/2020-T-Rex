@@ -50,6 +50,9 @@ public final class Constants {
     public static final int magazineSensorDIO = 2;
     public static final int shooterSensorDIO = 3;
 
+    // How long we run the mag when we sense a ball
+    public static final double intakeTimeOut = 1;
+
     // endregion
 
     // region Drivetrain
@@ -106,7 +109,7 @@ public final class Constants {
 
     // How long we move forward
     public static final double secondForward = 10;
-
+    
     // endregion
 
 }

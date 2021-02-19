@@ -34,7 +34,6 @@ public class RobotContainer {
   public final Magazine magazine;
   private final ReverseMagazineCommand reverseMagazine;
   private final RunBothMotorsCommand runBothMotors;
-  private final IntakeBallTimeCommand intakeBallTime;
   private final ShootPIDCommand shootPID;
 
   public RobotContainer() {
@@ -60,7 +59,6 @@ public class RobotContainer {
     magazine = new Magazine();
     runBothMotors = new RunBothMotorsCommand(magazine);
     reverseMagazine = new ReverseMagazineCommand(magazine);
-    intakeBallTime = new IntakeBallTimeCommand(magazine);
 
     // Configure the button bindings
     configureButtonBindings();
@@ -74,7 +72,7 @@ public class RobotContainer {
    */
   private void configureButtonBindings() {
     // Runs pully + intake to move a ball thru the magazine
-    new JoystickButton(controller, XboxController.Button.kA.value).whenHeld(runBothMotors);
+    // new JoystickButton(controller, XboxController.Button.kA.value).whenHeld(runBothMotors);
 
     // Runs pully + intake to reverse a ball thru the magazine
     new JoystickButton(controller, XboxController.Button.kX.value).whenHeld(reverseMagazine);
@@ -82,10 +80,11 @@ public class RobotContainer {
     // Runs shooter motor when the right trigger is pulled
     new RightTriggerBool().whileActiveContinuous(shoot);
 
-    new JoystickButton(controller, XboxController.Button.kY.value).whenPressed(intakeBallTime);
+    //
+    new JoystickButton(controller, XboxController.Button.kY.value).whenPressed(runBothMotors.withTimeout(Constants.intakeTimeOut));
+
     // Runs shootPID when left trigger is pulled
     new LeftTriggerBool().whileActiveContinuous(shootPID);
-
 
     // Not using
     // new Trigger(()->controller.getRawAxis(3)>=0.25).whileActiveContinuous(shoot);
