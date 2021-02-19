@@ -82,7 +82,7 @@ public class RobotContainer {
     // Runs shooter motor when the right trigger is pulled
     new RightTriggerBool().whileActiveContinuous(shoot);
 
-    //
+    // Run the magazine + intake for a set time period
     new JoystickButton(controller, XboxController.Button.kY.value).whenPressed(runBothMotors.withTimeout(Constants.intakeTimeOut));
 
     // Runs shootPID when left trigger is pulled
