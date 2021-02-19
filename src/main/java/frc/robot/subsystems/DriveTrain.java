@@ -123,7 +123,7 @@ public class DriveTrain extends SubsystemBase {
 //       config
 // );
         
-String trajectoryJSON = "C:\\2021\\trex\\PathWeaver\\Paths\\Unnamed.path";
+String trajectoryJSON = "..\\..\\..\\PathWeaver\\output\\Unnamed.wpilib.json";
 trajectory = new Trajectory();
 try {
   Path trajectoryPath = Filesystem.getDeployDirectory().toPath().resolve(trajectoryJSON);
