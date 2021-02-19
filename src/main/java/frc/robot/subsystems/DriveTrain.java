@@ -138,9 +138,9 @@ public class DriveTrain extends SubsystemBase {
       drive.tankDrive(controller.getRawAxis(Constants.leftTankAxis) * speedLimiter,
           controller.getRawAxis(Constants.rightTankAxis) * speedLimiter);
       // Added SmartDashboard support to read out controller data - Edit by Smiths
-      SmartDashboard.putNumber("Drive Left Axis", controller.getRawAxis(Constants.leftTankAxis));
-      SmartDashboard.putNumber("Drive Right Axis", controller.getRawAxis(Constants.rightTankAxis));
-      SmartDashboard.putNumber("Gyro Angle", ahrs.getAngle());
+      // SmartDashboard.putNumber("Drive Left Axis", controller.getRawAxis(Constants.leftTankAxis));
+      // SmartDashboard.putNumber("Drive Right Axis", controller.getRawAxis(Constants.rightTankAxis));
+      // SmartDashboard.putNumber("Gyro Angle", ahrs.getAngle());
     }
 
   }
