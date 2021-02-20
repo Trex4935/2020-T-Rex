@@ -26,7 +26,7 @@ public class IntakeBallCommand extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    magazine.intakeBall();
+    magazine.moveLowBelt();
   }
 
   // Called once the command ends or is interrupted.
