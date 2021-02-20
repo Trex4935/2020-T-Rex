@@ -5,6 +5,7 @@
 package frc.robot.Extensions;
 
 import edu.wpi.first.networktables.NetworkTableInstance;
+import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.networktables.NetworkTable;
 import frc.robot.Constants;
 
@@ -21,7 +22,12 @@ public class Dashboard_Outputs {
         NetworkTable table=NetworkTableInstance.getDefault().getTable("Shuffleboard/Inputs");
         boolean driveType = table.getEntry("Drive Type = Tank").getBoolean(Constants.arcadeDrive);
         return driveType;
-    } 
+    }
+	public double getshooterTargetRPM() {
+        NetworkTable table=NetworkTableInstance.getDefault().getTable("Shuffleboard/Inputs");
+        double shooterTargetRpm = table.getEntry("Shooter Target RPM").getDouble(Constants.targetRPM);
+		return shooterTargetRpm;
+	} 
 
 
 }

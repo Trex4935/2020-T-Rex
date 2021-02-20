@@ -15,7 +15,10 @@ import frc.robot.Constants;
 /** Add your docs here. */
 // Creating a class and methods to be able to load data from Shuffleboard to running robot code.
 public class Init_Dashboard {
+
+
     private ShuffleboardTab tab = Shuffleboard.getTab("Inputs");
+
     public NetworkTableEntry maxSpeed =
         tab.add("Max Speed", Constants.speedLimitDefault)
         .withWidget(BuiltInWidgets.kNumberSlider) // specify the widget of number slider
@@ -30,4 +33,10 @@ public class Init_Dashboard {
     .withSize(2,1)
     .getEntry();
     
+    public NetworkTableEntry shooterTargetRPM = 
+    tab.add("Shooter Target RPM",Constants.targetRPM)
+    .withWidget(BuiltInWidgets.kTextView)
+    .withPosition(0,2)
+    .withSize(2,1)
+    .getEntry();
 }

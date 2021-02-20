@@ -44,6 +44,7 @@ public class Robot extends TimedRobot {
     // Initializing the Shuffleboard Dashboard to that values can be pulled for
     // other systems
     dashboard = new Init_Dashboard();
+    // Configuring Driver Info Shuffleboard Tab
     driverInfoTab = Shuffleboard.getTab("Driver_Info");
     driveLeftAxisWidget = driverInfoTab.add("Drive Left Axis", 0.0).withWidget(BuiltInWidgets.kTextView)
         .withPosition(0, 0).withSize(2, 1).getEntry();

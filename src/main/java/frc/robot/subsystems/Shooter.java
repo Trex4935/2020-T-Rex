@@ -11,10 +11,14 @@ import com.ctre.phoenix.motorcontrol.can.TalonFX;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
+import frc.robot.Extensions.Dashboard_Outputs;
 
 public class Shooter extends SubsystemBase {
   TalonFX shooterMotor;
   public static double currentRpm;
+
+  // Allows use of inputs from Shuffleboard
+  private Dashboard_Outputs dashOutput;
 
   /** Creates a new Shooter. */
   public Shooter() {
@@ -27,6 +31,9 @@ public class Shooter extends SubsystemBase {
     // setting up the pid
     shooterMotor.configSelectedFeedbackSensor(TalonFXFeedbackDevice.IntegratedSensor, Constants.kPIDLoopIdx,
         Constants.kTimeoutMs);
+
+    // Getting Values from Dashboard Output
+    dashOutput = new Dashboard_Outputs();
 
     // set motor limits
     // normal output forward and reverse = 0% ... i.e. stopped
@@ -58,7 +65,7 @@ public class Shooter extends SubsystemBase {
   // Press button to shoot ball
 
   public void shoot() {
-    shooterMotor.set(ControlMode.PercentOutput, Constants.shooterSpeed);
+    shooterMotor.set(ControlMode.PercentOutput, dashOutput.getshooterTargetRPM());
     currentRpm = (shooterMotor.getSelectedSensorVelocity(Constants.kPIDLoopIdx)*600)/2048;
 
     // _sb.append(_talon.getSelectedSensorVelocity(Constants.kPIDLoopIdx));
