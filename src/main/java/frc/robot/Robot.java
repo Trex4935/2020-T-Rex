@@ -4,16 +4,10 @@
 
 package frc.robot;
 
-import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.wpilibj.TimedRobot;
-import edu.wpi.first.wpilibj.shuffleboard.BuiltInWidgets;
-import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
-import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.Extensions.Init_Dashboard;
-import frc.robot.commands.DriveWithControllerCommand;
-import frc.robot.subsystems.Shooter;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -28,8 +22,8 @@ public class Robot extends TimedRobot {
   private RobotContainer m_robotContainer;
   public Init_Dashboard dashboard;
 
-  public static ShuffleboardTab driverInfoTab;
-  NetworkTableEntry driveLeftAxisWidget, driveRightAxisWidget, shooterTargetRpm, shooterCurrentRpm;
+//  public static ShuffleboardTab driverInfoTab;
+//  NetworkTableEntry driveLeftAxisWidget, driveRightAxisWidget, shooterTargetRpm, shooterCurrentRpm;
 
   /**
    * This function is run when the robot is first started up and should be used
@@ -44,15 +38,7 @@ public class Robot extends TimedRobot {
     // Initializing the Shuffleboard Dashboard to that values can be pulled for
     // other systems
     dashboard = new Init_Dashboard();
-    // Configuring Driver Info Shuffleboard Tab
-    driverInfoTab = Shuffleboard.getTab("Driver_Info");
-    driveLeftAxisWidget = driverInfoTab.add("Drive Left Axis", 0.0).withWidget(BuiltInWidgets.kTextView)
-        .withPosition(0, 0).withSize(2, 1).getEntry();
-    driveRightAxisWidget = driverInfoTab.add("Drive Right Axis", 1.0).withWidget(BuiltInWidgets.kTextView)
-        .withPosition(0, 1).withSize(2, 1).getEntry();
-    shooterCurrentRpm = driverInfoTab.add("Shooter Current RPM", Shooter.currentRpm)
-        .withWidget(BuiltInWidgets.kTextView).withPosition(3, 1).withSize(2, 1).getEntry();
-  }
+    }
 
   /**
    * This function is called every robot packet, no matter the mode. Use this for
@@ -74,8 +60,8 @@ public class Robot extends TimedRobot {
     // block in order for anything in the Command-based framework to work.
     CommandScheduler.getInstance().run();
     //Outputting running robot data to Shuffleboard widgets
-    driveLeftAxisWidget.setNumber(RobotContainer.controller.getRawAxis(Constants.leftTankAxis));
-    driveRightAxisWidget.setNumber(RobotContainer.controller.getRawAxis(Constants.rightTankAxis));
+    dashboard.driveLeftAxisWidget.setNumber(RobotContainer.controller.getRawAxis(Constants.leftTankAxis));
+    dashboard.driveRightAxisWidget.setNumber(RobotContainer.controller.getRawAxis(Constants.rightTankAxis));
   }
 
   /** This function is called once each time the robot enters Disabled mode. */
