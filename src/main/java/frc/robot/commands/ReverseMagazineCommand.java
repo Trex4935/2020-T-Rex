@@ -31,8 +31,8 @@ public class ReverseMagazineCommand extends CommandBase {
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    magazine.stopIntake();
-    magazine.stopSpitBall();
+    magazine.stopLowBelt();
+    magazine.stopHighBelt();
   }
 
   // Returns true when the command should end.

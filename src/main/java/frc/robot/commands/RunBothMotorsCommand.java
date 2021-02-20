@@ -25,14 +25,14 @@ public class RunBothMotorsCommand extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    magazine.runBothMotors();
+    magazine.moveBothBelts();
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    magazine.stopIntake();
-    magazine.stopSpitBall();
+    magazine.stopLowBelt();
+    magazine.stopHighBelt();
   }
 
   // Returns true when the command should end.
