@@ -65,7 +65,7 @@ public class Shooter extends SubsystemBase {
   // Press button to shoot ball
 
   public void shoot() {
-    shooterMotor.set(ControlMode.PercentOutput, dashOutput.getshooterTargetRPM());
+    shooterMotor.set(ControlMode.PercentOutput, dashOutput.getShooterTargetRPM());
     currentRpm = (shooterMotor.getSelectedSensorVelocity(Constants.kPIDLoopIdx)*600)/2048;
 
     // _sb.append(_talon.getSelectedSensorVelocity(Constants.kPIDLoopIdx));

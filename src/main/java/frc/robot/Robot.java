@@ -50,8 +50,6 @@ public class Robot extends TimedRobot {
         .withPosition(0, 0).withSize(2, 1).getEntry();
     driveRightAxisWidget = driverInfoTab.add("Drive Right Axis", 1.0).withWidget(BuiltInWidgets.kTextView)
         .withPosition(0, 1).withSize(2, 1).getEntry();
-    shooterTargetRpm = driverInfoTab.add("Shooter Target RPM", Constants.targetRPM).withWidget(BuiltInWidgets.kTextView)
-        .withPosition(3, 0).withSize(2, 1).getEntry();
     shooterCurrentRpm = driverInfoTab.add("Shooter Current RPM", Shooter.currentRpm)
         .withWidget(BuiltInWidgets.kTextView).withPosition(3, 1).withSize(2, 1).getEntry();
   }
@@ -75,6 +73,7 @@ public class Robot extends TimedRobot {
     // robot's periodic
     // block in order for anything in the Command-based framework to work.
     CommandScheduler.getInstance().run();
+    //Outputting running robot data to Shuffleboard widgets
     driveLeftAxisWidget.setNumber(RobotContainer.controller.getRawAxis(Constants.leftTankAxis));
     driveRightAxisWidget.setNumber(RobotContainer.controller.getRawAxis(Constants.rightTankAxis));
   }

@@ -23,7 +23,7 @@ public class Dashboard_Outputs {
         boolean driveType = table.getEntry("Drive Type = Tank").getBoolean(Constants.arcadeDrive);
         return driveType;
     }
-	public double getshooterTargetRPM() {
+	public double getShooterTargetRPM() {
         NetworkTable table=NetworkTableInstance.getDefault().getTable("Shuffleboard/Inputs");
         double shooterTargetRpm = table.getEntry("Shooter Target RPM").getDouble(Constants.targetRPM);
 		return shooterTargetRpm;
