@@ -13,6 +13,7 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.Extensions.Init_Dashboard;
 import frc.robot.commands.DriveWithControllerCommand;
+import frc.robot.subsystems.Shooter;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -25,12 +26,10 @@ public class Robot extends TimedRobot {
   private Command m_autonomousCommand;
 
   private RobotContainer m_robotContainer;
-  public Init_Dashboard  dashboard;
+  public Init_Dashboard dashboard;
 
   public static ShuffleboardTab driverInfoTab;
-  NetworkTableEntry driveRightAxisWidget, driveLeftAxisWidget;
-
-
+  NetworkTableEntry driveLeftAxisWidget, driveRightAxisWidget, shooterTargetRpm, shooterCurrentRpm;
 
   /**
    * This function is run when the robot is first started up and should be used
@@ -42,11 +41,18 @@ public class Robot extends TimedRobot {
     // and put our
     // autonomous chooser on the dashboard.
     m_robotContainer = new RobotContainer();
-    //Initializing the Shuffleboard Dashboard to that values can be pulled for other systems
+    // Initializing the Shuffleboard Dashboard to that values can be pulled for
+    // other systems
     dashboard = new Init_Dashboard();
-    driverInfoTab = Shuffleboard.getTab("Driver_Info")
-    driveRightAxisWidget = driverInfoTab.add("Drive Right Axis", 0.0).withWidget(BuiltInWidgets.kTextView).getEntry();
-    driveLeftAxisWidget = driverInfoTab.add("Drive Left Axis", 0.0).withWidget(BuiltInWidgets.kTextView).getEntry();
+    driverInfoTab = Shuffleboard.getTab("Driver_Info");
+    driveLeftAxisWidget = driverInfoTab.add("Drive Left Axis", 0.0).withWidget(BuiltInWidgets.kTextView)
+        .withPosition(0, 0).withSize(2, 1).getEntry();
+    driveRightAxisWidget = driverInfoTab.add("Drive Right Axis", 1.0).withWidget(BuiltInWidgets.kTextView)
+        .withPosition(0, 1).withSize(2, 1).getEntry();
+    shooterTargetRpm = driverInfoTab.add("Shooter Target RPM", Constants.targetRPM).withWidget(BuiltInWidgets.kTextView)
+        .withPosition(3, 0).withSize(2, 1).getEntry();
+    shooterCurrentRpm = driverInfoTab.add("Shooter Current RPM", Shooter.currentRpm)
+        .withWidget(BuiltInWidgets.kTextView).withPosition(3, 1).withSize(2, 1).getEntry();
   }
 
   /**
@@ -110,13 +116,13 @@ public class Robot extends TimedRobot {
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
     }
-    
+
   }
 
   /** This function is called periodically during operator control. */
   @Override
   public void teleopPeriodic() {
-   // System.out.println(dashboard.maxSpeed.getDouble(Constants.speedLimitDefault));
+    // System.out.println(dashboard.maxSpeed.getDouble(Constants.speedLimitDefault));
   }
 
   @Override
