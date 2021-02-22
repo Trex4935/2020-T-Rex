@@ -54,7 +54,7 @@ public class DriveTrain extends SubsystemBase {
   Dashboard_Outputs dashOut;
 
   // Trajectory
-  Trajectory trajectory;
+  public Trajectory trajectory;
 
   /** Creates a new DriveTrain. */
   public DriveTrain() {
