@@ -174,4 +174,12 @@ try {
     System.out.println(trajectory.sample(time));
   }
 
+  public Pose2d getPosition(double time){
+    return trajectory.sample(time).poseMeters;
+  }
+  // Move us forward during auto
+   public void move(double LeftSpeed, double RightSpeed) {
+    drive.tankDrive(LeftSpeed, RightSpeed);
+  }
+
 }
