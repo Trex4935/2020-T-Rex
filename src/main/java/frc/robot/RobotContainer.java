@@ -106,6 +106,25 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
+
+  //   RamseteCommand ramseteCommand = new RamseteCommand(
+  //     exampleTrajectory,
+  //     m_robotDrive::getPose,
+  //     new RamseteController(AutoConstants.kRamseteB, AutoConstants.kRamseteZeta),
+  //     new SimpleMotorFeedforward(DriveConstants.ksVolts,
+  //                                DriveConstants.kvVoltSecondsPerMeter,
+  //                                DriveConstants.kaVoltSecondsSquaredPerMeter),
+  //     DriveConstants.kDriveKinematics,
+  //     m_robotDrive::getWheelSpeeds,
+  //     new PIDController(DriveConstants.kPDriveVel, 0, 0),
+  //     new PIDController(DriveConstants.kPDriveVel, 0, 0),
+  //     // RamseteCommand passes volts to the callback
+  //     m_robotDrive::tankDriveVolts,
+  //     m_robotDrive
+  // );
+
+  // RamseteCommand​(driveTrain.trajectory, driveTrain::getPosition(RobotContainer.), new RamseteController(Constants.kRamseteB, Constants.kRamseteZeta), Constants.kDriveKinematics, driveTrain::move, driveTrain);
+
     return driveWithWPCommand;
   }
 }
