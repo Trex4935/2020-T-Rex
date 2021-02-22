@@ -5,7 +5,6 @@
 package frc.robot.Extensions;
 
 import edu.wpi.first.networktables.NetworkTableInstance;
-import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.networktables.NetworkTable;
 import frc.robot.Constants;
 

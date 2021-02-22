@@ -22,8 +22,8 @@ import frc.robot.Constants;
 public class Magazine extends SubsystemBase {
 
   /// Motors
-  WPI_TalonSRX beltMotor;
-  WPI_TalonSRX intakeMotor;
+  WPI_TalonSRX highBeltMotor;
+  WPI_TalonSRX lowBeltMotor;
   WPI_TalonSRX reverseIntakeMotor;
 
   /// Smacna
@@ -34,11 +34,11 @@ public class Magazine extends SubsystemBase {
   /** Creates a new Magazine. */
   public Magazine() {
 
-    beltMotor = new WPI_TalonSRX(Constants.beltMotorCanID);
-    beltMotor.setInverted(false);
+    highBeltMotor = new WPI_TalonSRX(Constants.beltMotorCanID);
+    highBeltMotor.setInverted(false);
 
-    intakeMotor = new WPI_TalonSRX(Constants.intakeMotorCanID);
-    intakeMotor.setInverted(false);
+    lowBeltMotor = new WPI_TalonSRX(Constants.intakeMotorCanID);
+    lowBeltMotor.setInverted(false);
 
     intakeSensor = new DigitalInput(Constants.intakeSensorDIO);
     magazineSensor = new DigitalInput(Constants.magazineSensorDIO);
@@ -50,67 +50,75 @@ public class Magazine extends SubsystemBase {
     // This method will be called once per scheduler run
   }
 
-  // Make belt motor go wrrrr
-  public void spitBall() {
-    beltMotor.set(Constants.beltMotorSpeed);
+  /// Intake system consists of two motors
+  /// One drives the highbelt from bend -> Shooter
+  /// The other drives the low belt from intake port -> bend
+  /// The Bend is the tigest point in the magazine run that bends the ball from
+  /// horizontal movement to vertical movement
+
+  /// Designating the belts as HIGHBELT (HB) & LOWBELT (LB)
+  /// Designating the motors as HIGHMOTOR (HM) and LOWMOTOR (LM)
+
+  // Move the HB at a constant speed
+  public void moveHighBelt() {
+    highBeltMotor.set(Constants.beltMotorSpeed);
   }
 
-  // Run both
-  public void runBothMotors() {
-    intakeBall();
-    spitBall();
+  // Move the LB at a constant speed
+  public void moveLowBelt() {
+    lowBeltMotor.set(Constants.intakeMotorSpeed);
   }
 
-  // Make intake motor also go wrrrr
-  public void intakeBall() {
-    intakeMotor.set(Constants.intakeMotorSpeed);
-
+  // Run both belts at a constant speed
+  public void moveBothBelts() {
+    moveLowBelt();
+    moveHighBelt();
   }
 
-  // Method to just stop the drive
-  public void stopIntake() {
-    intakeMotor.stopMotor();
+  // Stop the LB
+  public void stopLowBelt() {
+    lowBeltMotor.stopMotor();
   }
 
-  // method to stop the belt motor
-  public void stopSpitBall() {
-    beltMotor.stopMotor();
+  // Stop the HB
+  public void stopHighBelt() {
+    highBeltMotor.stopMotor();
   }
 
-// method to stop both intake motors
-public void stopBothMotors(){
-  stopIntake();
-  stopSpitBall();
-}
+  // Stop both belts
+  public void stopBothBelts() {
+    stopLowBelt();
+    stopHighBelt();
+  }
 
-  // reverse intake motor
+  // Run the belts backwards to push the balls back out of the intake channel
   public void releaseBall() {
-    intakeMotor.set(-Constants.intakeMotorSpeed);
-    beltMotor.set(-Constants.beltMotorSpeed);
+    lowBeltMotor.set(-Constants.intakeMotorSpeed);
+    highBeltMotor.set(-Constants.beltMotorSpeed);
   }
 
-  // getting a smacna value and
+  // Get the value of the intake sensor
   public boolean getIntakeSensor() {
     boolean a = intakeSensor.get();
     return (!a);
   }
 
+  // Get the value of the magazine sensor
   public boolean getMagazineSensor() {
     boolean a = magazineSensor.get();
     return (!a);
   }
 
+  // Get the value of the shooter sensor
   public boolean getShooterSensor() {
     boolean a = shooterSensor.get();
     return (!a);
   }
 
-  // If there is an object in front of the smacna sensor, it's read as false.
-  // Samething goes vice versa.
-
+  // Not currently implemented
   public void oneBall() {
     if (getIntakeSensor()) {
-      runBothMotors();
+      moveBothBelts();
     } else {
 
     }
