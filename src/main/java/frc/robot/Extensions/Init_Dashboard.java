@@ -5,7 +5,6 @@
 package frc.robot.Extensions;
 
 import java.util.Map;
-
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.wpilibj.shuffleboard.BuiltInWidgets;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
@@ -51,22 +50,22 @@ public class Init_Dashboard {
                 .withSize(2, 1)
                 .getEntry();
 
-        driveRightAxisWidget = driverInfoTab.add("Drive Right Axis", 0)
+        driveRightAxisWidget = driverInfoTab.add("Drive Right Axis", 2)
                 .withWidget(BuiltInWidgets.kTextView)
                 .withPosition(0, 1)
                 .withSize(2, 1)
                 .getEntry();
 
-        shooterCurrentRpm = driverInfoTab.add("Shooter Current RPM", 0)
+        shooterCurrentRpm = driverInfoTab.add("Shooter Current RPM", 3)
                 .withWidget(BuiltInWidgets.kTextView)
                 .withPosition(3, 1)
                 .withSize(2, 1)
                 .getEntry();
 
-        gyroCurrentPosition = driverInfoTab.add("Current Gyro Heading", 0)
+        gyroCurrentPosition = driverInfoTab.add("Current Gyro Heading", 4)
                 .withWidget(BuiltInWidgets.kGyro)
-                .withPosition(5, 0)
-                .withSize(3, 3)
+                .withPosition(6, 0)
+                .withSize(2, 2)
                 .getEntry();
     }
 }
