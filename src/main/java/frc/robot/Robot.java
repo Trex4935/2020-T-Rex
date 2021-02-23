@@ -9,6 +9,8 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.Extensions.Init_Dashboard;
 import frc.robot.subsystems.Shooter;
+import com.kauailabs.navx.frc.AHRS;
+import edu.wpi.first.wpilibj.SPI;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -22,6 +24,8 @@ public class Robot extends TimedRobot {
 
   private RobotContainer m_robotContainer;
   public Init_Dashboard dashboard;
+
+  public AHRS gyro;  // Gyro object
 
 //  public static ShuffleboardTab driverInfoTab;
 //  NetworkTableEntry driveLeftAxisWidget, driveRightAxisWidget, shooterTargetRpm, shooterCurrentRpm;
@@ -39,6 +43,8 @@ public class Robot extends TimedRobot {
     // Initializing the Shuffleboard Dashboard to that values can be pulled for
     // other systems
     dashboard = new Init_Dashboard();
+    gyro = new AHRS(SPI.Port.kMXP);
+
     }
 
   /**
@@ -63,6 +69,9 @@ public class Robot extends TimedRobot {
     //Outputting running robot data to Shuffleboard widgets
     dashboard.driveLeftAxisWidget.setNumber(RobotContainer.controller.getRawAxis(Constants.leftTankAxis));
     dashboard.driveRightAxisWidget.setNumber(RobotContainer.controller.getRawAxis(Constants.rightTankAxis));
+    dashboard.shooterCurrentRpm.setNumber(Shooter.currentRpm);
+    dashboard.gyroCurrentPosition.setNumber(gyro.getAngle());
+
   }
 
   /** This function is called once each time the robot enters Disabled mode. */
