@@ -27,9 +27,9 @@ public class Magazine extends SubsystemBase {
   WPI_TalonSRX reverseIntakeMotor;
 
   /// Smacna
-  DigitalInput intakeSensor;
-  DigitalInput magazineSensor;
-  DigitalInput shooterSensor;
+  private static DigitalInput intakeSensor;
+  private static DigitalInput magazineSensor;
+  private static DigitalInput shooterSensor;
 
   /** Creates a new Magazine. */
   public Magazine() {
@@ -98,19 +98,19 @@ public class Magazine extends SubsystemBase {
   }
 
   // Get the value of the intake sensor
-  public boolean getIntakeSensor() {
+  public static boolean getIntakeSensor() {
     boolean a = intakeSensor.get();
     return (!a);
   }
 
   // Get the value of the magazine sensor
-  public boolean getMagazineSensor() {
+  public static boolean getMagazineSensor() {
     boolean a = magazineSensor.get();
     return (!a);
   }
 
   // Get the value of the shooter sensor
-  public boolean getShooterSensor() {
+  public static boolean getShooterSensor() {
     boolean a = shooterSensor.get();
     return (!a);
   }
