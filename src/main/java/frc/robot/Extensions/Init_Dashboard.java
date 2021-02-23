@@ -18,8 +18,10 @@ public class Init_Dashboard {
 
         private ShuffleboardTab inputsTab = Shuffleboard.getTab("Inputs");
         private ShuffleboardTab driverInfoTab = Shuffleboard.getTab("Driver Info");
+        private ShuffleboardTab magazineStatusTab = Shuffleboard.getTab("Magazine Status");
         public NetworkTableEntry maxSpeed, driveType, driveLeftAxisWidget, driveRightAxisWidget, shooterTargetRpm,
-                        shooterCurrentRpm, gyroCurrentPosition;
+                        shooterCurrentRpm, gyroCurrentPosition,
+                        sensorMagazine, sensorIntake, sensorShooter;
 
         // Constructor to build all Shuffleboard widgets
         public Init_Dashboard() {
@@ -47,5 +49,16 @@ public class Init_Dashboard {
 
                 gyroCurrentPosition = driverInfoTab.add("Current Gyro Heading", 4).withWidget(BuiltInWidgets.kGyro)
                                 .withPosition(6, 0).withSize(2, 2).getEntry();
-        }
+        
+                // Object Creation for Magazine Status widgets
+                sensorIntake = magazineStatusTab.add("Intake Status", 5).withWidget(BuiltInWidgets.kBooleanBox)
+                                .withPosition(0, 0).withSize(1, 1).getEntry();
+
+                sensorMagazine = magazineStatusTab.add("Magazine Status", 6).withWidget(BuiltInWidgets.kBooleanBox)
+                                .withPosition(0, 0).withSize(1, 1).getEntry();
+
+                sensorShooter = magazineStatusTab.add("Shooter Status", 7).withWidget(BuiltInWidgets.kBooleanBox)
+                                .withPosition(0, 0).withSize(1, 1).getEntry();
+
+                }
 }
