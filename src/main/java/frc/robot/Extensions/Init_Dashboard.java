@@ -51,14 +51,14 @@ public class Init_Dashboard {
                                 .withPosition(6, 0).withSize(2, 2).getEntry();
         
                 // Object Creation for Magazine Status widgets
-                sensorIntake = magazineStatusTab.add("Intake Status", 5).withWidget(BuiltInWidgets.kBooleanBox)
+                sensorIntake = magazineStatusTab.add("Intake Status", false).withWidget(BuiltInWidgets.kBooleanBox)
                                 .withPosition(0, 0).withSize(1, 1).getEntry();
 
-                sensorMagazine = magazineStatusTab.add("Magazine Status", 6).withWidget(BuiltInWidgets.kBooleanBox)
-                                .withPosition(0, 0).withSize(1, 1).getEntry();
+                sensorMagazine = magazineStatusTab.add("Magazine Status", false).withWidget(BuiltInWidgets.kBooleanBox)
+                                .withPosition(0, 1).withSize(1, 1).getEntry();
 
-                sensorShooter = magazineStatusTab.add("Shooter Status", 7).withWidget(BuiltInWidgets.kBooleanBox)
-                                .withPosition(0, 0).withSize(1, 1).getEntry();
+                sensorShooter = magazineStatusTab.add("Shooter Status", false).withWidget(BuiltInWidgets.kBooleanBox)
+                                .withPosition(0, 2).withSize(1, 1).getEntry();
 
                 }
 }
