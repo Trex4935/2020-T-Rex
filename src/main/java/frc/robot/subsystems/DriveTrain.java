@@ -181,9 +181,16 @@ public class DriveTrain extends SubsystemBase {
     System.out.println(trajectory.sample(time).poseMeters);
     return trajectory.sample(time).poseMeters;
   }
-  // Move us forward during auto
+
+  // Takes in speed setpoints,convert them to volts and drive robot
    public void move(double LeftSpeed, double RightSpeed) {
-    drive.tankDrive(LeftSpeed, RightSpeed);
+    rightSide.setVoltage(-RightSpeed/Constants.kvVoltSecondsPerMeter); //Or 12  or kvVoltSecondsPerMeter *WheelRatio
+    leftSide.setVoltage(LeftSpeed/Constants.kvVoltSecondsPerMeter); //Or 12
+    drive.feed();
+  }
+  // Takes in speed setpoints and drive robot
+  public void moveBase(double LeftSpeed, double RightSpeed) {
+    drive.tankDrive(LeftSpeed,-RightSpeed);
   }
 
 }
