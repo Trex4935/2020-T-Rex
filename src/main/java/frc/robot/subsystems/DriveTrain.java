@@ -11,6 +11,7 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 import com.kauailabs.navx.frc.AHRS;
 
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.controller.SimpleMotorFeedforward;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
@@ -50,6 +51,10 @@ public class DriveTrain extends SubsystemBase {
 
   // Trajectory
   public Trajectory trajectory;
+
+  // Internal time
+
+  public static double time;
 
   /** Creates a new DriveTrain. */
   public DriveTrain() {
@@ -122,6 +127,7 @@ public class DriveTrain extends SubsystemBase {
       DriverStation.reportError("Unable to open trajectory: " + trajectoryJSON, ex.getStackTrace());
     }
 
+    time = 0.1;
   }
 
   @Override
@@ -166,7 +172,9 @@ public class DriveTrain extends SubsystemBase {
     System.out.println(trajectory.sample(time));
   }
 
-  public Pose2d getPosition(double time){
+  public Pose2d getPosition(){
+    time += 0.002;
+    System.out.println(trajectory.sample(time).poseMeters);
     return trajectory.sample(time).poseMeters;
   }
   // Move us forward during auto
