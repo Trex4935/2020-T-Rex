@@ -7,6 +7,7 @@ package frc.robot;
 // import trex code
 import frc.robot.commands.*;
 import frc.robot.subsystems.*;
+import frc.robot.Extensions.IntakeTrigger;
 import frc.robot.Extensions.LeftTriggerBool;
 import frc.robot.Extensions.RightTriggerBool;
 
@@ -39,6 +40,7 @@ public class RobotContainer {
   private final RunBothMotorsCommand runBothMotors;
   private final ShootPIDCommand shootPID;
   private final DriveWithWPCommand driveWithWPCommand;
+  private final IntakeBallCommand intakeBall;
 
   public RobotContainer() {
 
@@ -64,6 +66,7 @@ public class RobotContainer {
     magazine = new Magazine();
     runBothMotors = new RunBothMotorsCommand(magazine);
     reverseMagazine = new ReverseMagazineCommand(magazine);
+    intakeBall = new IntakeBallCommand(magazine);
 
     // Configure the button bindings
     configureButtonBindings();
@@ -86,11 +89,15 @@ public class RobotContainer {
     new RightTriggerBool().whileActiveContinuous(shoot);
 
     // Run the magazine + intake for a set time period
-    new JoystickButton(controller, XboxController.Button.kY.value).whenPressed(runBothMotors.withTimeout(Constants.intakeTimeOut));
+    // At the moment taking this off a button ... we need to figure out how to put this back!
+    // new JoystickButton(controller, XboxController.Button.kY.value).whenPressed(runBothMotors.withTimeout(Constants.intakeTimeOut));
 
     // Runs shootPID when left trigger is pulled
     new LeftTriggerBool().whileActiveContinuous(shootPID);
 
+    // Run the magazine + intake when the intake sensor sees a ball
+    new IntakeTrigger().whenActive(runBothMotors.withTimeout(Constants.intakeTimeOut));
+    
     // Not using
     // new Trigger(()->controller.getRawAxis(3)>=0.25).whileActiveContinuous(shoot);
     // new JoystickButton(controller,
