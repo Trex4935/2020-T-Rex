@@ -194,6 +194,14 @@ public class DriveTrain extends SubsystemBase {
     drive.tankDrive(LeftSpeed,-RightSpeed);
   }
 
+  public double getGyroAngle() {
+    return ahrs.getAngle();
+  }
+
+  public Pose2d getPose(){
+    return odometry.getPoseMeters();
+  }
+ 
   //Takes the rotation or internal ticks of Falcon Encoder and turn them to a travel distance. gear ratio A:1 means, 1/A.
   public double ticksToPosition(double ticks,double wheelDiameter, double gearRatio){
     double nbTurnMotor = ticks/Constants.encoderTicksPerTurn;
