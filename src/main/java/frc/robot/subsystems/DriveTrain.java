@@ -187,4 +187,12 @@ public class DriveTrain extends SubsystemBase {
     drive.tankDrive(LeftSpeed,-RightSpeed);
   }
 
+  //Takes the rotation or internal ticks of Falcon Encoder and turn them to a travel distance. gear ratio A:1 means, 1/A.
+  public double ticksToPosition(double ticks,double wheelDiameter, double gearRatio){
+    double nbTurnMotor = ticks/Constants.encoderTicksPerTurn;
+    double nbTurnWheel = nbTurnMotor * gearRatio;
+    double distanceTravel = nbTurnWheel * Math.PI*wheelDiameter;
+    return distanceTravel;
+  }
+
 }
