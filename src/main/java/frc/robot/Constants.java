@@ -124,6 +124,8 @@ public final class Constants {
 	public static final double kRamseteB = 2;
 	public static final double kRamseteZeta = 0.7;
 
+    //Encoder
+	public static final double encoderTicksPerTurn = 2048;
     // endregion
 
 }
