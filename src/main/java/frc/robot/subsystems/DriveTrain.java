@@ -6,17 +6,22 @@ package frc.robot.subsystems;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.List;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 import com.kauailabs.navx.frc.AHRS;
 
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.controller.SimpleMotorFeedforward;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.geometry.Pose2d;
+import edu.wpi.first.wpilibj.geometry.Rotation2d;
+import edu.wpi.first.wpilibj.geometry.Translation2d;
 import edu.wpi.first.wpilibj.trajectory.Trajectory;
 import edu.wpi.first.wpilibj.trajectory.TrajectoryConfig;
+import edu.wpi.first.wpilibj.trajectory.TrajectoryGenerator;
 import edu.wpi.first.wpilibj.trajectory.TrajectoryUtil;
 import edu.wpi.first.wpilibj.trajectory.constraint.DifferentialDriveVoltageConstraint;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -50,6 +55,10 @@ public class DriveTrain extends SubsystemBase {
 
   // Trajectory
   public Trajectory trajectory;
+
+  // Internal time
+
+  public static double time;
 
   /** Creates a new DriveTrain. */
   public DriveTrain() {
@@ -122,6 +131,7 @@ public class DriveTrain extends SubsystemBase {
       DriverStation.reportError("Unable to open trajectory: " + trajectoryJSON, ex.getStackTrace());
     }
 
+    time = 0.1;
   }
 
   @Override
@@ -160,12 +170,21 @@ public class DriveTrain extends SubsystemBase {
     System.out.println(trajectory.sample(time));
   }
 
-  public Pose2d getPosition(double time){
+  public Pose2d getPosition(){
+    time += 0.002;
+    System.out.println(trajectory.sample(time).poseMeters);
     return trajectory.sample(time).poseMeters;
   }
-  // Move us forward during auto
+
+  // Takes in speed setpoints,convert them to volts and drive robot
    public void move(double LeftSpeed, double RightSpeed) {
-    drive.tankDrive(LeftSpeed, RightSpeed);
+    rightSide.setVoltage(-RightSpeed/Constants.kvVoltSecondsPerMeter); //Or 12  or kvVoltSecondsPerMeter *WheelRatio
+    leftSide.setVoltage(LeftSpeed/Constants.kvVoltSecondsPerMeter); //Or 12
+    drive.feed();
+  }
+  // Takes in speed setpoints and drive robot
+  public void moveBase(double LeftSpeed, double RightSpeed) {
+    drive.tankDrive(LeftSpeed,-RightSpeed);
   }
 
 }
