@@ -19,6 +19,7 @@ import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.geometry.Pose2d;
 import edu.wpi.first.wpilibj.geometry.Rotation2d;
 import edu.wpi.first.wpilibj.geometry.Translation2d;
+import edu.wpi.first.wpilibj.kinematics.DifferentialDriveOdometry;
 import edu.wpi.first.wpilibj.trajectory.Trajectory;
 import edu.wpi.first.wpilibj.trajectory.TrajectoryConfig;
 import edu.wpi.first.wpilibj.trajectory.TrajectoryGenerator;
@@ -49,6 +50,9 @@ public class DriveTrain extends SubsystemBase {
 
   // Gyro
   AHRS ahrs;
+
+  //Odometry
+  DifferentialDriveOdometry odometry;
 
   // Drive Type
   Dashboard_Outputs dashOut;
@@ -91,6 +95,9 @@ public class DriveTrain extends SubsystemBase {
 
     dashOut = new Dashboard_Outputs();
 
+    //Odometry
+    odometry = new DifferentialDriveOdometry(Rotation2d.fromDegrees(getGyroAngle()),Constants.startPosition) ;
+    
     // Trajectory
 
     // Create a voltage constraint to ensure we don't accelerate too fast

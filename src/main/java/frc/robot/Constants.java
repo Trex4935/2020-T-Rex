@@ -123,6 +123,8 @@ public final class Constants {
 	public static final DifferentialDriveKinematics kDriveKinematics = new DifferentialDriveKinematics(kTrackwidthMeters);
 	public static final double kRamseteB = 2;
 	public static final double kRamseteZeta = 0.7;
+    //Field
+    public static final Pose2d startPosition = new Pose2d(0, 0, new Rotation2d());
 
     //Encoder
 	public static final double encoderTicksPerTurn = 2048;
