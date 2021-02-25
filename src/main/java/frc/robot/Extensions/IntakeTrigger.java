@@ -6,11 +6,13 @@ package frc.robot.Extensions;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.subsystems.Magazine;
 
-/** Add your docs here. */
-public class  IntakeTrigger extends Trigger {
+// Use the intake smacna as a "button"
+public class IntakeTrigger extends Trigger {
 
+  // Override the trigger get method
   @Override
   public boolean get() {
+    // Pull the state of the intake sensor
     return Magazine.getIntakeSensor();
   }
 }

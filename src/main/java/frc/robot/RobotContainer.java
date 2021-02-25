@@ -39,7 +39,7 @@ public class RobotContainer {
   private final RunBothMotorsCommand runBothMotors;
   private final ShootPIDCommand shootPID;
   private final DriveWithWPCommand driveWithWPCommand;
-  private final IntakeBallCommand intakeBall;
+  private final LowBeltCommand intakeBall;
 
   public RobotContainer() {
 
@@ -65,7 +65,7 @@ public class RobotContainer {
     magazine = new Magazine();
     runBothMotors = new RunBothMotorsCommand(magazine);
     reverseMagazine = new ReverseMagazineCommand(magazine);
-    intakeBall = new IntakeBallCommand(magazine);
+    intakeBall = new LowBeltCommand(magazine);
 
     // Configure the button bindings
     configureButtonBindings();
