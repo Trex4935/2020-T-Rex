@@ -4,6 +4,8 @@
 
 package frc.robot;
 
+import edu.wpi.first.wpilibj.geometry.Pose2d;
+import edu.wpi.first.wpilibj.geometry.Rotation2d;
 import edu.wpi.first.wpilibj.kinematics.DifferentialDriveKinematics;
 import frc.robot.Extensions.Gains;
 
@@ -125,6 +127,9 @@ public final class Constants {
 	public static final double kRamseteZeta = 0.7;
     //Field
     public static final Pose2d startPosition = new Pose2d(0, 0, new Rotation2d());
+    //Dynamics
+    public static final double wheelDiameter = 0.1524; //m, 6inch
+	public static final double driveTrainGearRatio = 1/30;
 
     //Encoder
 	public static final double encoderTicksPerTurn = 2048;

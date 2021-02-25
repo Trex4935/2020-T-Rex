@@ -144,6 +144,7 @@ public class DriveTrain extends SubsystemBase {
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
+    odometry.update(ahrs.getRotation2d(), ticksToPosition(leftFront.getSelectedSensorVelocity(), Constants.wheelDiameter, Constants.driveTrainGearRatio) , ticksToPosition(rightFront.getSelectedSensorVelocity(), Constants.wheelDiameter, Constants.driveTrainGearRatio));
   }
 
   // Method to control the drive with the controller
