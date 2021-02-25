@@ -7,12 +7,12 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Magazine;
 
-public class IntakeBallCommand extends CommandBase {
-  /** Creates a new IntakeBallCommand. */
+public class HighBeltCommand extends CommandBase {
+  /** Creates a new spitBall. */
 
   private final Magazine magazine;
 
-  public IntakeBallCommand(Magazine mag) {
+  public HighBeltCommand(Magazine mag) {
     // Use addRequirements() here to declare subsystem dependencies.
     magazine = mag;
     addRequirements(magazine);
@@ -26,7 +26,7 @@ public class IntakeBallCommand extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    magazine.moveLowBelt();
+    magazine.moveHighBelt();
   }
 
   // Called once the command ends or is interrupted.
