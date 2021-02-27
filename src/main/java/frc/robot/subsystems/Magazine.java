@@ -35,10 +35,10 @@ public class Magazine extends SubsystemBase {
   public Magazine() {
 
     highBeltMotor = new WPI_TalonSRX(Constants.beltMotorCanID);
-    highBeltMotor.setInverted(false);
+    highBeltMotor.setInverted(true);
 
     lowBeltMotor = new WPI_TalonSRX(Constants.intakeMotorCanID);
-    lowBeltMotor.setInverted(false);
+    lowBeltMotor.setInverted(true);
 
     intakeSensor = new DigitalInput(Constants.intakeSensorDIO);
     magazineSensor = new DigitalInput(Constants.magazineSensorDIO);
