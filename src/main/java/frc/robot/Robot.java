@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.Extensions.Init_Dashboard;
+import frc.robot.Extensions.Limelight;
 import frc.robot.subsystems.Shooter;
 import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.wpilibj.SPI;
@@ -27,10 +28,9 @@ public class Robot extends TimedRobot {
   // Initialize the tabs on the Shuffleboard
   public Init_Dashboard dashboard;
 
-  public AHRS gyro;  // Gyro object
+  public Limelight limelight; // Limelight object
 
-//  public static ShuffleboardTab driverInfoTab;
-//  NetworkTableEntry driveLeftAxisWidget, driveRightAxisWidget, shooterTargetRpm, shooterCurrentRpm;
+  public AHRS gyro;  // Gyro object
 
   /**
    * This function is run when the robot is first started up and should be used
@@ -45,7 +45,9 @@ public class Robot extends TimedRobot {
     // Initializing the Shuffleboard Dashboard to that values can be pulled for
     // other systems
     dashboard = new Init_Dashboard();
-    
+
+    limelight = new Limelight();
+
     gyro = new AHRS(SPI.Port.kMXP);
 
     }
@@ -69,11 +71,23 @@ public class Robot extends TimedRobot {
     // robot's periodic
     // block in order for anything in the Command-based framework to work.
     CommandScheduler.getInstance().run();
+
     //Outputting running robot data to Shuffleboard widgets
+    //
+    // Drive Left Axis Shuffleboard Widget
     dashboard.driveLeftAxisWidget.setNumber(RobotContainer.controller.getRawAxis(Constants.leftTankAxis));
+    // Drive Right Axis Shuffleboard Widget
     dashboard.driveRightAxisWidget.setNumber(RobotContainer.controller.getRawAxis(Constants.rightTankAxis));
+    // Shooter Current running RPM Widget
     dashboard.shooterCurrentRpm.setNumber(Shooter.currentRpm);
+    // Gyro current heading Widget
     dashboard.gyroCurrentPosition.setNumber(gyro.getAngle());
+    // Limelight X Axis Widget
+    dashboard.limeLightX.setNumber(limelight.getLimeLightX());
+    // Limelight Y Axis Widget
+    dashboard.limeLightY.setNumber(limelight.getLimeLightY());
+    // Limelight Area Widget
+    dashboard.limeLightArea.setNumber(limelight.getLimeLightArea());
 
   }
 

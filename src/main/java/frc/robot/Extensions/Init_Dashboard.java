@@ -22,10 +22,13 @@ public class Init_Dashboard {
         private ShuffleboardTab driverInfoTab = Shuffleboard.getTab("Driver Info");
         // Create a Shuffleboard tab for Magazine load status
         private ShuffleboardTab magazineStatusTab = Shuffleboard.getTab("Magazine Status");
+        // Create a Shuffleboard tab for Limelight Data
+        private ShuffleboardTab limelightInfoTab = Shuffleboard.getTab("Limelight");
         // Create the objects used for the widgets in NetworkTables
         public NetworkTableEntry maxSpeed, driveType, driveLeftAxisWidget, driveRightAxisWidget, shooterTargetRpm,
                         shooterCurrentRpm, gyroCurrentPosition,
-                        sensorMagazine, sensorIntake, sensorShooter;
+                        sensorMagazine, sensorIntake, sensorShooter,
+                        limeLightX, limeLightY, limeLightArea;
 
         // Constructor to build all Shuffleboard widgets
         public Init_Dashboard() {
@@ -77,6 +80,20 @@ public class Init_Dashboard {
                 // Create the Shooter status widget to check operation of the shooter Smackna
                 sensorShooter = magazineStatusTab.add("Shooter Status", false).withWidget(BuiltInWidgets.kBooleanBox)
                                 .withPosition(0, 2).withSize(1, 1).getEntry();
+
+                // Object Creation for Limelight Status widgets
+
+                // Create Limelight status X Axis Widget
+                limeLightX = limelightInfoTab.add("Limelight X Value", 0.0).withWidget(BuiltInWidgets.kTextView)
+                                .withPosition(0, 0).withSize(1, 1).getEntry();
+
+                // Create Limelight status Y Axis Widget
+                limeLightY = limelightInfoTab.add("Limelight Y Value", 0.0).withWidget(BuiltInWidgets.kTextView)
+                                .withPosition(1, 0).withSize(1, 1).getEntry();
+
+                // Create Limelight status Area Widget
+                limeLightArea = limelightInfoTab.add("Limelight Area Value", 0.0).withWidget(BuiltInWidgets.kTextView)
+                                .withPosition(2, 0).withSize(1, 1).getEntry();
 
                 }
 }
