@@ -23,6 +23,8 @@ public class Robot extends TimedRobot {
   private Command m_autonomousCommand;
 
   private RobotContainer m_robotContainer;
+
+  // Initialize the tabs on the Shuffleboard
   public Init_Dashboard dashboard;
 
   public AHRS gyro;  // Gyro object
@@ -43,6 +45,7 @@ public class Robot extends TimedRobot {
     // Initializing the Shuffleboard Dashboard to that values can be pulled for
     // other systems
     dashboard = new Init_Dashboard();
+    
     gyro = new AHRS(SPI.Port.kMXP);
 
     }

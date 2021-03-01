@@ -8,20 +8,22 @@ import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.networktables.NetworkTable;
 import frc.robot.Constants;
 
-/** Methods to get values off of the network tables/shuffleboard */
+/** Methods to get values off of the network tables and write them to Shuffleboard */
 public class Dashboard_Outputs {
     
-    // Get Max speed value
+    // Get Max speed value and write to Shffleboard
     public double getMaxSpeed(){
         NetworkTable table=NetworkTableInstance.getDefault().getTable("Shuffleboard/Inputs");
         double maxSpeed = table.getEntry("Max Speed").getDouble(Constants.speedLimitDefault);
         return maxSpeed;
     }
+    // Get the Drive Type value and write to Shffleboard
     public boolean getDriveType(){
         NetworkTable table=NetworkTableInstance.getDefault().getTable("Shuffleboard/Inputs");
         boolean driveType = table.getEntry("Drive Type = Tank").getBoolean(Constants.arcadeDrive);
         return driveType;
     }
+    // Get the Shooter RPM setting value and write to Shffleboard
 	public double getShooterTargetRPM() {
         NetworkTable table=NetworkTableInstance.getDefault().getTable("Shuffleboard/Inputs");
         double shooterTargetRpm = table.getEntry("Shooter Target RPM").getDouble(Constants.targetRPM);
