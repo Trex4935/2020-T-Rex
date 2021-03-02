@@ -45,10 +45,10 @@ public class Shooter extends SubsystemBase {
     shooterMotor.configPeakOutputReverse(-1, Constants.kTimeoutMs);
 
     // put in the values for the PIDF ... they are coming
-    shooterMotor.config_kP(Constants.kPIDLoopIdx, Constants.kGains_Velocit.kP, Constants.kTimeoutMs);
-    shooterMotor.config_kI(Constants.kPIDLoopIdx, Constants.kGains_Velocit.kI, Constants.kTimeoutMs);
-    shooterMotor.config_kD(Constants.kPIDLoopIdx, Constants.kGains_Velocit.kD, Constants.kTimeoutMs);
-    shooterMotor.config_kF(Constants.kPIDLoopIdx, Constants.kGains_Velocit.kF, Constants.kTimeoutMs);
+    shooterMotor.config_kP(Constants.kPIDLoopIdx, Constants.kGains_Velocit_Shooter.kP, Constants.kTimeoutMs);
+    shooterMotor.config_kI(Constants.kPIDLoopIdx, Constants.kGains_Velocit_Shooter.kI, Constants.kTimeoutMs);
+    shooterMotor.config_kD(Constants.kPIDLoopIdx, Constants.kGains_Velocit_Shooter.kD, Constants.kTimeoutMs);
+    shooterMotor.config_kF(Constants.kPIDLoopIdx, Constants.kGains_Velocit_Shooter.kF, Constants.kTimeoutMs);
 
   }
 
