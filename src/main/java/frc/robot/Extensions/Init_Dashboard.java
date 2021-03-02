@@ -58,49 +58,49 @@ public class Init_Dashboard {
                 // Object creation for the driver data dispaly widgets
 
                 // Create the Drive Left Axis widget to display the position of the left drive input
-                driveLeftAxisWidget = driverInfoTab.add("Drive Left Axis", 0).withWidget(BuiltInWidgets.kTextView)
+                driveLeftAxisWidget = driverInfoTab.add("Drive Left-Axis", 0.0).withWidget("Text View")
                                 .withPosition(0, 0).withSize(1, 1).getEntry();
 
                 // Create the Drive Right Axis widget to display the position of the right drive input
-                driveRightAxisWidget = driverInfoTab.add("Drive Right Axis", 0).withWidget(BuiltInWidgets.kTextView)
+                driveRightAxisWidget = driverInfoTab.add("Drive Right-Axis", 1.0).withWidget("Text View")
                                 .withPosition(1, 0).withSize(1, 1).getEntry();
 
                 // Create the Shooter Current RPM widget to display the current running RPM of the shooter, 
                 //      as read from the motor encoder.
-                shooterCurrentRpm = driverInfoTab.add("Shooter Current RPM", 0).withWidget(BuiltInWidgets.kTextView)
+                shooterCurrentRpm = driverInfoTab.add("Shooter Current RPM", 0.00).withWidget("Text View")
                                 .withPosition(3, 0).withSize(2, 1).getEntry();
 
                 // Create the Gyro widget to display the current Gyro header reading.
-                gyroCurrentPosition = driverInfoTab.add("Current Gyro Heading", 0).withWidget(BuiltInWidgets.kGyro)
+                gyroCurrentPosition = driverInfoTab.add("Current Gyro Heading", 0).withWidget("Gyro")
                                 .withPosition(6, 0).withSize(2, 2).getEntry();
         
                 // Object Creation for Magazine Status widgets
 
                 // Create the Intake status widget to check operation of the input roller Smackna
-                sensorIntake = magazineStatusTab.add("Intake Status", false).withWidget(BuiltInWidgets.kBooleanBox)
+                sensorIntake = magazineStatusTab.add("Intake Status", false).withWidget("Boolean Box")
                                 .withPosition(0, 0).withSize(1, 1).getEntry();
 
                 // Create the Magazine status widget to check operation of the magazine input Smackna
-                sensorMagazine = magazineStatusTab.add("Magazine Status", false).withWidget(BuiltInWidgets.kBooleanBox)
+                sensorMagazine = magazineStatusTab.add("Magazine Status", false).withWidget("Boolean Box")
                                 .withPosition(0, 1).withSize(1, 1).getEntry();
 
                 // Create the Shooter status widget to check operation of the shooter Smackna
-                sensorShooter = magazineStatusTab.add("Shooter Status", false).withWidget(BuiltInWidgets.kBooleanBox)
+                sensorShooter = magazineStatusTab.add("Shooter Status", false).withWidget("Boolean Box")
                                 .withPosition(0, 2).withSize(1, 1).getEntry();
 
                 // Object Creation for Limelight Status widgets
 
                 // Create Limelight status X Axis Widget
-                limeLightX = limelightInfoTab.add("Limelight X Value", 0.0).withWidget(BuiltInWidgets.kTextView)
+                limeLightX = limelightInfoTab.add("Limelight X Value", 0.0).withWidget("Text View")
                                 .withPosition(0, 0).withSize(1, 1).getEntry();
 
                 // Create Limelight status Y Axis Widget
-                limeLightY = limelightInfoTab.add("Limelight Y Value", 0.0).withWidget(BuiltInWidgets.kTextView)
+                limeLightY = limelightInfoTab.add("Limelight Y Value", 0.0).withWidget("Text View")
                                 .withPosition(1, 0).withSize(1, 1).getEntry();
 
                 // Create Limelight status Area Widget
-                limeLightArea = limelightInfoTab.add("Limelight Area Value", 0.0).withWidget(BuiltInWidgets.kTextView)
-                                .withPosition(2, 0).withSize(1, 1).getEntry();
+                limeLightArea = limelightInfoTab.add("Limelight Area Value", 0.0).withWidget("Text View")
+                                .withPosition(2, 0).withSize(2, 1).getEntry();
 
                 }
 }
