@@ -26,7 +26,7 @@ public class Init_Dashboard {
         private ShuffleboardTab limelightInfoTab = Shuffleboard.getTab("Limelight");
         // Create the objects used for the widgets in NetworkTables
         public NetworkTableEntry maxSpeed, driveType, driveLeftAxisWidget, driveRightAxisWidget, shooterTargetRpm,
-                        shooterCurrentRpm, gyroCurrentPosition,
+                        shooterCurrentRpm, limelightOnOff, gyroCurrentPosition,
                         sensorMagazine, sensorIntake, sensorShooter,
                         limeLightX, limeLightY, limeLightArea;
 
@@ -47,6 +47,13 @@ public class Init_Dashboard {
                 // Create the Shooter RPM widget to be able to set the max RPM of the shooter
                 shooterTargetRpm = inputsTab.add("Shooter Target RPM", Constants.targetRPM)
                                 .withWidget(BuiltInWidgets.kTextView).withPosition(0, 2).withSize(2, 1).getEntry();
+
+                // Create the Limelight Blinker Widget to be able to turn the light on and off
+                //limelightOnOff = inputsTab.add("Limelight On_Blink_Off", 3)
+                //                .withWidget(BuiltInWidgets.kComboBoxChooser).withProperties(Map.of("off", 1, "blink", 2, "on", 3))
+                //                .withPosition(2, 0)
+                //                .withSize(3, 3)
+                //                .getEntry();
 
                 // Object creation for the driver data dispaly widgets
 
