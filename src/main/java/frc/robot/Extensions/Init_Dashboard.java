@@ -23,7 +23,7 @@ public class Init_Dashboard {
         // Create a Shuffleboard tab for Magazine load status
         private ShuffleboardTab magazineStatusTab = Shuffleboard.getTab("Magazine Status");
         // Create a Shuffleboard tab for Limelight Data
-        private ShuffleboardTab limelightInfoTab = Shuffleboard.getTab("Limelight");
+        private ShuffleboardTab limelightInfoTab = Shuffleboard.getTab("Limelight Data");
         // Create the objects used for the widgets in NetworkTables
         public NetworkTableEntry maxSpeed, driveType, driveLeftAxisWidget, driveRightAxisWidget, shooterTargetRpm,
                         shooterCurrentRpm, limelightOnOff, gyroCurrentPosition,
