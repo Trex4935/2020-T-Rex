@@ -6,24 +6,21 @@ package frc.robot.subsystems;
 
 import java.io.IOException;
 import java.nio.file.Path;
-import java.util.List;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 import com.kauailabs.navx.frc.AHRS;
 
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
-import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.controller.SimpleMotorFeedforward;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.geometry.Pose2d;
 import edu.wpi.first.wpilibj.geometry.Rotation2d;
-import edu.wpi.first.wpilibj.geometry.Translation2d;
 import edu.wpi.first.wpilibj.kinematics.DifferentialDriveOdometry;
 import edu.wpi.first.wpilibj.kinematics.DifferentialDriveWheelSpeeds;
+import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.trajectory.Trajectory;
 import edu.wpi.first.wpilibj.trajectory.TrajectoryConfig;
-import edu.wpi.first.wpilibj.trajectory.TrajectoryGenerator;
 import edu.wpi.first.wpilibj.trajectory.TrajectoryUtil;
 import edu.wpi.first.wpilibj.trajectory.constraint.DifferentialDriveVoltageConstraint;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -34,8 +31,6 @@ import edu.wpi.first.wpilibj.Filesystem;
 import edu.wpi.first.wpilibj.SPI;
 
 public class DriveTrain extends SubsystemBase {
-  // Declare all of our variables
-
   // Motors
   WPI_TalonFX leftFront;
   WPI_TalonFX rightFront;
@@ -52,7 +47,7 @@ public class DriveTrain extends SubsystemBase {
   // Gyro
   AHRS ahrs;
 
-  //Odometry
+  // Odometry
   DifferentialDriveOdometry odometry;
 
   // Drive Type
@@ -83,6 +78,12 @@ public class DriveTrain extends SubsystemBase {
     rightRear.setInverted(true);
 
     ahrs = new AHRS(SPI.Port.kMXP);
+    
+    // Adding encoders data to the dashboard
+    Shuffleboard.getTab("Driver Info").add("Left Front", leftFront.getSelectedSensorPosition()).withWidget("Text View").withPosition(1,1).withSize(1,1);
+    Shuffleboard.getTab("Driver Info").add("Left Rear", leftRear.getSelectedSensorPosition()).withWidget("Text View").withPosition(2,1).withSize(1,1);
+    Shuffleboard.getTab("Driver Info").add("Right Front", rightFront.getSelectedSensorPosition()).withWidget("Text View").withPosition(1,2).withSize(1,1);
+    Shuffleboard.getTab("Driver Info").add("Right Rear", rightRear.getSelectedSensorPosition()).withWidget("Text View").withPosition(2,2).withSize(1,1);
 
     // create the speed controller groups for use in the differential drive
     // each one should be a pairing of the motors on a given side of the robot
@@ -96,9 +97,9 @@ public class DriveTrain extends SubsystemBase {
 
     dashOut = new Dashboard_Outputs();
 
-    //Odometry
-    odometry = new DifferentialDriveOdometry(Rotation2d.fromDegrees(getGyroAngle()),Constants.startPosition) ;
-    
+    // Odometry
+    odometry = new DifferentialDriveOdometry(Rotation2d.fromDegrees(getGyroAngle()), Constants.startPosition);
+
     // Trajectory
 
     // Create a voltage constraint to ensure we don't accelerate too fast
@@ -138,7 +139,6 @@ public class DriveTrain extends SubsystemBase {
     } catch (IOException ex) {
       DriverStation.reportError("Unable to open trajectory: " + trajectoryJSON, ex.getStackTrace());
     }
-
     time = 0.1;
   }
 
@@ -160,7 +160,6 @@ public class DriveTrain extends SubsystemBase {
       drive.tankDrive(controller.getRawAxis(Constants.leftTankAxis) * speedLimiter,
           controller.getRawAxis(Constants.rightTankAxis) * speedLimiter);
     }
-
   }
 
   // Move us forward during auto
@@ -179,36 +178,38 @@ public class DriveTrain extends SubsystemBase {
     System.out.println(trajectory.sample(time));
   }
 
-  public Pose2d getPosition(){
+  public Pose2d getPosition() {
     time += 0.002;
     System.out.println(trajectory.sample(time).poseMeters);
     return trajectory.sample(time).poseMeters;
   }
 
   // Takes in speed setpoints,convert them to volts and drive robot
-   public void move(double LeftSpeed, double RightSpeed) {
-    rightSide.setVoltage(-RightSpeed/Constants.kvVoltSecondsPerMeter); //Or 12  or kvVoltSecondsPerMeter *WheelRatio
-    leftSide.setVoltage(LeftSpeed/Constants.kvVoltSecondsPerMeter); //Or 12
+  public void move(double LeftSpeed, double RightSpeed) {
+    rightSide.setVoltage(-RightSpeed / Constants.kvVoltSecondsPerMeter); // Or 12 or kvVoltSecondsPerMeter *WheelRatio
+    leftSide.setVoltage(LeftSpeed / Constants.kvVoltSecondsPerMeter); // Or 12
     drive.feed();
   }
+
   // Takes in speed setpoints and drive robot
   public void moveBase(double LeftSpeed, double RightSpeed) {
-    drive.tankDrive(LeftSpeed,-RightSpeed);
+    drive.tankDrive(LeftSpeed, -RightSpeed);
   }
 
   public double getGyroAngle() {
     return ahrs.getAngle();
   }
 
-  public Pose2d getPose(){
+  public Pose2d getPose() {
     return odometry.getPoseMeters();
   }
- 
-  //Takes the rotation or internal ticks of Falcon Encoder and turn them to a travel distance. gear ratio A:1 means, 1/A.
-  public double ticksToPosition(double ticks,double wheelDiameter, double gearRatio){
-    double nbTurnMotor = ticks/Constants.encoderTicksPerTurn;
+
+  // Takes the rotation or internal ticks of Falcon Encoder and turn them to a
+  // travel distance. gear ratio A:1 means, 1/A.
+  public double ticksToPosition(double ticks, double wheelDiameter, double gearRatio) {
+    double nbTurnMotor = ticks / Constants.encoderTicksPerTurn;
     double nbTurnWheel = nbTurnMotor * gearRatio;
-    double distanceTravel = nbTurnWheel * Math.PI*wheelDiameter;
+    double distanceTravel = nbTurnWheel * Math.PI * wheelDiameter;
     return distanceTravel;
   }
 

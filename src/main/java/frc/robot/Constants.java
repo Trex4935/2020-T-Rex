@@ -62,8 +62,8 @@ public final class Constants {
     // ================================
 
     // Controller axis values for controlling the drive
-    public static final int leftTankAxis = 1;
-    public static final int rightTankAxis = 5;
+    public static final int leftTankAxis = 5;
+    public static final int rightTankAxis = 1;
     public static final int rightArcadeAxis = 4;
 
     // Used to limit speed of the robot
@@ -87,8 +87,8 @@ public final class Constants {
     public static final int kPIDLoopIdx = 0;
     public static final int kTimeoutMs = 30;
 
-    // Pid values                                        kP    kI   kD        kF          Iz  PeakOut
-    public final static Gains kGains_Velocit = new Gains(0.1, 0.001, 5, 1023.0 / 20660.0, 300, 1.00);
+    // Pid values                                                 kP    kI   kD        kF          Iz  PeakOut
+    public final static Gains kGains_Velocit_Shooter = new Gains(0.74, 0.001, 5, 1023.0 / 20660.0, 300, 1.00);
 
     // Target RPM value for shooter motor
     public static final int targetRPM = 1000;
