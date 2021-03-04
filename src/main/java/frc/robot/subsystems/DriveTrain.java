@@ -6,24 +6,20 @@ package frc.robot.subsystems;
 
 import java.io.IOException;
 import java.nio.file.Path;
-import java.util.List;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 import com.kauailabs.navx.frc.AHRS;
 
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
-import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.controller.SimpleMotorFeedforward;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.geometry.Pose2d;
 import edu.wpi.first.wpilibj.geometry.Rotation2d;
-import edu.wpi.first.wpilibj.geometry.Translation2d;
 import edu.wpi.first.wpilibj.kinematics.DifferentialDriveOdometry;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.trajectory.Trajectory;
 import edu.wpi.first.wpilibj.trajectory.TrajectoryConfig;
-import edu.wpi.first.wpilibj.trajectory.TrajectoryGenerator;
 import edu.wpi.first.wpilibj.trajectory.TrajectoryUtil;
 import edu.wpi.first.wpilibj.trajectory.constraint.DifferentialDriveVoltageConstraint;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -81,10 +77,8 @@ public class DriveTrain extends SubsystemBase {
     rightRear.setInverted(true);
 
     ahrs = new AHRS(SPI.Port.kMXP);
-
-    // Testing out encoder object
-    // ecd = new Encoders();
-
+    
+    // Adding encoders data to the dashboard
     Shuffleboard.getTab("Driver Info").add("Left Front", leftFront.getSelectedSensorPosition()).withWidget("Text View").withPosition(1,1).withSize(1,1);
     Shuffleboard.getTab("Driver Info").add("Left Rear", leftRear.getSelectedSensorPosition()).withWidget("Text View").withPosition(2,1).withSize(1,1);
     Shuffleboard.getTab("Driver Info").add("Right Front", rightFront.getSelectedSensorPosition()).withWidget("Text View").withPosition(1,2).withSize(1,1);
@@ -144,7 +138,6 @@ public class DriveTrain extends SubsystemBase {
     } catch (IOException ex) {
       DriverStation.reportError("Unable to open trajectory: " + trajectoryJSON, ex.getStackTrace());
     }
-
     time = 0.1;
   }
 
@@ -169,10 +162,6 @@ public class DriveTrain extends SubsystemBase {
       drive.tankDrive(controller.getRawAxis(Constants.leftTankAxis) * speedLimiter,
           controller.getRawAxis(Constants.rightTankAxis) * speedLimiter);
     }
-
-    // update the encoder object
-    // ecd.UpdateEncoders(leftFront.getSelectedSensorPosition(),leftRear.getSelectedSensorPosition(),rightFront.getSelectedSensorPosition(),rightRear.getSelectedSensorPosition());
-    // ecd.UpdateEncoders(i++,i++,i++,i++);
   }
 
   // Move us forward during auto
