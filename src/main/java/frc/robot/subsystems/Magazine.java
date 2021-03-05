@@ -98,11 +98,12 @@ public class Magazine extends SubsystemBase {
   }
 
   // Get the value of the intake sensor
-  public static boolean getIntakeSensor() {
+  /*public static boolean getIntakeSensor() {
     boolean a = intakeSensor.get();
     return (!a);
   }
-
+  */
+  
   // Get the value of the magazine sensor
   public static boolean getMagazineSensor() {
     boolean a = magazineSensor.get();
@@ -115,12 +116,10 @@ public class Magazine extends SubsystemBase {
     return (!a);
   }
 
-  // Not currently implemented
+  // Singulation first iteration
   public void oneBall() {
-    if (getIntakeSensor()) {
-      moveBothBelts();
-    } else {
-
+    if (getMagazineSensor()) {
+      moveHighBelt();
     }
   }
 }
