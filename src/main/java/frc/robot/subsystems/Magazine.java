@@ -105,7 +105,7 @@ public class Magazine extends SubsystemBase {
   */
   
   // Get the value of the magazine sensor
-  public boolean getMagazineSensor() {
+  public static boolean getMagazineSensor() {
     boolean a = magazineSensor.get();
     return (!a);
   }

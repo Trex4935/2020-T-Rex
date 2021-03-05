@@ -13,6 +13,6 @@ public class IntakeTrigger extends Trigger {
   @Override
   public boolean get() {
     // Pull the state of the intake sensor
-    return Magazine.getIntakeSensor();
+    return Magazine.getMagazineSensor();
   }
 }
