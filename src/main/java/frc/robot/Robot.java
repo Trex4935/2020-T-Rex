@@ -33,8 +33,6 @@ public class Robot extends TimedRobot {
 
   public AHRS gyro;  // Gyro object
 
-  public Magazine simplesingulation;  // simple singulation implementation
-
   /**
    * This function is run when the robot is first started up and should be used
    * for any initialization code.
@@ -52,8 +50,6 @@ public class Robot extends TimedRobot {
     limelight = new Limelight();
 
     gyro = new AHRS(SPI.Port.kMXP);
-
-    simplesingulation = new Magazine();
 
     }
 
@@ -97,8 +93,8 @@ public class Robot extends TimedRobot {
     
     // Attempt at singulation using only magazine Smacna sensor.
     // Runs magazine only while it senses a ball.
-    if (simplesingulation.getMagazineSensor() == true){
-      simplesingulation.highBeltMotor.set(Constants.beltMotorSpeed);
+    if (Magazine.getMagazineSensor() == true){
+      Magazine.highBeltMotor.set(Constants.beltMotorSpeed);
     }
   }
 

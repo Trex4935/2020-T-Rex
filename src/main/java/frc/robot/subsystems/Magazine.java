@@ -22,7 +22,7 @@ import frc.robot.Constants;
 public class Magazine extends SubsystemBase {
 
   /// Motors
-  public WPI_TalonSRX highBeltMotor;
+  public static WPI_TalonSRX highBeltMotor;
   WPI_TalonSRX lowBeltMotor;
   WPI_TalonSRX reverseIntakeMotor;
 
