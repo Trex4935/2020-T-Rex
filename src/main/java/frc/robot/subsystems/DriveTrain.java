@@ -185,6 +185,7 @@ public class DriveTrain extends SubsystemBase {
   public Pose2d getPosition() {
     time += 0.02;
     System.out.println(trajectory.sample(time).poseMeters);
+    System.out.println(trajectory.sample(time).velocityMetersPerSecond);
     return trajectory.sample(time).poseMeters;
   }
 
@@ -193,6 +194,7 @@ public class DriveTrain extends SubsystemBase {
     rightSide.setVoltage(-RightSpeed / Constants.kvVoltSecondsPerMeter); // Or 12 or kvVoltSecondsPerMeter *WheelRatio
     leftSide.setVoltage(LeftSpeed / Constants.kvVoltSecondsPerMeter); // Or 12
     drive.feed();
+    System.out.println(RightSpeed);
   }
 
   // Takes in speed setpoints and drive robot
