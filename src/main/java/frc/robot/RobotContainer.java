@@ -110,7 +110,7 @@ public class RobotContainer {
     new LeftTriggerBool().whileActiveContinuous(shootPID);
 
     // Run the magazine + intake when the intake sensor sees a ball
-    new IntakeTrigger().whenActive(runBothMotors.withTimeout(Constants.intakeTimeOut));
+    // new IntakeTrigger().whenActive(runBothMotors.withTimeout(Constants.intakeTimeOut));
     
     // Not using
     // new Trigger(()->controller.getRawAxis(3)>=0.25).whileActiveContinuous(shoot);
