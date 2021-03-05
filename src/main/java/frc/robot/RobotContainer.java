@@ -15,7 +15,9 @@ import frc.robot.Extensions.RightTriggerBool;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.controller.PIDController;
 import edu.wpi.first.wpilibj.controller.RamseteController;
+import edu.wpi.first.wpilibj.controller.SimpleMotorFeedforward;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.RamseteCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
@@ -116,7 +118,7 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
-
+    DriveTrain.resetTime(); 
   //   RamseteCommand ramseteCommand = new RamseteCommand(
   //     exampleTrajectory,
   //     m_robotDrive::getPose,
@@ -133,8 +135,31 @@ public class RobotContainer {
   //     m_robotDrive
   // );
 
-  
+// Simulated Trajectory Command
+
 RamseteCommand ramseteCommand = new RamseteCommand(driveTrain.trajectory, driveTrain::getPosition, new RamseteController(Constants.kRamseteB, Constants.kRamseteZeta), Constants.kDriveKinematics, driveTrain::move, driveTrain);
+//RamseteCommand ramseteCommand = new RamseteCommand(driveTrain.trajectory, driveTrain::getPosition, new RamseteController(Constants.kRamseteB, Constants.kRamseteZeta), Constants.kDriveKinematics, driveTrain::moveBase, driveTrain);
+// Encoder Position, Gyro-Data based Trajectory Command 
+
+//RamseteCommand ramseteCommand = new RamseteCommand(driveTrain.trajectory, driveTrain::getPose, new RamseteController(Constants.kRamseteB, Constants.kRamseteZeta), Constants.kDriveKinematics, driveTrain::move, driveTrain);  
+// Encoder Position, Encoder Speed, Gyro-Data based Trajectory Command 
+
+// RamseteCommand ramseteCommand = new RamseteCommand(
+//     driveTrain.trajectory,
+//       driveTrain::getPose,
+//       new RamseteController(Constants.kRamseteB, Constants.kRamseteZeta),
+//       new SimpleMotorFeedforward(Constants.ksVolts,
+//                                  Constants.kvVoltSecondsPerMeter,
+//                                  Constants.kaVoltSecondsSquaredPerMeter),
+//       Constants.kDriveKinematics,
+//       driveTrain::getWheelSpeeds,
+//       new PIDController(Constants.kPDriveVel, 0, 0),
+//       new PIDController(Constants.kPDriveVel, 0, 0),
+//       // RamseteCommand passes volts to the callback
+//       driveTrain::moveVolts,
+//       driveTrain
+//   );
+
     return ramseteCommand;
   }
 }

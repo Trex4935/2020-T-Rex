@@ -134,5 +134,6 @@ public final class Constants {
     //Encoder
 	public static final double encoderTicksPerTurn = 2048;
     // endregion
+	public static final double k100msPerSecond = 100;
 
 }
