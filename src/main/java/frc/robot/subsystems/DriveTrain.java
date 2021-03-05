@@ -66,16 +66,16 @@ public class DriveTrain extends SubsystemBase {
     // Setup each of the motors for use later
     // Going to set any whole game settings here as well (like motor inversion)
     leftFront = new WPI_TalonFX(Constants.leftFrontCanID);
-    leftFront.setInverted(true);
+    leftFront.setInverted(false);
 
     rightFront = new WPI_TalonFX(Constants.rightFrontCanID);
-    rightFront.setInverted(true);
+    rightFront.setInverted(false);
 
     leftRear = new WPI_TalonFX(Constants.leftRearCanID);
-    leftRear.setInverted(true);
+    leftRear.setInverted(false);
 
     rightRear = new WPI_TalonFX(Constants.rightRearCanID);
-    rightRear.setInverted(true);
+    rightRear.setInverted(false);
 
     ahrs = new AHRS(SPI.Port.kMXP);
     
