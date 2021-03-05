@@ -139,7 +139,7 @@ public class DriveTrain extends SubsystemBase {
     } catch (IOException ex) {
       DriverStation.reportError("Unable to open trajectory: " + trajectoryJSON, ex.getStackTrace());
     }
-    time = 0.1;
+    time = 0.0;
   }
 
   @Override
@@ -167,6 +167,10 @@ public class DriveTrain extends SubsystemBase {
     drive.tankDrive(Constants.autoLeftSpeed, Constants.autoRightSpeed);
   }
 
+  public static void resetTime(){
+    time = 0;
+  }
+
   // Method to just stop the drive
   public void stop() {
     drive.stopMotor();
@@ -179,7 +183,7 @@ public class DriveTrain extends SubsystemBase {
   }
 
   public Pose2d getPosition() {
-    time += 0.002;
+    time += 0.02;
     System.out.println(trajectory.sample(time).poseMeters);
     return trajectory.sample(time).poseMeters;
   }
