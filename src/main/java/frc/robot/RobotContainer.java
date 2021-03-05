@@ -15,6 +15,7 @@ import frc.robot.Extensions.RightTriggerBool;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.XboxController.Button;
 import edu.wpi.first.wpilibj.controller.PIDController;
 import edu.wpi.first.wpilibj.controller.RamseteController;
 import edu.wpi.first.wpilibj.controller.SimpleMotorFeedforward;
@@ -43,6 +44,7 @@ public class RobotContainer {
   private final ShootPIDCommand shootPID;
   private final DriveWithWPCommand driveWithWPCommand;
   private final LowBeltCommand intakeBall;
+  private final HighBeltCommand runMagazine;
 
   public RobotContainer() {
 
@@ -69,6 +71,7 @@ public class RobotContainer {
     runBothMotors = new RunBothMotorsCommand(magazine);
     reverseMagazine = new ReverseMagazineCommand(magazine);
     intakeBall = new LowBeltCommand(magazine);
+    runMagazine = new HighBeltCommand(magazine);
 
     // Configure the button bindings
     configureButtonBindings();
@@ -89,7 +92,12 @@ public class RobotContainer {
 
     // Run entire intake and magazine manually while button is held
     new JoystickButton(controller, XboxController.Button.kY.value).whenHeld(runBothMotors);
-  
+
+    // Run intake only, on / off with B button press
+    new JoystickButton(controller, XboxController.Button.kB.value).toggleWhenPressed(intakeBall);
+
+    // Run magazine only, active only when A button held for manual singulation
+    new JoystickButton(controller, XboxController.Button.kA.value).whenHeld(runMagazine);
 
     // Runs shooter motor when the right trigger is pulled
     new RightTriggerBool().whileActiveContinuous(shoot);
