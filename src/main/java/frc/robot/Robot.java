@@ -93,9 +93,9 @@ public class Robot extends TimedRobot {
     
     // Attempt at singulation using only magazine Smacna sensor.
     // Runs magazine only while it senses a ball.
-    if (Magazine.getMagazineSensor() == true){
-      Magazine.highBeltMotor.set(Constants.beltMotorSpeed);
-    }
+    //if (Magazine.getMagazineSensor() == false){
+    //  Magazine.highBeltMotor.set(Constants.beltMotorSpeed);
+    //}
   }
 
   /** This function is called once each time the robot enters Disabled mode. */

@@ -36,7 +36,7 @@ public class Init_Dashboard {
 
                 // Create the Max Speed input widget used to set the max speed of the robot
                 maxSpeed = inputsTab.add("Max Speed", Constants.speedLimitDefault)
-                                .withWidget(BuiltInWidgets.kNumberSlider).withProperties(Map.of("min", 0, "max", 1))
+                                .withWidget(BuiltInWidgets.kNumberSlider).withProperties(Map.of("min", 0.5, "max", 1))
                                 .withPosition(0, 1).getEntry();
 
                 // Create the Drive Type widget to set the drive between Arcade and Tank with a
