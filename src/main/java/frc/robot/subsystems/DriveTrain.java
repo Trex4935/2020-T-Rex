@@ -241,4 +241,9 @@ public class DriveTrain extends SubsystemBase {
     double velocityMetersPerSecond = wheelRotationsPerSecond*(Math.PI * wheelDiameter);
     return velocityMetersPerSecond;
   }
+
+  public DifferentialDriveWheelSpeeds getWheelSpeeds() {
+    return new DifferentialDriveWheelSpeeds(NativeUnitsToVelocity(leftFront.getSelectedSensorVelocity(), Constants.wheelDiameter, Constants.driveTrainGearRatio), NativeUnitsToVelocity(rightFront.getSelectedSensorVelocity(), Constants.wheelDiameter, Constants.driveTrainGearRatio));
+  }
+
 }
