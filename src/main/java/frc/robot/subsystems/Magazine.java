@@ -22,7 +22,7 @@ import frc.robot.Constants;
 public class Magazine extends SubsystemBase {
 
   /// Motors
-  WPI_TalonSRX highBeltMotor;
+  public WPI_TalonSRX highBeltMotor;
   WPI_TalonSRX lowBeltMotor;
   WPI_TalonSRX reverseIntakeMotor;
 
@@ -105,7 +105,7 @@ public class Magazine extends SubsystemBase {
   */
   
   // Get the value of the magazine sensor
-  public static boolean getMagazineSensor() {
+  public boolean getMagazineSensor() {
     boolean a = magazineSensor.get();
     return (!a);
   }
