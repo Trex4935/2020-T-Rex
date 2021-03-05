@@ -226,4 +226,19 @@ public class DriveTrain extends SubsystemBase {
     return distanceTravel;
   }
 
+  private int velocityToNativeUnits(double velocityMetersPerSecond, double wheelDiameter, double gearRatio){
+    double wheelRotationsPerSecond = velocityMetersPerSecond/(Math.PI * wheelDiameter);
+    double motorRotationsPerSecond = wheelRotationsPerSecond * gearRatio;
+    double motorRotationsPer100ms = motorRotationsPerSecond / Constants.k100msPerSecond;
+    int sensorTicksPer100ms = (int)(motorRotationsPer100ms * Constants.encoderTicksPerTurn);
+    return sensorTicksPer100ms;
+  }
+
+  private double NativeUnitsToVelocity(double sensorTicksPer100ms, double wheelDiameter, double gearRatio ){
+    double motorRotationsPer100ms = (double)(sensorTicksPer100ms / Constants.encoderTicksPerTurn);
+    double motorRotationsPerSecond = motorRotationsPer100ms * Constants.k100msPerSecond;
+    double wheelRotationsPerSecond = motorRotationsPerSecond  / gearRatio;
+    double velocityMetersPerSecond = wheelRotationsPerSecond*(Math.PI * wheelDiameter);
+    return velocityMetersPerSecond;
+  }
 }
