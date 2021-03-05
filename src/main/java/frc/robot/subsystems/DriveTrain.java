@@ -131,7 +131,7 @@ public class DriveTrain extends SubsystemBase {
 
     // Doc on how to access the file via the Robo Rio
     // https://docs.wpilib.org/en/stable/docs/software/wpilib-tools/pathweaver/integrating-robot-program.html
-    String trajectoryJSON = "..\\.\\deploy\\paths\\Unnamed.wpilib.json";
+    String trajectoryJSON = "..\\.\\deploy\\paths\\Line.wpilib.json";
     trajectory = new Trajectory();
     try {
       Path trajectoryPath = Filesystem.getDeployDirectory().toPath().resolve(trajectoryJSON);
