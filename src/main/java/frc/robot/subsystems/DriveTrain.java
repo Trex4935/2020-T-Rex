@@ -197,6 +197,13 @@ public class DriveTrain extends SubsystemBase {
     System.out.println(RightSpeed);
   }
 
+  // Takes in speed setpoints,convert them to volts and drive robot
+  public void moveVolts(double LeftVolts, double RightVolts) {
+    rightSide.setVoltage(-RightVolts); 
+    leftSide.setVoltage(LeftVolts);
+    drive.feed();
+  }
+
   // Takes in speed setpoints and drive robot
   public void moveBase(double LeftSpeed, double RightSpeed) {
     drive.tankDrive(LeftSpeed, -RightSpeed);
