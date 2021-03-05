@@ -87,6 +87,10 @@ public class RobotContainer {
     // Runs pully + intake to reverse a ball thru the magazine
     new JoystickButton(controller, XboxController.Button.kX.value).whenHeld(reverseMagazine);
 
+    // Run entire intake and magazine manually while button is held
+    new JoystickButton(controller, XboxController.Button.kY.value).whenHeld(runBothMotors);
+  
+
     // Runs shooter motor when the right trigger is pulled
     new RightTriggerBool().whileActiveContinuous(shoot);
 
