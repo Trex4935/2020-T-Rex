@@ -6,23 +6,21 @@ package frc.robot.subsystems;
 
 import java.io.IOException;
 import java.nio.file.Path;
-import java.util.List;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 import com.kauailabs.navx.frc.AHRS;
 
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
-import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.controller.SimpleMotorFeedforward;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.geometry.Pose2d;
 import edu.wpi.first.wpilibj.geometry.Rotation2d;
-import edu.wpi.first.wpilibj.geometry.Translation2d;
 import edu.wpi.first.wpilibj.kinematics.DifferentialDriveOdometry;
+import edu.wpi.first.wpilibj.kinematics.DifferentialDriveWheelSpeeds;
+import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.trajectory.Trajectory;
 import edu.wpi.first.wpilibj.trajectory.TrajectoryConfig;
-import edu.wpi.first.wpilibj.trajectory.TrajectoryGenerator;
 import edu.wpi.first.wpilibj.trajectory.TrajectoryUtil;
 import edu.wpi.first.wpilibj.trajectory.constraint.DifferentialDriveVoltageConstraint;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -33,8 +31,6 @@ import edu.wpi.first.wpilibj.Filesystem;
 import edu.wpi.first.wpilibj.SPI;
 
 public class DriveTrain extends SubsystemBase {
-  // Declare all of our variables
-
   // Motors
   WPI_TalonFX leftFront;
   WPI_TalonFX rightFront;
@@ -51,7 +47,7 @@ public class DriveTrain extends SubsystemBase {
   // Gyro
   AHRS ahrs;
 
-  //Odometry
+  // Odometry
   DifferentialDriveOdometry odometry;
 
   // Drive Type
@@ -70,18 +66,24 @@ public class DriveTrain extends SubsystemBase {
     // Setup each of the motors for use later
     // Going to set any whole game settings here as well (like motor inversion)
     leftFront = new WPI_TalonFX(Constants.leftFrontCanID);
-    leftFront.setInverted(true);
+    leftFront.setInverted(false);
 
     rightFront = new WPI_TalonFX(Constants.rightFrontCanID);
-    rightFront.setInverted(true);
+    rightFront.setInverted(false);
 
     leftRear = new WPI_TalonFX(Constants.leftRearCanID);
-    leftRear.setInverted(true);
+    leftRear.setInverted(false);
 
     rightRear = new WPI_TalonFX(Constants.rightRearCanID);
-    rightRear.setInverted(true);
+    rightRear.setInverted(false);
 
     ahrs = new AHRS(SPI.Port.kMXP);
+    
+    // Adding encoders data to the dashboard
+    Shuffleboard.getTab("Driver Info").add("Left Front", leftFront.getSelectedSensorPosition()).withWidget("Text View").withPosition(1,1).withSize(1,1);
+    Shuffleboard.getTab("Driver Info").add("Left Rear", leftRear.getSelectedSensorPosition()).withWidget("Text View").withPosition(2,1).withSize(1,1);
+    Shuffleboard.getTab("Driver Info").add("Right Front", rightFront.getSelectedSensorPosition()).withWidget("Text View").withPosition(1,2).withSize(1,1);
+    Shuffleboard.getTab("Driver Info").add("Right Rear", rightRear.getSelectedSensorPosition()).withWidget("Text View").withPosition(2,2).withSize(1,1);
 
     // create the speed controller groups for use in the differential drive
     // each one should be a pairing of the motors on a given side of the robot
@@ -95,9 +97,9 @@ public class DriveTrain extends SubsystemBase {
 
     dashOut = new Dashboard_Outputs();
 
-    //Odometry
-    odometry = new DifferentialDriveOdometry(Rotation2d.fromDegrees(getGyroAngle()),Constants.startPosition) ;
-    
+    // Odometry
+    odometry = new DifferentialDriveOdometry(Rotation2d.fromDegrees(getGyroAngle()), Constants.startPosition);
+
     // Trajectory
 
     // Create a voltage constraint to ensure we don't accelerate too fast
@@ -129,7 +131,7 @@ public class DriveTrain extends SubsystemBase {
 
     // Doc on how to access the file via the Robo Rio
     // https://docs.wpilib.org/en/stable/docs/software/wpilib-tools/pathweaver/integrating-robot-program.html
-    String trajectoryJSON = "..\\.\\deploy\\paths\\Unnamed.wpilib.json";
+    String trajectoryJSON = "..\\.\\deploy\\paths\\Line.wpilib.json";
     trajectory = new Trajectory();
     try {
       Path trajectoryPath = Filesystem.getDeployDirectory().toPath().resolve(trajectoryJSON);
@@ -137,14 +139,13 @@ public class DriveTrain extends SubsystemBase {
     } catch (IOException ex) {
       DriverStation.reportError("Unable to open trajectory: " + trajectoryJSON, ex.getStackTrace());
     }
-
-    time = 0.1;
+    time = 0.0;
   }
 
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
-    odometry.update(ahrs.getRotation2d(), ticksToPosition(leftFront.getSelectedSensorVelocity(), Constants.wheelDiameter, Constants.driveTrainGearRatio) , ticksToPosition(rightFront.getSelectedSensorVelocity(), Constants.wheelDiameter, Constants.driveTrainGearRatio));
+    odometry.update(ahrs.getRotation2d(), ticksToPosition(leftFront.getSelectedSensorPosition(), Constants.wheelDiameter, Constants.driveTrainGearRatio) , ticksToPosition(rightFront.getSelectedSensorPosition(), Constants.wheelDiameter, Constants.driveTrainGearRatio));
   }
 
   // Method to control the drive with the controller
@@ -159,12 +160,15 @@ public class DriveTrain extends SubsystemBase {
       drive.tankDrive(controller.getRawAxis(Constants.leftTankAxis) * speedLimiter,
           controller.getRawAxis(Constants.rightTankAxis) * speedLimiter);
     }
-
   }
 
   // Move us forward during auto
   public void autoForward(double seconds) {
     drive.tankDrive(Constants.autoLeftSpeed, Constants.autoRightSpeed);
+  }
+
+  public static void resetTime(){
+    time = 0;
   }
 
   // Method to just stop the drive
@@ -178,37 +182,68 @@ public class DriveTrain extends SubsystemBase {
     System.out.println(trajectory.sample(time));
   }
 
-  public Pose2d getPosition(){
-    time += 0.002;
+  public Pose2d getPosition() {
+    time += 0.02;
     System.out.println(trajectory.sample(time).poseMeters);
+    System.out.println(trajectory.sample(time).velocityMetersPerSecond);
     return trajectory.sample(time).poseMeters;
   }
 
   // Takes in speed setpoints,convert them to volts and drive robot
-   public void move(double LeftSpeed, double RightSpeed) {
-    rightSide.setVoltage(-RightSpeed/Constants.kvVoltSecondsPerMeter); //Or 12  or kvVoltSecondsPerMeter *WheelRatio
-    leftSide.setVoltage(LeftSpeed/Constants.kvVoltSecondsPerMeter); //Or 12
+  public void move(double LeftSpeed, double RightSpeed) {
+    rightSide.setVoltage(-RightSpeed / Constants.kvVoltSecondsPerMeter); // Or 12 or kvVoltSecondsPerMeter *WheelRatio
+    leftSide.setVoltage(LeftSpeed / Constants.kvVoltSecondsPerMeter); // Or 12
+    drive.feed();
+    System.out.println(RightSpeed);
+  }
+
+  // Takes in speed setpoints,convert them to volts and drive robot
+  public void moveVolts(double LeftVolts, double RightVolts) {
+    rightSide.setVoltage(-RightVolts); 
+    leftSide.setVoltage(LeftVolts);
     drive.feed();
   }
+
   // Takes in speed setpoints and drive robot
   public void moveBase(double LeftSpeed, double RightSpeed) {
-    drive.tankDrive(LeftSpeed,-RightSpeed);
+    drive.tankDrive(LeftSpeed, -RightSpeed);
   }
 
   public double getGyroAngle() {
     return ahrs.getAngle();
   }
 
-  public Pose2d getPose(){
+  public Pose2d getPose() {
     return odometry.getPoseMeters();
   }
- 
-  //Takes the rotation or internal ticks of Falcon Encoder and turn them to a travel distance. gear ratio A:1 means, 1/A.
-  public double ticksToPosition(double ticks,double wheelDiameter, double gearRatio){
-    double nbTurnMotor = ticks/Constants.encoderTicksPerTurn;
+
+  // Takes the rotation or internal ticks of Falcon Encoder and turn them to a
+  // travel distance. gear ratio A:1 means, 1/A.
+  public double ticksToPosition(double ticks, double wheelDiameter, double gearRatio) {
+    double nbTurnMotor = ticks / Constants.encoderTicksPerTurn;
     double nbTurnWheel = nbTurnMotor * gearRatio;
-    double distanceTravel = nbTurnWheel * Math.PI*wheelDiameter;
+    double distanceTravel = nbTurnWheel * Math.PI * wheelDiameter;
     return distanceTravel;
+  }
+
+  private int velocityToNativeUnits(double velocityMetersPerSecond, double wheelDiameter, double gearRatio){
+    double wheelRotationsPerSecond = velocityMetersPerSecond/(Math.PI * wheelDiameter);
+    double motorRotationsPerSecond = wheelRotationsPerSecond * gearRatio;
+    double motorRotationsPer100ms = motorRotationsPerSecond / Constants.k100msPerSecond;
+    int sensorTicksPer100ms = (int)(motorRotationsPer100ms * Constants.encoderTicksPerTurn);
+    return sensorTicksPer100ms;
+  }
+
+  private double NativeUnitsToVelocity(double sensorTicksPer100ms, double wheelDiameter, double gearRatio ){
+    double motorRotationsPer100ms = (double)(sensorTicksPer100ms / Constants.encoderTicksPerTurn);
+    double motorRotationsPerSecond = motorRotationsPer100ms * Constants.k100msPerSecond;
+    double wheelRotationsPerSecond = motorRotationsPerSecond  / gearRatio;
+    double velocityMetersPerSecond = wheelRotationsPerSecond*(Math.PI * wheelDiameter);
+    return velocityMetersPerSecond;
+  }
+
+  public DifferentialDriveWheelSpeeds getWheelSpeeds() {
+    return new DifferentialDriveWheelSpeeds(NativeUnitsToVelocity(leftFront.getSelectedSensorVelocity(), Constants.wheelDiameter, Constants.driveTrainGearRatio), NativeUnitsToVelocity(rightFront.getSelectedSensorVelocity(), Constants.wheelDiameter, Constants.driveTrainGearRatio));
   }
 
 }
