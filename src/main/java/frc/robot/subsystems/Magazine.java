@@ -116,10 +116,13 @@ public class Magazine extends SubsystemBase {
     return (!a);
   }
 
-  // Singulation first iteration
+  // Singulation
   public void oneBall() {
+    // SMAKNA underneath the elevator
     if (getMagazineSensor()) {
       moveHighBelt();
+    } else {
+      stopHighBelt();
     }
    }
 }
