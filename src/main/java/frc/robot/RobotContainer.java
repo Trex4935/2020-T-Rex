@@ -96,20 +96,20 @@ public class RobotContainer {
     new JoystickButton(controller, XboxController.Button.kY.value).whenHeld(runBothMotors);
 
     // Run intake only, on / off with B button press
-    new JoystickButton(controller, XboxController.Button.kB.value).toggleWhenPressed(oneBall);
+    new JoystickButton(controller, XboxController.Button.kB.value).toggleWhenPressed(oneBall.withInterrupt(Magazine::getShooterSensor));
 
     // Run magazine only, active only when A button held for manual singulation
     new JoystickButton(controller, XboxController.Button.kA.value).whenHeld(runMagazine);
 
     // Runs shooter motor when the right trigger is pulled
-    new RightTriggerBool().whileActiveContinuous(shoot);
+    new RightTriggerBool().whileActiveContinuous(shootPID);
 
     // Run the magazine + intake for a set time period
     // At the moment taking this off a button ... we need to figure out how to put this back!
     // new JoystickButton(controller, XboxController.Button.kY.value).whenPressed(runBothMotors.withTimeout(Constants.intakeTimeOut));
 
     // Runs shootPID when left trigger is pulled
-    new LeftTriggerBool().whileActiveContinuous(shootPID);
+   // new LeftTriggerBool().whileActiveContinuous(shootPID);
 
     // Run the magazine + intake when the intake sensor sees a ball
     // new IntakeTrigger().whenActive(runBothMotors.withTimeout(Constants.intakeTimeOut));
