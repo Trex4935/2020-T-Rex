@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.Extensions.Init_Dashboard;
 import frc.robot.Extensions.Limelight;
+import frc.robot.subsystems.Magazine;
 import frc.robot.subsystems.Shooter;
 import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.wpilibj.SPI;
@@ -89,6 +90,12 @@ public class Robot extends TimedRobot {
     // Limelight Area Widget
     dashboard.limeLightArea.setNumber(limelight.getLimeLightArea());
 
+    
+    // Attempt at singulation using only magazine Smacna sensor.
+    // Runs magazine only while it senses a ball.
+    //if (Magazine.getMagazineSensor() == false){
+    //  Magazine.highBeltMotor.set(Constants.beltMotorSpeed);
+    //}
   }
 
   /** This function is called once each time the robot enters Disabled mode. */

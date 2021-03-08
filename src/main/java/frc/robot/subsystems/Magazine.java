@@ -22,7 +22,7 @@ import frc.robot.Constants;
 public class Magazine extends SubsystemBase {
 
   /// Motors
-  WPI_TalonSRX highBeltMotor;
+  public static WPI_TalonSRX highBeltMotor;
   WPI_TalonSRX lowBeltMotor;
   WPI_TalonSRX reverseIntakeMotor;
 
@@ -35,10 +35,10 @@ public class Magazine extends SubsystemBase {
   public Magazine() {
 
     highBeltMotor = new WPI_TalonSRX(Constants.beltMotorCanID);
-    highBeltMotor.setInverted(true);
+    highBeltMotor.setInverted(false);
 
     lowBeltMotor = new WPI_TalonSRX(Constants.intakeMotorCanID);
-    lowBeltMotor.setInverted(true);
+    lowBeltMotor.setInverted(false);
 
     intakeSensor = new DigitalInput(Constants.intakeSensorDIO);
     magazineSensor = new DigitalInput(Constants.magazineSensorDIO);
@@ -116,10 +116,13 @@ public class Magazine extends SubsystemBase {
     return (!a);
   }
 
-  // Singulation first iteration
+  // Singulation
   public void oneBall() {
+    // SMAKNA underneath the elevator
     if (getMagazineSensor()) {
       moveHighBelt();
+    } else {
+      stopHighBelt();
     }
-  }
+   }
 }

@@ -25,6 +25,7 @@ public class OneBallCommand extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    magazine.moveLowBelt();
     magazine.oneBall();
   }
 
@@ -33,6 +34,9 @@ public class OneBallCommand extends CommandBase {
   public void end(boolean interrupted) {
    magazine.stopHighBelt(); 
    magazine.stopLowBelt();
+   if (magazine.getShooterSensor()) {
+    magazine.stopLowBelt();
+  }
   }
 
   // Returns true when the command should end.

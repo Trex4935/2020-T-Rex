@@ -45,8 +45,8 @@ public final class Constants {
     // ================================
 
     // Magazine motor speed
-    public static final double beltMotorSpeed = 0.6;
-    public static final double intakeMotorSpeed = 0.6;
+    public static final double beltMotorSpeed = 0.55;
+    public static final double intakeMotorSpeed = 0.7;
 
     // Smacna DIO location on the roborio
     public static final int intakeSensorDIO = 1;
@@ -67,7 +67,7 @@ public final class Constants {
     public static final int rightArcadeAxis = 4;
 
     // Used to limit speed of the robot
-    public static final double speedLimitDefault = 0.25;
+    public static final double speedLimitDefault = 0.5;
 
     // Changes from tank drive to arcade drive
     public static final boolean arcadeDrive = false;
@@ -91,7 +91,7 @@ public final class Constants {
     public final static Gains kGains_Velocit_Shooter = new Gains(0.74, 0.001, 5, 1023.0 / 20660.0, 300, 1.00);
 
     // Target RPM value for shooter motor
-    public static final int targetRPM = 1000;
+    public static final int targetRPM = 5000;
 
     // endregion
 
