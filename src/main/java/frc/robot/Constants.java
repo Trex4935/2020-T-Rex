@@ -4,6 +4,8 @@
 
 package frc.robot;
 
+import com.ctre.phoenix.motorcontrol.TalonFXInvertType;
+
 import edu.wpi.first.wpilibj.geometry.Pose2d;
 import edu.wpi.first.wpilibj.geometry.Rotation2d;
 import edu.wpi.first.wpilibj.kinematics.DifferentialDriveKinematics;
@@ -74,6 +76,9 @@ public final class Constants {
 
     // Open loop ramp value to keep the motors going from 0-100
     public static final double openLoopRamp = 0.2;
+
+    // Change the what direction is the front of the robot
+    public static final boolean driveDirection = true;
 
     // endregion
 
