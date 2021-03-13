@@ -4,6 +4,8 @@
 
 package frc.robot;
 
+import com.ctre.phoenix.motorcontrol.TalonFXInvertType;
+
 import edu.wpi.first.wpilibj.geometry.Pose2d;
 import edu.wpi.first.wpilibj.geometry.Rotation2d;
 import edu.wpi.first.wpilibj.kinematics.DifferentialDriveKinematics;
@@ -49,12 +51,9 @@ public final class Constants {
     public static final double intakeMotorSpeed = 0.7;
 
     // Smacna DIO location on the roborio
-    public static final int intakeSensorDIO = 1;
+    // public static final int intakeSensorDIO = 1;
     public static final int magazineSensorDIO = 2;
     public static final int shooterSensorDIO = 3;
-
-    // How long we run the mag when we sense a ball
-    public static final double intakeTimeOut = 1;
 
     // endregion
 
@@ -67,7 +66,7 @@ public final class Constants {
     public static final int rightArcadeAxis = 4;
 
     // Used to limit speed of the robot
-    public static final double speedLimitDefault = 0.5;
+    public static final double speedLimitDefault = 0.75;
 
     // Changes from tank drive to arcade drive
     public static final boolean arcadeDrive = false;
@@ -75,13 +74,16 @@ public final class Constants {
     // Open loop ramp value to keep the motors going from 0-100
     public static final double openLoopRamp = 0.2;
 
+    // Change the what direction is the front of the robot
+    public static final boolean driveDirection = true;
+
     // endregion
 
     // region Shooter
     // ================================
 
     // Shooter motor speed
-    public static final double shooterSpeed = 0.5;
+    public static final double shooterSpeed = 0.1;
     public static final int rtTrigger = 3;
     public static final int ltTrigger = 2;
 
@@ -91,7 +93,8 @@ public final class Constants {
     public static final int kTimeoutMs = 30;
 
     // Pid values                                                 kP    kI   kD        kF          Iz  PeakOut
-    public final static Gains kGains_Velocit_Shooter = new Gains(0.74, 0.001, 5, 1023.0 / 20660.0, 300, 1.00);
+    //public final static Gains kGains_Velocity_Shooter = new Gains(0.74, 0.001, 5, 1023.0 / 20660.0, 300, 1.00);
+    public final static Gains kGains_Velocity_Shooter = new Gains(0.1, 0.001, 5, 1023.0 / 20660.0, 300, 1.00);
 
     // Target RPM value for shooter motor
     public static final int targetRPM = 5000;
@@ -124,7 +127,7 @@ public final class Constants {
     public static final double kPDriveVel = 8.5;
 	public static final double kMaxSpeedMetersPerSecond = 3;
     public static final double kMaxAccelerationMetersPerSecondSquared = 3;
-    public static final double kTrackwidthMeters = 0.69;
+    public static final double kTrackwidthMeters = 0.584;
 	public static final DifferentialDriveKinematics kDriveKinematics = new DifferentialDriveKinematics(kTrackwidthMeters);
 	public static final double kRamseteB = 2;
 	public static final double kRamseteZeta = 0.7;
@@ -132,12 +135,13 @@ public final class Constants {
     public static final Pose2d startPosition = new Pose2d(0, 0, new Rotation2d());
     //Dynamics
     public static final double wheelDiameter = 0.1524; //m, 6inch
-	public static final double driveTrainGearRatio = 1/30;
+	public static final double driveTrainGearRatio = 1.00/30;
 
     //Encoder
 	public static final double encoderTicksPerTurn = 2048;
     // endregion
 	public static final double k100msPerSecond = 100;
+	public static final double autoCalibrate = 6*1.32*0.95;
 	
 
 }

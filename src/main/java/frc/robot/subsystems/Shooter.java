@@ -22,6 +22,7 @@ public class Shooter extends SubsystemBase {
 
   /** Creates a new Shooter. */
   public Shooter() {
+    
     // initilize the motor
     shooterMotor = new TalonFX(Constants.shooterMotorID);
     shooterMotor.setInverted(false);
@@ -44,47 +45,36 @@ public class Shooter extends SubsystemBase {
     shooterMotor.configPeakOutputForward(1, Constants.kTimeoutMs);
     shooterMotor.configPeakOutputReverse(-1, Constants.kTimeoutMs);
 
-    // put in the values for the PIDF ... they are coming
-    shooterMotor.config_kP(Constants.kPIDLoopIdx, Constants.kGains_Velocit_Shooter.kP, Constants.kTimeoutMs);
-    shooterMotor.config_kI(Constants.kPIDLoopIdx, Constants.kGains_Velocit_Shooter.kI, Constants.kTimeoutMs);
-    shooterMotor.config_kD(Constants.kPIDLoopIdx, Constants.kGains_Velocit_Shooter.kD, Constants.kTimeoutMs);
-    shooterMotor.config_kF(Constants.kPIDLoopIdx, Constants.kGains_Velocit_Shooter.kF, Constants.kTimeoutMs);
+    // put in the values for the PIDF
+    shooterMotor.config_kP(Constants.kPIDLoopIdx, Constants.kGains_Velocity_Shooter.kP, Constants.kTimeoutMs);
+    shooterMotor.config_kI(Constants.kPIDLoopIdx, Constants.kGains_Velocity_Shooter.kI, Constants.kTimeoutMs);
+    shooterMotor.config_kD(Constants.kPIDLoopIdx, Constants.kGains_Velocity_Shooter.kD, Constants.kTimeoutMs);
+    shooterMotor.config_kF(Constants.kPIDLoopIdx, Constants.kGains_Velocity_Shooter.kF, Constants.kTimeoutMs);
 
   }
 
   @Override
   public void periodic() {
-    // This method will be called once per scheduler run
-    // publish target RPM and current RPM to smart dashboard
-    // SmartDashboard.putNumber("Target RPM", Constants.targetRPM);
-    // SmartDashboard.putNumber("Current RPM",(shooterMotor.getSelectedSensorVelocity(Constants.kPIDLoopIdx)*600)/2048);
-    // SmartDashboard.putNumber("Current RPM Raw",shooterMotor.getSelectedSensorVelocity(Constants.kPIDLoopIdx));
+
   }
 
   // Shoot the ball at a certain speed
   // Press button to shoot ball
-
   public void shoot() {
-    shooterMotor.set(ControlMode.PercentOutput, dashOutput.getShooterTargetRPM());
+    shooterMotor.set(ControlMode.PercentOutput, Constants.shooterSpeed);
     currentRpm = (shooterMotor.getSelectedSensorVelocity(Constants.kPIDLoopIdx)*600)/2048;
-
-    // _sb.append(_talon.getSelectedSensorVelocity(Constants.kPIDLoopIdx));
-    // _talon.set(TalonFXControlMode.Velocity, targetVelocity_UnitsPer100ms);
-
   }
 
   public void shootPID() {
     /**
-     * Convert 500 RPM to units / 100ms.
-     * 2048 Encoder Units / Revolution
-     * 600msu (100ms units) / minute
-     * So targetUnits_100ms = (2048 * TargetRPM) / 600msu
+     Convert RPM into Position Change per 100ms
+     2048 Encoder Units / Revolution;
+     600msu (100ms units) / minute;
+     So positionchange_100ms = (2048 * TargetRPM) / 600msu;
      */
-    double targetUnits_100ms = (2048 * Constants.targetRPM) / 600;
+    double targetUnits_100ms = (2048 * dashOutput.getShooterTargetRPM()) / 600;
     shooterMotor.set(TalonFXControlMode.Velocity, targetUnits_100ms);
     currentRpm = (shooterMotor.getSelectedSensorVelocity(Constants.kPIDLoopIdx)*600)/2048;
-
-    
   }
 
   public void shootStop() {
