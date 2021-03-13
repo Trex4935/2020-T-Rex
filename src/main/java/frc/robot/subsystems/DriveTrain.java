@@ -84,6 +84,7 @@ public class DriveTrain extends SubsystemBase {
     rightRear.setInverted(Constants.inversion);
     rightRear.configOpenloopRamp(Constants.openLoopRamp);
 
+    // Create the encoders object
     driveEncoders = new DriveEncoders();
 
     // create the speed controller groups for use in the differential drive
