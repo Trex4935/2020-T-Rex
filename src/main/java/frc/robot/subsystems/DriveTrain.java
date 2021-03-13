@@ -189,6 +189,7 @@ public class DriveTrain extends SubsystemBase {
     time += 0.02;
     System.out.println(trajectory.sample(time).poseMeters);
     System.out.println(trajectory.sample(time).velocityMetersPerSecond);
+    Pose2d temp = getPose();
     return trajectory.sample(time).poseMeters;
   }
 
