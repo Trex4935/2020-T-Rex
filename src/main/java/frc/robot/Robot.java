@@ -10,10 +10,7 @@ import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.Extensions.DriveEncoders;
 import frc.robot.Extensions.Init_Dashboard;
 import frc.robot.Extensions.Limelight;
-import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.Shooter;
-
-import java.sql.Driver;
 
 import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.wpilibj.SPI;
