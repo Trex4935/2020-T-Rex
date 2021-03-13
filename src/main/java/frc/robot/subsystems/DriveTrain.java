@@ -217,7 +217,9 @@ public class DriveTrain extends SubsystemBase {
   }
 
   public Pose2d getPose() {
-    return odometry.getPoseMeters();
+    Pose2d temp = odometry.getPoseMeters();
+    System.out.println(temp);
+    return temp;
   }
 
   // Takes the rotation or internal ticks of Falcon Encoder and turn them to a
