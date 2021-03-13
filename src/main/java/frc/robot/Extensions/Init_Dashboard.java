@@ -115,16 +115,6 @@ public class Init_Dashboard {
                 limeLighttvert = limelightInfoTab.add("Limelight tvert Value", 0.0).withWidget("Text View")
                                 .withPosition(7, 0).withSize(1, 1).getEntry();
 
-                // Encoders
-                // leftFrontEncoder = driverInfoTab.add("Left Front",0).withWidget("Text
-                // View").withPosition(3,3).withSize(2,1).getEntry();
-                // leftRearEncoder = driverInfoTab.add("Left Rear",0).withWidget("Text
-                // View").withPosition(4,4).withSize(2,1).getEntry();
-                // rightFrontEncoder = driverInfoTab.add("Right Front",0).withWidget("Text
-                // View").withPosition(5,5).withSize(2,1).getEntry();
-                // rightRearEncoder = driverInfoTab.add("Right Rear",0).withWidget("Text
-                // View").withPosition(6,6).withSize(2,1).getEntry();
-
         }
 
         // Object creation for the driver data dispaly widgets
