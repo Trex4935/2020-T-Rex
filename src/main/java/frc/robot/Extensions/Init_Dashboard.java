@@ -124,8 +124,6 @@ public class Init_Dashboard {
                 // View").withPosition(5,5).withSize(2,1).getEntry();
                 // rightRearEncoder = driverInfoTab.add("Right Rear",0).withWidget("Text
                 // View").withPosition(6,6).withSize(2,1).getEntry();
-                limeLightArea = limelightInfoTab.add("Limelight Area Value", 0.0).withWidget("Text View")
-                                .withPosition(2, 0).withSize(2, 1).getEntry();
 
         }
 
