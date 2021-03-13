@@ -138,6 +138,7 @@ public final class Constants {
 	public static final double encoderTicksPerTurn = 2048;
     // endregion
 	public static final double k100msPerSecond = 100;
+	public static final double autoCalibrate = 6*1.32*0.95;
 	
 
 }
