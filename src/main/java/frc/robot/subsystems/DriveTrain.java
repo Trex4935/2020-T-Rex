@@ -153,8 +153,14 @@ public class DriveTrain extends SubsystemBase {
   public void periodic() {
     // This method will be called once per scheduler run
     odometry.update(ahrs.getRotation2d(), ticksToPosition(leftFront.getSelectedSensorPosition(), Constants.wheelDiameter, Constants.driveTrainGearRatio) , ticksToPosition(rightFront.getSelectedSensorPosition(), Constants.wheelDiameter, Constants.driveTrainGearRatio));
-    System.out.println(leftFront.getSelectedSensorPosition());
-    System.out.println(ahrs.getRotation2d());
+    //System.out.println(leftFront.getSelectedSensorPosition());
+    //System.out.println(rightFront.getSelectedSensorPosition());
+    //System.out.println(ahrs.getRotation2d());
+    System.out.println(odometry.getPoseMeters());
+    //System.out.println(odometry.update(ahrs.getRotation2d(), ticksToPosition(leftFront.getSelectedSensorPosition(), Constants.wheelDiameter, Constants.driveTrainGearRatio) , ticksToPosition(rightFront.getSelectedSensorPosition(), Constants.wheelDiameter, Constants.driveTrainGearRatio))); 
+    //System.out.println(odometry);
+    System.out.println(ticksToPosition(rightFront.getSelectedSensorPosition(), Constants.wheelDiameter, Constants.driveTrainGearRatio));
+    //System.out.println(ticksToPosition(leftFront.getSelectedSensorPosition(), Constants.wheelDiameter, Constants.driveTrainGearRatio));
   }
 
   // Method to control the drive with the controller
