@@ -51,12 +51,9 @@ public final class Constants {
     public static final double intakeMotorSpeed = 0.7;
 
     // Smacna DIO location on the roborio
-    public static final int intakeSensorDIO = 1;
+    // public static final int intakeSensorDIO = 1;
     public static final int magazineSensorDIO = 2;
     public static final int shooterSensorDIO = 3;
-
-    // How long we run the mag when we sense a ball
-    public static final double intakeTimeOut = 1;
 
     // endregion
 
@@ -69,7 +66,7 @@ public final class Constants {
     public static final int rightArcadeAxis = 4;
 
     // Used to limit speed of the robot
-    public static final double speedLimitDefault = 0.5;
+    public static final double speedLimitDefault = 0.75;
 
     // Changes from tank drive to arcade drive
     public static final boolean arcadeDrive = false;
@@ -86,7 +83,7 @@ public final class Constants {
     // ================================
 
     // Shooter motor speed
-    public static final double shooterSpeed = 0.5;
+    public static final double shooterSpeed = 0.1;
     public static final int rtTrigger = 3;
     public static final int ltTrigger = 2;
 
