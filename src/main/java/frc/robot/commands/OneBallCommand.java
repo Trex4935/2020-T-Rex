@@ -34,7 +34,7 @@ public class OneBallCommand extends CommandBase {
   public void end(boolean interrupted) {
    magazine.stopHighBelt(); 
    magazine.stopLowBelt();
-   if (magazine.getShooterSensor()) {
+   if (Magazine.getShooterSensor()) {
     magazine.stopLowBelt();
   }
   }
