@@ -18,7 +18,6 @@ import edu.wpi.first.wpilibj.geometry.Pose2d;
 import edu.wpi.first.wpilibj.geometry.Rotation2d;
 import edu.wpi.first.wpilibj.kinematics.DifferentialDriveOdometry;
 import edu.wpi.first.wpilibj.kinematics.DifferentialDriveWheelSpeeds;
-import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.trajectory.Trajectory;
 import edu.wpi.first.wpilibj.trajectory.TrajectoryConfig;
 import edu.wpi.first.wpilibj.trajectory.TrajectoryUtil;
@@ -29,6 +28,7 @@ import frc.robot.Extensions.Dashboard_Outputs;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Filesystem;
 import edu.wpi.first.wpilibj.SPI;
+import frc.robot.Extensions.DriveEncoders;
 
 public class DriveTrain extends SubsystemBase {
   // Motors
@@ -57,8 +57,10 @@ public class DriveTrain extends SubsystemBase {
   public Trajectory trajectory;
 
   // Internal time
-
   public static double time;
+
+  // Encoders object
+  public static DriveEncoders driveEncoders;
 
   /** Creates a new DriveTrain. */
   public DriveTrain() {
@@ -81,13 +83,7 @@ public class DriveTrain extends SubsystemBase {
     rightRear.setInverted(false);
     rightRear.configOpenloopRamp(Constants.openLoopRamp);
 
-    ahrs = new AHRS(SPI.Port.kMXP);
-    
-    // Adding encoders data to the dashboard
-    //Shuffleboard.getTab("Driver Info").add("Left Front", leftFront.getSelectedSensorPosition()).withWidget("Text View").withPosition(1,1).withSize(1,1);
-    //Shuffleboard.getTab("Driver Info").add("Left Rear", leftRear.getSelectedSensorPosition()).withWidget("Text View").withPosition(2,1).withSize(1,1);
-    //Shuffleboard.getTab("Driver Info").add("Right Front", rightFront.getSelectedSensorPosition()).withWidget("Text View").withPosition(1,2).withSize(1,1);
-    //Shuffleboard.getTab("Driver Info").add("Right Rear", rightRear.getSelectedSensorPosition()).withWidget("Text View").withPosition(2,2).withSize(1,1);
+    driveEncoders = new DriveEncoders();
 
     // create the speed controller groups for use in the differential drive
     // each one should be a pairing of the motors on a given side of the robot
@@ -99,6 +95,10 @@ public class DriveTrain extends SubsystemBase {
     // file:///C:/Users/Public/wpilib/2021/documentation/java/edu/wpi/first/wpilibj/drive/DifferentialDrive.html
     drive = new DifferentialDrive(rightSide, leftSide);
 
+    // Init the gyro
+    ahrs = new AHRS(SPI.Port.kMXP);
+
+    // Setup the dashboard input object
     dashOut = new Dashboard_Outputs();
 
     // Odometry
@@ -154,6 +154,7 @@ public class DriveTrain extends SubsystemBase {
     // This method will be called once per scheduler run
     odometry.update(ahrs.getRotation2d(), ticksToPosition(leftFront.getSelectedSensorPosition(), Constants.wheelDiameter, Constants.driveTrainGearRatio) , ticksToPosition(rightFront.getSelectedSensorPosition(), Constants.wheelDiameter, Constants.driveTrainGearRatio));
     System.out.println(leftFront.getSelectedSensorPosition());
+    driveEncoders.SetDriveEncoders(leftFront.getSelectedSensorPosition(), leftRear.getSelectedSensorPosition(), rightFront.getSelectedSensorPosition(), rightRear.getSelectedSensorPosition());
   }
 
   // Method to control the drive with the controller

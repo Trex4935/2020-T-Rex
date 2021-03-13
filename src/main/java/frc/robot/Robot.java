@@ -7,9 +7,14 @@ package frc.robot;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import frc.robot.Extensions.DriveEncoders;
 import frc.robot.Extensions.Init_Dashboard;
 import frc.robot.Extensions.Limelight;
+import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.Shooter;
+
+import java.sql.Driver;
+
 import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.wpilibj.SPI;
 
@@ -84,6 +89,14 @@ public class Robot extends TimedRobot {
     dashboard.driveRightAxisWidget.setNumber(RobotContainer.controller.getRawAxis(Constants.rightTankAxis));
     // Shooter Current running RPM Widget
     dashboard.shooterCurrentRpm.setNumber(Shooter.currentRpm);
+    
+    // Update Encoder values
+    dashboard.leftFrontEncoder.setNumber(DriveEncoders.lfEncoderValue);
+    dashboard.leftRearEncoder.setNumber(DriveEncoders.lrEncoderValue);
+    dashboard.rightFrontEncoder.setNumber(DriveEncoders.rfEncoderValue);
+    dashboard.rightRearEncoder.setNumber(DriveEncoders.rrEncoderValue);
+
+
     // Gyro current heading Widget
     dashboard.gyroCurrentPosition.setNumber(gyro.getAngle());
     // Limelight X Axis Widget
