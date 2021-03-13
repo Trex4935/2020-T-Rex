@@ -32,12 +32,15 @@ public class Magazine extends SubsystemBase {
   /** Creates a new Magazine. */
   public Magazine() {
 
+    // Declare high belt
     highBeltMotor = new WPI_TalonSRX(Constants.beltMotorCanID);
     highBeltMotor.setInverted(false);
 
+    // Declare low belt
     lowBeltMotor = new WPI_TalonSRX(Constants.intakeMotorCanID);
     lowBeltMotor.setInverted(false);
 
+    // Create sensor objects
     magazineSensor = new DigitalInput(Constants.magazineSensorDIO);
     shooterSensor = new DigitalInput(Constants.shooterSensorDIO);
   }
