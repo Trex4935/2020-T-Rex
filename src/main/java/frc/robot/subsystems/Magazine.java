@@ -15,7 +15,6 @@ package frc.robot.subsystems;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj.DigitalInput;
-//import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
@@ -27,20 +26,21 @@ public class Magazine extends SubsystemBase {
   WPI_TalonSRX reverseIntakeMotor;
 
   /// Smacna
-  private static DigitalInput intakeSensor;
   private static DigitalInput magazineSensor;
   private static DigitalInput shooterSensor;
 
   /** Creates a new Magazine. */
   public Magazine() {
 
+    // Declare high belt
     highBeltMotor = new WPI_TalonSRX(Constants.beltMotorCanID);
     highBeltMotor.setInverted(false);
 
+    // Declare low belt
     lowBeltMotor = new WPI_TalonSRX(Constants.intakeMotorCanID);
     lowBeltMotor.setInverted(false);
 
-    intakeSensor = new DigitalInput(Constants.intakeSensorDIO);
+    // Create sensor objects
     magazineSensor = new DigitalInput(Constants.magazineSensorDIO);
     shooterSensor = new DigitalInput(Constants.shooterSensorDIO);
   }
@@ -51,8 +51,8 @@ public class Magazine extends SubsystemBase {
   }
 
   /// Intake system consists of two motors
-  /// One drives the highbelt from bend -> Shooter
-  /// The other drives the low belt from intake port -> bend
+  /// One drives the highbelt from 25% into the magazine to the shooter
+  /// The other drives the low belt from intake port -> 25% point
   /// The Bend is the tigest point in the magazine run that bends the ball from
   /// horizontal movement to vertical movement
 
@@ -97,13 +97,6 @@ public class Magazine extends SubsystemBase {
     highBeltMotor.set(-Constants.beltMotorSpeed);
   }
 
-  // Get the value of the intake sensor
-  /*public static boolean getIntakeSensor() {
-    boolean a = intakeSensor.get();
-    return (!a);
-  }
-  */
-  
   // Get the value of the magazine sensor
   public static boolean getMagazineSensor() {
     boolean a = magazineSensor.get();
@@ -116,13 +109,17 @@ public class Magazine extends SubsystemBase {
     return (!a);
   }
 
-  // Singulation
+  // Singulation of the ball when intake mode is turned on
+  // Intake mode turns on the LB via the LM
   public void oneBall() {
-    // SMAKNA underneath the elevator
+    // When the magazine sensor sees a ball run the HB
     if (getMagazineSensor()) {
       moveHighBelt();
-    } else {
+    }
+    // When it no longer sees a ball then it is "in" the magazine so we stop the
+    // motor
+    else {
       stopHighBelt();
     }
-   }
+  }
 }

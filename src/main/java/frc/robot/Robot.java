@@ -9,7 +9,6 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.Extensions.Init_Dashboard;
 import frc.robot.Extensions.Limelight;
-import frc.robot.subsystems.Magazine;
 import frc.robot.subsystems.Shooter;
 import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.wpilibj.SPI;
@@ -29,9 +28,11 @@ public class Robot extends TimedRobot {
   // Initialize the tabs on the Shuffleboard
   public Init_Dashboard dashboard;
 
-  public Limelight limelight; // Limelight object
+  // Limelight object
+  public Limelight limelight;
 
-  public AHRS gyro;  // Gyro object
+  // Gyro object
+  public AHRS gyro;
 
   /**
    * This function is run when the robot is first started up and should be used
@@ -39,19 +40,22 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotInit() {
+
     // Instantiate our RobotContainer. This will perform all our button bindings,
-    // and put our
-    // autonomous chooser on the dashboard.
+    // and put our autonomous chooser on the dashboard.
     m_robotContainer = new RobotContainer();
+
     // Initializing the Shuffleboard Dashboard to that values can be pulled for
     // other systems
     dashboard = new Init_Dashboard();
 
+    // Initialize the lime light
     limelight = new Limelight();
 
+    // Initalize the gyro
     gyro = new AHRS(SPI.Port.kMXP);
 
-    }
+  }
 
   /**
    * This function is called every robot packet, no matter the mode. Use this for
@@ -62,19 +66,18 @@ public class Robot extends TimedRobot {
    * This runs after the mode specific periodic functions, but before LiveWindow
    * and SmartDashboard integrated updating.
    */
+
   @Override
   public void robotPeriodic() {
     // Runs the Scheduler. This is responsible for polling buttons, adding
-    // newly-scheduled
-    // commands, running already-scheduled commands, removing finished or
-    // interrupted commands,
-    // and running subsystem periodic() methods. This must be called from the
-    // robot's periodic
-    // block in order for anything in the Command-based framework to work.
+    // newly-scheduled commands, running already-scheduled commands, removing
+    // finished or interrupted commands, and running subsystem periodic() methods.
+    // This must be called from the robot's periodic block in order for anything in
+    // the Command-based framework to work.
     CommandScheduler.getInstance().run();
 
-    //Outputting running robot data to Shuffleboard widgets
-    //
+    /// Outputting running robot data to Shuffleboard widgets
+
     // Drive Left Axis Shuffleboard Widget
     dashboard.driveLeftAxisWidget.setNumber(RobotContainer.controller.getRawAxis(Constants.leftTankAxis));
     // Drive Right Axis Shuffleboard Widget
@@ -89,13 +92,6 @@ public class Robot extends TimedRobot {
     dashboard.limeLightY.setNumber(limelight.getLimeLightY());
     // Limelight Area Widget
     dashboard.limeLightArea.setNumber(limelight.getLimeLightArea());
-
-    
-    // Attempt at singulation using only magazine Smacna sensor.
-    // Runs magazine only while it senses a ball.
-    //if (Magazine.getMagazineSensor() == false){
-    //  Magazine.highBeltMotor.set(Constants.beltMotorSpeed);
-    //}
   }
 
   /** This function is called once each time the robot enters Disabled mode. */
