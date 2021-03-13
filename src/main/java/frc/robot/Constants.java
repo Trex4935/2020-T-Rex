@@ -130,7 +130,7 @@ public final class Constants {
     public static final double kPDriveVel = 8.5;
 	public static final double kMaxSpeedMetersPerSecond = 3;
     public static final double kMaxAccelerationMetersPerSecondSquared = 3;
-    public static final double kTrackwidthMeters = 0.69;
+    public static final double kTrackwidthMeters = 0.584;
 	public static final DifferentialDriveKinematics kDriveKinematics = new DifferentialDriveKinematics(kTrackwidthMeters);
 	public static final double kRamseteB = 2;
 	public static final double kRamseteZeta = 0.7;
@@ -138,12 +138,13 @@ public final class Constants {
     public static final Pose2d startPosition = new Pose2d(0, 0, new Rotation2d());
     //Dynamics
     public static final double wheelDiameter = 0.1524; //m, 6inch
-	public static final double driveTrainGearRatio = 1/30;
+	public static final double driveTrainGearRatio = 1.00/30;
 
     //Encoder
 	public static final double encoderTicksPerTurn = 2048;
     // endregion
 	public static final double k100msPerSecond = 100;
+	public static final double autoCalibrate = 6*1.32*0.95;
 	
 	
 

@@ -104,7 +104,7 @@ public class DriveTrain extends SubsystemBase {
 
     // Odometry
     odometry = new DifferentialDriveOdometry(Rotation2d.fromDegrees(getGyroAngle()), Constants.startPosition);
-
+    resetOdometry();
     // Trajectory
 
     // Create a voltage constraint to ensure we don't accelerate too fast
@@ -154,7 +154,14 @@ public class DriveTrain extends SubsystemBase {
   public void periodic() {
     // This method will be called once per scheduler run
     odometry.update(ahrs.getRotation2d(), ticksToPosition(leftFront.getSelectedSensorPosition(), Constants.wheelDiameter, Constants.driveTrainGearRatio) , ticksToPosition(rightFront.getSelectedSensorPosition(), Constants.wheelDiameter, Constants.driveTrainGearRatio));
-    System.out.println(leftFront.getSelectedSensorPosition());
+    //System.out.println(leftFront.getSelectedSensorPosition());
+    //System.out.println(rightFront.getSelectedSensorPosition());
+    //System.out.println(ahrs.getRotation2d());
+    System.out.println(odometry.getPoseMeters());
+    //System.out.println(odometry.update(ahrs.getRotation2d(), ticksToPosition(leftFront.getSelectedSensorPosition(), Constants.wheelDiameter, Constants.driveTrainGearRatio) , ticksToPosition(rightFront.getSelectedSensorPosition(), Constants.wheelDiameter, Constants.driveTrainGearRatio))); 
+    //System.out.println(odometry);
+    System.out.println(ticksToPosition(rightFront.getSelectedSensorPosition(), Constants.wheelDiameter, Constants.driveTrainGearRatio));
+    //System.out.println(ticksToPosition(leftFront.getSelectedSensorPosition(), Constants.wheelDiameter, Constants.driveTrainGearRatio));
     driveEncoders.SetDriveEncoders(leftFront.getSelectedSensorPosition(), leftRear.getSelectedSensorPosition(), rightFront.getSelectedSensorPosition(), rightRear.getSelectedSensorPosition());
   }
 
@@ -181,6 +188,12 @@ public class DriveTrain extends SubsystemBase {
     time = 0;
   }
 
+  public void resetOdometry(){
+    leftFront.setSelectedSensorPosition(0);
+    rightFront.setSelectedSensorPosition(0);
+    odometry.resetPosition(new Pose2d(0, 0, new Rotation2d()),new Rotation2d());
+  }
+
   // Method to just stop the drive
   public void stop() {
     drive.stopMotor();
@@ -194,15 +207,16 @@ public class DriveTrain extends SubsystemBase {
 
   public Pose2d getPosition() {
     time += 0.02;
-    //System.out.println(trajectory.sample(time).poseMeters);
-    //System.out.println(trajectory.sample(time).velocityMetersPerSecond);
+    System.out.println(trajectory.sample(time).poseMeters);
+    System.out.println(trajectory.sample(time).velocityMetersPerSecond);
+    Pose2d temp = getPose();
     return trajectory.sample(time).poseMeters;
   }
 
   // Takes in speed setpoints,convert them to volts and drive robot
   public void move(double LeftSpeed, double RightSpeed) {
-    rightSide.setVoltage(-RightSpeed / Constants.kvVoltSecondsPerMeter); // Or 12 or kvVoltSecondsPerMeter *WheelRatio
-    leftSide.setVoltage(LeftSpeed / Constants.kvVoltSecondsPerMeter); // Or 12
+    rightSide.setVoltage(-(RightSpeed / Constants.kvVoltSecondsPerMeter)*Constants.autoCalibrate*(0.5)); // Or 12 or kvVoltSecondsPerMeter *WheelRatio
+    leftSide.setVoltage((LeftSpeed / Constants.kvVoltSecondsPerMeter)*Constants.autoCalibrate*(0.5)); // Or 12
     drive.feed();
     //System.out.println(RightSpeed);
   }
@@ -224,7 +238,9 @@ public class DriveTrain extends SubsystemBase {
   }
 
   public Pose2d getPose() {
-    return odometry.getPoseMeters();
+    Pose2d temp = odometry.getPoseMeters();
+    System.out.println(temp);
+    return temp;
   }
 
   // Takes the rotation or internal ticks of Falcon Encoder and turn them to a
