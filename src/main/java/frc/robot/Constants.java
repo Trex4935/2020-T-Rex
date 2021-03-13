@@ -72,6 +72,9 @@ public final class Constants {
     // Changes from tank drive to arcade drive
     public static final boolean arcadeDrive = false;
 
+    // Open loop ramp value to keep the motors going from 0-100
+    public static final double openLoopRamp = 0.2;
+
     // endregion
 
     // region Shooter
@@ -135,5 +138,6 @@ public final class Constants {
 	public static final double encoderTicksPerTurn = 2048;
     // endregion
 	public static final double k100msPerSecond = 100;
+	
 
 }

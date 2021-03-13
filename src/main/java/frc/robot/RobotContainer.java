@@ -7,18 +7,12 @@ package frc.robot;
 // import trex code
 import frc.robot.commands.*;
 import frc.robot.subsystems.*;
-import frc.robot.Extensions.IntakeTrigger;
-import frc.robot.Extensions.LeftTriggerBool;
-import frc.robot.Extensions.RightTriggerBool;
+import frc.robot.Extensions.*;
 
 // import needed WPI methods
 import edu.wpi.first.wpilibj.GenericHID;
-import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.XboxController;
-import edu.wpi.first.wpilibj.XboxController.Button;
-import edu.wpi.first.wpilibj.controller.PIDController;
 import edu.wpi.first.wpilibj.controller.RamseteController;
-import edu.wpi.first.wpilibj.controller.SimpleMotorFeedforward;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.RamseteCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
@@ -31,6 +25,7 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
  * commands, and button mappings) should be declared here.
  */
 public class RobotContainer {
+  
   // The robot's subsystems and commands are defined here...
   private final DriveTrain driveTrain;
   private final DriveWithControllerCommand driveWithController;
