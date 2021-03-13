@@ -131,7 +131,7 @@ public class Init_Dashboard {
         public void Init_DriverInfo() {
 
                 // Left front Encoder
-                leftFrontEncoder = driverInfoTab.add("Left Front", 0).withWidget("Graph").withPosition(0, 1)
+                leftFrontEncoder = driverInfoTab.add("Left Front", 0).withWidget("Text View").withPosition(0, 1)
                                 .withSize(1, 1).getEntry();
 
                 // Left Rear Encoder
