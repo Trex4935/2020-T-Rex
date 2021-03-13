@@ -103,7 +103,7 @@ public class DriveTrain extends SubsystemBase {
 
     // Odometry
     odometry = new DifferentialDriveOdometry(Rotation2d.fromDegrees(getGyroAngle()), Constants.startPosition);
-
+    resetOdometry();
     // Trajectory
 
     // Create a voltage constraint to ensure we don't accelerate too fast
