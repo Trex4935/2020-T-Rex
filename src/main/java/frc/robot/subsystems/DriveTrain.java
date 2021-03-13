@@ -186,6 +186,12 @@ public class DriveTrain extends SubsystemBase {
     time = 0;
   }
 
+  public void resetOdometry(){
+    leftFront.setSelectedSensorPosition(0);
+    rightFront.setSelectedSensorPosition(0);
+    odometry.resetPosition(new Pose2d(0, 0, new Rotation2d()),new Rotation2d());
+  }
+
   // Method to just stop the drive
   public void stop() {
     drive.stopMotor();
