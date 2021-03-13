@@ -67,23 +67,27 @@ public class DriveTrain extends SubsystemBase {
     // Going to set any whole game settings here as well (like motor inversion)
     leftFront = new WPI_TalonFX(Constants.leftFrontCanID);
     leftFront.setInverted(false);
+    leftFront.configOpenloopRamp(Constants.openLoopRamp);
 
     rightFront = new WPI_TalonFX(Constants.rightFrontCanID);
     rightFront.setInverted(false);
+    rightFront.configOpenloopRamp(Constants.openLoopRamp);
 
     leftRear = new WPI_TalonFX(Constants.leftRearCanID);
     leftRear.setInverted(false);
+    leftRear.configOpenloopRamp(Constants.openLoopRamp);
 
     rightRear = new WPI_TalonFX(Constants.rightRearCanID);
     rightRear.setInverted(false);
+    rightRear.configOpenloopRamp(Constants.openLoopRamp);
 
     ahrs = new AHRS(SPI.Port.kMXP);
     
     // Adding encoders data to the dashboard
-    Shuffleboard.getTab("Driver Info").add("Left Front", leftFront.getSelectedSensorPosition()).withWidget("Text View").withPosition(1,1).withSize(1,1);
-    Shuffleboard.getTab("Driver Info").add("Left Rear", leftRear.getSelectedSensorPosition()).withWidget("Text View").withPosition(2,1).withSize(1,1);
-    Shuffleboard.getTab("Driver Info").add("Right Front", rightFront.getSelectedSensorPosition()).withWidget("Text View").withPosition(1,2).withSize(1,1);
-    Shuffleboard.getTab("Driver Info").add("Right Rear", rightRear.getSelectedSensorPosition()).withWidget("Text View").withPosition(2,2).withSize(1,1);
+    //Shuffleboard.getTab("Driver Info").add("Left Front", leftFront.getSelectedSensorPosition()).withWidget("Text View").withPosition(1,1).withSize(1,1);
+    //Shuffleboard.getTab("Driver Info").add("Left Rear", leftRear.getSelectedSensorPosition()).withWidget("Text View").withPosition(2,1).withSize(1,1);
+    //Shuffleboard.getTab("Driver Info").add("Right Front", rightFront.getSelectedSensorPosition()).withWidget("Text View").withPosition(1,2).withSize(1,1);
+    //Shuffleboard.getTab("Driver Info").add("Right Rear", rightRear.getSelectedSensorPosition()).withWidget("Text View").withPosition(2,2).withSize(1,1);
 
     // create the speed controller groups for use in the differential drive
     // each one should be a pairing of the motors on a given side of the robot
