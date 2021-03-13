@@ -75,7 +75,10 @@ public final class Constants {
     public static final double openLoopRamp = 0.2;
 
     // Change the what direction is the front of the robot
-    public static final boolean driveDirection = true;
+    public static final int driveDirection = -1;
+
+    // Change the inversion of the robot
+    public static final boolean inversion = false;
 
     // endregion
 
@@ -141,6 +144,7 @@ public final class Constants {
 	public static final double encoderTicksPerTurn = 2048;
     // endregion
 	public static final double k100msPerSecond = 100;
+	
 	
 
 }

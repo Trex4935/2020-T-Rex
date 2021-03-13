@@ -29,6 +29,7 @@ import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Filesystem;
 import edu.wpi.first.wpilibj.SPI;
 import frc.robot.Extensions.DriveEncoders;
+import frc.robot.Extensions.Limelight;
 
 public class DriveTrain extends SubsystemBase {
   // Motors
@@ -68,19 +69,19 @@ public class DriveTrain extends SubsystemBase {
     // Setup each of the motors for use later
     // Going to set any whole game settings here as well (like motor inversion)
     leftFront = new WPI_TalonFX(Constants.leftFrontCanID);
-    leftFront.setInverted(Constants.driveDirection);
+    leftFront.setInverted(Constants.inversion);
     leftFront.configOpenloopRamp(Constants.openLoopRamp);
 
     rightFront = new WPI_TalonFX(Constants.rightFrontCanID);
-    rightFront.setInverted(Constants.driveDirection);
+    rightFront.setInverted(Constants.inversion);
     rightFront.configOpenloopRamp(Constants.openLoopRamp);
 
     leftRear = new WPI_TalonFX(Constants.leftRearCanID);
-    leftRear.setInverted(Constants.driveDirection);
+    leftRear.setInverted(Constants.inversion);
     leftRear.configOpenloopRamp(Constants.openLoopRamp);
 
     rightRear = new WPI_TalonFX(Constants.rightRearCanID);
-    rightRear.setInverted(Constants.driveDirection);
+    rightRear.setInverted(Constants.inversion);
     rightRear.configOpenloopRamp(Constants.openLoopRamp);
 
     driveEncoders = new DriveEncoders();
@@ -163,11 +164,11 @@ public class DriveTrain extends SubsystemBase {
   // if else statement to swap between arcade and tank
   public void driveWithController(XboxController controller, double speedLimiter) {
     if (dashOut.getDriveType()) {
-      drive.arcadeDrive(controller.getRawAxis(Constants.leftTankAxis) * speedLimiter,
+      drive.arcadeDrive(controller.getRawAxis(Constants.leftTankAxis) * speedLimiter * Constants.driveDirection,
           controller.getRawAxis(Constants.rightArcadeAxis) * speedLimiter);
     } else {
-      drive.tankDrive(controller.getRawAxis(Constants.leftTankAxis) * speedLimiter,
-          controller.getRawAxis(Constants.rightTankAxis) * speedLimiter);
+      drive.tankDrive(controller.getRawAxis(Constants.leftTankAxis) * speedLimiter * Constants.driveDirection,
+          controller.getRawAxis(Constants.rightTankAxis) * speedLimiter * Constants.driveDirection);
     }
   }
 
@@ -187,14 +188,14 @@ public class DriveTrain extends SubsystemBase {
 
   // Print out way points
   public void getWP(double time) {
-    System.out.println(time);
-    System.out.println(trajectory.sample(time));
+    //System.out.println(time);
+    //System.out.println(trajectory.sample(time));
   }
 
   public Pose2d getPosition() {
     time += 0.02;
-    System.out.println(trajectory.sample(time).poseMeters);
-    System.out.println(trajectory.sample(time).velocityMetersPerSecond);
+    //System.out.println(trajectory.sample(time).poseMeters);
+    //System.out.println(trajectory.sample(time).velocityMetersPerSecond);
     return trajectory.sample(time).poseMeters;
   }
 
@@ -203,7 +204,7 @@ public class DriveTrain extends SubsystemBase {
     rightSide.setVoltage(-RightSpeed / Constants.kvVoltSecondsPerMeter); // Or 12 or kvVoltSecondsPerMeter *WheelRatio
     leftSide.setVoltage(LeftSpeed / Constants.kvVoltSecondsPerMeter); // Or 12
     drive.feed();
-    System.out.println(RightSpeed);
+    //System.out.println(RightSpeed);
   }
 
   // Takes in speed setpoints,convert them to volts and drive robot
