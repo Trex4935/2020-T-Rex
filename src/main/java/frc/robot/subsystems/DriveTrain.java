@@ -30,9 +30,6 @@ import edu.wpi.first.wpilibj.Filesystem;
 import edu.wpi.first.wpilibj.SPI;
 import frc.robot.Extensions.DriveEncoders;
 import frc.robot.Extensions.Limelight;
-import edu.wpi.first.networktables.NetworkTable;
-import edu.wpi.first.networktables.NetworkTableEntry;
-import edu.wpi.first.networktables.NetworkTableInstance;
 
 public class DriveTrain extends SubsystemBase {
   // Motors
@@ -277,16 +274,16 @@ public class DriveTrain extends SubsystemBase {
 
   public void AimingUsingVision () {
     float KpAim = -0.1f;
-    float KpDistance = -0.1f;
+    // float KpDistance = -0.1f;
     float min_aim_command = 0.05f;
    
-    float tx = Limelight.getLimeLightX();
-    float ty = Limelight.getLimeLightY();
+    double tx = Limelight.getLimeLightX();
+    // double ty = Limelight.getLimeLightY();
 
     {
-        float heading_error = -tx;
-        float distance_error = -ty;
-        float steering_adjust = 0.0f;
+        double heading_error = -tx;
+        // double distance_error = -ty;
+        double steering_adjust = 0.0f;
 
         if (tx > 1.0)
         {
@@ -297,10 +294,10 @@ public class DriveTrain extends SubsystemBase {
                 steering_adjust = KpAim*heading_error + min_aim_command;
         }
 
-        float distance_adjust = KpDistance * distance_error;
+        // double distance_adjust = KpDistance * distance_error;
         
-        float left_command = steering_adjust;
-        float right_command = steering_adjust * -1;
+        double left_command = steering_adjust;
+        double right_command = steering_adjust * -1;
         drive.tankDrive(left_command, right_command);
 }
   }
