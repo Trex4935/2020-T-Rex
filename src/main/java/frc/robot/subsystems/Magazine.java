@@ -15,7 +15,6 @@ package frc.robot.subsystems;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj.DigitalInput;
-//import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
@@ -27,7 +26,6 @@ public class Magazine extends SubsystemBase {
   WPI_TalonSRX reverseIntakeMotor;
 
   /// Smacna
-  private static DigitalInput intakeSensor;
   private static DigitalInput magazineSensor;
   private static DigitalInput shooterSensor;
 
@@ -40,7 +38,6 @@ public class Magazine extends SubsystemBase {
     lowBeltMotor = new WPI_TalonSRX(Constants.intakeMotorCanID);
     lowBeltMotor.setInverted(false);
 
-    intakeSensor = new DigitalInput(Constants.intakeSensorDIO);
     magazineSensor = new DigitalInput(Constants.magazineSensorDIO);
     shooterSensor = new DigitalInput(Constants.shooterSensorDIO);
   }
