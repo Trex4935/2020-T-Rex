@@ -22,6 +22,7 @@ public class Shooter extends SubsystemBase {
 
   /** Creates a new Shooter. */
   public Shooter() {
+    
     // initilize the motor
     shooterMotor = new TalonFX(Constants.shooterMotorID);
     shooterMotor.setInverted(false);
@@ -44,11 +45,11 @@ public class Shooter extends SubsystemBase {
     shooterMotor.configPeakOutputForward(1, Constants.kTimeoutMs);
     shooterMotor.configPeakOutputReverse(-1, Constants.kTimeoutMs);
 
-    // put in the values for the PIDF ... they are coming
-    shooterMotor.config_kP(Constants.kPIDLoopIdx, Constants.kGains_Velocit_Shooter.kP, Constants.kTimeoutMs);
-    shooterMotor.config_kI(Constants.kPIDLoopIdx, Constants.kGains_Velocit_Shooter.kI, Constants.kTimeoutMs);
-    shooterMotor.config_kD(Constants.kPIDLoopIdx, Constants.kGains_Velocit_Shooter.kD, Constants.kTimeoutMs);
-    shooterMotor.config_kF(Constants.kPIDLoopIdx, Constants.kGains_Velocit_Shooter.kF, Constants.kTimeoutMs);
+    // put in the values for the PIDF
+    shooterMotor.config_kP(Constants.kPIDLoopIdx, Constants.kGains_Velocity_Shooter.kP, Constants.kTimeoutMs);
+    shooterMotor.config_kI(Constants.kPIDLoopIdx, Constants.kGains_Velocity_Shooter.kI, Constants.kTimeoutMs);
+    shooterMotor.config_kD(Constants.kPIDLoopIdx, Constants.kGains_Velocity_Shooter.kD, Constants.kTimeoutMs);
+    shooterMotor.config_kF(Constants.kPIDLoopIdx, Constants.kGains_Velocity_Shooter.kF, Constants.kTimeoutMs);
 
   }
 
@@ -59,14 +60,9 @@ public class Shooter extends SubsystemBase {
 
   // Shoot the ball at a certain speed
   // Press button to shoot ball
-
   public void shoot() {
     shooterMotor.set(ControlMode.PercentOutput, Constants.shooterSpeed);
     currentRpm = (shooterMotor.getSelectedSensorVelocity(Constants.kPIDLoopIdx)*600)/2048;
-
-    // _sb.append(_talon.getSelectedSensorVelocity(Constants.kPIDLoopIdx));
-    // _talon.set(TalonFXControlMode.Velocity, targetVelocity_UnitsPer100ms);
-
   }
 
   public void shootPID() {
