@@ -96,7 +96,7 @@ public class Magazine extends SubsystemBase {
     lowBeltMotor.set(-Constants.intakeMotorSpeed);
     highBeltMotor.set(-Constants.beltMotorSpeed);
   }
-  
+
   // Get the value of the magazine sensor
   public static boolean getMagazineSensor() {
     boolean a = magazineSensor.get();
@@ -112,13 +112,14 @@ public class Magazine extends SubsystemBase {
   // Singulation of the ball when intake mode is turned on
   // Intake mode turns on the LB via the LM
   public void oneBall() {
-   // When the magazine sensor sees a ball run the HB
+    // When the magazine sensor sees a ball run the HB
     if (getMagazineSensor()) {
       moveHighBelt();
-    } 
-    // When it no longer sees a ball then it is "in" the magazine so we stop the motor
+    }
+    // When it no longer sees a ball then it is "in" the magazine so we stop the
+    // motor
     else {
       stopHighBelt();
     }
-   }
+  }
 }
