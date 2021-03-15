@@ -27,7 +27,7 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 public class RobotContainer {
   
   // The robot's subsystems and commands are defined here...
-  private final DriveTrain driveTrain;
+  public final DriveTrain driveTrain;
   private final DriveWithControllerCommand driveWithController;
   public static XboxController controller;
   private final AutoForwardCommand autoForward;
@@ -128,7 +128,6 @@ public class RobotContainer {
   public Command getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
     DriveTrain.resetTime(); 
-    driveTrain.resetOdometry();
   //   RamseteCommand ramseteCommand = new RamseteCommand(
   //     exampleTrajectory,
   //     m_robotDrive::getPose,
