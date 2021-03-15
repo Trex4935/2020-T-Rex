@@ -29,6 +29,7 @@ import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Filesystem;
 import edu.wpi.first.wpilibj.SPI;
 import frc.robot.Extensions.DriveEncoders;
+import frc.robot.Extensions.Limelight;
 
 public class DriveTrain extends SubsystemBase {
   // Motors
@@ -68,21 +69,22 @@ public class DriveTrain extends SubsystemBase {
     // Setup each of the motors for use later
     // Going to set any whole game settings here as well (like motor inversion)
     leftFront = new WPI_TalonFX(Constants.leftFrontCanID);
-    leftFront.setInverted(Constants.driveDirection);
+    leftFront.setInverted(Constants.inversion);
     leftFront.configOpenloopRamp(Constants.openLoopRamp);
 
     rightFront = new WPI_TalonFX(Constants.rightFrontCanID);
-    rightFront.setInverted(Constants.driveDirection);
+    rightFront.setInverted(Constants.inversion);
     rightFront.configOpenloopRamp(Constants.openLoopRamp);
 
     leftRear = new WPI_TalonFX(Constants.leftRearCanID);
-    leftRear.setInverted(Constants.driveDirection);
+    leftRear.setInverted(Constants.inversion);
     leftRear.configOpenloopRamp(Constants.openLoopRamp);
 
     rightRear = new WPI_TalonFX(Constants.rightRearCanID);
-    rightRear.setInverted(Constants.driveDirection);
+    rightRear.setInverted(Constants.inversion);
     rightRear.configOpenloopRamp(Constants.openLoopRamp);
 
+    // Create the encoders object
     driveEncoders = new DriveEncoders();
 
     // create the speed controller groups for use in the differential drive
@@ -172,11 +174,11 @@ public class DriveTrain extends SubsystemBase {
   // if else statement to swap between arcade and tank
   public void driveWithController(XboxController controller, double speedLimiter) {
     if (dashOut.getDriveType()) {
-      drive.arcadeDrive(controller.getRawAxis(Constants.leftTankAxis) * speedLimiter,
+      drive.arcadeDrive(controller.getRawAxis(Constants.leftTankAxis) * speedLimiter * Constants.driveDirection,
           controller.getRawAxis(Constants.rightArcadeAxis) * speedLimiter);
     } else {
-      drive.tankDrive(controller.getRawAxis(Constants.leftTankAxis) * speedLimiter,
-          controller.getRawAxis(Constants.rightTankAxis) * speedLimiter);
+      drive.tankDrive(controller.getRawAxis(Constants.leftTankAxis) * speedLimiter * Constants.driveDirection,
+          controller.getRawAxis(Constants.rightTankAxis) * speedLimiter * Constants.driveDirection);
     }
   }
 
@@ -205,8 +207,8 @@ public class DriveTrain extends SubsystemBase {
 
   // Print out way points
   public void getWP(double time) {
-    System.out.println(time);
-    System.out.println(trajectory.sample(time));
+    //System.out.println(time);
+    //System.out.println(trajectory.sample(time));
   }
 
   public Pose2d getPosition() {
@@ -222,7 +224,7 @@ public class DriveTrain extends SubsystemBase {
     rightSide.setVoltage(-(RightSpeed / Constants.kvVoltSecondsPerMeter)*Constants.autoCalibrate*(1)); // Or 12 or kvVoltSecondsPerMeter *WheelRatio
     leftSide.setVoltage((LeftSpeed / Constants.kvVoltSecondsPerMeter)*Constants.autoCalibrate*(1)); // Or 12
     drive.feed();
-    System.out.println(RightSpeed);
+    //System.out.println(RightSpeed);
   }
 
   // Takes in speed setpoints,convert them to volts and drive robot
@@ -278,5 +280,36 @@ public class DriveTrain extends SubsystemBase {
 
   public boolean checkCalibrationStatus(){
     return ahrs.isCalibrating();
+  }
+
+  public void AimingUsingVision () {
+    float KpAim = -0.1f;
+    // float KpDistance = -0.1f;
+    float min_aim_command = 0.05f;
+   
+    double tx = Limelight.getLimeLightX();
+    // double ty = Limelight.getLimeLightY();
+
+    {
+        double heading_error = -tx;
+        // double distance_error = -ty;
+        double steering_adjust = 0.0f;
+
+        if (tx > 1.0)
+        {
+                steering_adjust = KpAim*heading_error - min_aim_command;
+        }
+        else if (tx < 1.0)
+        {
+                steering_adjust = KpAim*heading_error + min_aim_command;
+        }
+
+        // double distance_adjust = KpDistance * distance_error;
+        
+        double left_command = steering_adjust;
+        double right_command = steering_adjust * -1;
+        drive.tankDrive(left_command, right_command);
+}
+
   }
 }

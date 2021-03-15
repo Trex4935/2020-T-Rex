@@ -83,6 +83,7 @@ public class Robot extends TimedRobot {
 
     // Drive Left Axis Shuffleboard Widget
     dashboard.driveLeftAxisWidget.setNumber(RobotContainer.controller.getRawAxis(Constants.leftTankAxis));
+    //dashboard.driveLeftAxisTEST.setNumber(RobotContainer.controller.getRawAxis(Constants.leftTankAxis));
     // Drive Right Axis Shuffleboard Widget
     dashboard.driveRightAxisWidget.setNumber(RobotContainer.controller.getRawAxis(Constants.rightTankAxis));
     // Shooter Current running RPM Widget

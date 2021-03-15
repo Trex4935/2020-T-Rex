@@ -6,8 +6,10 @@ package frc.robot.Extensions;
 
 import java.util.Map;
 import edu.wpi.first.networktables.NetworkTableEntry;
+import edu.wpi.first.wpilibj.shuffleboard.BuiltInLayouts;
 import edu.wpi.first.wpilibj.shuffleboard.BuiltInWidgets;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
+import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardLayout;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 import frc.robot.Constants;
 
@@ -29,7 +31,7 @@ public class Init_Dashboard {
                         shooterCurrentRpm, limelightOnOff, gyroCurrentPosition, sensorMagazine, sensorIntake,
                         sensorShooter, limeLightX, limeLightY, limeLightArea, limeLightV, limeLightS, limeLighttshort,
                         limeLighttlong, limeLightthor, limeLighttvert, leftFrontEncoder, leftRearEncoder,
-                        rightFrontEncoder, rightRearEncoder;
+                        rightFrontEncoder, rightRearEncoder, driveLeftAxisTEST;
 
         // Constructor to build all Shuffleboard widgets
         public Init_Dashboard() {
@@ -51,7 +53,6 @@ public class Init_Dashboard {
 
         // Object creation for the driver data dispaly widgets
         public void Init_DriverInfo() {
-
                 // Left front Encoder
                 leftFrontEncoder = driverInfoTab.add("Left Front", 0).withWidget("Text View").withPosition(0, 1)
                                 .withSize(1, 1).getEntry();
@@ -70,11 +71,13 @@ public class Init_Dashboard {
 
                 // Create the Drive Left Axis widget to display the position of the left drive
                 // input
-                driveLeftAxisWidget = driverInfoTab.add("Drive Left-Axis", 0.0).withWidget("Text View")
+                driveLeftAxisWidget = driverInfoTab.add("Left Drive Input", 0.0).withWidget("Text View")
                                 .withPosition(0, 0).withSize(1, 1).getEntry();
+                //driveLeftAxisTEST = driverInfoTab.add("Drive Left Axis", 0.0).withWidget("Text View")
+                //                .withPosition(0, 0).withSize(1, 1).getEntry();
 
                 // Create the Drive Right Axis widget to display the position of the right drive
-                driveRightAxisWidget = driverInfoTab.add("Drive Right-Axis", 1.0).withWidget("Text View")
+                driveRightAxisWidget = driverInfoTab.add("Right Drive Input", 1.0).withWidget("Text View")
                                 .withPosition(1, 0).withSize(1, 1).getEntry();
 
                 // Create the Shooter Current RPM widget to display the current running RPM of

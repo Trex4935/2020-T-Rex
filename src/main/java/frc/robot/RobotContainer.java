@@ -41,6 +41,7 @@ public class RobotContainer {
   private final LowBeltCommand intakeBall;
   private final HighBeltCommand runMagazine;
   private final OneBallCommand oneBall;
+  private final AutoAimCommand autoAim;
 
   public RobotContainer() {
 
@@ -61,6 +62,7 @@ public class RobotContainer {
     shooter = new Shooter();
     shoot = new ShootCommand(shooter);
     shootPID = new ShootPIDCommand(shooter);
+    autoAim = new AutoAimCommand(driveTrain);
 
     // Magazine
     magazine = new Magazine();
@@ -98,6 +100,9 @@ public class RobotContainer {
 
     // Runs shooter motor when the right trigger is pulled
     new RightTriggerBool().whileActiveContinuous(shootPID);
+
+    // Uses limelight to aim at target when left trigger is pulled
+    new LeftTriggerBool().whileActiveContinuous(autoAim);
 
     // Run the magazine + intake for a set time period
     // At the moment taking this off a button ... we need to figure out how to put this back!
