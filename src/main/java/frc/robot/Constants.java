@@ -75,7 +75,7 @@ public final class Constants {
     public static final double openLoopRamp = 0.2;
 
     // Change the what direction is the front of the robot
-    public static final boolean driveDirection = true;
+    public static final boolean driveDirection = false;
 
     // endregion
 
