@@ -269,6 +269,20 @@ public class DriveTrain extends SubsystemBase {
     return velocityMetersPerSecond;
   }
 
+  ;
+
+  public void DriveStraight(double autoDriveDistance,double autoDriveSpeed){
+    if (DriveEncoders.rfEncoderValue == autoDriveDistance)
+    {
+      autoDriveSpeed = 0;
+    }
+    else
+    {
+      autoDriveSpeed = 0.5;
+    }
+    move(autoDriveSpeed,autoDriveSpeed);
+  }
+
   public DifferentialDriveWheelSpeeds getWheelSpeeds() {
     return new DifferentialDriveWheelSpeeds(NativeUnitsToVelocity(leftFront.getSelectedSensorVelocity(), Constants.wheelDiameter, Constants.driveTrainGearRatio), NativeUnitsToVelocity(rightFront.getSelectedSensorVelocity(), Constants.wheelDiameter, Constants.driveTrainGearRatio));
   }
