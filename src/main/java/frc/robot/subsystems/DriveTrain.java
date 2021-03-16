@@ -307,6 +307,11 @@ public class DriveTrain extends SubsystemBase {
         double left_command = steering_adjust;
         double right_command = steering_adjust * -1;
         drive.tankDrive(left_command, right_command);
+
+        ///public void resetEncoders(){
+        ///leftFront.setSelectedSensorPosition(0);
+        //rightFront.setSelectedSensorPosition(0);
+      }
 }
 
   }
