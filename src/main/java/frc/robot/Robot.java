@@ -98,12 +98,25 @@ public class Robot extends TimedRobot {
 
     // Gyro current heading Widget
     dashboard.gyroCurrentPosition.setNumber(gyro.getAngle());
+    
     // Limelight X Axis Widget
-    dashboard.limeLightX.setNumber(limelight.getLimeLightX());
+    dashboard.limeLightX.setNumber(Limelight.getLimeLightX());
     // Limelight Y Axis Widget
-    dashboard.limeLightY.setNumber(limelight.getLimeLightY());
+    dashboard.limeLightY.setNumber(Limelight.getLimeLightY());
     // Limelight Area Widget
-    dashboard.limeLightArea.setNumber(limelight.getLimeLightArea());
+    dashboard.limeLightArea.setNumber(Limelight.getLimeLightArea());
+    // Limelight Valid Target Widget
+    dashboard.limeLightV.setNumber(Limelight.getLimeLightV());
+    // Limelight Skew Widget
+    dashboard.limeLightS.setNumber(Limelight.getLimeLightS());
+    // Limelight Shortest Sidelength Widget
+    dashboard.limeLightS.setNumber(Limelight.getLimeLighttshort());
+    // Limelight Longest Sidelength Widget
+    dashboard.limeLighttlong.setNumber(Limelight.getLimeLighttlong());
+    // Limelight Horizontal Sidelength Widget
+    dashboard.limeLightthor.setNumber(Limelight.getLimeLightthor());
+    // Limelight Vertical Sidelength Widget
+    dashboard.limeLighttvert.setNumber(Limelight.getLimeLighttvert());
   }
 
   /** This function is called once each time the robot enters Disabled mode. */
