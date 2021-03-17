@@ -106,6 +106,7 @@ public class DriveTrain extends SubsystemBase {
     // Odometry
     odometry = new DifferentialDriveOdometry(Rotation2d.fromDegrees(getGyroAngle()), Constants.startPosition);
     resetOdometry();
+    System.out.println(ahrs.isCalibrating());
     // Trajectory
 
     // Create a voltage constraint to ensure we don't accelerate too fast
@@ -137,16 +138,14 @@ public class DriveTrain extends SubsystemBase {
 
     // Doc on how to access the file via the Robo Rio
     // https://docs.wpilib.org/en/stable/docs/software/wpilib-tools/pathweaver/integrating-robot-program.html
-    //String trajectoryJSON = "..\\.\\deploy\\paths\\SlowLine.wpilib.json";
-    //String trajectoryJSON = "..\\.\\deploy\\paths\\Line.wpilib.json";
-    String trajectoryJSON = "..\\.\\deploy\\paths\\Slalom.wpilib.json";
-    //String trajectoryJSON = "/home/lvuser/deploy/paths/Line.wpilib.json";//"..\\.\\deploy\\paths\\Line.wpilib.json"
+    String trajectoryJSONSim = Constants.pathSim + "Slalom.wpilib.json";
+    String trajectoryJSONRobot = Constants.pathRobot + "Slalom.wpilib.json";
     trajectory = new Trajectory();
     try {
-      Path trajectoryPath = Filesystem.getDeployDirectory().toPath().resolve(trajectoryJSON);
+      Path trajectoryPath = Filesystem.getDeployDirectory().toPath().resolve(trajectoryJSONRobot);
       trajectory = TrajectoryUtil.fromPathweaverJson(trajectoryPath);
     } catch (IOException ex) {
-      DriverStation.reportError("Unable to open trajectory: " + trajectoryJSON, ex.getStackTrace());
+      DriverStation.reportError("Unable to open trajectory: " + trajectoryJSONRobot, ex.getStackTrace());
     }
     time = 0.0;
   }
@@ -161,7 +160,8 @@ public class DriveTrain extends SubsystemBase {
     System.out.println(odometry.getPoseMeters());
     //System.out.println(odometry.update(ahrs.getRotation2d(), ticksToPosition(leftFront.getSelectedSensorPosition(), Constants.wheelDiameter, Constants.driveTrainGearRatio) , ticksToPosition(rightFront.getSelectedSensorPosition(), Constants.wheelDiameter, Constants.driveTrainGearRatio))); 
     //System.out.println(odometry);
-    System.out.println(ticksToPosition(rightFront.getSelectedSensorPosition(), Constants.wheelDiameter, Constants.driveTrainGearRatio));
+    System.out.println(getGyroAngle());
+    //System.out.println(ticksToPosition(rightFront.getSelectedSensorPosition(), Constants.wheelDiameter, Constants.driveTrainGearRatio));
     //System.out.println(ticksToPosition(leftFront.getSelectedSensorPosition(), Constants.wheelDiameter, Constants.driveTrainGearRatio));
     driveEncoders.SetDriveEncoders(leftFront.getSelectedSensorPosition(), leftRear.getSelectedSensorPosition(), rightFront.getSelectedSensorPosition(), rightRear.getSelectedSensorPosition());
   }
@@ -192,7 +192,10 @@ public class DriveTrain extends SubsystemBase {
   public void resetOdometry(){
     leftFront.setSelectedSensorPosition(0);
     rightFront.setSelectedSensorPosition(0);
-    odometry.resetPosition(new Pose2d(0, 0, new Rotation2d()),new Rotation2d());
+    //ahrs.reset();
+    odometry.resetPosition(new Pose2d(0, 0, new Rotation2d()), Rotation2d.fromDegrees(getGyroAngle()));
+    ahrs.zeroYaw();
+    odometry.update(ahrs.getRotation2d(), ticksToPosition(leftFront.getSelectedSensorPosition(), Constants.wheelDiameter, Constants.driveTrainGearRatio) , ticksToPosition(rightFront.getSelectedSensorPosition(), Constants.wheelDiameter, Constants.driveTrainGearRatio));
   }
 
   // Method to just stop the drive
@@ -216,8 +219,8 @@ public class DriveTrain extends SubsystemBase {
 
   // Takes in speed setpoints,convert them to volts and drive robot
   public void move(double LeftSpeed, double RightSpeed) {
-    rightSide.setVoltage(-(RightSpeed / Constants.kvVoltSecondsPerMeter)*Constants.autoCalibrate*(0.5)); // Or 12 or kvVoltSecondsPerMeter *WheelRatio
-    leftSide.setVoltage((LeftSpeed / Constants.kvVoltSecondsPerMeter)*Constants.autoCalibrate*(0.5)); // Or 12
+    rightSide.setVoltage(-(RightSpeed / Constants.kvVoltSecondsPerMeter)*Constants.autoCalibrate*(1)); // Or 12 or kvVoltSecondsPerMeter *WheelRatio
+    leftSide.setVoltage((LeftSpeed / Constants.kvVoltSecondsPerMeter)*Constants.autoCalibrate*(1)); // Or 12
     drive.feed();
     //System.out.println(RightSpeed);
   }
@@ -287,6 +290,10 @@ public class DriveTrain extends SubsystemBase {
     return new DifferentialDriveWheelSpeeds(NativeUnitsToVelocity(leftFront.getSelectedSensorVelocity(), Constants.wheelDiameter, Constants.driveTrainGearRatio), NativeUnitsToVelocity(rightFront.getSelectedSensorVelocity(), Constants.wheelDiameter, Constants.driveTrainGearRatio));
   }
 
+  public boolean checkCalibrationStatus(){
+    return ahrs.isCalibrating();
+  }
+
   public void AimingUsingVision () {
     float KpAim = -0.1f;
     // float KpDistance = -0.1f;
@@ -314,6 +321,14 @@ public class DriveTrain extends SubsystemBase {
         double left_command = steering_adjust;
         double right_command = steering_adjust * -1;
         drive.tankDrive(left_command, right_command);
-}
+
+
+        }
+
+  }
+
+  public void resetEncoders(){
+    leftFront.setSelectedSensorPosition(0);
+    rightFront.setSelectedSensorPosition(0);
   }
 }

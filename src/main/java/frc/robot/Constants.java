@@ -146,6 +146,11 @@ public final class Constants {
 	public static final double k100msPerSecond = 100;
 	public static final double autoCalibrate = 6*1.32*0.95;
 	
+    //Path Strings
+
+    public static final String pathSim = "..\\.\\deploy\\paths\\";
+    public static final String pathRobot = "/home/lvuser/deploy/paths/";
+	
 	
 
 }

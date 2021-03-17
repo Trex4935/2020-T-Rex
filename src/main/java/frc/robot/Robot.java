@@ -10,6 +10,7 @@ import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.Extensions.DriveEncoders;
 import frc.robot.Extensions.Init_Dashboard;
 import frc.robot.Extensions.Limelight;
+import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.Shooter;
 
 import com.kauailabs.navx.frc.AHRS;
@@ -97,12 +98,25 @@ public class Robot extends TimedRobot {
 
     // Gyro current heading Widget
     dashboard.gyroCurrentPosition.setNumber(gyro.getAngle());
+    
     // Limelight X Axis Widget
-    dashboard.limeLightX.setNumber(limelight.getLimeLightX());
+    dashboard.limeLightX.setNumber(Limelight.getLimeLightX());
     // Limelight Y Axis Widget
-    dashboard.limeLightY.setNumber(limelight.getLimeLightY());
+    dashboard.limeLightY.setNumber(Limelight.getLimeLightY());
     // Limelight Area Widget
-    dashboard.limeLightArea.setNumber(limelight.getLimeLightArea());
+    dashboard.limeLightArea.setNumber(Limelight.getLimeLightArea());
+    // Limelight Valid Target Widget
+    dashboard.limeLightV.setNumber(Limelight.getLimeLightV());
+    // Limelight Skew Widget
+    dashboard.limeLightS.setNumber(Limelight.getLimeLightS());
+    // Limelight Shortest Sidelength Widget
+    dashboard.limeLightS.setNumber(Limelight.getLimeLighttshort());
+    // Limelight Longest Sidelength Widget
+    dashboard.limeLighttlong.setNumber(Limelight.getLimeLighttlong());
+    // Limelight Horizontal Sidelength Widget
+    dashboard.limeLightthor.setNumber(Limelight.getLimeLightthor());
+    // Limelight Vertical Sidelength Widget
+    dashboard.limeLighttvert.setNumber(Limelight.getLimeLighttvert());
   }
 
   /** This function is called once each time the robot enters Disabled mode. */
@@ -121,6 +135,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void autonomousInit() {
+    m_robotContainer.driveTrain.resetOdometry();
     m_autonomousCommand = m_robotContainer.getAutonomousCommand();
 
     // schedule the autonomous command (example)
@@ -140,6 +155,7 @@ public class Robot extends TimedRobot {
     // teleop starts running. If you want the autonomous to
     // continue until interrupted by another command, remove
     // this line or comment it out.
+    m_robotContainer.driveTrain.resetOdometry();
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
     }
