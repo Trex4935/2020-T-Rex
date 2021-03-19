@@ -80,6 +80,9 @@ public final class Constants {
     // Change the inversion of the robot
     public static final boolean inversion = false;
 
+    // Basic autonomous stuff
+    public static final double rotationSpeed = 0.4;
+
     // endregion
 
     // region Shooter
@@ -96,8 +99,8 @@ public final class Constants {
     public static final int kTimeoutMs = 30;
 
     // Pid values                                                 kP    kI   kD        kF          Iz  PeakOut
-    //public final static Gains kGains_Velocity_Shooter = new Gains(0.74, 0.001, 5, 1023.0 / 20660.0, 300, 1.00);
-    public final static Gains kGains_Velocity_Shooter = new Gains(0.1, 0.001, 5, 1023.0 / 20660.0, 300, 1.00);
+    public final static Gains kGains_Velocity_Shooter = new Gains(0.74, 0.001, 5, 1023.0 / 20660.0, 300, 1.00);
+    // public final static Gains kGains_Velocity_Shooter = new Gains(0.1, 0.001, 5, 1023.0 / 20660.0, 300, 1.00);
 
     // Target RPM value for shooter motor
     public static final int targetRPM = 5000;
@@ -150,6 +153,7 @@ public final class Constants {
 
     public static final String pathSim = "..\\.\\deploy\\paths\\";
     public static final String pathRobot = "/home/lvuser/deploy/paths/";
+	
 	
 	
 

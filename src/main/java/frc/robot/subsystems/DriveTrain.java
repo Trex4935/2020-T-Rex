@@ -153,17 +153,27 @@ public class DriveTrain extends SubsystemBase {
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
-    odometry.update(ahrs.getRotation2d(), ticksToPosition(leftFront.getSelectedSensorPosition(), Constants.wheelDiameter, Constants.driveTrainGearRatio) , ticksToPosition(rightFront.getSelectedSensorPosition(), Constants.wheelDiameter, Constants.driveTrainGearRatio));
-    //System.out.println(leftFront.getSelectedSensorPosition());
-    //System.out.println(rightFront.getSelectedSensorPosition());
-    //System.out.println(ahrs.getRotation2d());
+    odometry.update(ahrs.getRotation2d(),
+        ticksToPosition(leftFront.getSelectedSensorPosition(), Constants.wheelDiameter, Constants.driveTrainGearRatio),
+        ticksToPosition(rightFront.getSelectedSensorPosition(), Constants.wheelDiameter,
+            Constants.driveTrainGearRatio));
+    // System.out.println(leftFront.getSelectedSensorPosition());
+    // System.out.println(rightFront.getSelectedSensorPosition());
+    // System.out.println(ahrs.getRotation2d());
     System.out.println(odometry.getPoseMeters());
-    //System.out.println(odometry.update(ahrs.getRotation2d(), ticksToPosition(leftFront.getSelectedSensorPosition(), Constants.wheelDiameter, Constants.driveTrainGearRatio) , ticksToPosition(rightFront.getSelectedSensorPosition(), Constants.wheelDiameter, Constants.driveTrainGearRatio))); 
-    //System.out.println(odometry);
+    // System.out.println(odometry.update(ahrs.getRotation2d(),
+    // ticksToPosition(leftFront.getSelectedSensorPosition(),
+    // Constants.wheelDiameter, Constants.driveTrainGearRatio) ,
+    // ticksToPosition(rightFront.getSelectedSensorPosition(),
+    // Constants.wheelDiameter, Constants.driveTrainGearRatio)));
+    // System.out.println(odometry);
     System.out.println(getGyroAngle());
-    //System.out.println(ticksToPosition(rightFront.getSelectedSensorPosition(), Constants.wheelDiameter, Constants.driveTrainGearRatio));
-    //System.out.println(ticksToPosition(leftFront.getSelectedSensorPosition(), Constants.wheelDiameter, Constants.driveTrainGearRatio));
-    driveEncoders.SetDriveEncoders(leftFront.getSelectedSensorPosition(), leftRear.getSelectedSensorPosition(), rightFront.getSelectedSensorPosition(), rightRear.getSelectedSensorPosition());
+    // System.out.println(ticksToPosition(rightFront.getSelectedSensorPosition(),
+    // Constants.wheelDiameter, Constants.driveTrainGearRatio));
+    // System.out.println(ticksToPosition(leftFront.getSelectedSensorPosition(),
+    // Constants.wheelDiameter, Constants.driveTrainGearRatio));
+    driveEncoders.SetDriveEncoders(leftFront.getSelectedSensorPosition(), leftRear.getSelectedSensorPosition(),
+        rightFront.getSelectedSensorPosition(), rightRear.getSelectedSensorPosition());
   }
 
   // Method to control the drive with the controller
@@ -185,28 +195,31 @@ public class DriveTrain extends SubsystemBase {
     drive.tankDrive(Constants.autoLeftSpeed, Constants.autoRightSpeed);
   }
 
-  public static void resetTime(){
+  public static void resetTime() {
     time = 0;
   }
 
-  public void resetOdometry(){
+  public void resetOdometry() {
     leftFront.setSelectedSensorPosition(0);
     rightFront.setSelectedSensorPosition(0);
-    //ahrs.reset();
+    // ahrs.reset();
     odometry.resetPosition(new Pose2d(0, 0, new Rotation2d()), Rotation2d.fromDegrees(getGyroAngle()));
     ahrs.zeroYaw();
-    odometry.update(ahrs.getRotation2d(), ticksToPosition(leftFront.getSelectedSensorPosition(), Constants.wheelDiameter, Constants.driveTrainGearRatio) , ticksToPosition(rightFront.getSelectedSensorPosition(), Constants.wheelDiameter, Constants.driveTrainGearRatio));
+    odometry.update(ahrs.getRotation2d(),
+        ticksToPosition(leftFront.getSelectedSensorPosition(), Constants.wheelDiameter, Constants.driveTrainGearRatio),
+        ticksToPosition(rightFront.getSelectedSensorPosition(), Constants.wheelDiameter,
+            Constants.driveTrainGearRatio));
   }
 
   // Method to just stop the drive
-  public void stop() {
+  public void stopDriveTrain() {
     drive.stopMotor();
   }
 
   // Print out way points
   public void getWP(double time) {
-    //System.out.println(time);
-    //System.out.println(trajectory.sample(time));
+    // System.out.println(time);
+    // System.out.println(trajectory.sample(time));
   }
 
   public Pose2d getPosition() {
@@ -219,15 +232,17 @@ public class DriveTrain extends SubsystemBase {
 
   // Takes in speed setpoints,convert them to volts and drive robot
   public void move(double LeftSpeed, double RightSpeed) {
-    rightSide.setVoltage(-(RightSpeed / Constants.kvVoltSecondsPerMeter)*Constants.autoCalibrate*(1)); // Or 12 or kvVoltSecondsPerMeter *WheelRatio
-    leftSide.setVoltage((LeftSpeed / Constants.kvVoltSecondsPerMeter)*Constants.autoCalibrate*(1)); // Or 12
+    rightSide.setVoltage(-(RightSpeed / Constants.kvVoltSecondsPerMeter) * Constants.autoCalibrate * (1)); // Or 12 or
+                                                                                                           // kvVoltSecondsPerMeter
+                                                                                                           // *WheelRatio
+    leftSide.setVoltage((LeftSpeed / Constants.kvVoltSecondsPerMeter) * Constants.autoCalibrate * (1)); // Or 12
     drive.feed();
-    //System.out.println(RightSpeed);
+    // System.out.println(RightSpeed);
   }
 
   // Takes in speed setpoints,convert them to volts and drive robot
   public void moveVolts(double LeftVolts, double RightVolts) {
-    rightSide.setVoltage(-RightVolts); 
+    rightSide.setVoltage(-RightVolts);
     leftSide.setVoltage(LeftVolts);
     drive.feed();
   }
@@ -256,78 +271,100 @@ public class DriveTrain extends SubsystemBase {
     return distanceTravel;
   }
 
-  private int velocityToNativeUnits(double velocityMetersPerSecond, double wheelDiameter, double gearRatio){
-    double wheelRotationsPerSecond = velocityMetersPerSecond/(Math.PI * wheelDiameter);
+  private int velocityToNativeUnits(double velocityMetersPerSecond, double wheelDiameter, double gearRatio) {
+    double wheelRotationsPerSecond = velocityMetersPerSecond / (Math.PI * wheelDiameter);
     double motorRotationsPerSecond = wheelRotationsPerSecond * gearRatio;
     double motorRotationsPer100ms = motorRotationsPerSecond / Constants.k100msPerSecond;
-    int sensorTicksPer100ms = (int)(motorRotationsPer100ms * Constants.encoderTicksPerTurn);
+    int sensorTicksPer100ms = (int) (motorRotationsPer100ms * Constants.encoderTicksPerTurn);
     return sensorTicksPer100ms;
   }
 
-  private double NativeUnitsToVelocity(double sensorTicksPer100ms, double wheelDiameter, double gearRatio ){
-    double motorRotationsPer100ms = (double)(sensorTicksPer100ms / Constants.encoderTicksPerTurn);
+  private double NativeUnitsToVelocity(double sensorTicksPer100ms, double wheelDiameter, double gearRatio) {
+    double motorRotationsPer100ms = (double) (sensorTicksPer100ms / Constants.encoderTicksPerTurn);
     double motorRotationsPerSecond = motorRotationsPer100ms * Constants.k100msPerSecond;
-    double wheelRotationsPerSecond = motorRotationsPerSecond  / gearRatio;
-    double velocityMetersPerSecond = wheelRotationsPerSecond*(Math.PI * wheelDiameter);
+    double wheelRotationsPerSecond = motorRotationsPerSecond / gearRatio;
+    double velocityMetersPerSecond = wheelRotationsPerSecond * (Math.PI * wheelDiameter);
     return velocityMetersPerSecond;
   }
 
   ;
 
-  public void DriveStraight(double autoDriveDistance,double autoDriveSpeed){
-    if (DriveEncoders.rfEncoderValue == autoDriveDistance)
-    {
-      autoDriveSpeed = 0;
+  // Move the robot forward for a set distance at a set speed
+  public void DriveStraight(double autoDriveDistance, double autoDriveSpeed) {
+    // If the encoder is >= to the distance stop the robot
+    if (DriveEncoders.rfEncoderValue >= autoDriveDistance) {
+      stopDriveTrain();
     }
-    else
-    {
-      autoDriveSpeed = 0.5;
+    // Move forward at the set speed
+    else {
+      move(autoDriveSpeed, autoDriveSpeed);
     }
-    move(autoDriveSpeed,autoDriveSpeed);
+  }
+
+  // Turn the robot a specified number of degrees left or right
+  // + = Right Turn; - = Left Turn
+  public void RotateDegrees(double degrees) {
+    double leftspeed = Constants.rotationSpeed;
+    double rightspeed = Constants.rotationSpeed;
+
+    // If zero then we aren't going to move so set the speed to zero
+    if (degrees == 0) {
+      leftspeed = 0;
+      rightspeed = 0;
+      // if negative we are turning left so set the left to run backwards
+    } else if (degrees < 0) {
+      leftspeed = leftspeed * -1;
+      // if positive we are turning right so set the right to run backwards
+    } else {
+      rightspeed = rightspeed * -1;
+    }
+
+    
+
   }
 
   public DifferentialDriveWheelSpeeds getWheelSpeeds() {
-    return new DifferentialDriveWheelSpeeds(NativeUnitsToVelocity(leftFront.getSelectedSensorVelocity(), Constants.wheelDiameter, Constants.driveTrainGearRatio), NativeUnitsToVelocity(rightFront.getSelectedSensorVelocity(), Constants.wheelDiameter, Constants.driveTrainGearRatio));
+    return new DifferentialDriveWheelSpeeds(
+        NativeUnitsToVelocity(leftFront.getSelectedSensorVelocity(), Constants.wheelDiameter,
+            Constants.driveTrainGearRatio),
+        NativeUnitsToVelocity(rightFront.getSelectedSensorVelocity(), Constants.wheelDiameter,
+            Constants.driveTrainGearRatio));
   }
 
-  public boolean checkCalibrationStatus(){
+  public boolean checkCalibrationStatus() {
     return ahrs.isCalibrating();
   }
 
-  public void AimingUsingVision () {
+  public void AimingUsingVision() {
     float KpAim = -0.1f;
     // float KpDistance = -0.1f;
     float min_aim_command = 0.05f;
-   
+
     double tx = Limelight.getLimeLightX();
     // double ty = Limelight.getLimeLightY();
 
     {
-        double heading_error = -tx;
-        // double distance_error = -ty;
-        double steering_adjust = 0.0f;
+      double heading_error = -tx;
+      // double distance_error = -ty;
+      double steering_adjust = 0.0f;
 
-        if (tx > 1.0)
-        {
-                steering_adjust = KpAim*heading_error - min_aim_command;
-        }
-        else if (tx < 1.0)
-        {
-                steering_adjust = KpAim*heading_error + min_aim_command;
-        }
+      if (tx > 1.0) {
+        steering_adjust = KpAim * heading_error - min_aim_command;
+      } else if (tx < 1.0) {
+        steering_adjust = KpAim * heading_error + min_aim_command;
+      }
 
-        // double distance_adjust = KpDistance * distance_error;
-        
-        double left_command = steering_adjust;
-        double right_command = steering_adjust * -1;
-        drive.tankDrive(left_command, right_command);
+      // double distance_adjust = KpDistance * distance_error;
 
+      double left_command = steering_adjust;
+      double right_command = steering_adjust * -1;
+      drive.tankDrive(left_command, right_command);
 
-        }
+    }
 
   }
 
-  public void resetEncoders(){
+  public void resetEncoders() {
     leftFront.setSelectedSensorPosition(0);
     rightFront.setSelectedSensorPosition(0);
   }
