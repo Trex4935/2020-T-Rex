@@ -78,7 +78,7 @@ public final class Constants {
     public static final int driveDirection = -1;
 
     // Change the inversion of the robot
-    public static final boolean inversion = false;
+    public static final boolean inversion = true;
 
     // Basic autonomous stuff
     public static final double rotationSpeed = 0.4;
