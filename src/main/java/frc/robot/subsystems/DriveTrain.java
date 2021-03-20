@@ -154,7 +154,7 @@ public class DriveTrain extends SubsystemBase {
     // This method will be called once per scheduler run
     odometry.update(ahrs.getRotation2d(),
         ticksToPosition(leftFront.getSelectedSensorPosition(), Constants.wheelDiameter, Constants.driveTrainGearRatio),
-        ticksToPosition(rightFront.getSelectedSensorPosition(), Constants.wheelDiameter,
+        ticksToPosition(-rightFront.getSelectedSensorPosition(), Constants.wheelDiameter,
             Constants.driveTrainGearRatio));
      System.out.println(leftFront.getSelectedSensorPosition());
      System.out.println(rightFront.getSelectedSensorPosition());
