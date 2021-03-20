@@ -114,8 +114,8 @@ public class RobotContainer {
     new JoystickButton(controller, XboxController.Button.kBumperRight.value).whenHeld(driveStraightWithController);
 
     // Emptys magazine using left bumper
-    new JoystickButton(controller, XboxController.Button.kBumperLeft.value).whenHeld(emptyMag);
-    
+    new JoystickButton(controller, XboxController.Button.kBumperLeft.value).whenHeld(emptyMag.alongWith(shootPID));
+
     // Run the magazine + intake for a set time period
     // At the moment taking this off a button ... we need to figure out how to put this back!
     // new JoystickButton(controller, XboxController.Button.kY.value).whenPressed(runBothMotors.withTimeout(Constants.intakeTimeOut));
