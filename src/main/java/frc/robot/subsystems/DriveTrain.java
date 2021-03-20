@@ -181,11 +181,11 @@ public class DriveTrain extends SubsystemBase {
   // if else statement to swap between arcade and tank
   public void driveWithController(XboxController controller, double speedLimiter) {
     if (dashOut.getDriveType()) {
-      drive.arcadeDrive(controller.getRawAxis(Constants.leftTankAxis) * speedLimiter * Constants.driveDirection,
+      drive.arcadeDrive(controller.getRawAxis(Constants.leftTankAxis) * speedLimiter ,
           controller.getRawAxis(Constants.rightArcadeAxis) * speedLimiter);
     } else {
-      drive.tankDrive(controller.getRawAxis(Constants.leftTankAxis) * speedLimiter * Constants.driveDirection,
-          controller.getRawAxis(Constants.rightTankAxis) * speedLimiter * Constants.driveDirection);
+      drive.tankDrive(controller.getRawAxis(Constants.leftTankAxis) * speedLimiter ,
+          controller.getRawAxis(Constants.rightTankAxis) * speedLimiter );
     }
   }
 
