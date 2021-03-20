@@ -61,8 +61,8 @@ public final class Constants {
     // ================================
 
     // Controller axis values for controlling the drive
-    public static final int leftTankAxis = 5;
-    public static final int rightTankAxis = 1;
+    public static final int leftTankAxis = 1;
+    public static final int rightTankAxis = 5;
     public static final int rightArcadeAxis = 4;
 
     // Used to limit speed of the robot
