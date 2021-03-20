@@ -36,6 +36,7 @@ public class RobotContainer {
   public final Magazine magazine;
   private final ReverseMagazineCommand reverseMagazine;
   private final RunBothMotorsCommand runBothMotors;
+  private final StopMotorsCommand stopMotors;
   private final ShootPIDCommand shootPID;
   private final DriveWithWPCommand driveWithWPCommand;
   private final LowBeltCommand intakeBall;
@@ -51,6 +52,7 @@ public class RobotContainer {
     driveWithController.addRequirements(driveTrain);
     driveTrain.setDefaultCommand(driveWithController);
     driveWithWPCommand = new DriveWithWPCommand(driveTrain);
+    stopMotors = new StopMotorsCommand(driveTrain);
 
     // Controller
     controller = new XboxController(Constants.xboxControllerPort);
@@ -151,11 +153,11 @@ public class RobotContainer {
 
 // Simulated Trajectory Command
 
-RamseteCommand ramseteCommand = new RamseteCommand(driveTrain.trajectory, driveTrain::getPosition, new RamseteController(Constants.kRamseteB, Constants.kRamseteZeta), Constants.kDriveKinematics, driveTrain::move, driveTrain);
+//RamseteCommand ramseteCommand = new RamseteCommand(driveTrain.trajectory, driveTrain::getPosition, new RamseteController(Constants.kRamseteB, Constants.kRamseteZeta), Constants.kDriveKinematics, driveTrain::move, driveTrain);
 //RamseteCommand ramseteCommand = new RamseteCommand(driveTrain.trajectory, driveTrain::getPosition, new RamseteController(Constants.kRamseteB, Constants.kRamseteZeta), Constants.kDriveKinematics, driveTrain::moveBase, driveTrain);
 // Encoder Position, Gyro-Data based Trajectory Command 
 
-//RamseteCommand ramseteCommand = new RamseteCommand(driveTrain.trajectory, driveTrain::getPose, new RamseteController(Constants.kRamseteB, Constants.kRamseteZeta), Constants.kDriveKinematics, driveTrain::move, driveTrain);  
+RamseteCommand ramseteCommand = new RamseteCommand(driveTrain.trajectory, driveTrain::getPose, new RamseteController(Constants.kRamseteB, Constants.kRamseteZeta), Constants.kDriveKinematics, driveTrain::move, driveTrain);  
 // Encoder Position, Encoder Speed, Gyro-Data based Trajectory Command 
 
 // RamseteCommand ramseteCommand = new RamseteCommand(
@@ -174,6 +176,6 @@ RamseteCommand ramseteCommand = new RamseteCommand(driveTrain.trajectory, driveT
 //       driveTrain
 //   );
 
-    return ramseteCommand;
+    return ramseteCommand.andThen(stopMotors);
   }
 }
