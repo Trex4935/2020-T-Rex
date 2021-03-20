@@ -109,7 +109,7 @@ public class RobotContainer {
     new LeftTriggerBool().whileActiveContinuous(autoAim);
 
     // Makes sure the robot only goes straight by using left bumper
-    new JoystickButton(controller, XboxController.Button.kBumperLeft.value).whenHeld(driveStraitWithController);
+    new JoystickButton(controller, XboxController.Button.kBumperRight.value).whenHeld(driveStraitWithController);
 
     // Run the magazine + intake for a set time period
     // At the moment taking this off a button ... we need to figure out how to put this back!
