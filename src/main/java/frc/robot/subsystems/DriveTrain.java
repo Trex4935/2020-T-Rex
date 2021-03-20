@@ -105,7 +105,6 @@ public class DriveTrain extends SubsystemBase {
 
     // Odometry
     odometry = new DifferentialDriveOdometry(Rotation2d.fromDegrees(getGyroAngle()), Constants.startPosition);
-    resetOdometry();
     System.out.println(ahrs.isCalibrating());
     // Trajectory
 
@@ -199,16 +198,18 @@ public class DriveTrain extends SubsystemBase {
     time = 0;
   }
 
-  public void resetOdometry() {
-    leftFront.setSelectedSensorPosition(0);
-    rightFront.setSelectedSensorPosition(0);
-    // ahrs.reset();
+  public void initOdometry() {
+    resetEncoders();
     odometry.resetPosition(new Pose2d(0, 0, new Rotation2d()), Rotation2d.fromDegrees(getGyroAngle()));
+  }
+  public void resetOdometry(Pose2d startPosition) {
+    resetEncoders();
+    odometry.resetPosition(startPosition, Rotation2d.fromDegrees(getGyroAngle()));
+  }
+
+  public void resetGyro(){
+    ahrs.reset();
     ahrs.zeroYaw();
-    odometry.update(ahrs.getRotation2d(),
-        ticksToPosition(leftFront.getSelectedSensorPosition(), Constants.wheelDiameter, Constants.driveTrainGearRatio),
-        ticksToPosition(rightFront.getSelectedSensorPosition(), Constants.wheelDiameter,
-            Constants.driveTrainGearRatio));
   }
 
   // Method to just stop the drive
