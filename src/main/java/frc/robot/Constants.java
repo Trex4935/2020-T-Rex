@@ -141,7 +141,7 @@ public final class Constants {
     public static final Pose2d startPosition = new Pose2d(0, 0, new Rotation2d());
     //Dynamics
     public static final double wheelDiameter = 0.1524; //m, 6inch
-	public static final double driveTrainGearRatio = 1.00/30;
+	public static final double driveTrainGearRatio = 1.00/9.56; //1.00/30;
 
     //Encoder
 	public static final double encoderTicksPerTurn = 2048;
