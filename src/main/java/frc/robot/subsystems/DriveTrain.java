@@ -156,8 +156,8 @@ public class DriveTrain extends SubsystemBase {
         ticksToPosition(leftFront.getSelectedSensorPosition(), Constants.wheelDiameter, Constants.driveTrainGearRatio),
         ticksToPosition(rightFront.getSelectedSensorPosition(), Constants.wheelDiameter,
             Constants.driveTrainGearRatio));
-    // System.out.println(leftFront.getSelectedSensorPosition());
-    // System.out.println(rightFront.getSelectedSensorPosition());
+     System.out.println(leftFront.getSelectedSensorPosition());
+     System.out.println(rightFront.getSelectedSensorPosition());
     // System.out.println(ahrs.getRotation2d());
     System.out.println(odometry.getPoseMeters());
     // System.out.println(odometry.update(ahrs.getRotation2d(),
@@ -165,10 +165,10 @@ public class DriveTrain extends SubsystemBase {
     // Constants.wheelDiameter, Constants.driveTrainGearRatio) ,
     // ticksToPosition(rightFront.getSelectedSensorPosition(),
     // Constants.wheelDiameter, Constants.driveTrainGearRatio)));
-    // System.out.println(odometry);
-    System.out.println(getGyroAngle());
-    // System.out.println(ticksToPosition(rightFront.getSelectedSensorPosition(),
-    // Constants.wheelDiameter, Constants.driveTrainGearRatio));
+    //System.out.println(odometry);
+    //System.out.println(getGyroAngle());
+     System.out.println(ticksToPosition(rightFront.getSelectedSensorPosition(),
+     Constants.wheelDiameter, Constants.driveTrainGearRatio));
     // System.out.println(ticksToPosition(leftFront.getSelectedSensorPosition(),
     // Constants.wheelDiameter, Constants.driveTrainGearRatio));
     driveEncoders.SetDriveEncoders(leftFront.getSelectedSensorPosition(), leftRear.getSelectedSensorPosition(),
@@ -209,7 +209,7 @@ public class DriveTrain extends SubsystemBase {
 
   public void resetGyro(){
     ahrs.reset();
-    ahrs.zeroYaw();
+    //ahrs.zeroYaw();
   }
 
   // Method to just stop the drive
