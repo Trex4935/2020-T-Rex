@@ -233,10 +233,11 @@ public class DriveTrain extends SubsystemBase {
 
   // Takes in speed setpoints,convert them to volts and drive robot
   public void move(double LeftSpeed, double RightSpeed) {
-    rightSide.setVoltage(-(RightSpeed / Constants.kvVoltSecondsPerMeter) * Constants.autoCalibrate * (1)); // Or 12 or
+    
+    rightSide.setVoltage(-(LeftSpeed / Constants.kvVoltSecondsPerMeter) * Constants.autoCalibrate * (1)); // Or 12 or
                                                                                                            // kvVoltSecondsPerMeter
                                                                                                            // *WheelRatio
-    leftSide.setVoltage((LeftSpeed / Constants.kvVoltSecondsPerMeter) * Constants.autoCalibrate * (1)); // Or 12
+    leftSide.setVoltage((RightSpeed / Constants.kvVoltSecondsPerMeter) * Constants.autoCalibrate * (1)); // Or 12
     drive.feed();
     // System.out.println(RightSpeed);
   }
@@ -259,7 +260,7 @@ public class DriveTrain extends SubsystemBase {
 
   public Pose2d getPose() {
     Pose2d temp = odometry.getPoseMeters();
-    System.out.println(temp);
+   // System.out.println(temp);
     return temp;
   }
 
