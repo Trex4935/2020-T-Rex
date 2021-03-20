@@ -9,11 +9,11 @@ import frc.robot.Constants;
 import frc.robot.RobotContainer;
 import frc.robot.subsystems.DriveTrain;
 
-public class DriveWithControllerCommand extends CommandBase {
+public class DriveStraitWithController extends CommandBase {
   /** Creates a new DriveWithController. */
   private final DriveTrain driveTrain;
-
-  public DriveWithControllerCommand(DriveTrain dt) {
+  
+  public DriveStraitWithController(DriveTrain dt) {
     // Use addRequirements() here to declare subsystem dependencies.
     driveTrain = dt;
     addRequirements(driveTrain);
@@ -21,20 +21,17 @@ public class DriveWithControllerCommand extends CommandBase {
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {
-  }
+  public void initialize() {}
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-
-    driveTrain.driveWithController(RobotContainer.controller, Constants.speedLimitDefault);
+    driveTrain.driveStraitWithController(RobotContainer.controller, Constants.speedLimitDefault);
   }
 
   // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {
-  }
+  public void end(boolean interrupted) {}
 
   // Returns true when the command should end.
   @Override
