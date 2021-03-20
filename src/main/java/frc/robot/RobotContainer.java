@@ -43,7 +43,7 @@ public class RobotContainer {
   private final HighBeltCommand runMagazine;
   private final OneBallCommand oneBall;
   private final AutoAimCommand autoAim;
-  private final DriveStraitWithController driveStraitWithController;
+  private final DriveStraightWithController driveStraitWithController;
 
   public RobotContainer() {
 
@@ -51,7 +51,7 @@ public class RobotContainer {
     driveTrain = new DriveTrain();
     driveWithController = new DriveWithControllerCommand(driveTrain);
     driveWithController.addRequirements(driveTrain);
-    driveStraitWithController = new DriveStraitWithController(driveTrain);
+    driveStraitWithController = new DriveStraightWithController(driveTrain);
     driveTrain.setDefaultCommand(driveWithController);
     driveWithWPCommand = new DriveWithWPCommand(driveTrain);
     stopMotors = new StopMotorsCommand(driveTrain);

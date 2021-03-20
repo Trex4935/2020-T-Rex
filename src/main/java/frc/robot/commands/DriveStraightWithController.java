@@ -9,11 +9,11 @@ import frc.robot.Constants;
 import frc.robot.RobotContainer;
 import frc.robot.subsystems.DriveTrain;
 
-public class DriveStraitWithController extends CommandBase {
+public class DriveStraightWithController extends CommandBase {
   /** Creates a new DriveWithController. */
   private final DriveTrain driveTrain;
   
-  public DriveStraitWithController(DriveTrain dt) {
+  public DriveStraightWithController(DriveTrain dt) {
     // Use addRequirements() here to declare subsystem dependencies.
     driveTrain = dt;
     addRequirements(driveTrain);
