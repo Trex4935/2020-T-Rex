@@ -92,11 +92,13 @@ public final class Constants {
     public static final double shooterSpeed = 0.1;
     public static final int rtTrigger = 3;
     public static final int ltTrigger = 2;
+    public static boolean atSpeed = false;
 
     // PID stuff
     public static final int kSlotIdx = 0;
     public static final int kPIDLoopIdx = 0;
     public static final int kTimeoutMs = 30;
+    public static final int PIDRange = 100;
 
     // Pid values                                                 kP    kI   kD        kF          Iz  PeakOut
     public final static Gains kGains_Velocity_Shooter = new Gains(0.74, 0.001, 5, 1023.0 / 20660.0, 300, 1.00);

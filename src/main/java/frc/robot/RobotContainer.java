@@ -43,7 +43,8 @@ public class RobotContainer {
   private final HighBeltCommand runMagazine;
   private final OneBallCommand oneBall;
   private final AutoAimCommand autoAim;
-  private final DriveStraightWithController driveStraitWithController;
+  private final DriveStraightWithController driveStraightWithController;
+  private final EmptyMagToShooterCommand emptyMag;
 
   public RobotContainer() {
 
@@ -51,7 +52,7 @@ public class RobotContainer {
     driveTrain = new DriveTrain();
     driveWithController = new DriveWithControllerCommand(driveTrain);
     driveWithController.addRequirements(driveTrain);
-    driveStraitWithController = new DriveStraightWithController(driveTrain);
+    driveStraightWithController = new DriveStraightWithController(driveTrain);
     driveTrain.setDefaultCommand(driveWithController);
     driveWithWPCommand = new DriveWithWPCommand(driveTrain);
     stopMotors = new StopMotorsCommand(driveTrain);
@@ -75,6 +76,7 @@ public class RobotContainer {
     intakeBall = new LowBeltCommand(magazine);
     runMagazine = new HighBeltCommand(magazine);
     oneBall = new OneBallCommand(magazine);
+    emptyMag = new EmptyMagToShooterCommand(magazine);
 
     // Configure the button bindings
     configureButtonBindings();
@@ -108,9 +110,12 @@ public class RobotContainer {
     // Uses limelight to aim at target when left trigger is pulled
     new LeftTriggerBool().whileActiveContinuous(autoAim);
 
-    // Makes sure the robot only goes straight by using left bumper
-    new JoystickButton(controller, XboxController.Button.kBumperRight.value).whenHeld(driveStraitWithController);
+    // Makes sure the robot only goes straight by using right bumper
+    new JoystickButton(controller, XboxController.Button.kBumperRight.value).whenHeld(driveStraightWithController);
 
+    // Emptys magazine using left bumper
+    new JoystickButton(controller, XboxController.Button.kBumperLeft.value).whenHeld(emptyMag);
+    
     // Run the magazine + intake for a set time period
     // At the moment taking this off a button ... we need to figure out how to put this back!
     // new JoystickButton(controller, XboxController.Button.kY.value).whenPressed(runBothMotors.withTimeout(Constants.intakeTimeOut));
