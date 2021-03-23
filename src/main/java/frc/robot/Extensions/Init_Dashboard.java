@@ -20,14 +20,11 @@ public class Init_Dashboard {
         private ShuffleboardTab inputsTab = Shuffleboard.getTab("Inputs");
         // Create a Shuffleboard tab for Driver's Info
         private ShuffleboardTab driverInfoTab = Shuffleboard.getTab("Driver Info");
-        // Create a Shuffleboard tab for Magazine load status
-        private ShuffleboardTab magazineStatusTab = Shuffleboard.getTab("Magazine Status");
         // Create a Shuffleboard tab for Limelight Data
         private ShuffleboardTab limelightInfoTab = Shuffleboard.getTab("Limelight Data");
         // Create the objects used for the widgets in NetworkTables
         public NetworkTableEntry maxSpeed, driveType, driveLeftAxisWidget, driveRightAxisWidget, shooterTargetRpm,
-                        shooterCurrentRpm, limelightOnOff, gyroCurrentPosition, sensorMagazine, sensorIntake,
-                        sensorShooter, limeLightX, limeLightY, limeLightArea, limeLightV, limeLightS, limeLighttshort,
+                        shooterCurrentRpm, limelightOnOff, gyroCurrentPosition, sensorShooter, limeLightX, limeLightY, limeLightArea, limeLightV, limeLightS, limeLighttshort,
                         limeLighttlong, limeLightthor, limeLighttvert, leftFrontEncoder, leftRearEncoder,
                         rightFrontEncoder, rightRearEncoder, driveLeftAxisTEST;
 
@@ -40,12 +37,8 @@ public class Init_Dashboard {
                 // Call the limeLight input tab creation
                 Init_limeLight(); 
 
-                // Call the magazine input tab creation
-                Init_Magazine(); 
-
                 // Call the inputs input tab creation
                 Init_Inputs(); 
-
 
         }
 
@@ -86,6 +79,10 @@ public class Init_Dashboard {
                 // Create the Gyro widget to display the current Gyro header reading.
                 gyroCurrentPosition = driverInfoTab.add("Current Gyro Heading", 0).withWidget("Gyro").withPosition(6, 0)
                                 .withSize(2, 2).getEntry();
+                
+                // Create the Shooter status widget to check operation of the shooter Smackna
+                sensorShooter = driverInfoTab.add("Mag Fully Loaded", false).withWidget("Boolean Box")
+                .withPosition(0, 2).withSize(1, 1).getEntry(); 
 
         }
 
@@ -137,21 +134,7 @@ public class Init_Dashboard {
                  .withPosition(6, 1).withSize(2, 1).getEntry();
         }
 
-        // Object creation for the Magazine data display widgets
-        public void Init_Magazine(){
-
-                sensorIntake = magazineStatusTab.add("Intake Status", false).withWidget("Boolean Box")
-                .withPosition(0, 0).withSize(1, 1).getEntry();
-
-        // Create the Magazine status widget to check operation of the magazine input
-        // Smackna
-                sensorMagazine = magazineStatusTab.add("Magazine Status", false).withWidget("Boolean Box")
-                .withPosition(0, 1).withSize(1, 1).getEntry();
-
-        // Create the Shooter status widget to check operation of the shooter Smackna
-                sensorShooter = magazineStatusTab.add("Shooter Status", false).withWidget("Boolean Box")
-                .withPosition(0, 2).withSize(1, 1).getEntry();
-        }
+        
 
         // Object creation for the inputs data display widgets
         public void Init_Inputs(){

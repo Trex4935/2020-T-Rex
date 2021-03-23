@@ -11,6 +11,7 @@ import frc.robot.Extensions.DriveEncoders;
 import frc.robot.Extensions.Init_Dashboard;
 import frc.robot.Extensions.Limelight;
 import frc.robot.subsystems.DriveTrain;
+import frc.robot.subsystems.Magazine;
 import frc.robot.subsystems.Shooter;
 
 import com.kauailabs.navx.frc.AHRS;
@@ -88,6 +89,8 @@ public class Robot extends TimedRobot {
     dashboard.driveRightAxisWidget.setNumber(RobotContainer.controller.getRawAxis(Constants.rightTankAxis));
     // Shooter Current running RPM Widget
     dashboard.shooterCurrentRpm.setNumber(Shooter.currentRpm);
+    // Magazine Fully Loaded Shuffleboard Status
+    dashboard.sensorShooter.setBoolean(Magazine.getShooterSensor()); 
     
     // Update Encoder values
     dashboard.leftFrontEncoder.setNumber(DriveEncoders.lfEncoderValue);
