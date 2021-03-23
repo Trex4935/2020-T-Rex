@@ -94,47 +94,47 @@ public class Init_Dashboard {
  
         // Create Limelight status X Axis Widget
                 limeLightX = limelightInfoTab.add("Limelight X Value", 0.0).withWidget("Text View").withPosition(0, 0)
-                 .withSize(1, 1).getEntry();
+                 .withSize(2, 1).getEntry();
 
  
         // Create Limelight status Y Axis Widget
-                limeLightY = limelightInfoTab.add("Limelight Y Value", 0.0).withWidget("Text View").withPosition(1, 0)
-                 .withSize(1, 1).getEntry();
+                limeLightY = limelightInfoTab.add("Limelight Y Value", 0.0).withWidget("Text View").withPosition(0, 1)
+                 .withSize(2, 1).getEntry();
 
  
         // Create Limelight status Area Widget
                 limeLightArea = limelightInfoTab.add("Limelight Area Value", 0.0).withWidget("Text View")
-                 .withPosition(2, 0).withSize(2, 1).getEntry();
+                 .withPosition(3, 2).withSize(2, 1).getEntry();
 
  
         // Create Limelight status Valid Target Widget
                 limeLightV = limelightInfoTab.add("Limelight V Value", 0.0).withWidget("Text View").withPosition(2, 0)
-                 .withSize(1, 1).getEntry();
+                 .withSize(2, 1).getEntry();
 
  
         // Create Limelight status Skew Widget
-                limeLightS = limelightInfoTab.add("Limelight S Value", 0.0).withWidget("Text View").withPosition(3, 0)
-                 .withSize(1, 1).getEntry();
+                limeLightS = limelightInfoTab.add("Limelight S Value", 0.0).withWidget("Text View").withPosition(2, 1)
+                 .withSize(2, 1).getEntry();
 
  
         // Create Limelight status Shortest Sidelength Widget
                 limeLighttshort = limelightInfoTab.add("Limelight tshort Value", 0.0).withWidget("Text View")
-                 .withPosition(4, 0).withSize(1, 1).getEntry();
+                 .withPosition(4, 0).withSize(2, 1).getEntry();
 
  
         // Create Limelight status Longest Sidelength Widget
                 limeLighttlong = limelightInfoTab.add("Limelight tlong Value", 0.0).withWidget("Text View")
-                 .withPosition(5, 0).withSize(1, 1).getEntry();
+                 .withPosition(4, 1).withSize(2, 1).getEntry();
 
 
         // Create Limelight status Horizontal Sidelength Widget
                 limeLightthor = limelightInfoTab.add("Limelight thor Value", 0.0).withWidget("Text View")
-                 .withPosition(6, 0).withSize(1, 1).getEntry();
+                 .withPosition(6, 0).withSize(2, 1).getEntry();
 
  
         // Create Limelight status Vertical Sidelength Widget
                 limeLighttvert = limelightInfoTab.add("Limelight tvert Value", 0.0).withWidget("Text View")
-                 .withPosition(7, 0).withSize(1, 1).getEntry();
+                 .withPosition(6, 1).withSize(2, 1).getEntry();
         }
 
         // Object creation for the Magazine data display widgets
