@@ -46,7 +46,7 @@ public class DriveTrain extends SubsystemBase {
   DifferentialDrive drive;
 
   // Gyro
-  AHRS ahrs;
+  public static AHRS ahrs;
 
   // Odometry
   DifferentialDriveOdometry odometry;
