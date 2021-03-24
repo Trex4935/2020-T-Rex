@@ -138,17 +138,27 @@ public class RobotContainer {
    * @return the command to run in autonomous
    */
   public Command getAutonomousCommand() {
+
     // An ExampleCommand will run in autonomous
     DriveTrain.resetTime(); 
 
-// Simulated Trajectory Command
+    // Simulated Trajectory Command
+    //RamseteCommand ramseteCommand = new RamseteCommand(driveTrain.trajectory, driveTrain::getPosition, new RamseteController(Constants.kRamseteB, Constants.kRamseteZeta), Constants.kDriveKinematics, driveTrain::move, driveTrain);
+    
+    // Encoder Position, Gyro-Data based Trajectory Command 
+    RamseteCommand ramseteCommand = new RamseteCommand(driveTrain.trajectory, driveTrain::getPose, new RamseteController(Constants.kRamseteB, Constants.kRamseteZeta), Constants.kDriveKinematics, driveTrain::move, driveTrain); 
 
-//RamseteCommand ramseteCommand = new RamseteCommand(driveTrain.trajectory, driveTrain::getPosition, new RamseteController(Constants.kRamseteB, Constants.kRamseteZeta), Constants.kDriveKinematics, driveTrain::move, driveTrain);
-// Encoder Position, Gyro-Data based Trajectory Command 
+    // Encoder Position, Encoder Speed, Gyro-Data based Trajectory Command 
+    //(TBD)
 
-RamseteCommand ramseteCommand = new RamseteCommand(driveTrain.trajectory, driveTrain::getPose, new RamseteController(Constants.kRamseteB, Constants.kRamseteZeta), Constants.kDriveKinematics, driveTrain::move, driveTrain);  
-// Encoder Position, Encoder Speed, Gyro-Data based Trajectory Command (TBD)
+    //Ramsete Autonomous command;
+    Command autonomousCommand = ramseteCommand.andThen(stopMotors); 
 
-    return ramseteCommand.andThen(stopMotors);
+    // Galatic Search Autonomous
+    //Command autonomousCommand = autoAndMagazine.andThen(stopMotors);
+    // Shooter SRuns Autonomous
+    //Command autonomousCommand = autonomousSRunsAndShoot.andThen(stopMotors);
+
+    return autonomousCommand;
   }
 }
