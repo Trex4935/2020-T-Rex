@@ -138,14 +138,8 @@ public class DriveTrain extends SubsystemBase {
     // Doc on how to access the file via the Robo Rio
     // https://docs.wpilib.org/en/stable/docs/software/wpilib-tools/pathweaver/integrating-robot-program.html
     String trajectoryJSONSim = Constants.pathSim + "Slalom.wpilib.json";
-    String trajectoryJSONRobot = Constants.pathRobot + "Slalom.wpilib.json";
-    trajectory = new Trajectory();
-    try {
-      Path trajectoryPath = Filesystem.getDeployDirectory().toPath().resolve(trajectoryJSONRobot);
-      trajectory = TrajectoryUtil.fromPathweaverJson(trajectoryPath);
-    } catch (IOException ex) {
-      DriverStation.reportError("Unable to open trajectory: " + trajectoryJSONRobot, ex.getStackTrace());
-    }
+    String trajectoryJSONRobot = Constants.pathRobot + "Bounce.wpilib.json";//SLOWBarrelRacing.wpilib.json
+    trajectory = TrajectoryContainer.makeTrajectory(trajectoryJSONSim);
     time = 0.0;
   }
 
