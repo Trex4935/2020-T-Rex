@@ -104,7 +104,7 @@ public class DriveTrain extends SubsystemBase {
     dashOut = new Dashboard_Outputs();
 
     // Odometry
-    odometry = new DifferentialDriveOdometry(Rotation2d.fromDegrees(getGyroAngle()), Constants.startPosition);
+    odometry = new DifferentialDriveOdometry(Rotation2d.fromDegrees(-getGyroAngle()), Constants.startPosition);
     System.out.println(ahrs.isCalibrating());
     // Trajectory
 
@@ -156,10 +156,10 @@ public class DriveTrain extends SubsystemBase {
         ticksToPosition(leftFront.getSelectedSensorPosition(), Constants.wheelDiameter, Constants.driveTrainGearRatio),
         ticksToPosition(-rightFront.getSelectedSensorPosition(), Constants.wheelDiameter,
             Constants.driveTrainGearRatio));
-     System.out.println(leftFront.getSelectedSensorPosition());
-     System.out.println(rightFront.getSelectedSensorPosition());
+     //System.out.println(leftFront.getSelectedSensorPosition());
+     //System.out.println(rightFront.getSelectedSensorPosition());
     // System.out.println(ahrs.getRotation2d());
-    System.out.println(odometry.getPoseMeters());
+    //System.out.println(odometry.getPoseMeters());
     // System.out.println(odometry.update(ahrs.getRotation2d(),
     // ticksToPosition(leftFront.getSelectedSensorPosition(),
     // Constants.wheelDiameter, Constants.driveTrainGearRatio) ,
@@ -167,8 +167,8 @@ public class DriveTrain extends SubsystemBase {
     // Constants.wheelDiameter, Constants.driveTrainGearRatio)));
     //System.out.println(odometry);
     //System.out.println(getGyroAngle());
-     System.out.println(ticksToPosition(rightFront.getSelectedSensorPosition(),
-     Constants.wheelDiameter, Constants.driveTrainGearRatio));
+    // System.out.println(ticksToPosition(rightFront.getSelectedSensorPosition(),
+     //Constants.wheelDiameter, Constants.driveTrainGearRatio));
     // System.out.println(ticksToPosition(leftFront.getSelectedSensorPosition(),
     // Constants.wheelDiameter, Constants.driveTrainGearRatio));
     driveEncoders.SetDriveEncoders(leftFront.getSelectedSensorPosition(), leftRear.getSelectedSensorPosition(),
@@ -200,11 +200,11 @@ public class DriveTrain extends SubsystemBase {
 
   public void initOdometry() {
     resetEncoders();
-    odometry.resetPosition(new Pose2d(0, 0, new Rotation2d()), Rotation2d.fromDegrees(getGyroAngle()));
+    odometry.resetPosition(new Pose2d(0, 0, new Rotation2d()), Rotation2d.fromDegrees(-getGyroAngle()));
   }
   public void resetOdometry(Pose2d startPosition) {
     resetEncoders();
-    odometry.resetPosition(startPosition, Rotation2d.fromDegrees(getGyroAngle()));
+    odometry.resetPosition(startPosition, Rotation2d.fromDegrees(-getGyroAngle()));
   }
 
   public void resetGyro(){
