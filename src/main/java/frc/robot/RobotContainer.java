@@ -31,6 +31,8 @@ public class RobotContainer {
   private final DriveWithControllerCommand driveWithController;
   public static XboxController controller;
   private final AutoForwardCommand autoForward;
+  private final AutonomousAndMagazineCommand autoAndMagazine;
+  private final AutonomousSRunsAndShootCommand autonomousSRunsAndShoot;
   private final Shooter shooter;
   private final ShootCommand shoot;
   public final Magazine magazine;
@@ -57,9 +59,6 @@ public class RobotContainer {
     // Controller
     controller = new XboxController(Constants.xboxControllerPort);
 
-    // Autonomous
-    autoForward = new AutoForwardCommand(driveTrain);
-
     // Shooter
     shooter = new Shooter();
     shoot = new ShootCommand(shooter);
@@ -73,6 +72,12 @@ public class RobotContainer {
     intakeBall = new LowBeltCommand(magazine);
     runMagazine = new HighBeltCommand(magazine);
     oneBall = new OneBallCommand(magazine);
+
+    
+    // Autonomous
+    autoForward = new AutoForwardCommand(driveTrain);
+    autoAndMagazine = new AutonomousAndMagazineCommand(driveTrain.trajectoryGSearch,driveTrain,magazine);
+    autonomousSRunsAndShoot = new AutonomousSRunsAndShootCommand(driveTrain,shooter);
 
     // Configure the button bindings
     configureButtonBindings();
