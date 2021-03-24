@@ -20,14 +20,11 @@ public class Init_Dashboard {
         private ShuffleboardTab inputsTab = Shuffleboard.getTab("Inputs");
         // Create a Shuffleboard tab for Driver's Info
         private ShuffleboardTab driverInfoTab = Shuffleboard.getTab("Driver Info");
-        // Create a Shuffleboard tab for Magazine load status
-        private ShuffleboardTab magazineStatusTab = Shuffleboard.getTab("Magazine Status");
         // Create a Shuffleboard tab for Limelight Data
         private ShuffleboardTab limelightInfoTab = Shuffleboard.getTab("Limelight Data");
         // Create the objects used for the widgets in NetworkTables
         public NetworkTableEntry maxSpeed, driveType, driveLeftAxisWidget, driveRightAxisWidget, shooterTargetRpm,
-                        shooterCurrentRpm, limelightOnOff, gyroCurrentPosition, sensorMagazine, sensorIntake,
-                        sensorShooter, limeLightX, limeLightY, limeLightArea, limeLightV, limeLightS, limeLighttshort,
+                        shooterCurrentRpm, limelightOnOff, gyroCurrentPosition, sensorShooter, limeLightX, limeLightY, limeLightArea, limeLightV, limeLightS, limeLighttshort,
                         limeLighttlong, limeLightthor, limeLighttvert, leftFrontEncoder, leftRearEncoder,
                         rightFrontEncoder, rightRearEncoder, driveLeftAxisTEST;
 
@@ -40,12 +37,8 @@ public class Init_Dashboard {
                 // Call the limeLight input tab creation
                 Init_limeLight(); 
 
-                // Call the magazine input tab creation
-                Init_Magazine(); 
-
                 // Call the inputs input tab creation
                 Init_Inputs(); 
-
 
         }
 
@@ -86,6 +79,10 @@ public class Init_Dashboard {
                 // Create the Gyro widget to display the current Gyro header reading.
                 gyroCurrentPosition = driverInfoTab.add("Current Gyro Heading", 0).withWidget("Gyro").withPosition(6, 0)
                                 .withSize(2, 2).getEntry();
+                
+                // Create the Shooter status widget to check operation of the shooter Smackna
+                sensorShooter = driverInfoTab.add("Mag Fully Loaded", false).withWidget("Boolean Box")
+                .withPosition(0, 2).withSize(1, 1).getEntry(); 
 
         }
 
@@ -94,64 +91,50 @@ public class Init_Dashboard {
  
         // Create Limelight status X Axis Widget
                 limeLightX = limelightInfoTab.add("Limelight X Value", 0.0).withWidget("Text View").withPosition(0, 0)
-                 .withSize(1, 1).getEntry();
+                 .withSize(2, 1).getEntry();
 
  
         // Create Limelight status Y Axis Widget
-                limeLightY = limelightInfoTab.add("Limelight Y Value", 0.0).withWidget("Text View").withPosition(1, 0)
-                 .withSize(1, 1).getEntry();
+                limeLightY = limelightInfoTab.add("Limelight Y Value", 0.0).withWidget("Text View").withPosition(0, 1)
+                 .withSize(2, 1).getEntry();
 
  
         // Create Limelight status Area Widget
                 limeLightArea = limelightInfoTab.add("Limelight Area Value", 0.0).withWidget("Text View")
-                 .withPosition(2, 0).withSize(2, 1).getEntry();
+                 .withPosition(3, 2).withSize(2, 1).getEntry();
 
  
         // Create Limelight status Valid Target Widget
                 limeLightV = limelightInfoTab.add("Limelight V Value", 0.0).withWidget("Text View").withPosition(2, 0)
-                 .withSize(1, 1).getEntry();
+                 .withSize(2, 1).getEntry();
 
  
         // Create Limelight status Skew Widget
-                limeLightS = limelightInfoTab.add("Limelight S Value", 0.0).withWidget("Text View").withPosition(3, 0)
-                 .withSize(1, 1).getEntry();
+                limeLightS = limelightInfoTab.add("Limelight S Value", 0.0).withWidget("Text View").withPosition(2, 1)
+                 .withSize(2, 1).getEntry();
 
  
         // Create Limelight status Shortest Sidelength Widget
                 limeLighttshort = limelightInfoTab.add("Limelight tshort Value", 0.0).withWidget("Text View")
-                 .withPosition(4, 0).withSize(1, 1).getEntry();
+                 .withPosition(4, 0).withSize(2, 1).getEntry();
 
  
         // Create Limelight status Longest Sidelength Widget
                 limeLighttlong = limelightInfoTab.add("Limelight tlong Value", 0.0).withWidget("Text View")
-                 .withPosition(5, 0).withSize(1, 1).getEntry();
+                 .withPosition(4, 1).withSize(2, 1).getEntry();
 
 
         // Create Limelight status Horizontal Sidelength Widget
                 limeLightthor = limelightInfoTab.add("Limelight thor Value", 0.0).withWidget("Text View")
-                 .withPosition(6, 0).withSize(1, 1).getEntry();
+                 .withPosition(6, 0).withSize(2, 1).getEntry();
 
  
         // Create Limelight status Vertical Sidelength Widget
                 limeLighttvert = limelightInfoTab.add("Limelight tvert Value", 0.0).withWidget("Text View")
-                 .withPosition(7, 0).withSize(1, 1).getEntry();
+                 .withPosition(6, 1).withSize(2, 1).getEntry();
         }
 
-        // Object creation for the Magazine data display widgets
-        public void Init_Magazine(){
-
-                sensorIntake = magazineStatusTab.add("Intake Status", false).withWidget("Boolean Box")
-                .withPosition(0, 0).withSize(1, 1).getEntry();
-
-        // Create the Magazine status widget to check operation of the magazine input
-        // Smackna
-                sensorMagazine = magazineStatusTab.add("Magazine Status", false).withWidget("Boolean Box")
-                .withPosition(0, 1).withSize(1, 1).getEntry();
-
-        // Create the Shooter status widget to check operation of the shooter Smackna
-                sensorShooter = magazineStatusTab.add("Shooter Status", false).withWidget("Boolean Box")
-                .withPosition(0, 2).withSize(1, 1).getEntry();
-        }
+        
 
         // Object creation for the inputs data display widgets
         public void Init_Inputs(){

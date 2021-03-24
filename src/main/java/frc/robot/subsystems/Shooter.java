@@ -72,9 +72,15 @@ public class Shooter extends SubsystemBase {
      600msu (100ms units) / minute;
      So positionchange_100ms = (2048 * TargetRPM) / 600msu;
      */
-    double targetUnits_100ms = (2048 * dashOutput.getShooterTargetRPM()) / 600;
+    double targetRPM = dashOutput.getShooterTargetRPM();
+     double targetUnits_100ms = (2048 * targetRPM) / 600;
     shooterMotor.set(TalonFXControlMode.Velocity, targetUnits_100ms);
     currentRpm = (shooterMotor.getSelectedSensorVelocity(Constants.kPIDLoopIdx)*600)/2048;
+    if (currentRpm >= targetRPM - Constants.PIDRange && currentRpm <= targetRPM + Constants.PIDRange){
+      Constants.atSpeed = true;
+    } else {
+      Constants.atSpeed = false;
+    }
   }
 
   public void shootStop() {

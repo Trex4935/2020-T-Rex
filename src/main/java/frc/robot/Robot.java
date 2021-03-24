@@ -11,9 +11,11 @@ import frc.robot.Extensions.DriveEncoders;
 import frc.robot.Extensions.Init_Dashboard;
 import frc.robot.Extensions.Limelight;
 import frc.robot.subsystems.DriveTrain;
+import frc.robot.subsystems.Magazine;
 import frc.robot.subsystems.Shooter;
 
-import com.kauailabs.navx.frc.AHRS;
+
+//import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.SPI;
 
 /**
@@ -35,7 +37,7 @@ public class Robot extends TimedRobot {
   public Limelight limelight;
 
   // Gyro object
-  public AHRS gyro;
+  //public AHRS gyro;
 
   /**
    * This function is run when the robot is first started up and should be used
@@ -56,7 +58,7 @@ public class Robot extends TimedRobot {
     limelight = new Limelight();
 
     // Initalize the gyro
-    gyro = new AHRS(SPI.Port.kMXP);
+    //gyro = new AHRS(SPI.Port.kMXP);
 
   }
 
@@ -88,6 +90,8 @@ public class Robot extends TimedRobot {
     dashboard.driveRightAxisWidget.setNumber(RobotContainer.controller.getRawAxis(Constants.rightTankAxis));
     // Shooter Current running RPM Widget
     dashboard.shooterCurrentRpm.setNumber(Shooter.currentRpm);
+    // Magazine Fully Loaded Shuffleboard Status
+    dashboard.sensorShooter.setBoolean(Magazine.getShooterSensor()); 
     
     // Update Encoder values
     dashboard.leftFrontEncoder.setNumber(DriveEncoders.lfEncoderValue);
@@ -97,7 +101,7 @@ public class Robot extends TimedRobot {
 
 
     // Gyro current heading Widget
-    dashboard.gyroCurrentPosition.setNumber(gyro.getAngle());
+    dashboard.gyroCurrentPosition.setNumber(DriveTrain.ahrs.getAngle());
     
     // Limelight X Axis Widget
     dashboard.limeLightX.setNumber(Limelight.getLimeLightX());

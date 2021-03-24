@@ -122,4 +122,12 @@ public class Magazine extends SubsystemBase {
       stopHighBelt();
     }
   }
+  
+  public void emptyMagToShooter(boolean atSpeed) {
+    if (atSpeed){
+      moveBothBelts();
+    } else {
+      stopBothBelts();
+    }
+  }
 }
