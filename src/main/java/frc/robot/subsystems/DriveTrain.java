@@ -24,6 +24,7 @@ import edu.wpi.first.wpilibj.trajectory.TrajectoryUtil;
 import edu.wpi.first.wpilibj.trajectory.constraint.DifferentialDriveVoltageConstraint;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
+import frc.robot.TrajectoryContainer;
 import frc.robot.Extensions.Dashboard_Outputs;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Filesystem;
@@ -56,6 +57,13 @@ public class DriveTrain extends SubsystemBase {
 
   // Trajectory
   public Trajectory trajectory;
+  public Trajectory trajectoryGSearch;
+  public Trajectory trajectorySlalom;
+  public Trajectory trajectoryBarrelRacing;
+  public Trajectory trajectoryBounce;
+  public Trajectory trajectoryShootTrow;  
+  public Trajectory trajectoryLineForward;
+  public Trajectory trajectoryLineBackward;
 
   // Internal time
   public static double time;
@@ -140,6 +148,18 @@ public class DriveTrain extends SubsystemBase {
     String trajectoryJSONSim = Constants.pathSim + "Slalom.wpilib.json";
     String trajectoryJSONRobot = Constants.pathRobot + "Bounce.wpilib.json";//SLOWBarrelRacing.wpilib.json
     trajectory = TrajectoryContainer.makeTrajectory(trajectoryJSONSim);
+    //Autonomous Trajectory
+      // Galactic search 
+    trajectoryGSearch = TrajectoryContainer.makeTrajectory(Constants.pathSim + "Slalom.wpilib.json");
+      // Auto Nav
+    trajectorySlalom = TrajectoryContainer.makeTrajectory(Constants.pathSim + "Slalom.wpilib.json");
+    trajectoryBarrelRacing = TrajectoryContainer.makeTrajectory(Constants.pathSim + "Slalom.wpilib.json");
+    trajectoryBounce = TrajectoryContainer.makeTrajectory(Constants.pathSim + "Slalom.wpilib.json");
+      // Shooter Trow
+    trajectoryShootTrow = TrajectoryContainer.makeTrajectory(Constants.pathSim + "Slalom.wpilib.json");
+    trajectoryLineForward = TrajectoryContainer.makeTrajectory(Constants.pathSim + "Slalom.wpilib.json");
+    trajectoryLineBackward = TrajectoryContainer.makeTrajectory(Constants.pathSim + "Slalom.wpilib.json");
+
     time = 0.0;
   }
 
