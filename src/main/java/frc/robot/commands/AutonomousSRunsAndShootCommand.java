@@ -23,6 +23,7 @@ public class AutonomousSRunsAndShootCommand extends SequentialCommandGroup  {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
 
+    //replace dt::getPose with driveTrain::getPosition to use simulated encoder and gyro data for simulation and debugging
     addCommands(
       new RamseteCommand(dt.trajectoryLineForward, dt::getPose, new RamseteController(Constants.kRamseteB, Constants.kRamseteZeta), Constants.kDriveKinematics, dt::move, dt),
       new AutoAimCommand(dt), 

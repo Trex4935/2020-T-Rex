@@ -25,6 +25,7 @@ public class AutonomousAndMagazineCommand extends ParallelRaceGroup {
               //driveTrain = dt;
               //addRequirements(driveTrain);
     /////
+    //replace dt::getPose with driveTrain::getPosition to use simulated encoder and gyro data for simulation and debugging
     addCommands(
       new RamseteCommand(trajectory, dt::getPose, new RamseteController(Constants.kRamseteB, Constants.kRamseteZeta), Constants.kDriveKinematics, dt::move, dt), 
       new ReverseMagazineCommand(mag)
