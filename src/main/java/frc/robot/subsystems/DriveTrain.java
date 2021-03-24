@@ -157,8 +157,8 @@ public class DriveTrain extends SubsystemBase {
     trajectoryBounce = TrajectoryContainer.makeTrajectory(Constants.pathSim + "Slalom.wpilib.json");
       // Shooter Trow
     trajectoryShootTrow = TrajectoryContainer.makeTrajectory(Constants.pathSim + "Slalom.wpilib.json");
-    trajectoryLineForward = TrajectoryContainer.makeTrajectory(Constants.pathSim + "Slalom.wpilib.json");
-    trajectoryLineBackward = TrajectoryContainer.makeTrajectory(Constants.pathSim + "Slalom.wpilib.json");
+    trajectoryLineForward = TrajectoryContainer.makeTrajectory(Constants.pathSim + "LineForward.wpilib.json");
+    trajectoryLineBackward = TrajectoryContainer.makeTrajectory(Constants.pathSim + "LineBackward.wpilib.json");
 
     time = 0.0;
   }
