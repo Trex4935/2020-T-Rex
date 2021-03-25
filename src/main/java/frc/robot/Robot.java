@@ -127,7 +127,7 @@ public class Robot extends TimedRobot {
   /** This function is called once each time the robot enters Disabled mode. */
   @Override
   public void disabledInit() {
-
+    m_robotContainer.driveTrain.stopDriveTrain();
   }
 
   @Override
@@ -140,7 +140,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void autonomousInit() {
-    m_robotContainer.driveTrain.resetOdometry(m_robotContainer.driveTrain.trajectory.getInitialPose());
+    m_robotContainer.driveTrain.resetOdometry(m_robotContainer.driveTrain.trajectorySlalom.getInitialPose());
     m_autonomousCommand = m_robotContainer.getAutonomousCommand();
 
     // schedule the autonomous command (example)

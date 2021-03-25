@@ -162,13 +162,13 @@ public class RobotContainer {
     //(TBD)
 
     //Ramsete Autonomous command;
-    Command autonomousCommand = ramseteCommand.andThen(stopMotors); 
+    //Command autonomousCommand = ramseteCommand; 
 
     // Galatic Search Autonomous
-    //Command autonomousCommand = autoAndMagazine.andThen(stopMotors);
+    //Command autonomousCommand = autoAndMagazine;
     // Shooter SRuns Autonomous
-    //Command autonomousCommand = autonomousSRunsAndShoot.andThen(stopMotors);
+    Command autonomousCommand = autonomousSRunsAndShoot;
 
-    return autonomousCommand;
+    return autonomousCommand.andThen(stopMotors);
   }
 }
