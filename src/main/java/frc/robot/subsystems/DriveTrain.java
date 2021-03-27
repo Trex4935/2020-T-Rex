@@ -146,19 +146,19 @@ public class DriveTrain extends SubsystemBase {
     // Doc on how to access the file via the Robo Rio
     // https://docs.wpilib.org/en/stable/docs/software/wpilib-tools/pathweaver/integrating-robot-program.html
     String trajectoryJSONSim = Constants.pathSim + "Slalom.wpilib.json";
-    String trajectoryJSONRobot = Constants.pathRobot + "Bounce.wpilib.json";//SLOWBarrelRacing.wpilib.json
-    trajectory = TrajectoryContainer.makeTrajectory(trajectoryJSONSim);
+    String trajectoryJSONRobot = Constants.pathRobot + "SLOWBarrelRacing27.wpilib.json";//SLOWBarrelRacing.wpilib.json
+    trajectory = TrajectoryContainer.makeTrajectory(trajectoryJSONRobot);
     //Autonomous Trajectory
       // Galactic search 
-    trajectoryGSearch = TrajectoryContainer.makeTrajectory(Constants.pathSim + "Slalom.wpilib.json");
+    trajectoryGSearch = TrajectoryContainer.makeTrajectory(Constants.pathRobot + "Slalom.wpilib.json");
       // Auto Nav
-    trajectorySlalom = TrajectoryContainer.makeTrajectory(Constants.pathSim + "Slalom.wpilib.json");
-    trajectoryBarrelRacing = TrajectoryContainer.makeTrajectory(Constants.pathSim + "Slalom.wpilib.json");
-    trajectoryBounce = TrajectoryContainer.makeTrajectory(Constants.pathSim + "Slalom.wpilib.json");
+    trajectorySlalom = TrajectoryContainer.makeTrajectory(Constants.pathRobot + "Slalom.wpilib.json");
+    trajectoryBarrelRacing = TrajectoryContainer.makeTrajectory(Constants.pathRobot + "Slalom.wpilib.json");
+    trajectoryBounce = TrajectoryContainer.makeTrajectory(Constants.pathRobot + "Slalom.wpilib.json");
       // Shooter Trow
-    trajectoryShootTrow = TrajectoryContainer.makeTrajectory(Constants.pathSim + "Slalom.wpilib.json");
-    trajectoryLineForward = TrajectoryContainer.makeTrajectory(Constants.pathSim + "LineForward.wpilib.json");
-    trajectoryLineBackward = TrajectoryContainer.makeTrajectory(Constants.pathSim + "LineBackward.wpilib.json");
+    trajectoryShootTrow = TrajectoryContainer.makeTrajectory(Constants.pathRobot + "Slalom.wpilib.json");
+    trajectoryLineForward = TrajectoryContainer.makeTrajectory(Constants.pathRobot + "LineForward.wpilib.json");
+    trajectoryLineBackward = TrajectoryContainer.makeTrajectory(Constants.pathRobot + "LineBackward.wpilib.json");
 
     time = 0.0;
   }

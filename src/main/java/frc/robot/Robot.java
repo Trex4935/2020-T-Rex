@@ -140,7 +140,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void autonomousInit() {
-    m_robotContainer.driveTrain.resetOdometry(m_robotContainer.driveTrain.trajectorySlalom.getInitialPose());
+    m_robotContainer.driveTrain.resetOdometry(m_robotContainer.driveTrain.trajectory.getInitialPose());
     m_autonomousCommand = m_robotContainer.getAutonomousCommand();
 
     // schedule the autonomous command (example)
