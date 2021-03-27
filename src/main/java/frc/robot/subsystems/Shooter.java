@@ -61,8 +61,13 @@ public class Shooter extends SubsystemBase {
   // Shoot the ball at a certain speed
   // Press button to shoot ball
   public void shoot() {
+    double targetRPM = dashOutput.getShooterTargetRPM();
     shooterMotor.set(ControlMode.PercentOutput, Constants.shooterSpeed);
     currentRpm = (shooterMotor.getSelectedSensorVelocity(Constants.kPIDLoopIdx)*600)/2048;
+    if (currentRpm >= targetRPM - Constants.PIDRange && currentRpm <= targetRPM + Constants.PIDRange){
+      Constants.atSpeed = true;
+    } else {
+      Constants.atSpeed = false;
   }
 
   public void shootPID() {
