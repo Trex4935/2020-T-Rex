@@ -33,6 +33,8 @@ public class RobotContainer {
   private final AutoForwardCommand autoForward;
   private final AutonomousAndMagazineCommand autoAndMagazine;
   private final AutonomousSRunsAndShootCommand autonomousSRunsAndShoot;
+  private final BouncePathCommand bouncePath;
+  private final AutoSRunMagazineCommand autoShootspeed;
   private final Shooter shooter;
   private final ShootCommand shoot;
   public final Magazine magazine;
@@ -81,7 +83,9 @@ public class RobotContainer {
     // Autonomous
     autoForward = new AutoForwardCommand(driveTrain);
     autoAndMagazine = new AutonomousAndMagazineCommand(driveTrain.trajectoryGSearch,driveTrain,magazine);
-    autonomousSRunsAndShoot = new AutonomousSRunsAndShootCommand(driveTrain,shooter);
+    autonomousSRunsAndShoot = new AutonomousSRunsAndShootCommand(driveTrain,magazine);
+    bouncePath = new BouncePathCommand(driveTrain);
+    autoShootspeed = new  AutoSRunMagazineCommand(driveTrain, shooter, magazine);
 
     // Configure the button bindings
     configureButtonBindings();
@@ -162,7 +166,10 @@ public class RobotContainer {
     //(TBD)
 
     //Ramsete Autonomous command;
-    Command autonomousCommand = ramseteCommand; 
+    // Command autonomousCommand = ramseteCommand; 
+    Command autonomousCommand = bouncePath;
+
+    //Command autonomousCommand = autoShootspeed;
 
     // Galatic Search Autonomous
     //Command autonomousCommand = autoAndMagazine;
