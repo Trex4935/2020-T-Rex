@@ -49,6 +49,7 @@ public class RobotContainer {
   private final AutoAimCommand autoAim;
   private final DriveStraightWithController driveStraightWithController;
   private final EmptyMagToShooterCommand emptyMag;
+  private final HighBeltCommand highbelt;
 
   public RobotContainer() {
 
@@ -78,6 +79,7 @@ public class RobotContainer {
     runMagazine = new HighBeltCommand(magazine);
     oneBall = new OneBallCommand(magazine);
     emptyMag = new EmptyMagToShooterCommand(magazine);
+    highbelt = new HighBeltCommand(magazine);
 
     
     // Autonomous
@@ -105,25 +107,25 @@ public class RobotContainer {
     new JoystickButton(controller, XboxController.Button.kX.value).whenHeld(reverseMagazine);
 
     // Run entire intake and magazine manually while button is held
-    new JoystickButton(controller, XboxController.Button.kY.value).whenHeld(runBothMotors);
+    // new JoystickButton(controller, XboxController.Button.kY.value).whenHeld(runBothMotors);
 
     // Run intake only, on / off with B button press
     new JoystickButton(controller, XboxController.Button.kB.value).toggleWhenPressed(oneBall.withInterrupt(Magazine::getShooterSensor));
 
     // Run magazine only, active only when A button held for manual singulation
-    new JoystickButton(controller, XboxController.Button.kA.value).whenHeld(runMagazine);
+    new JoystickButton(controller, XboxController.Button.kA.value).toggleWhenPressed(shoot);
 
     // Runs shooter motor when the right trigger is pulled
-    new RightTriggerBool().whileActiveContinuous(shootPID);
+    // new RightTriggerBool().whileActiveContinuous(shootPID);
 
     // Uses limelight to aim at target when left trigger is pulled
-    new LeftTriggerBool().whileActiveContinuous(autoAim);
+    new LeftTriggerBool().whileActiveContinuous(highbelt);
 
     // Makes sure the robot only goes straight by using right bumper
     new JoystickButton(controller, XboxController.Button.kBumperRight.value).whenHeld(driveStraightWithController);
 
     // Emptys magazine using left bumper
-    new JoystickButton(controller, XboxController.Button.kBumperLeft.value).whenHeld(emptyMag.alongWith(shootPID));
+    // new JoystickButton(controller, XboxController.Button.kBumperLeft.value).whenHeld(emptyMag.alongWith(shootPID));
 
     // Run the magazine + intake for a set time period
     // At the moment taking this off a button ... we need to figure out how to put this back!

@@ -47,8 +47,8 @@ public final class Constants {
     // ================================
 
     // Magazine motor speed
-    public static final double beltMotorSpeed = 0.55;
-    public static final double intakeMotorSpeed = 0.7;
+    public static final double beltMotorSpeed = 0.65;
+    public static final double intakeMotorSpeed = 0.6;
 
     // Smacna DIO location on the roborio
     // public static final int intakeSensorDIO = 1;
@@ -89,7 +89,7 @@ public final class Constants {
     // ================================
 
     // Shooter motor speed
-    public static final double shooterSpeed = 0.1;
+    public static final double shooterSpeed = 0.75;
     public static final int rtTrigger = 3;
     public static final int ltTrigger = 2;
     public static boolean atSpeed = false;
