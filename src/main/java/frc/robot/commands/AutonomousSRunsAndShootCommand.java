@@ -19,21 +19,29 @@ import frc.robot.subsystems.Shooter;
 public class AutonomousSRunsAndShootCommand extends SequentialCommandGroup  {
   ////private final DriveTrain driveTrain;
   /** Creates a new AutonomousAndMagazineCommand. */
-  public AutonomousSRunsAndShootCommand( DriveTrain dt, Shooter shoot) {
+  public AutonomousSRunsAndShootCommand( DriveTrain dt, Magazine mag) {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
 
     //replace dt::getPose with driveTrain::getPosition to use simulated encoder and gyro data for simulation and debugging
     addCommands(
-      new RamseteCommand(dt.trajectoryLineForward, dt::getPose, new RamseteController(Constants.kRamseteB, Constants.kRamseteZeta), Constants.kDriveKinematics, dt::move, dt),
-      new ShootCommand(shoot),
       new RamseteCommand(dt.trajectoryLineBackward, dt::getPose, new RamseteController(Constants.kRamseteB, Constants.kRamseteZeta), Constants.kDriveKinematics, dt::move, dt),
+      new HighBeltCommand(mag).withTimeout(3),
       new RamseteCommand(dt.trajectoryLineForward, dt::getPose, new RamseteController(Constants.kRamseteB, Constants.kRamseteZeta), Constants.kDriveKinematics, dt::move, dt),
-      new ShootCommand(shoot),
-      new RamseteCommand(dt.trajectoryLineBackward, dt::getPose, new RamseteController(Constants.kRamseteB, Constants.kRamseteZeta), Constants.kDriveKinematics, dt::move, dt),      
+      new RamseteCommand(dt.trajectoryLineBackward, dt::getPose, new RamseteController(Constants.kRamseteB, Constants.kRamseteZeta), Constants.kDriveKinematics, dt::move, dt),
+      new HighBeltCommand(mag).withTimeout(3),
+      new RamseteCommand(dt.trajectoryLineForward, dt::getPose, new RamseteController(Constants.kRamseteB, Constants.kRamseteZeta), Constants.kDriveKinematics, dt::move, dt),      
+      new RamseteCommand(dt.trajectoryLineBackward, dt::getPose, new RamseteController(Constants.kRamseteB, Constants.kRamseteZeta), Constants.kDriveKinematics, dt::move, dt),
+      new HighBeltCommand(mag).withTimeout(3),
       new RamseteCommand(dt.trajectoryLineForward, dt::getPose, new RamseteController(Constants.kRamseteB, Constants.kRamseteZeta), Constants.kDriveKinematics, dt::move, dt),
-      new ShootCommand(shoot),
-      new RamseteCommand(dt.trajectoryLineBackward, dt::getPose, new RamseteController(Constants.kRamseteB, Constants.kRamseteZeta), Constants.kDriveKinematics, dt::move, dt)
-    );
+      new RamseteCommand(dt.trajectoryLineBackward, dt::getPose, new RamseteController(Constants.kRamseteB, Constants.kRamseteZeta), Constants.kDriveKinematics, dt::move, dt),
+      new HighBeltCommand(mag).withTimeout(3),
+      new RamseteCommand(dt.trajectoryLineForward, dt::getPose, new RamseteController(Constants.kRamseteB, Constants.kRamseteZeta), Constants.kDriveKinematics, dt::move, dt),      
+      new RamseteCommand(dt.trajectoryLineBackward, dt::getPose, new RamseteController(Constants.kRamseteB, Constants.kRamseteZeta), Constants.kDriveKinematics, dt::move, dt),
+      
+      new HighBeltCommand(mag),
+      new RamseteCommand(dt.trajectoryLineForward, dt::getPose, new RamseteController(Constants.kRamseteB, Constants.kRamseteZeta), Constants.kDriveKinematics, dt::move, dt)
+   
+      );
   }
 }
