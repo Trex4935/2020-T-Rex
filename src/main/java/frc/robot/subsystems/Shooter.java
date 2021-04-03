@@ -61,7 +61,7 @@ public class Shooter extends SubsystemBase {
   // Shoot the ball at a certain speed
   // Press button to shoot ball
   public void shoot() {
-    shooterMotor.set(ControlMode.PercentOutput, Constants.shooterSpeed);
+    shooterMotor.set(ControlMode.PercentOutput, dashOutput.getShooterSpeed());
     currentRpm = (shooterMotor.getSelectedSensorVelocity(Constants.kPIDLoopIdx)*600)/2048;
   }
 
@@ -72,7 +72,7 @@ public class Shooter extends SubsystemBase {
      600msu (100ms units) / minute;
      So positionchange_100ms = (2048 * TargetRPM) / 600msu;
      */
-    double targetRPM = dashOutput.getShooterTargetRPM();
+    double targetRPM = 100;
      double targetUnits_100ms = (2048 * targetRPM) / 600;
     shooterMotor.set(TalonFXControlMode.Velocity, targetUnits_100ms);
     currentRpm = (shooterMotor.getSelectedSensorVelocity(Constants.kPIDLoopIdx)*600)/2048;

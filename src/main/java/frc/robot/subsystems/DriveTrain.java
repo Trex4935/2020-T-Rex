@@ -150,15 +150,15 @@ public class DriveTrain extends SubsystemBase {
     // Doc on how to access the file via the Robo Rio
     // https://docs.wpilib.org/en/stable/docs/software/wpilib-tools/pathweaver/integrating-robot-program.html
     String trajectoryJSONSim = Constants.pathSim + "Slalom.wpilib.json";
-    String trajectoryJSONRobot = Constants.pathRobot + "GSearch.wpilib.json";//SLOWBarrelRacing.wpilib.json
+    String trajectoryJSONRobot = Constants.pathRobot + "Bounce27.1.wpilib.json";//SLOWBarrelRacing.wpilib.json
     trajectory = TrajectoryContainer.makeTrajectory(trajectoryJSONRobot);
     //Autonomous Trajectory
       // Galactic search 
     trajectoryGSearch = TrajectoryContainer.makeTrajectory(Constants.pathRobot + "GSearch.wpilib.json");
       // Auto Nav
-    trajectorySlalom = TrajectoryContainer.makeTrajectory(Constants.pathRobot + "Slalom.wpilib.json");
-    trajectoryBarrelRacing = TrajectoryContainer.makeTrajectory(Constants.pathRobot + "Slalom.wpilib.json");
-    trajectoryBounce = TrajectoryContainer.makeTrajectory(Constants.pathRobot + "Slalom.wpilib.json");
+    trajectorySlalom = TrajectoryContainer.makeTrajectory(Constants.pathRobot + "SlowSlalomReal3.27.wpilib.json");
+    trajectoryBarrelRacing = TrajectoryContainer.makeTrajectory(Constants.pathRobot + "SLOWBarrelRacingReal27.wpilib.json");
+    trajectoryBounce = TrajectoryContainer.makeTrajectory(Constants.pathRobot + "Bounce27.4.wpilib.json");
       // Shooter Trow
     trajectoryShootTrow = TrajectoryContainer.makeTrajectory(Constants.pathRobot + "Slalom.wpilib.json");
     trajectoryLineForward = TrajectoryContainer.makeTrajectory(Constants.pathRobot + "Straight.wpilib.json");

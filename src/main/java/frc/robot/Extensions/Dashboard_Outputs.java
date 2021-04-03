@@ -12,10 +12,10 @@ import frc.robot.Constants;
 public class Dashboard_Outputs {
     
     // Get Max speed value and write to Shffleboard
-    public double getMaxSpeed(){
+    public double getShooterSpeed(){
         NetworkTable table=NetworkTableInstance.getDefault().getTable("Shuffleboard/Inputs");
-        double maxSpeed = table.getEntry("Max Speed").getDouble(Constants.speedLimitDefault);
-        return maxSpeed;
+        double ShooterSpeed = table.getEntry("Max Speed").getDouble(Constants.speedLimitDefault);
+        return ShooterSpeed;
     }
     // Get the Drive Type value and write to Shffleboard
     public boolean getDriveType(){
