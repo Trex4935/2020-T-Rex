@@ -22,7 +22,7 @@ public class Shooter extends SubsystemBase {
 
   /** Creates a new Shooter. */
   public Shooter() {
-    
+
     // initilize the motor
     shooterMotor = new TalonFX(Constants.shooterMotorID);
     shooterMotor.setInverted(false);
@@ -62,21 +62,22 @@ public class Shooter extends SubsystemBase {
   // Press button to shoot ball
   public void shoot() {
     shooterMotor.set(ControlMode.PercentOutput, dashOutput.getShooterSpeed());
+    //shooterMotor.set(ControlMode.PercentOutput, dashOutput.getMaxSpeed());
+    // shooterMotor.set(ControlMode.PercentOutput, Constants.shooterSpeed);
     currentRpm = (shooterMotor.getSelectedSensorVelocity(Constants.kPIDLoopIdx)*600)/2048;
   }
 
   public void shootPID() {
     /**
-     Convert RPM into Position Change per 100ms
-     2048 Encoder Units / Revolution;
-     600msu (100ms units) / minute;
-     So positionchange_100ms = (2048 * TargetRPM) / 600msu;
+     * Convert RPM into Position Change per 100ms 2048 Encoder Units / Revolution;
+     * 600msu (100ms units) / minute; So positionchange_100ms = (2048 * TargetRPM) /
+     * 600msu;
      */
-    double targetRPM = 100;
-     double targetUnits_100ms = (2048 * targetRPM) / 600;
+    double targetRPM = dashOutput.getShooterTargetRPM();
+    double targetUnits_100ms = (2048 * targetRPM) / 600;
     shooterMotor.set(TalonFXControlMode.Velocity, targetUnits_100ms);
-    currentRpm = (shooterMotor.getSelectedSensorVelocity(Constants.kPIDLoopIdx)*600)/2048;
-    if (currentRpm >= targetRPM - Constants.PIDRange && currentRpm <= targetRPM + Constants.PIDRange){
+    currentRpm = (shooterMotor.getSelectedSensorVelocity(Constants.kPIDLoopIdx) * 600) / 2048;
+    if (currentRpm >= targetRPM - Constants.PIDRange && currentRpm <= targetRPM + Constants.PIDRange) {
       Constants.atSpeed = true;
     } else {
       Constants.atSpeed = false;
