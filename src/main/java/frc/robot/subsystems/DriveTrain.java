@@ -4,9 +4,6 @@
 
 package frc.robot.subsystems;
 
-import java.io.IOException;
-import java.nio.file.Path;
-
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 import com.kauailabs.navx.frc.AHRS;
 
@@ -20,14 +17,11 @@ import edu.wpi.first.wpilibj.kinematics.DifferentialDriveOdometry;
 import edu.wpi.first.wpilibj.kinematics.DifferentialDriveWheelSpeeds;
 import edu.wpi.first.wpilibj.trajectory.Trajectory;
 import edu.wpi.first.wpilibj.trajectory.TrajectoryConfig;
-import edu.wpi.first.wpilibj.trajectory.TrajectoryUtil;
 import edu.wpi.first.wpilibj.trajectory.constraint.DifferentialDriveVoltageConstraint;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 import frc.robot.TrajectoryContainer;
 import frc.robot.Extensions.Dashboard_Outputs;
-import edu.wpi.first.wpilibj.DriverStation;
-import edu.wpi.first.wpilibj.Filesystem;
 import edu.wpi.first.wpilibj.SPI;
 import frc.robot.Extensions.DriveEncoders;
 import frc.robot.Extensions.Limelight;
@@ -125,12 +119,11 @@ public class DriveTrain extends SubsystemBase {
         Constants.kvVoltSecondsPerMeter, Constants.kaVoltSecondsSquaredPerMeter), Constants.kDriveKinematics, 10);
 
     // Create config for trajectory
-    TrajectoryConfig config = new TrajectoryConfig(Constants.kMaxSpeedMetersPerSecond,
-        Constants.kMaxAccelerationMetersPerSecondSquared)
-            // Add kinematics to ensure max speed is actually obeyed
-            .setKinematics(Constants.kDriveKinematics)
-            // Apply the voltage constraint
-            .addConstraint(autoVoltageConstraint);
+    // TrajectoryConfig config = new TrajectoryConfig(Constants.kMaxSpeedMetersPerSecond, Constants.kMaxAccelerationMetersPerSecondSquared)
+    //         // Add kinematics to ensure max speed is actually obeyed
+    //         .setKinematics(Constants.kDriveKinematics)
+    //         // Apply the voltage constraint
+    //         .addConstraint(autoVoltageConstraint);
 
     // An example trajectory to follow. All units in meters.
     // trajectory = TrajectoryGenerator.generateTrajectory(
@@ -149,7 +142,7 @@ public class DriveTrain extends SubsystemBase {
 
     // Doc on how to access the file via the Robo Rio
     // https://docs.wpilib.org/en/stable/docs/software/wpilib-tools/pathweaver/integrating-robot-program.html
-    String trajectoryJSONSim = Constants.pathSim + "Slalom.wpilib.json";
+    //String trajectoryJSONSim = Constants.pathSim + "Slalom.wpilib.json";
     String trajectoryJSONRobot = Constants.pathRobot + "Bounce27.1.wpilib.json";//SLOWBarrelRacing.wpilib.json
     trajectory = TrajectoryContainer.makeTrajectory(trajectoryJSONRobot);
     //Autonomous Trajectory
@@ -303,7 +296,7 @@ public void driveStraitWithController(XboxController controller,double speedLimi
     double motorRotationsPer100ms = motorRotationsPerSecond / Constants.k100msPerSecond;
     int sensorTicksPer100ms = (int) (motorRotationsPer100ms * Constants.encoderTicksPerTurn);
     return sensorTicksPer100ms;
-  }
+  } 
 
   private double NativeUnitsToVelocity(double sensorTicksPer100ms, double wheelDiameter, double gearRatio) {
     double motorRotationsPer100ms = (double) (sensorTicksPer100ms / Constants.encoderTicksPerTurn);
