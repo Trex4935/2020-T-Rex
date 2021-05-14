@@ -115,6 +115,7 @@ public class Magazine extends SubsystemBase {
     // When the magazine sensor sees a ball run the HB
     if (getMagazineSensor()) {
       moveHighBelt();
+      (Constants.actualBallCount);
     }
     // When it no longer sees a ball then it is "in" the magazine so we stop the
     // motor
