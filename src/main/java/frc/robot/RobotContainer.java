@@ -30,25 +30,13 @@ public class RobotContainer {
   public final DriveTrain driveTrain;
   private final DriveWithControllerCommand driveWithController;
   public static XboxController controller;
-  private final AutoForwardCommand autoForward;
-  private final AutonomousAndMagazineCommand autoAndMagazine;
-  private final AutonomousSRunsAndShootCommand autonomousSRunsAndShoot;
   private final BouncePathCommand bouncePath;
-  private final AutoSRunMagazineCommand autoShootspeed;
   private final Shooter shooter;
   private final ShootCommand shoot;
   public final Magazine magazine;
   private final ReverseMagazineCommand reverseMagazine;
-  private final RunBothMotorsCommand runBothMotors;
-  private final StopMotorsCommand stopMotors;
-  private final ShootPIDCommand shootPID;
-  private final DriveWithWPCommand driveWithWPCommand;
-  private final LowBeltCommand intakeBall;
-  private final HighBeltCommand runMagazine;
   private final OneBallCommand oneBall;
-  private final AutoAimCommand autoAim;
   private final DriveStraightWithController driveStraightWithController;
-  private final EmptyMagToShooterCommand emptyMag;
   private final HighBeltCommand highbelt;
 
   public RobotContainer() {
@@ -59,8 +47,6 @@ public class RobotContainer {
     driveWithController.addRequirements(driveTrain);
     driveStraightWithController = new DriveStraightWithController(driveTrain);
     driveTrain.setDefaultCommand(driveWithController);
-    driveWithWPCommand = new DriveWithWPCommand(driveTrain);
-    stopMotors = new StopMotorsCommand(driveTrain);
 
     // Controller
     controller = new XboxController(Constants.xboxControllerPort);
@@ -68,26 +54,15 @@ public class RobotContainer {
     // Shooter
     shooter = new Shooter();
     shoot = new ShootCommand(shooter);
-    shootPID = new ShootPIDCommand(shooter);
-    autoAim = new AutoAimCommand(driveTrain);
-
     // Magazine
     magazine = new Magazine();
-    runBothMotors = new RunBothMotorsCommand(magazine);
     reverseMagazine = new ReverseMagazineCommand(magazine);
-    intakeBall = new LowBeltCommand(magazine);
-    runMagazine = new HighBeltCommand(magazine);
     oneBall = new OneBallCommand(magazine);
-    emptyMag = new EmptyMagToShooterCommand(magazine);
     highbelt = new HighBeltCommand(magazine);
 
     
     // Autonomous
-    autoForward = new AutoForwardCommand(driveTrain);
-    autoAndMagazine = new AutonomousAndMagazineCommand(driveTrain.trajectoryGSearch,driveTrain,magazine);
-    autonomousSRunsAndShoot = new AutonomousSRunsAndShootCommand(driveTrain,magazine);
     bouncePath = new BouncePathCommand(driveTrain);
-    autoShootspeed = new  AutoSRunMagazineCommand(driveTrain, shooter, magazine);
 
     // Configure the button bindings
     configureButtonBindings();
