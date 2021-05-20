@@ -7,10 +7,10 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Magazine;
 
-public class OneBallCommand extends CommandBase {
+public class SingulateBallCommand extends CommandBase {
   private final Magazine magazine;
-  /** Creates a new OneBallCommand. */
-  public OneBallCommand(Magazine mag) {
+  /** Creates a new SingulateBallCommand. */
+  public SingulateBallCommand(Magazine mag) {
     magazine = mag;
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(magazine);
@@ -26,7 +26,7 @@ public class OneBallCommand extends CommandBase {
   @Override
   public void execute() {
     magazine.moveLowBelt();
-    magazine.oneBall();
+    magazine.singulateBall();
   }
 
   // Called once the command ends or is interrupted.

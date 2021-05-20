@@ -35,7 +35,7 @@ public class RobotContainer {
   private final ShootCommand shoot;
   public final Magazine magazine;
   private final ReverseMagazineCommand reverseMagazine;
-  private final OneBallCommand oneBall;
+  private final SingulateBallCommand singulateBall;
   private final DriveStraightWithController driveStraightWithController;
   private final HighBeltCommand highbelt;
 
@@ -57,7 +57,7 @@ public class RobotContainer {
     // Magazine
     magazine = new Magazine();
     reverseMagazine = new ReverseMagazineCommand(magazine);
-    oneBall = new OneBallCommand(magazine);
+    singulateBall = new SingulateBallCommand(magazine);
     highbelt = new HighBeltCommand(magazine);
 
     
@@ -85,7 +85,7 @@ public class RobotContainer {
     // new JoystickButton(controller, XboxController.Button.kY.value).whenHeld(runBothMotors);
 
     // Run intake only, on / off with B button press
-    new JoystickButton(controller, XboxController.Button.kB.value).toggleWhenPressed(oneBall.withInterrupt(Magazine::getShooterSensor));
+    new JoystickButton(controller, XboxController.Button.kB.value).toggleWhenPressed(singulateBall.withInterrupt(Magazine::getShooterSensor));
 
     // Run magazine only, active only when A button held for manual singulation
     new JoystickButton(controller, XboxController.Button.kA.value).toggleWhenPressed(shoot);
