@@ -4,7 +4,7 @@
 
 package frc.robot;
 
-// import trex code
+// import Trex code
 import frc.robot.commands.*;
 import frc.robot.subsystems.*;
 import frc.robot.Extensions.*;
@@ -25,7 +25,7 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
  * commands, and button mappings) should be declared here.
  */
 public class RobotContainer {
-  
+
   // The robot's subsystems and commands are defined here...
   public final DriveTrain driveTrain;
   private final DriveWithControllerCommand driveWithController;
@@ -37,7 +37,7 @@ public class RobotContainer {
   private final ReverseMagazineCommand reverseMagazine;
   private final SingulateBallCommand singulateBall;
   private final DriveStraightWithController driveStraightWithController;
-  private final HighBeltCommand highbelt;
+  private final HighBeltCommand highBelt;
 
   public RobotContainer() {
 
@@ -58,9 +58,8 @@ public class RobotContainer {
     magazine = new Magazine();
     reverseMagazine = new ReverseMagazineCommand(magazine);
     singulateBall = new SingulateBallCommand(magazine);
-    highbelt = new HighBeltCommand(magazine);
+    highBelt = new HighBeltCommand(magazine);
 
-    
     // Autonomous
     bouncePath = new BouncePathCommand(driveTrain);
 
@@ -75,17 +74,20 @@ public class RobotContainer {
    * passing it to a {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    // Runs pully + intake to move a ball thru the magazine
-    // new JoystickButton(controller, XboxController.Button.kA.value).whenHeld(runBothMotors);
+    // Runs pulley + intake to move a ball thru the magazine
+    // new JoystickButton(controller,
+    // XboxController.Button.kA.value).whenHeld(runBothMotors);
 
-    // Runs pully + intake to reverse a ball thru the magazine
+    // Runs pulley + intake to reverse a ball thru the magazine
     new JoystickButton(controller, XboxController.Button.kX.value).whenHeld(reverseMagazine);
 
     // Run entire intake and magazine manually while button is held
-    // new JoystickButton(controller, XboxController.Button.kY.value).whenHeld(runBothMotors);
+    // new JoystickButton(controller,
+    // XboxController.Button.kY.value).whenHeld(runBothMotors);
 
     // Run intake only, on / off with B button press
-    new JoystickButton(controller, XboxController.Button.kB.value).toggleWhenPressed(singulateBall.withInterrupt(Magazine::getShooterSensor));
+    new JoystickButton(controller, XboxController.Button.kB.value)
+        .toggleWhenPressed(singulateBall.withInterrupt(Magazine::getShooterSensor));
 
     // Run magazine only, active only when A button held for manual singulation
     new JoystickButton(controller, XboxController.Button.kA.value).toggleWhenPressed(shoot);
@@ -94,24 +96,28 @@ public class RobotContainer {
     // new RightTriggerBool().whileActiveContinuous(shootPID);
 
     // Uses limelight to aim at target when left trigger is pulled
-    new LeftTriggerBool().whileActiveContinuous(highbelt);
+    new LeftTriggerBool().whileActiveContinuous(highBelt);
 
     // Makes sure the robot only goes straight by using right bumper
     new JoystickButton(controller, XboxController.Button.kBumperRight.value).whenHeld(driveStraightWithController);
 
-    // Emptys magazine using left bumper
-    // new JoystickButton(controller, XboxController.Button.kBumperLeft.value).whenHeld(emptyMag.alongWith(shootPID));
+    // Empties magazine using left bumper
+    // new JoystickButton(controller,
+    // XboxController.Button.kBumperLeft.value).whenHeld(emptyMag.alongWith(shootPID));
 
     // Run the magazine + intake for a set time period
-    // At the moment taking this off a button ... we need to figure out how to put this back!
-    // new JoystickButton(controller, XboxController.Button.kY.value).whenPressed(runBothMotors.withTimeout(Constants.intakeTimeOut));
+    // At the moment taking this off a button ... we need to figure out how to put
+    // this back!
+    // new JoystickButton(controller,
+    // XboxController.Button.kY.value).whenPressed(runBothMotors.withTimeout(Constants.intakeTimeOut));
 
     // Runs shootPID when left trigger is pulled
-   // new LeftTriggerBool().whileActiveContinuous(shootPID);
+    // new LeftTriggerBool().whileActiveContinuous(shootPID);
 
     // Run the magazine + intake when the intake sensor sees a ball
-    // new IntakeTrigger().whenActive(runBothMotors.withTimeout(Constants.intakeTimeOut));
-    
+    // new
+    // IntakeTrigger().whenActive(runBothMotors.withTimeout(Constants.intakeTimeOut));
+
     // Not using
     // new Trigger(()->controller.getRawAxis(3)>=0.25).whileActiveContinuous(shoot);
     // new JoystickButton(controller,
@@ -131,28 +137,31 @@ public class RobotContainer {
   public Command getAutonomousCommand() {
 
     // An ExampleCommand will run in autonomous
-    DriveTrain.resetTime(); 
+    DriveTrain.resetTime();
 
     // Simulated Trajectory Command
-    //RamseteCommand ramseteCommand = new RamseteCommand(driveTrain.trajectory, driveTrain::getPosition, new RamseteController(Constants.kRamseteB, Constants.kRamseteZeta), Constants.kDriveKinematics, driveTrain::move, driveTrain);
-    
+    // RamseteCommand ramseteCommand = new RamseteCommand(driveTrain.trajectory,
+    // driveTrain::getPosition, new RamseteController(Constants.kRamseteB,
+    // Constants.kRamseteZeta), Constants.kDriveKinematics, driveTrain::move,
+    // driveTrain);
+
     new RamseteCommand(driveTrain.trajectory, driveTrain::getPose,
         new RamseteController(Constants.kRamseteB, Constants.kRamseteZeta), Constants.kDriveKinematics,
         driveTrain::move, driveTrain);
 
-    // Encoder Position, Encoder Speed, Gyro-Data based Trajectory Command 
-    //(TBD)
+    // Encoder Position, Encoder Speed, Gyro-Data based Trajectory Command
+    // (TBD)
 
-    //Ramsete Autonomous command;
-    //Command autonomousCommand = ramseteCommand; 
+    // Ramsete Autonomous command;
+    // Command autonomousCommand = ramseteCommand;
     Command autonomousCommand = bouncePath;
 
-    //Command autonomousCommand = autoShootspeed;
+    // Command autonomousCommand = autoShootSpeed;
 
-    // Galatic Search Autonomous
-    //Command autonomousCommand = autoAndMagazine;
+    // Galactic Search Autonomous
+    // Command autonomousCommand = autoAndMagazine;
     // Shooter SRuns Autonomous
-    //Command autonomousCommand = autonomousSRunsAndShoot;
+    // Command autonomousCommand = autonomousSRunsAndShoot;
 
     return autonomousCommand;
   }
