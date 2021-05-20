@@ -23,7 +23,7 @@ public class Shooter extends SubsystemBase {
   /** Creates a new Shooter. */
   public Shooter() {
 
-    // initilize the motor
+    // initialize the motor
     shooterMotor = new TalonFX(Constants.shooterMotorID);
     shooterMotor.setInverted(false);
     shooterMotor.configFactoryDefault();
@@ -45,7 +45,7 @@ public class Shooter extends SubsystemBase {
     shooterMotor.configPeakOutputForward(1, Constants.kTimeoutMs);
     shooterMotor.configPeakOutputReverse(-1, Constants.kTimeoutMs);
 
-    // put in the values for the PIDF
+    // put in the values for the PID
     shooterMotor.config_kP(Constants.kPIDLoopIdx, Constants.kGains_Velocity_Shooter.kP, Constants.kTimeoutMs);
     shooterMotor.config_kI(Constants.kPIDLoopIdx, Constants.kGains_Velocity_Shooter.kI, Constants.kTimeoutMs);
     shooterMotor.config_kD(Constants.kPIDLoopIdx, Constants.kGains_Velocity_Shooter.kD, Constants.kTimeoutMs);

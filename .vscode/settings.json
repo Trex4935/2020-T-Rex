@@ -13,5 +13,12 @@
     "**/.settings": true,
     "**/.factorypath": true,
     "**/*~": true
-  }
+  },
+  "cSpell.words": [
+    "Smacna",
+    "endregion",
+    "lvuser",
+    "positionchange",
+    "roborio"
+  ]
 }

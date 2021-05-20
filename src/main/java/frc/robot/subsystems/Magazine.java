@@ -3,7 +3,7 @@
 // the WPILib BSD license file in the root directory of this project.
 
 // Belt drive motor
-// Intake drve motor
+// Intake drive motor
 // Sensors
 
 /// Actions:
@@ -51,13 +51,13 @@ public class Magazine extends SubsystemBase {
   }
 
   /// Intake system consists of two motors
-  /// One drives the highbelt from 25% into the magazine to the shooter
+  /// One drives the highBelt from 25% into the magazine to the shooter
   /// The other drives the low belt from intake port -> 25% point
-  /// The Bend is the tigest point in the magazine run that bends the ball from
+  /// The Bend is the tightest point in the magazine run that bends the ball from
   /// horizontal movement to vertical movement
 
-  /// Designating the belts as HIGHBELT (HB) & LOWBELT (LB)
-  /// Designating the motors as HIGHMOTOR (HM) and LOWMOTOR (LM)
+  /// Designating the belts as highBelt (HB) & lowBelt (LB)
+  /// Designating the motors as highMotor (HM) and lowMotor (LM)
 
   // Move the HB at a constant speed
   public void moveHighBelt() {
@@ -111,11 +111,11 @@ public class Magazine extends SubsystemBase {
 
   // Singulation of the ball when intake mode is turned on
   // Intake mode turns on the LB via the LM
-  public void oneBall() {
+  public void singulateBall() {
     // When the magazine sensor sees a ball run the HB
-    if (getMagazineSensor()){
+    if (getMagazineSensor()) {
       moveHighBelt();
-      //Constants.actualBallCount
+      // Constants.actualBallCount
     }
     // When it no longer sees a ball then it is "in" the magazine so we stop the
     // motor
@@ -123,9 +123,9 @@ public class Magazine extends SubsystemBase {
       stopHighBelt();
     }
   }
-  
+
   public void emptyMagToShooter(boolean atSpeed) {
-    if (atSpeed){
+    if (atSpeed) {
       moveBothBelts();
     } else {
       stopBothBelts();

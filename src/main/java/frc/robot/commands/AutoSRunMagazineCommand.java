@@ -22,7 +22,7 @@ public class AutoSRunMagazineCommand extends SequentialCommandGroup {
     //replace dt::getPose with driveTrain::getPosition to use simulated encoder and gyro data for simulation and debugging
     addCommands(
         new AutonomousSRunsAndShootCommand(dt,mag),
-        new OneBallCommand(mag),
+        new SingulateBallCommand(mag),
         new ShootCommand(shoot)
       );
   }

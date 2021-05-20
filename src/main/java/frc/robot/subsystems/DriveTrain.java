@@ -116,53 +116,7 @@ public class DriveTrain extends SubsystemBase {
 
     // Create a voltage constraint to ensure we don't accelerate too fast
     var autoVoltageConstraint = new DifferentialDriveVoltageConstraint(new SimpleMotorFeedforward(Constants.ksVolts,
-        Constants.kvVoltSecondsPerMeter, Constants.kaVoltSecondsSquaredPerMeter), Constants.kDriveKinematics, 10);
-
-    // Create config for trajectory
-    // TrajectoryConfig config = new TrajectoryConfig(Constants.kMaxSpeedMetersPerSecond, Constants.kMaxAccelerationMetersPerSecondSquared)
-    //         // Add kinematics to ensure max speed is actually obeyed
-    //         .setKinematics(Constants.kDriveKinematics)
-    //         // Apply the voltage constraint
-    //         .addConstraint(autoVoltageConstraint);
-
-    // An example trajectory to follow. All units in meters.
-    // trajectory = TrajectoryGenerator.generateTrajectory(
-    // // Start at the origin facing the +X direction
-    // new Pose2d(0, 0, new Rotation2d(0)),
-    // // Pass through these two interior waypoints, making an 's' curve path
-    // List.of(
-    // new Translation2d(1, 1),
-    // new Translation2d(2, -1)
-    // ),
-    // // End 3 meters straight ahead of where we started, facing forward
-    // new Pose2d(3, 0, new Rotation2d(0)),
-    // // Pass config
-    // config
-    // );
-
-    // Doc on how to access the file via the Robo Rio
-    // https://docs.wpilib.org/en/stable/docs/software/wpilib-tools/pathweaver/integrating-robot-program.html
-    //String trajectoryJSONSim = Constants.pathSim + "Slalom.wpilib.json";
-    String trajectoryJSONRobot = Constants.pathRobot + "Bounce27.1.wpilib.json";//SLOWBarrelRacing.wpilib.json
-    trajectory = TrajectoryContainer.makeTrajectory(trajectoryJSONRobot);
-    //Autonomous Trajectory
-      // Galactic search 
-    trajectoryGSearch = TrajectoryContainer.makeTrajectory(Constants.pathRobot + "GSearch.wpilib.json");
-      // Auto Nav
-    trajectorySlalom = TrajectoryContainer.makeTrajectory(Constants.pathRobot + "SlowSlalomReal3.27.wpilib.json");
-    trajectoryBarrelRacing = TrajectoryContainer.makeTrajectory(Constants.pathRobot + "SLOWBarrelRacingReal27.wpilib.json");
-    trajectoryBounce = TrajectoryContainer.makeTrajectory(Constants.pathRobot + "Bounce27.4.wpilib.json");
-      // Shooter Trow
-    trajectoryShootTrow = TrajectoryContainer.makeTrajectory(Constants.pathRobot + "Slalom.wpilib.json");
-    trajectoryLineForward = TrajectoryContainer.makeTrajectory(Constants.pathRobot + "Straight.wpilib.json");
-    trajectoryLineBackward = TrajectoryContainer.makeTrajectory(Constants.pathRobot + "Backward.wpilib.json");
-      // Bounce Path      
-    trajectoryBounce1 = TrajectoryContainer.makeTrajectory(Constants.pathRobot + "Bounce27.1.wpilib.json");
-    trajectoryBounce2 = TrajectoryContainer.makeTrajectory(Constants.pathRobot + "Bounce27.2.wpilib.json");
-    trajectoryBounce3 = TrajectoryContainer.makeTrajectory(Constants.pathRobot + "Bounce27.3.wpilib.json");
-    trajectoryBounce4 = TrajectoryContainer.makeTrajectory(Constants.pathRobot + "Bounce27.4.wpilib.json");
-    time = 0.0;
-  }
+        Constants.kvVoltSecondsPerMeter, Constants.kaVoltSecondsSquaredPerMeter), Constants.kDriveKinematics, 10);}
 
   @Override
   public void periodic() {
@@ -171,21 +125,7 @@ public class DriveTrain extends SubsystemBase {
         ticksToPosition(leftFront.getSelectedSensorPosition(), Constants.wheelDiameter, Constants.driveTrainGearRatio),
         ticksToPosition(-rightFront.getSelectedSensorPosition(), Constants.wheelDiameter,
             Constants.driveTrainGearRatio));
-     //System.out.println(leftFront.getSelectedSensorPosition());
-     //System.out.println(rightFront.getSelectedSensorPosition());
-    // System.out.println(ahrs.getRotation2d());
-    //System.out.println(odometry.getPoseMeters());
-    // System.out.println(odometry.update(ahrs.getRotation2d(),
-    // ticksToPosition(leftFront.getSelectedSensorPosition(),
-    // Constants.wheelDiameter, Constants.driveTrainGearRatio) ,
-    // ticksToPosition(rightFront.getSelectedSensorPosition(),
-    // Constants.wheelDiameter, Constants.driveTrainGearRatio)));
-    //System.out.println(odometry);
-    //System.out.println(getGyroAngle());
-    // System.out.println(ticksToPosition(rightFront.getSelectedSensorPosition(),
-     //Constants.wheelDiameter, Constants.driveTrainGearRatio));
-    // System.out.println(ticksToPosition(leftFront.getSelectedSensorPosition(),
-    // Constants.wheelDiameter, Constants.driveTrainGearRatio));
+     
     driveEncoders.SetDriveEncoders(leftFront.getSelectedSensorPosition(), leftRear.getSelectedSensorPosition(),
         rightFront.getSelectedSensorPosition(), rightRear.getSelectedSensorPosition());
   }
@@ -226,7 +166,6 @@ public void driveStraitWithController(XboxController controller,double speedLimi
 
   public void resetGyro(){
     ahrs.reset();
-    //ahrs.zeroYaw();
   }
 
   // Method to just stop the drive
@@ -236,8 +175,8 @@ public void driveStraitWithController(XboxController controller,double speedLimi
 
   // Print out way points
   public void getWP(double time) {
-    // System.out.println(time);
-    // System.out.println(trajectory.sample(time));
+    System.out.println(time);
+    System.out.println(trajectory.sample(time));
   }
 
   public Pose2d getPosition() {
@@ -256,7 +195,6 @@ public void driveStraitWithController(XboxController controller,double speedLimi
                                                                                                            // *WheelRatio
     leftSide.setVoltage((RightSpeed / Constants.kvVoltSecondsPerMeter) * Constants.autoCalibrate * (1)); // Or 12
     drive.feed();
-    // System.out.println(RightSpeed);
   }
 
   // Takes in speed setpoints,convert them to volts and drive robot
@@ -277,7 +215,6 @@ public void driveStraitWithController(XboxController controller,double speedLimi
 
   public Pose2d getPose() {
     Pose2d temp = odometry.getPoseMeters();
-   // System.out.println(temp);
     return temp;
   }
 
@@ -289,14 +226,14 @@ public void driveStraitWithController(XboxController controller,double speedLimi
     double distanceTravel = nbTurnWheel * Math.PI * wheelDiameter;
     return distanceTravel;
   }
-
-  private int velocityToNativeUnits(double velocityMetersPerSecond, double wheelDiameter, double gearRatio) {
-    double wheelRotationsPerSecond = velocityMetersPerSecond / (Math.PI * wheelDiameter);
-    double motorRotationsPerSecond = wheelRotationsPerSecond * gearRatio;
-    double motorRotationsPer100ms = motorRotationsPerSecond / Constants.k100msPerSecond;
-    int sensorTicksPer100ms = (int) (motorRotationsPer100ms * Constants.encoderTicksPerTurn);
-    return sensorTicksPer100ms;
-  } 
+        // calculating motor + wheel rotations
+  //private int velocityToNativeUnits(double velocityMetersPerSecond, double wheelDiameter, double gearRatio) {
+    //double wheelRotationsPerSecond = velocityMetersPerSecond / (Math.PI * wheelDiameter);
+    //double motorRotationsPerSecond = wheelRotationsPerSecond * gearRatio;
+    //double motorRotationsPer100ms = motorRotationsPerSecond / Constants.k100msPerSecond;
+    //int sensorTicksPer100ms = (int) (motorRotationsPer100ms * Constants.encoderTicksPerTurn);
+    //return sensorTicksPer100ms;
+  //} 
 
   private double NativeUnitsToVelocity(double sensorTicksPer100ms, double wheelDiameter, double gearRatio) {
     double motorRotationsPer100ms = (double) (sensorTicksPer100ms / Constants.encoderTicksPerTurn);
@@ -337,8 +274,6 @@ public void driveStraitWithController(XboxController controller,double speedLimi
     } else {
       rightspeed = rightspeed * -1;
     }
-
-    
 
   }
 
