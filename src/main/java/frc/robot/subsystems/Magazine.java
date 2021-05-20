@@ -113,9 +113,9 @@ public class Magazine extends SubsystemBase {
   // Intake mode turns on the LB via the LM
   public void singulateBall() {
     // When the magazine sensor sees a ball run the HB
-    if (getMagazineSensor()){
+    if (getMagazineSensor()) {
       moveHighBelt();
-      //Constants.actualBallCount
+      // Constants.actualBallCount
     }
     // When it no longer sees a ball then it is "in" the magazine so we stop the
     // motor
@@ -123,9 +123,9 @@ public class Magazine extends SubsystemBase {
       stopHighBelt();
     }
   }
-  
+
   public void emptyMagToShooter(boolean atSpeed) {
-    if (atSpeed){
+    if (atSpeed) {
       moveBothBelts();
     } else {
       stopBothBelts();
