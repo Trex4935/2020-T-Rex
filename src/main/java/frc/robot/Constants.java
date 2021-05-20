@@ -38,7 +38,7 @@ public final class Constants {
     public static final int shooterMotorID = 21;
 
     // Elevator Motors
-    // Not currently implemented
+    public static final int elevatorMotorCanID = 0;
     // endregion
 
     // region Magazine
@@ -157,6 +157,7 @@ public final class Constants {
     // Path Strings
     public static final String pathSim = "..\\.\\deploy\\paths\\";
     public static final String pathRobot = "/home/lvuser/deploy/paths/";
+	
 
     // endregion
 
