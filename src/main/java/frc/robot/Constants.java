@@ -161,4 +161,9 @@ public final class Constants {
 
     // endregion
 
+    // region Elevator
+    // ================================
+    public static final double elevatorMotorSpeed = 0.4;
+
+    // endregion
 }
