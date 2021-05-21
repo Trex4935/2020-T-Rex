@@ -20,7 +20,7 @@ import edu.wpi.first.wpilibj.trajectory.TrajectoryConfig;
 import edu.wpi.first.wpilibj.trajectory.constraint.DifferentialDriveVoltageConstraint;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
-import frc.robot.TrajectoryContainer;
+import frc.robot.TrajectoryRepo;
 import frc.robot.Extensions.Dashboard_Outputs;
 import edu.wpi.first.wpilibj.SPI;
 import frc.robot.Extensions.DriveEncoders;
@@ -48,20 +48,6 @@ public class DriveTrain extends SubsystemBase {
 
   // Drive Type
   Dashboard_Outputs dashOut;
-
-  // Trajectory
-  public Trajectory trajectory;
-  public Trajectory trajectoryGSearch;
-  public Trajectory trajectorySlalom;
-  public Trajectory trajectoryBarrelRacing;
-  public Trajectory trajectoryBounce;
-  public Trajectory trajectoryShootTrow;  
-  public Trajectory trajectoryLineForward;
-  public Trajectory trajectoryLineBackward;
-  public Trajectory trajectoryBounce1;
-  public Trajectory trajectoryBounce2;
-  public Trajectory trajectoryBounce3;
-  public Trajectory trajectoryBounce4;
 
   // Internal time
   public static double time;
@@ -176,15 +162,15 @@ public void driveStraitWithController(XboxController controller,double speedLimi
   // Print out way points
   public void getWP(double time) {
     System.out.println(time);
-    System.out.println(trajectory.sample(time));
+    System.out.println(TrajectoryRepo.trajectory.sample(time));
   }
 
   public Pose2d getPosition() {
     time += 0.02;
-    System.out.println(trajectory.sample(time).poseMeters);
-    System.out.println(trajectory.sample(time).velocityMetersPerSecond);
+    System.out.println(TrajectoryRepo.trajectory.sample(time).poseMeters);
+    System.out.println(TrajectoryRepo.trajectory.sample(time).velocityMetersPerSecond);
     Pose2d temp = getPose();
-    return trajectory.sample(time).poseMeters;
+    return TrajectoryRepo.trajectory.sample(time).poseMeters;
   }
 
   // Takes in speed setpoints,convert them to volts and drive robot
