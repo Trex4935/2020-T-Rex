@@ -30,7 +30,7 @@ public class AutonomousSRunsAndShootCommand extends SequentialCommandGroup  {
       new RamseteCommand(TrajectoryRepo.trajectoryLineBackward, dt::getPose, new RamseteController(Constants.kRamseteB, Constants.kRamseteZeta), Constants.kDriveKinematics, dt::move, dt),
       new HighBeltCommand(mag).withTimeout(3),
       new RamseteCommand(TrajectoryRepo.trajectoryLineForward, dt::getPose, new RamseteController(Constants.kRamseteB, Constants.kRamseteZeta), Constants.kDriveKinematics, dt::move, dt),      
-      new RamseteCommand(dt.trajectoryLineBackward, dt::getPose, new RamseteController(Constants.kRamseteB, Constants.kRamseteZeta), Constants.kDriveKinematics, dt::move, dt),
+      new RamseteCommand(TrajectoryRepo.trajectoryLineBackward, dt::getPose, new RamseteController(Constants.kRamseteB, Constants.kRamseteZeta), Constants.kDriveKinematics, dt::move, dt),
       new HighBeltCommand(mag).withTimeout(3),
       new RamseteCommand(TrajectoryRepo.trajectoryLineForward, dt::getPose, new RamseteController(Constants.kRamseteB, Constants.kRamseteZeta), Constants.kDriveKinematics, dt::move, dt),
       new RamseteCommand(TrajectoryRepo.trajectoryLineBackward, dt::getPose, new RamseteController(Constants.kRamseteB, Constants.kRamseteZeta), Constants.kDriveKinematics, dt::move, dt),
