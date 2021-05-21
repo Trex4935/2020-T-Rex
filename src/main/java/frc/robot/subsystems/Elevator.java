@@ -30,6 +30,21 @@ public class Elevator extends SubsystemBase {
 
   }
 
+  //Move the elevator at constant speed
+  public void moveElevator() {
+    elevatorMotor.set(Constants.elevatorMotorSpeed);
+  }
+
+  // Stop the elevator
+  public void stopElevator() {
+    elevatorMotor.stopMotor();
+  }
+
+  // Reverse elevator direction and make it go down
+  public void elevatorDown() {
+    elevatorMotor.set(-Constants.elevatorMotorSpeed);
+  }
+
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
