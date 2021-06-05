@@ -38,6 +38,7 @@ public class RobotContainer {
   private final SingulateBallCommand singulateBall;
   private final DriveStraightWithController driveStraightWithController;
   private final HighBeltCommand highBelt;
+  
 
   public RobotContainer() {
 
@@ -101,6 +102,10 @@ public class RobotContainer {
     // Makes sure the robot only goes straight by using right bumper
     new JoystickButton(controller, XboxController.Button.kBumperRight.value).whenHeld(driveStraightWithController);
 
+    // Using ElevatorDown() command mapping to the back button on the controller.
+    new JoystickButton(controller, XboxController.Button.kBack.value).toggleWhenPressed(ElevatorDown());
+
+
     // Empties magazine using left bumper
     // new JoystickButton(controller,
     // XboxController.Button.kBumperLeft.value).whenHeld(emptyMag.alongWith(shootPID));
@@ -127,6 +132,10 @@ public class RobotContainer {
     // new JoystickButton(controller, XboxController.Button.kA.value).whenHeld(new
     // ParallelCommandGroup(intakeBall,spitBall));
 
+  }
+
+  public Command ElevatorDown() {
+    elevatorMotor.set(-Constants.elevatorMotorSpeed);
   }
 
   /**
