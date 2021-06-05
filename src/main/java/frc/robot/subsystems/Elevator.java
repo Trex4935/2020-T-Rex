@@ -31,8 +31,18 @@ public class Elevator extends SubsystemBase {
   }
 
   //Move the elevator at constant speed
-  public void moveElevator() {
+  public void MoveElevatorUp() {
     elevatorMotor.set(Constants.elevatorMotorSpeed);
+  }
+
+  // Moves the elevator up or down based off of the controller inputs you press (back or start)
+
+  public void MoveElevator(boolean up){
+    if (up) {
+      elevatorMotor.set(Constants.elevatorMotorSpeed);
+    } else {
+      elevatorMotor.set(-Constants.elevatorMotorSpeed);
+    }
   }
 
   // Stop the elevator
@@ -41,7 +51,7 @@ public class Elevator extends SubsystemBase {
   }
 
   // Reverse elevator direction and make it go down
-  public void elevatorDown() {
+  public void MoveElevatorDown() {
     elevatorMotor.set(-Constants.elevatorMotorSpeed);
   }
 
