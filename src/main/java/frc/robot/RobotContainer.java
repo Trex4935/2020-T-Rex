@@ -67,13 +67,8 @@ public class RobotContainer {
     configureButtonBindings();
   }
 
-  /**
-   * Use this method to define your button->command mappings. Buttons can be
-   * created by instantiating a {@link GenericHID} or one of its subclasses
-   * ({@link edu.wpi.first.wpilibj.Joystick} or {@link XboxController}), and then
-   * passing it to a {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
-   */
   private void configureButtonBindings() {
+
     // Runs pulley + intake to move a ball thru the magazine
     // new JoystickButton(controller,
     // XboxController.Button.kA.value).whenHeld(runBothMotors);
@@ -101,31 +96,32 @@ public class RobotContainer {
     // Makes sure the robot only goes straight by using right bumper
     new JoystickButton(controller, XboxController.Button.kBumperRight.value).whenHeld(driveStraightWithController);
 
-    // Empties magazine using left bumper
-    // new JoystickButton(controller,
-    // XboxController.Button.kBumperLeft.value).whenHeld(emptyMag.alongWith(shootPID));
-
-    // Run the magazine + intake for a set time period
-    // At the moment taking this off a button ... we need to figure out how to put
-    // this back!
-    // new JoystickButton(controller,
-    // XboxController.Button.kY.value).whenPressed(runBothMotors.withTimeout(Constants.intakeTimeOut));
-
-    // Runs shootPID when left trigger is pulled
-    // new LeftTriggerBool().whileActiveContinuous(shootPID);
-
-    // Run the magazine + intake when the intake sensor sees a ball
-    // new
-    // IntakeTrigger().whenActive(runBothMotors.withTimeout(Constants.intakeTimeOut));
-
-    // Not using
-    // new Trigger(()->controller.getRawAxis(3)>=0.25).whileActiveContinuous(shoot);
-    // new JoystickButton(controller,
-    // XboxController.Button.kA.value).whenHeld(intakeBall);
-    // new JoystickButton(controller,
-    // XboxController.Button.kX.value).whenHeld(spitBall);
-    // new JoystickButton(controller, XboxController.Button.kA.value).whenHeld(new
-    // ParallelCommandGroup(intakeBall,spitBall));
+    /// CONTROLLER MAP
+    //
+    // A -  Turn on Shooter
+    // B -  Turn on Intake
+    // X -  Reverse Magazine
+    // Y -
+    //
+    // LT - When Held Run High Belt
+    // RT -
+    //
+    // LB -
+    // RB - Hold to drive straight
+    //
+    // LStick - Control left side drive train
+    // RStick - Control right side drive train
+    //
+    // Start -
+    // Select -
+    //
+    // D-Pad
+    // Up -
+    // Right -
+    // Down -
+    // Left -
+    //
+    /// END MAP
 
   }
 
@@ -166,3 +162,31 @@ public class RobotContainer {
     return autonomousCommand;
   }
 }
+
+/// Code from the controlls for possible later use
+
+// Empties magazine using left bumper
+// new JoystickButton(controller,
+// XboxController.Button.kBumperLeft.value).whenHeld(emptyMag.alongWith(shootPID));
+
+// Run the magazine + intake for a set time period
+// At the moment taking this off a button ... we need to figure out how to put
+// this back!
+// new JoystickButton(controller,
+// XboxController.Button.kY.value).whenPressed(runBothMotors.withTimeout(Constants.intakeTimeOut));
+
+// Runs shootPID when left trigger is pulled
+// new LeftTriggerBool().whileActiveContinuous(shootPID);
+
+// Run the magazine + intake when the intake sensor sees a ball
+// new
+// IntakeTrigger().whenActive(runBothMotors.withTimeout(Constants.intakeTimeOut));
+
+// Not using
+// new Trigger(()->controller.getRawAxis(3)>=0.25).whileActiveContinuous(shoot);
+// new JoystickButton(controller,
+// XboxController.Button.kA.value).whenHeld(intakeBall);
+// new JoystickButton(controller,
+// XboxController.Button.kX.value).whenHeld(spitBall);
+// new JoystickButton(controller, XboxController.Button.kA.value).whenHeld(new
+// ParallelCommandGroup(intakeBall,spitBall));
