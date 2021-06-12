@@ -38,7 +38,11 @@ public final class Constants {
     public static final int shooterMotorID = 21;
 
     // Elevator Motors
-    public static final int elevatorMotorCanID = 0;
+    public static final int elevatorMotorCanID = 5;
+
+    // Elevator Solenoid
+    public static final int elevatorSolenoidCanID = 4;
+
     // endregion
 
     // region Magazine
