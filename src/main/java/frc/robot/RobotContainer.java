@@ -67,6 +67,7 @@ public class RobotContainer {
     configureButtonBindings();
   }
 
+  // Setup controller bindings
   private void configureButtonBindings() {
 
     // Runs pulley + intake to move a ball thru the magazine
