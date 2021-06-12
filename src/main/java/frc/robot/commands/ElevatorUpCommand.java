@@ -25,12 +25,14 @@ public class ElevatorUpCommand extends CommandBase {
   @Override
   public void execute() {
     elevator.moveElevatorUp();
+    elevator.openSolenoid();
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
     elevator.stopElevator();
+    elevator.stopSolenoid();
   }
   // Returns true when the command should end.
   @Override

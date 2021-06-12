@@ -31,7 +31,7 @@ public final class Constants {
     public static final int rightRearCanID = 14;
 
     // Magazine motors
-    public static final int beltMotorCanID = 6;
+    public static final int beltMotorCanID = 3;
     public static final int intakeMotorCanID = 2;
 
     // Shooter motors
@@ -167,7 +167,7 @@ public final class Constants {
 
     // region Elevator
     // ================================
-    public static final double elevatorMotorSpeed = 0.4;
+    public static final double elevatorMotorSpeed = 0.3;
 
     // endregion
 }
