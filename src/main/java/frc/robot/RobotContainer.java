@@ -10,7 +10,6 @@ import frc.robot.subsystems.*;
 import frc.robot.Extensions.*;
 
 // import needed WPI methods
-import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.controller.RamseteController;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -27,13 +26,17 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 public class RobotContainer {
 
   // The robot's subsystems and commands are defined here...
+
+  // Subsystems
   public final DriveTrain driveTrain;
-  private final DriveWithControllerCommand driveWithController;
-  public static XboxController controller;
-  private final BouncePathCommand bouncePath;
-  private final Shooter shooter;
-  private final ShootCommand shoot;
   public final Magazine magazine;
+  private final Shooter shooter;
+  public static XboxController controller;
+
+  // Commands
+  private final DriveWithControllerCommand driveWithController;
+  private final BouncePathCommand bouncePath;
+  private final ShootCommand shoot;
   private final ReverseMagazineCommand reverseMagazine;
   private final SingulateBallCommand singulateBall;
   private final DriveStraightWithController driveStraightWithController;
@@ -54,6 +57,7 @@ public class RobotContainer {
     // Shooter
     shooter = new Shooter();
     shoot = new ShootCommand(shooter);
+
     // Magazine
     magazine = new Magazine();
     reverseMagazine = new ReverseMagazineCommand(magazine);
@@ -65,28 +69,21 @@ public class RobotContainer {
 
     // Configure the button bindings
     configureButtonBindings();
+
   }
 
   // Setup controller bindings
   private void configureButtonBindings() {
 
-    // Runs pulley + intake to move a ball thru the magazine
-    // new JoystickButton(controller,
-    // XboxController.Button.kA.value).whenHeld(runBothMotors);
+    // Turn on the shooter when toggles
+    new JoystickButton(controller, XboxController.Button.kA.value).toggleWhenPressed(shoot);
 
-    // Runs pulley + intake to reverse a ball thru the magazine
-    new JoystickButton(controller, XboxController.Button.kX.value).whenHeld(reverseMagazine);
-
-    // Run entire intake and magazine manually while button is held
-    // new JoystickButton(controller,
-    // XboxController.Button.kY.value).whenHeld(runBothMotors);
-
-    // Run intake only, on / off with B button press
+    // Run intake ... stops when the shoot sensor is triggered
     new JoystickButton(controller, XboxController.Button.kB.value)
         .toggleWhenPressed(singulateBall.withInterrupt(Magazine::getShooterSensor));
 
-    // Run magazine only, active only when A button held for manual singulation
-    new JoystickButton(controller, XboxController.Button.kA.value).toggleWhenPressed(shoot);
+    // Runs pulley + intake to reverse a ball thru the magazine
+    new JoystickButton(controller, XboxController.Button.kX.value).whenHeld(reverseMagazine);
 
     // Runs shooter motor when the right trigger is pulled
     // new RightTriggerBool().whileActiveContinuous(shootPID);
@@ -99,9 +96,9 @@ public class RobotContainer {
 
     /// CONTROLLER MAP
     //
-    // A -  Turn on Shooter
-    // B -  Turn on Intake
-    // X -  Reverse Magazine
+    // A - Turn on Shooter
+    // B - Turn on Intake
+    // X - Reverse Magazine
     // Y -
     //
     // LT - When Held Run High Belt
