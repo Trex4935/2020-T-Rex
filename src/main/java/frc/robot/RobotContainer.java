@@ -16,6 +16,7 @@ import edu.wpi.first.wpilibj.controller.RamseteController;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.RamseteCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+import edu.wpi.first.wpilibj2.command.button.POVButton;
 
 /**
  * This class is where the bulk of the robot should be declared. Since
@@ -38,7 +39,11 @@ public class RobotContainer {
   private final SingulateBallCommand singulateBall;
   private final DriveStraightWithController driveStraightWithController;
   private final HighBeltCommand highBelt;
-  
+  private final Elevator elevator;
+  private final ElevatorUpCommand elevatorup;
+  private final ElevatorDownCommand elevatordown;
+  private final ElevSolenoidCommand elevatorsolenoid;
+
 
   public RobotContainer() {
 
@@ -63,6 +68,13 @@ public class RobotContainer {
 
     // Autonomous
     bouncePath = new BouncePathCommand(driveTrain);
+
+    // Elevator
+    elevator = new Elevator();
+    elevatorup = new ElevatorUpCommand(elevator);
+    elevatordown = new ElevatorDownCommand(elevator);
+    elevatorsolenoid = new ElevSolenoidCommand(elevator);
+
 
     // Configure the button bindings
     configureButtonBindings();
@@ -102,9 +114,14 @@ public class RobotContainer {
     // Makes sure the robot only goes straight by using right bumper
     new JoystickButton(controller, XboxController.Button.kBumperRight.value).whenHeld(driveStraightWithController);
 
-    // Using ElevatorDown() command mapping to the back button on the controller.
-    new JoystickButton(controller, XboxController.Button.kBack.value).toggleWhenPressed(ElevatorDown());
+    // Using ElevatorUp() command mapping to the back button on the controller.
+    new  POVButton(controller, 0).whileHeld(elevatorup);
 
+    // Using ElevatorDown() command mapping to the back button on the controller.
+    new  POVButton(controller, 180).whileHeld(elevatordown);
+
+    // Open the solenoid on elevator
+    new JoystickButton(controller, XboxController.Button.kBack.value).toggleWhenPressed(elevatorsolenoid);
 
     // Empties magazine using left bumper
     // new JoystickButton(controller,
@@ -134,9 +151,7 @@ public class RobotContainer {
 
   }
 
-  public Command ElevatorDown() {
-    elevatorMotor.set(-Constants.elevatorMotorSpeed);
-  }
+
 
   /**
    * Use this to pass the autonomous command to the main {@link Robot} class.
