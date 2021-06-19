@@ -31,14 +31,18 @@ public final class Constants {
     public static final int rightRearCanID = 14;
 
     // Magazine motors
-    public static final int beltMotorCanID = 6;
+    public static final int beltMotorCanID = 3;
     public static final int intakeMotorCanID = 2;
 
     // Shooter motors
     public static final int shooterMotorID = 21;
 
     // Elevator Motors
-    public static final int elevatorMotorCanID = 0;
+    public static final int elevatorMotorCanID = 5;
+
+    // Elevator Solenoid
+    public static final int elevatorSolenoidCanID = 4;
+
     // endregion
 
     // region Magazine
@@ -163,7 +167,7 @@ public final class Constants {
 
     // region Elevator
     // ================================
-    public static final double elevatorMotorSpeed = 0.4;
+    public static final double elevatorMotorSpeed = 0.3;
 
     // endregion
 }
