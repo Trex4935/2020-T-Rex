@@ -46,6 +46,7 @@ public class RobotContainer {
   private final ElevatorUpCommand elevatorup;
   private final ElevatorDownCommand elevatordown;
   private final ElevSolenoidCommand elevatorsolenoid;
+  private final ShootPIDCommand shootPID;
 
 
   public RobotContainer() {
@@ -63,6 +64,7 @@ public class RobotContainer {
     // Shooter
     shooter = new Shooter();
     shoot = new ShootCommand(shooter);
+    shootPID = new ShootPIDCommand(shooter);
 
     // Magazine
     magazine = new Magazine();
@@ -98,8 +100,8 @@ public class RobotContainer {
     // Runs pulley + intake to reverse a ball thru the magazine
     new JoystickButton(controller, XboxController.Button.kX.value).whenHeld(reverseMagazine);
 
-    // Runs shooter motor when the right trigger is pulled
-    // new RightTriggerBool().whileActiveContinuous(shootPID);
+    // Toggle shooter PID
+    new JoystickButton(controller, XboxController.Button.kY.value).toggleWhenPressed(shootPID);
 
     // Uses limelight to aim at target when left trigger is pulled
     new LeftTriggerBool().whileActiveContinuous(highBelt);
