@@ -25,10 +25,10 @@ public final class Constants {
     // ================================
 
     // Drivetrain motors
-    public static final int leftFrontCanID = 11;
-    public static final int rightFrontCanID = 12;
-    public static final int leftRearCanID = 13;
-    public static final int rightRearCanID = 14;
+    public static final int leftFrontCanID = 12;
+    public static final int rightFrontCanID = 11;
+    public static final int leftRearCanID = 14;
+    public static final int rightRearCanID = 13;
 
     // Magazine motors
     public static final int beltMotorCanID = 3;
@@ -49,8 +49,8 @@ public final class Constants {
     // ================================
 
     // Magazine motor speed
-    public static final double beltMotorSpeed = 0.65;
-    public static final double intakeMotorSpeed = 0.6;
+    public static final double beltMotorSpeed = 0.6;
+    public static final double intakeMotorSpeed = 0.5;
 
     public static int ballCount = 0;
     public static final int actualBallCount = ballCount++;
@@ -94,7 +94,7 @@ public final class Constants {
     // ================================
 
     // Shooter motor speed
-    public static final double shooterSpeed = 0.75;
+    public static final double shooterSpeed = 0.3;
     public static final int rtTrigger = 3;
     public static final int ltTrigger = 2;
     public static boolean atSpeed = false;
