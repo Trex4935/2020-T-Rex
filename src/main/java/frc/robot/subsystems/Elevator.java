@@ -21,9 +21,6 @@ public class Elevator extends SubsystemBase {
   ///Solenoid
   public static WPI_TalonSRX elevatorSolenoid;
 
-  /// Declaring a timer object
-  private Timer timer;
-
   /// Motor
   public static WPI_TalonSRX elevatorMotor;
 
