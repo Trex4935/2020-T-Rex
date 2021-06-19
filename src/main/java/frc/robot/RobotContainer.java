@@ -123,7 +123,7 @@ public class RobotContainer {
     // X - Reverse Magazine
     // Y -
     //
-    // LT - When Held Run High Belt
+    // LT - When Held Run High Belt / Shoot all the balls at once
     // RT -
     //
     // LB -
