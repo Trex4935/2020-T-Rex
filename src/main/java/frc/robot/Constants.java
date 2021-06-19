@@ -49,8 +49,8 @@ public final class Constants {
     // ================================
 
     // Magazine motor speed
-    public static final double beltMotorSpeed = 0.65;
-    public static final double intakeMotorSpeed = 0.6;
+    public static final double beltMotorSpeed = 0.6;
+    public static final double intakeMotorSpeed = 0.5;
 
     public static int ballCount = 0;
     public static final int actualBallCount = ballCount++;
@@ -94,7 +94,7 @@ public final class Constants {
     // ================================
 
     // Shooter motor speed
-    public static final double shooterSpeed = 0.75;
+    public static final double shooterSpeed = 0.3;
     public static final int rtTrigger = 3;
     public static final int ltTrigger = 2;
     public static boolean atSpeed = false;
