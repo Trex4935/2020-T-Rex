@@ -25,10 +25,10 @@ public final class Constants {
     // ================================
 
     // Drivetrain motors
-    public static final int leftFrontCanID = 11;
-    public static final int rightFrontCanID = 12;
-    public static final int leftRearCanID = 13;
-    public static final int rightRearCanID = 14;
+    public static final int leftFrontCanID = 12;
+    public static final int rightFrontCanID = 11;
+    public static final int leftRearCanID = 14;
+    public static final int rightRearCanID = 13;
 
     // Magazine motors
     public static final int beltMotorCanID = 3;
