@@ -56,7 +56,6 @@ public final class Constants {
     public static final int actualBallCount = ballCount++;
 
     // Smacna DIO location on the roborio
-    // public static final int intakeSensorDIO = 1;
     public static final int magazineSensorDIO = 2;
     public static final int shooterSensorDIO = 3;
 
