@@ -9,6 +9,8 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
+import edu.wpi.first.wpilibj.Timer;
+
 public class Elevator extends SubsystemBase {
 
   /* Elevator Components:
@@ -19,6 +21,8 @@ public class Elevator extends SubsystemBase {
   ///Solenoid
   public static WPI_TalonSRX elevatorSolenoid;
 
+  /// Declaring a timer object
+  private Timer timer;
 
   /// Motor
   public static WPI_TalonSRX elevatorMotor;
@@ -35,12 +39,18 @@ public class Elevator extends SubsystemBase {
     // initialize the solenoid
     elevatorSolenoid = new WPI_TalonSRX(Constants.elevatorSolenoidCanID);
     elevatorSolenoid.setInverted(false);
+
   }
+
 
   //Move the elevator at constant speed
   public void moveElevatorUp() {
-    elevatorMotor.set(Constants.elevatorMotorSpeed);
-  }
+    if (Timer.getMatchTime() >= 45) {
+      
+    } else {
+      elevatorMotor.set(Constants.elevatorMotorSpeed);
+    }}
+  
   //Move the solenoid at constant speed
   public void openSolenoid() {
     elevatorSolenoid.set(1);
@@ -81,3 +91,4 @@ public class Elevator extends SubsystemBase {
   public void lockElevator(){}
 
 }
+
