@@ -46,6 +46,7 @@ public class RobotContainer {
   private final ElevatorUpCommand elevatorup;
   private final ElevatorDownCommand elevatordown;
   private final ElevSolenoidCommand elevatorsolenoid;
+  private final AutoTripleMagazineCommand autonomousTripleShoot;
 
 
   public RobotContainer() {
@@ -72,6 +73,7 @@ public class RobotContainer {
 
     // Autonomous
     bouncePath = new BouncePathCommand(driveTrain);
+    autonomousTripleShoot = new AutoTripleMagazineCommand(driveTrain, shooter, magazine);
 
     // Elevator
     elevator = new Elevator();
@@ -199,7 +201,7 @@ public class RobotContainer {
 
     // Ramsete Autonomous command;
     // Command autonomousCommand = ramseteCommand;
-    Command autonomousCommand = bouncePath;
+    //Command autonomousCommand = bouncePath;
 
     // Command autonomousCommand = autoShootSpeed;
 
@@ -207,6 +209,7 @@ public class RobotContainer {
     // Command autonomousCommand = autoAndMagazine;
     // Shooter SRuns Autonomous
     // Command autonomousCommand = autonomousSRunsAndShoot;
+    Command autonomousCommand = autonomousTripleShoot;
 
     return autonomousCommand;
   }
