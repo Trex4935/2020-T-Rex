@@ -59,10 +59,6 @@ public final class Constants {
     public static final int magazineSensorDIO = 2;
     public static final int shooterSensorDIO = 3;
 
-    // Elevator Sensors DIO Locations on the Roborio 
-    public static final int elevatorLimitorTopDIO = 0;
-    public static final int elevatorLimitorBottomDIO = 1; 
-
     // endregion
 
     // region Drivetrain
@@ -170,7 +166,11 @@ public final class Constants {
 
     // region Elevator
     // ================================
-    public static final double elevatorMotorSpeed = 0.3;
+    public static final double elevatorMotorSpeed = 0.6;
+
+    // Elevator Sensors DIO Locations on the Roborio 
+    public static final int elevatorLimitorTopDIO = 0;
+    public static final int elevatorLimitorBottomDIO = 1; 
 
     // endregion
 }

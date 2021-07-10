@@ -13,12 +13,11 @@ import edu.wpi.first.wpilibj.Timer;
 
 public class Elevator extends SubsystemBase {
 
-  /* Elevator Components:
-  Motor for the Chain >> Move up and Down
-  Limit Switch
-  */
+  /*
+   * Elevator Components: Motor for the Chain >> Move up and Down Limit Switch
+   */
 
-  ///Solenoid
+  /// Solenoid
   public static WPI_TalonSRX elevatorSolenoid;
 
   /// Motor
@@ -45,23 +44,25 @@ public class Elevator extends SubsystemBase {
 
   }
 
-
-  //Move the elevator at constant speed
+  // Move the elevator at constant speed
+  //    if ((Timer.getMatchTime() >= 45) & (topLimitSwitch.get() == true)) {
   public void moveElevatorUp() {
-    if ((Timer.getMatchTime() >= 45) | topLimitSwitch.get() == true) {
-      stopElevator();
-    } else {
+    if (topLimitSwitch.get() == true) {
       elevatorMotor.set(Constants.elevatorMotorSpeed);
-    }}
-  
-  //Move the solenoid at constant speed
+    } else {
+      stopElevator();
+    }
+  }
+
+  // Move the solenoid at constant speed
   public void openSolenoid() {
     elevatorSolenoid.set(1);
   }
 
-  // Moves the elevator up or down based off of the controller inputs you press (back or start)
+  // Moves the elevator up or down based off of the controller inputs you press
+  // (back or start)
 
-  public void moveElevator(boolean up){
+  public void moveElevator(boolean up) {
     if (up) {
       elevatorMotor.set(Constants.elevatorMotorSpeed);
     } else {
@@ -73,7 +74,7 @@ public class Elevator extends SubsystemBase {
   public void stopElevator() {
     elevatorMotor.stopMotor();
   }
-  
+
   // Stop the solenoid
   public void stopSolenoid() {
     elevatorSolenoid.stopMotor();
@@ -84,7 +85,7 @@ public class Elevator extends SubsystemBase {
     if (bottomLimitSwitch.get() == false) {
       stopElevator();
     } else {
-          elevatorMotor.set(-Constants.elevatorMotorSpeed);
+      elevatorMotor.set(-Constants.elevatorMotorSpeed);
 
     }
   }
@@ -94,9 +95,9 @@ public class Elevator extends SubsystemBase {
     // This method will be called once per scheduler run
   }
 
-  //public void moveElevator(boolean direction){}
+  // public void moveElevator(boolean direction){}
 
-  public void lockElevator(){}
+  public void lockElevator() {
+  }
 
 }
-
