@@ -91,7 +91,7 @@ public class RobotContainer {
   private void configureButtonBindings() {
 
     // Turn on the shooter when toggles
-    new JoystickButton(controller, XboxController.Button.kA.value).toggleWhenPressed(shoot);
+    new JoystickButton(controller, XboxController.Button.kA.value).toggleWhenPressed(shootPID);
 
     // Run intake ... stops when the shoot sensor is triggered
     new JoystickButton(controller, XboxController.Button.kB.value)

@@ -107,10 +107,10 @@ public final class Constants {
 
     // Pid values kP kI kD kF Iz PeakOut
     // public final static Gains kGains_Velocity_Shooter = new Gains(0.74, 0.001, 5, 1023.0 / 20660.0, 300, 1.00);
-    public final static Gains kGains_Velocity_Shooter = new Gains(0.6, 0.001, 0, 0.2, 300, 1.00);
+    public final static Gains kGains_Velocity_Shooter = new Gains(0.08, 0.0, 0, 0.0475, 300, 1.00);
 
     // Target RPM value for shooter motor
-    public static final int targetRPM = 3000;
+    public static final int targetRPM = 4000;
 
     // endregion
 
