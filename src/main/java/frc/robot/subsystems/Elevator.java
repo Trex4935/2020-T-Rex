@@ -81,12 +81,12 @@ public class Elevator extends SubsystemBase {
 
   // Reverse elevator direction and make it go down
   public void moveElevatorDown() {
-    if (condition) {
-      
+    if (bottomLimitSwitch.get() == false) {
+      stopElevator();
     } else {
-      
+          elevatorMotor.set(-Constants.elevatorMotorSpeed);
+
     }
-    elevatorMotor.set(-Constants.elevatorMotorSpeed);
   }
 
   @Override
@@ -95,25 +95,6 @@ public class Elevator extends SubsystemBase {
   }
 
   //public void moveElevator(boolean direction){}
-  
-  public void limitTopStop(){
-    if (DigitalInput elevatorLimitorTopDIO = true) {
-      stopElevator();
-
-    } else {
-      
-    }
-  }
-
-  public void limitBotStop(){
-    if (bottomLimitSwitch = true) {
-      stopElevator();
-
-    } else {
-      
-    }
-  }
-
 
   public void lockElevator(){}
 
