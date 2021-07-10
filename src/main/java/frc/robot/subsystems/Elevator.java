@@ -8,7 +8,7 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
-
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Timer;
 
 public class Elevator extends SubsystemBase {
@@ -25,6 +25,8 @@ public class Elevator extends SubsystemBase {
   public static WPI_TalonSRX elevatorMotor;
 
   /// Limit switch
+  private static DigitalInput topLimitSwitch;
+  private static DigitalInput bottomLimitSwitch;
 
   /** Creates a new Elevator. */
   public Elevator() {
@@ -37,13 +39,17 @@ public class Elevator extends SubsystemBase {
     elevatorSolenoid = new WPI_TalonSRX(Constants.elevatorSolenoidCanID);
     elevatorSolenoid.setInverted(false);
 
+    // initialize the limit switches
+    topLimitSwitch = new DigitalInput(Constants.elevatorLimitorTopDIO);
+    bottomLimitSwitch = new DigitalInput(Constants.elevatorLimitorBottomDIO);
+
   }
 
 
   //Move the elevator at constant speed
   public void moveElevatorUp() {
-    if (Timer.getMatchTime() >= 45) {
-      
+    if ((Timer.getMatchTime() >= 45) | topLimitSwitch.get() == true) {
+      stopElevator();
     } else {
       elevatorMotor.set(Constants.elevatorMotorSpeed);
     }}
@@ -72,9 +78,14 @@ public class Elevator extends SubsystemBase {
   public void stopSolenoid() {
     elevatorSolenoid.stopMotor();
   }
-  
+
   // Reverse elevator direction and make it go down
   public void moveElevatorDown() {
+    if (condition) {
+      
+    } else {
+      
+    }
     elevatorMotor.set(-Constants.elevatorMotorSpeed);
   }
 
@@ -84,6 +95,25 @@ public class Elevator extends SubsystemBase {
   }
 
   //public void moveElevator(boolean direction){}
+  
+  public void limitTopStop(){
+    if (DigitalInput elevatorLimitorTopDIO = true) {
+      stopElevator();
+
+    } else {
+      
+    }
+  }
+
+  public void limitBotStop(){
+    if (bottomLimitSwitch = true) {
+      stopElevator();
+
+    } else {
+      
+    }
+  }
+
 
   public void lockElevator(){}
 

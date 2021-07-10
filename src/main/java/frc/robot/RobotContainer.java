@@ -108,10 +108,16 @@ public class RobotContainer {
     new JoystickButton(controller, XboxController.Button.kBumperRight.value).whenHeld(driveStraightWithController);
     
     // Using ElevatorUp() command mapping to the back button on the controller.
-    new  POVButton(controller, 0).whileHeld(elevatorup);
+    // COME BACK TO
+    while(LIMITSWITCH-TOP = false){
+          new  POVButton(controller, 0).whileHeld(elevatorup);
+    }
  
     // Using ElevatorDown() command mapping to the back button on the controller.
-    new  POVButton(controller, 180).whileHeld(elevatordown);
+    // COME BACK TO
+    while(LIMITSWITCH-BOTTOM = false){
+      new  POVButton(controller, 180).whileHeld(elevatordown);
+    }
 
     // Open the solenoid on elevator
     new JoystickButton(controller, XboxController.Button.kBack.value).toggleWhenPressed(elevatorsolenoid);

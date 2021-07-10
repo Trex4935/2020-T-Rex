@@ -59,6 +59,10 @@ public final class Constants {
     public static final int magazineSensorDIO = 2;
     public static final int shooterSensorDIO = 3;
 
+    // Elevator Sensors DIO Locations on the Roborio 
+    public static final int elevatorLimitorTopDIO = 0;
+    public static final int elevatorLimitorBottomDIO = 1; 
+
     // endregion
 
     // region Drivetrain
