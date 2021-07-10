@@ -22,7 +22,6 @@ public MoveElevatorCommand(Elevator ele) {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    elevator.moveElevator(direction);
   }
 
   // Called once the command ends or is interrupted.
