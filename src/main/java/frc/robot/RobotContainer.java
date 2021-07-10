@@ -33,7 +33,6 @@ public class RobotContainer {
   public final Magazine magazine;
   private final Shooter shooter;
   public static XboxController controller;
-
   // Commands
   private final DriveWithControllerCommand driveWithController;
   private final BouncePathCommand bouncePath;
@@ -110,10 +109,11 @@ public class RobotContainer {
     new JoystickButton(controller, XboxController.Button.kBumperRight.value).whenHeld(driveStraightWithController);
     
     // Using ElevatorUp() command mapping to the back button on the controller.
-    new  POVButton(controller, 0).whileHeld(elevatorup);
+          new  POVButton(controller, 0).whileHeld(elevatorup);
+    
  
     // Using ElevatorDown() command mapping to the back button on the controller.
-    new  POVButton(controller, 180).whileHeld(elevatordown);
+      new  POVButton(controller, 180).whileHeld(elevatordown);
 
     // Open the solenoid on elevator
     new JoystickButton(controller, XboxController.Button.kBack.value).toggleWhenPressed(elevatorsolenoid);
