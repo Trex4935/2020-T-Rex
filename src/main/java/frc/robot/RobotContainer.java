@@ -130,7 +130,7 @@ public class RobotContainer {
     // LT - When Held Run High Belt / Shoot all the balls at once
     // RT -
     //
-    // LB -
+    // LB - Hold to spin up Shooter and Empty Magazine when shooter at speed
     // RB - Hold to drive straight
     //
     // LStick - Control left side drive train
