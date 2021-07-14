@@ -46,7 +46,7 @@ public class RobotContainer {
   private final ElevatorDownCommand elevatordown;
   private final ElevSolenoidCommand elevatorsolenoid;
   private final ShootPIDCommand shootPID;
-
+  private final EmptyMagToShooterCommand emptyMag;
 
   public RobotContainer() {
 
@@ -70,6 +70,7 @@ public class RobotContainer {
     reverseMagazine = new ReverseMagazineCommand(magazine);
     singulateBall = new SingulateBallCommand(magazine);
     highBelt = new HighBeltCommand(magazine);
+    emptyMag = new EmptyMagToShooterCommand(magazine);
 
     // Autonomous
     bouncePath = new BouncePathCommand(driveTrain);
@@ -79,7 +80,6 @@ public class RobotContainer {
     elevatorup = new ElevatorUpCommand(elevator);
     elevatordown = new ElevatorDownCommand(elevator);
     elevatorsolenoid = new ElevSolenoidCommand(elevator);
-
 
     // Configure the button bindings
     configureButtonBindings();
@@ -107,16 +107,18 @@ public class RobotContainer {
 
     // Makes sure the robot only goes straight by using right bumper
     new JoystickButton(controller, XboxController.Button.kBumperRight.value).whenHeld(driveStraightWithController);
-    
+
     // Using ElevatorUp() command mapping to the back button on the controller.
-          new  POVButton(controller, 0).whileHeld(elevatorup);
-    
- 
+    new POVButton(controller, 0).whileHeld(elevatorup);
+
     // Using ElevatorDown() command mapping to the back button on the controller.
-      new  POVButton(controller, 180).whileHeld(elevatordown);
+    new POVButton(controller, 180).whileHeld(elevatordown);
 
     // Open the solenoid on elevator
     new JoystickButton(controller, XboxController.Button.kBack.value).toggleWhenPressed(elevatorsolenoid);
+
+    // Empties magazine using left bumper
+    new JoystickButton(controller, XboxController.Button.kBumperLeft.value).whenHeld(emptyMag.alongWith(shootPID));
 
     /// CONTROLLER MAP
     //
@@ -128,7 +130,7 @@ public class RobotContainer {
     // LT - When Held Run High Belt / Shoot all the balls at once
     // RT -
     //
-    // LB -
+    // LB - Hold to spin up Shooter and Empty Magazine when shooter at speed
     // RB - Hold to drive straight
     //
     // LStick - Control left side drive train
@@ -144,7 +146,6 @@ public class RobotContainer {
     // Left -
     //
     /// END MAP
-
 
     // Empties magazine using left bumper
     // new JoystickButton(controller,
@@ -173,8 +174,6 @@ public class RobotContainer {
     // ParallelCommandGroup(intakeBall,spitBall));
 
   }
-
-
 
   /**
    * Use this to pass the autonomous command to the main {@link Robot} class.
