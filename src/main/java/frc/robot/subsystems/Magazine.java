@@ -14,6 +14,7 @@ package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
+import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
@@ -115,14 +116,15 @@ public class Magazine extends SubsystemBase {
     // When the magazine sensor sees a ball run the HB
     if (getMagazineSensor()) {
       moveHighBelt();
+      NetworkTableInstance.getDefault().getTable("limelight").getEntry("ledMode").setNumber(3);
       // Constants.actualBallCount
     }
     // When it no longer sees a ball then it is "in" the magazine so we stop the
     // motor
-    else {
+    else {}
       stopHighBelt();
+      NetworkTableInstance.getDefault().getTable("limelight").getEntry("ledMode").setNumber(1);
     }
-  }
 
   public void emptyMagToShooter(boolean atSpeed) {
     if (atSpeed) {
