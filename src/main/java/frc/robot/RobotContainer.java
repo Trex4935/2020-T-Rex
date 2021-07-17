@@ -11,9 +11,7 @@ import frc.robot.Extensions.*;
 
 // import needed WPI methods
 import edu.wpi.first.wpilibj.XboxController;
-import edu.wpi.first.wpilibj.controller.RamseteController;
 import edu.wpi.first.wpilibj2.command.Command;
-import edu.wpi.first.wpilibj2.command.RamseteCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.POVButton;
 
@@ -35,8 +33,7 @@ public class RobotContainer {
   public static XboxController controller;
   // Commands
   private final DriveWithControllerCommand driveWithController;
-  private final BouncePathCommand bouncePath;
-  private final ShootCommand shoot;
+  // private final ShootCommand shoot;
   private final ReverseMagazineCommand reverseMagazine;
   private final SingulateBallCommand singulateBall;
   private final DriveStraightWithController driveStraightWithController;
@@ -63,7 +60,7 @@ public class RobotContainer {
 
     // Shooter
     shooter = new Shooter();
-    shoot = new ShootCommand(shooter);
+    // shoot = new ShootCommand(shooter);
     shootPID = new ShootPIDCommand(shooter);
 
     // Magazine
@@ -74,7 +71,6 @@ public class RobotContainer {
     emptyMag = new EmptyMagToShooterCommand(magazine);
 
     // Autonomous
-    bouncePath = new BouncePathCommand(driveTrain);
     autonomousTripleShoot = new AutoTripleMagazineCommand(driveTrain, shooter, magazine);
 
     // Elevator
