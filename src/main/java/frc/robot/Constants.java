@@ -129,7 +129,7 @@ public final class Constants {
     public static final double autoRightSpeed = 0.9;
 
     // How long we move forward
-    public static final double secondForward = 10;
+    public static final double secondForward = 1;
 
     // Trajectory
     public static final double ksVolts = 0.22;
