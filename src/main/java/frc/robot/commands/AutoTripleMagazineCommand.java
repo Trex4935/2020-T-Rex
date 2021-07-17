@@ -24,7 +24,7 @@ public class AutoTripleMagazineCommand extends SequentialCommandGroup {
     //replace dt::getPose with driveTrain::getPosition to use simulated encoder and gyro data for simulation and debugging
     addCommands(
      // new ShootCommand(shoot),
-      new AutonomousTripleShootSimpleCommand(dt,mag)
+      new AutonomousTripleShootSimpleCommand(dt, mag, shoot)
       );
   }
 }

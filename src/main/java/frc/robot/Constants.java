@@ -49,7 +49,7 @@ public final class Constants {
     // ================================
 
     // Magazine motor speed
-    public static final double beltMotorSpeed = 0.6;
+    public static final double beltMotorSpeed = 0.55;
     public static final double intakeMotorSpeed = 0.5;
 
     public static int ballCount = 0;
@@ -106,7 +106,7 @@ public final class Constants {
 
     // Pid values kP kI kD kF Iz PeakOut
     // public final static Gains kGains_Velocity_Shooter = new Gains(0.74, 0.001, 5, 1023.0 / 20660.0, 300, 1.00);
-    public final static Gains kGains_Velocity_Shooter = new Gains(0.08, 0.0, 0, 0.0475, 300, 1.00);
+    public final static Gains kGains_Velocity_Shooter = new Gains(0.08, 0.0, 0, 0.055, 300, 1.00);
 
     // Target RPM value for shooter motor
     public static final int targetRPM = 4000;
