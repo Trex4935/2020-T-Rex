@@ -56,7 +56,6 @@ public final class Constants {
     public static final int actualBallCount = ballCount++;
 
     // Smacna DIO location on the roborio
-    // public static final int intakeSensorDIO = 1;
     public static final int magazineSensorDIO = 2;
     public static final int shooterSensorDIO = 3;
 
@@ -106,12 +105,11 @@ public final class Constants {
     public static final int PIDRange = 100;
 
     // Pid values kP kI kD kF Iz PeakOut
-    public final static Gains kGains_Velocity_Shooter = new Gains(0.74, 0.001, 5, 1023.0 / 20660.0, 300, 1.00);
-    // public final static Gains kGains_Velocity_Shooter = new Gains(0.1, 0.001, 5,
-    // 1023.0 / 20660.0, 300, 1.00);
+    // public final static Gains kGains_Velocity_Shooter = new Gains(0.74, 0.001, 5, 1023.0 / 20660.0, 300, 1.00);
+    public final static Gains kGains_Velocity_Shooter = new Gains(0.08, 0.0, 0, 0.0475, 300, 1.00);
 
     // Target RPM value for shooter motor
-    public static final int targetRPM = 5000;
+    public static final int targetRPM = 4000;
 
     // endregion
 
@@ -167,7 +165,11 @@ public final class Constants {
 
     // region Elevator
     // ================================
-    public static final double elevatorMotorSpeed = 0.3;
+    public static final double elevatorMotorSpeed = 0.6;
+
+    // Elevator Sensors DIO Locations on the Roborio 
+    public static final int elevatorLimitorTopDIO = 0;
+    public static final int elevatorLimitorBottomDIO = 1; 
 
     // endregion
 }
