@@ -87,9 +87,6 @@ public class RobotContainer {
   // Setup controller bindings
   private void configureButtonBindings() {
 
-    // Turn on the shooter when toggles
-    new JoystickButton(controller, XboxController.Button.kA.value).toggleWhenPressed(shootPID);
-
     // Run intake ... stops when the shoot sensor is triggered
     new JoystickButton(controller, XboxController.Button.kB.value)
         .toggleWhenPressed(singulateBall.withInterrupt(Magazine::getShooterSensor));
@@ -98,10 +95,10 @@ public class RobotContainer {
     new JoystickButton(controller, XboxController.Button.kX.value).whenHeld(reverseMagazine);
 
     // Toggle shooter PID
-    new JoystickButton(controller, XboxController.Button.kY.value).toggleWhenPressed(shootPID);
+    // new JoystickButton(controller, XboxController.Button.kY.value).toggleWhenPressed(shootPID);
 
     // Uses limelight to aim at target when left trigger is pulled
-    new LeftTriggerBool().whileActiveContinuous(highBelt);
+    // new LeftTriggerBool().whileActiveContinuous(highBelt);
 
     // Makes sure the robot only goes straight by using right bumper
     new JoystickButton(controller, XboxController.Button.kBumperRight.value).whenHeld(driveStraightWithController);
@@ -113,10 +110,11 @@ public class RobotContainer {
     new POVButton(controller, 180).whileHeld(elevatordown);
 
     // Open the solenoid on elevator
-    new JoystickButton(controller, XboxController.Button.kBack.value).toggleWhenPressed(elevatorsolenoid);
+    // new JoystickButton(controller, XboxController.Button.kBack.value).toggleWhenPressed(elevatorsolenoid);
 
     // Empties magazine using left bumper
-    new JoystickButton(controller, XboxController.Button.kBumperLeft.value).whenHeld(emptyMag.alongWith(shootPID));
+    // new JoystickButton(controller, XboxController.Button.kBumperLeft.value).whenHeld(emptyMag.alongWith(shootPID));/
+    new LeftTriggerBool().whileActiveContinuous(emptyMag.alongWith(shootPID));
 
     /// CONTROLLER MAP
     //
