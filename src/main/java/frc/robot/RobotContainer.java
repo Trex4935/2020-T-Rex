@@ -192,9 +192,9 @@ public class RobotContainer {
     // Constants.kRamseteZeta), Constants.kDriveKinematics, driveTrain::move,
     // driveTrain);
 
-    new RamseteCommand(TrajectoryRepo.trajectory, driveTrain::getPose,
-        new RamseteController(Constants.kRamseteB, Constants.kRamseteZeta), Constants.kDriveKinematics,
-        driveTrain::move, driveTrain);
+    //new RamseteCommand(TrajectoryRepo.trajectory, driveTrain::getPose,
+   //     new RamseteController(Constants.kRamseteB, Constants.kRamseteZeta), Constants.kDriveKinematics,
+   //     driveTrain::move, driveTrain);
 
     // Encoder Position, Encoder Speed, Gyro-Data based Trajectory Command
     // (TBD)

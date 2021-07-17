@@ -14,7 +14,7 @@ import frc.robot.subsystems.Shooter;
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
-public class AutoTripleMagazineCommand extends ParallelRaceGroup {
+public class AutoTripleMagazineCommand extends SequentialCommandGroup {
     //// private final DriveTrain driveTrain;
     /** Creates a new AutonomousAndMagazineCommand. */
     public AutoTripleMagazineCommand(DriveTrain dt, Shooter shoot, Magazine mag) {
@@ -23,8 +23,8 @@ public class AutoTripleMagazineCommand extends ParallelRaceGroup {
 
     //replace dt::getPose with driveTrain::getPosition to use simulated encoder and gyro data for simulation and debugging
     addCommands(
-        new AutonomousTripleShootSimpleCommand(dt,mag),
-        new ShootCommand(shoot)
+     // new ShootCommand(shoot),
+      new AutonomousTripleShootSimpleCommand(dt,mag)
       );
   }
 }
