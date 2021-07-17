@@ -4,6 +4,7 @@
 
 package frc.robot;
 
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
@@ -135,7 +136,16 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void autonomousInit() {
-    m_robotContainer.driveTrain.resetOdometry(TrajectoryRepo.trajectory.getInitialPose());
+    RobotContainer.station = DriverStation.getInstance().getLocation();
+    if (RobotContainer.station == 1){
+      m_robotContainer.driveTrain.resetOdometry(TrajectoryRepo.trajectory.getInitialPose());
+    }
+    else if(RobotContainer.station == 2){
+      m_robotContainer.driveTrain.resetOdometry(TrajectoryRepo.trajectoryAlt.getInitialPose());      
+    }
+    else{
+      m_robotContainer.driveTrain.resetOdometry(TrajectoryRepo.trajectoryDefault.getInitialPose());      
+    }
     m_autonomousCommand = m_robotContainer.getAutonomousCommand();
 
     // schedule the autonomous command (example)

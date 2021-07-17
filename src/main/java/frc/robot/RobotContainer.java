@@ -8,7 +8,7 @@ package frc.robot;
 import frc.robot.commands.*;
 import frc.robot.subsystems.*;
 import frc.robot.Extensions.*;
-
+import edu.wpi.first.wpilibj.DriverStation;
 // import needed WPI methods
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -45,6 +45,8 @@ public class RobotContainer {
   private final AutoTripleMagazineCommand autonomousTripleShoot;
   private final ShootPIDCommand shootPID;
   private final EmptyMagToShooterCommand emptyMag;
+  public static int station;
+  private final AutoForwardCommand autoForward;
 
   public RobotContainer() {
 
@@ -72,12 +74,16 @@ public class RobotContainer {
 
     // Autonomous
     autonomousTripleShoot = new AutoTripleMagazineCommand(driveTrain, shooter, magazine);
+    autoForward = new AutoForwardCommand(driveTrain);
 
     // Elevator
     elevator = new Elevator();
     elevatorup = new ElevatorUpCommand(elevator);
     elevatordown = new ElevatorDownCommand(elevator);
     elevatorsolenoid = new ElevSolenoidCommand(elevator);
+
+    // Station
+    station = DriverStation.getInstance().getLocation();
 
     // Configure the button bindings
     configureButtonBindings();
@@ -206,9 +212,21 @@ public class RobotContainer {
     // Command autonomousCommand = autoAndMagazine;
     // Shooter SRuns Autonomous
     // Command autonomousCommand = autonomousSRunsAndShoot;
-    Command autonomousCommand = autonomousTripleShoot;
 
+    if (station==1) {
+      Command autonomousCommand = autonomousTripleShoot;
+      return autonomousCommand;
+    }
+   else if (station ==2) {
+    Command autonomousCommand = autoForward;
     return autonomousCommand;
+   }
+   else {
+    Command autonomousCommand = autonomousTripleShoot;
+    return autonomousCommand;
+     
+   }
+
   }
 }
 
