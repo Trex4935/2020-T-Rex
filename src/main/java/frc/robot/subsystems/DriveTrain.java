@@ -163,7 +163,7 @@ public void driveStraitWithController(XboxController controller,double speedLimi
     time += 0.02;
     System.out.println(TrajectoryRepo.trajectory.sample(time).poseMeters);
     System.out.println(TrajectoryRepo.trajectory.sample(time).velocityMetersPerSecond);
-    Pose2d temp = getPose();
+    // Pose2d temp = getPose();
     return TrajectoryRepo.trajectory.sample(time).poseMeters;
   }
 
