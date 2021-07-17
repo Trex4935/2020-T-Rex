@@ -104,7 +104,8 @@ public class RobotContainer {
     new POVButton(controller, 180).whileHeld(elevatordown);
 
     // Empties magazine using left trigger
-    new LeftTriggerBool().whenActive(reverseMagazine.withTimeout(0.5).andThen(emptyMag).alongWith(shootPID));
+    new LeftTriggerBool().whileActiveContinuous(emptyMag.alongWith(shootPID));
+    // new LeftTriggerBool().whenActive(reverseMagazine.withTimeout(0.1).andThen(emptyMag).alongWith(shootPID));
     
     // whileActiveContinuous(emptyMag.alongWith(shootPID));
 
