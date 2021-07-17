@@ -49,7 +49,7 @@ public final class Constants {
     // ================================
 
     // Magazine motor speed
-    public static final double beltMotorSpeed = 0.55;
+    public static final double beltMotorSpeed = 0.6;
     public static final double intakeMotorSpeed = 0.5;
 
     public static int ballCount = 0;
