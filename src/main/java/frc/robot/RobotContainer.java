@@ -45,6 +45,7 @@ public class RobotContainer {
   private final ElevatorUpCommand elevatorup;
   private final ElevatorDownCommand elevatordown;
   private final ElevSolenoidCommand elevatorsolenoid;
+  private final AutoTripleMagazineCommand autonomousTripleShoot;
   private final ShootPIDCommand shootPID;
   private final EmptyMagToShooterCommand emptyMag;
 
@@ -74,6 +75,7 @@ public class RobotContainer {
 
     // Autonomous
     bouncePath = new BouncePathCommand(driveTrain);
+    autonomousTripleShoot = new AutoTripleMagazineCommand(driveTrain, shooter, magazine);
 
     // Elevator
     elevator = new Elevator();
@@ -191,16 +193,16 @@ public class RobotContainer {
     // Constants.kRamseteZeta), Constants.kDriveKinematics, driveTrain::move,
     // driveTrain);
 
-    new RamseteCommand(TrajectoryRepo.trajectory, driveTrain::getPose,
-        new RamseteController(Constants.kRamseteB, Constants.kRamseteZeta), Constants.kDriveKinematics,
-        driveTrain::move, driveTrain);
+    //new RamseteCommand(TrajectoryRepo.trajectory, driveTrain::getPose,
+   //     new RamseteController(Constants.kRamseteB, Constants.kRamseteZeta), Constants.kDriveKinematics,
+   //     driveTrain::move, driveTrain);
 
     // Encoder Position, Encoder Speed, Gyro-Data based Trajectory Command
     // (TBD)
 
     // Ramsete Autonomous command;
     // Command autonomousCommand = ramseteCommand;
-    Command autonomousCommand = bouncePath;
+    //Command autonomousCommand = bouncePath;
 
     // Command autonomousCommand = autoShootSpeed;
 
@@ -208,6 +210,7 @@ public class RobotContainer {
     // Command autonomousCommand = autoAndMagazine;
     // Shooter SRuns Autonomous
     // Command autonomousCommand = autonomousSRunsAndShoot;
+    Command autonomousCommand = autonomousTripleShoot;
 
     return autonomousCommand;
   }
