@@ -93,9 +93,6 @@ public class RobotContainer {
   // Setup controller bindings
   private void configureButtonBindings() {
 
-    // Turn on the shooter when toggles
-    new JoystickButton(controller, XboxController.Button.kA.value).toggleWhenPressed(shootPID);
-
     // Run intake ... stops when the shoot sensor is triggered
     new JoystickButton(controller, XboxController.Button.kB.value)
         .toggleWhenPressed(singulateBall.withInterrupt(Magazine::getShooterSensor));
@@ -103,38 +100,32 @@ public class RobotContainer {
     // Runs pulley + intake to reverse a ball thru the magazine
     new JoystickButton(controller, XboxController.Button.kX.value).whenHeld(reverseMagazine);
 
-    // Toggle shooter PID
-    new JoystickButton(controller, XboxController.Button.kY.value).toggleWhenPressed(shootPID);
-
-    // Uses limelight to aim at target when left trigger is pulled
-    new LeftTriggerBool().whileActiveContinuous(highBelt);
-
     // Makes sure the robot only goes straight by using right bumper
     new JoystickButton(controller, XboxController.Button.kBumperRight.value).whenHeld(driveStraightWithController);
 
-    // Using ElevatorUp() command mapping to the back button on the controller.
+    // Moves elevator up with D-Pad Up
     new POVButton(controller, 0).whileHeld(elevatorup);
 
-    // Using ElevatorDown() command mapping to the back button on the controller.
+    // Move elevator down with D-Pad down
     new POVButton(controller, 180).whileHeld(elevatordown);
 
-    // Open the solenoid on elevator
-    new JoystickButton(controller, XboxController.Button.kBack.value).toggleWhenPressed(elevatorsolenoid);
-
-    // Empties magazine using left bumper
-    new JoystickButton(controller, XboxController.Button.kBumperLeft.value).whenHeld(emptyMag.alongWith(shootPID));
+    // Empties magazine using left trigger
+    new LeftTriggerBool().whileActiveContinuous(emptyMag.alongWith(shootPID));
+    // new LeftTriggerBool().whenActive(reverseMagazine.withTimeout(0.1).andThen(emptyMag).alongWith(shootPID));
+    
+    // whileActiveContinuous(emptyMag.alongWith(shootPID));
 
     /// CONTROLLER MAP
     //
-    // A - Turn on Shooter
+    // A - 
     // B - Turn on Intake
     // X - Reverse Magazine
     // Y -
     //
-    // LT - When Held Run High Belt / Shoot all the balls at once
+    // LT - Hold to spin up Shooter and Empty Magazine when shooter at speed
     // RT -
     //
-    // LB - Hold to spin up Shooter and Empty Magazine when shooter at speed
+    // LB - 
     // RB - Hold to drive straight
     //
     // LStick - Control left side drive train

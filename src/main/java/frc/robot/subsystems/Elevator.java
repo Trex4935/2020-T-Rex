@@ -32,8 +32,8 @@ public class Elevator extends SubsystemBase {
     // initialize the elevator motor
     elevatorMotor = new WPI_TalonSRX(Constants.elevatorMotorCanID);
     elevatorMotor.setInverted(false);
-
-    // initialize the solenoid
+    
+        // initialize the solenoid
     elevatorSolenoid = new WPI_TalonSRX(Constants.elevatorSolenoidCanID);
     elevatorSolenoid.setInverted(false);
 
@@ -44,7 +44,7 @@ public class Elevator extends SubsystemBase {
   }
 
   // Move the elevator at constant speed
-  //    if ((Timer.getMatchTime() >= 45) & (topLimitSwitch.get() == true)) {
+  // if ((Timer.getMatchTime() >= 45) & (topLimitSwitch.get() == true)) {
   public void moveElevatorUp() {
     if (topLimitSwitch.get() == true) {
       elevatorMotor.set(Constants.elevatorMotorSpeed);
