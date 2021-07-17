@@ -11,14 +11,13 @@ import com.ctre.phoenix.motorcontrol.can.TalonFX;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
-import frc.robot.Extensions.Dashboard_Outputs;
 
 public class Shooter extends SubsystemBase {
   TalonFX shooterMotor;
   public static double currentRpm;
 
   // Allows use of inputs from Shuffleboard
-  private Dashboard_Outputs dashOutput;
+  // private Dashboard_Outputs dashOutput;
 
   /** Creates a new Shooter. */
   public Shooter() {
@@ -34,7 +33,7 @@ public class Shooter extends SubsystemBase {
         Constants.kTimeoutMs);
 
     // Getting Values from Dashboard Output
-    dashOutput = new Dashboard_Outputs();
+    // dashOutput = new Dashboard_Outputs();
 
     // set motor limits
     // normal output forward and reverse = 0% ... i.e. stopped
