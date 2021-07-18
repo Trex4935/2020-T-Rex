@@ -204,19 +204,22 @@ public class RobotContainer {
     // Shooter SRuns Autonomous
     // Command autonomousCommand = autonomousSRunsAndShoot;
 
-    if (station==1) {
-      Command autonomousCommand = autonomousTripleShoot;
-      return autonomousCommand;
-    }
-   else if (station ==2) {
-    Command autonomousCommand = autoForward;
-    return autonomousCommand;
-   }
-   else {
-    Command autonomousCommand = autonomousTripleShoot;
-    return autonomousCommand;
+  //   if (station==1) {
+  //     Command autonomousCommand = autonomousTripleShoot;
+  //     return autonomousCommand;
+  //   }
+  //  else if (station ==2) {
+  //   Command autonomousCommand = autoForward;
+  //   return autonomousCommand;
+  //  }
+  //  else {
+  //   Command autonomousCommand = autonomousTripleShoot;
+  //   return autonomousCommand;
      
-   }
+  //  }
+
+   Command autonomousCommand = autonomousTripleShoot;
+   return autonomousCommand;
 
   }
 }

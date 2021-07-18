@@ -137,17 +137,18 @@ public class Robot extends TimedRobot {
   @Override
   public void autonomousInit() {
     RobotContainer.station = DriverStation.getInstance().getLocation();
-    if (RobotContainer.station == 1){
-      m_robotContainer.driveTrain.resetOdometry(TrajectoryRepo.trajectory.getInitialPose());
-    }
-    else if(RobotContainer.station == 2){
-      m_robotContainer.driveTrain.resetOdometry(TrajectoryRepo.trajectoryAlt.getInitialPose());      
-    }
-    else{
-      m_robotContainer.driveTrain.resetOdometry(TrajectoryRepo.trajectoryDefault.getInitialPose());      
-    }
+    // if (RobotContainer.station == 1){
+    //   m_robotContainer.driveTrain.resetOdometry(TrajectoryRepo.trajectory.getInitialPose());
+    // }
+    // else if(RobotContainer.station == 2){
+    //   m_robotContainer.driveTrain.resetOdometry(TrajectoryRepo.trajectoryAlt.getInitialPose());      
+    // }
+    // else{
+    //   m_robotContainer.driveTrain.resetOdometry(TrajectoryRepo.trajectoryDefault.getInitialPose());      
+    // }
+    m_robotContainer.driveTrain.resetOdometry(TrajectoryRepo.trajectory.getInitialPose());
     m_autonomousCommand = m_robotContainer.getAutonomousCommand();
-
+    
     // schedule the autonomous command (example)
     if (m_autonomousCommand != null) {
       m_autonomousCommand.schedule();
