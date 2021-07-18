@@ -44,6 +44,7 @@ public class RobotContainer {
   private final ElevSolenoidCommand elevatorsolenoid;
   private final AutoTripleMagazineCommand autonomousTripleShoot;
   private final ShootPIDCommand shootPID;
+  private final ShootPIDCommand shootPID2;
   private final EmptyMagToShooterCommand emptyMag;
   public static int station;
   private final AutoForwardCommand autoForward;
@@ -64,7 +65,8 @@ public class RobotContainer {
     shooter = new Shooter();
     // shoot = new ShootCommand(shooter);
     shootPID = new ShootPIDCommand(shooter);
-
+    shootPID2 = new ShootPIDCommand(shooter);
+    
     // Magazine
     magazine = new Magazine();
     reverseMagazine = new ReverseMagazineCommand(magazine);
@@ -112,6 +114,9 @@ public class RobotContainer {
     // Empties magazine using left trigger
     new LeftTriggerBool().whileActiveContinuous(emptyMag.alongWith(shootPID));
     // new LeftTriggerBool().whenActive(reverseMagazine.withTimeout(0.1).andThen(emptyMag).alongWith(shootPID));
+
+    // Runs magazine and sets shooter motor with PID
+    new RightTriggerBool().whileActiveContinuous(highBelt.alongWith(shootPID2));
     
     // whileActiveContinuous(emptyMag.alongWith(shootPID));
 
