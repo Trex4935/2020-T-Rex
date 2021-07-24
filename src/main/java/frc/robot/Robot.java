@@ -6,9 +6,10 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
-import frc.robot.Extensions.DriveEncoders;
+//import frc.robot.Extensions.DriveEncoders;
 import frc.robot.Extensions.Init_Dashboard;
 import frc.robot.Extensions.Limelight;
 import frc.robot.subsystems.DriveTrain;
@@ -28,7 +29,7 @@ public class Robot extends TimedRobot {
   private RobotContainer m_robotContainer;
 
   // Initialize the tabs on the Shuffleboard
-  public Init_Dashboard dashboard;
+  //public Init_Dashboard dashboard;
 
   // Limelight object
   public Limelight limelight;
@@ -49,7 +50,7 @@ public class Robot extends TimedRobot {
 
     // Initializing the Shuffleboard Dashboard to that values can be pulled for
     // other systems
-    dashboard = new Init_Dashboard();
+    //dashboard = new Init_Dashboard();
 
     // Initialize the lime light
     limelight = new Limelight();
@@ -78,46 +79,59 @@ public class Robot extends TimedRobot {
     // the Command-based framework to work.
     CommandScheduler.getInstance().run();
 
-    /// Outputting running robot data to Shuffleboard widgets
+    /// Outputting running robot data to SmartDashboard widgets
 
-    // Drive Left Axis Shuffleboard Widget
-    dashboard.driveLeftAxisWidget.setNumber(RobotContainer.controller.getRawAxis(Constants.leftTankAxis));
-    //dashboard.driveLeftAxisTEST.setNumber(RobotContainer.controller.getRawAxis(Constants.leftTankAxis));
-    // Drive Right Axis Shuffleboard Widget
-    dashboard.driveRightAxisWidget.setNumber(RobotContainer.controller.getRawAxis(Constants.rightTankAxis));
+    // Drive Left Axis Widget
+    //dashboard.driveLeftAxisWidget.setNumber(RobotContainer.controller.getRawAxis(Constants.leftTankAxis));
+    SmartDashboard.putNumber("Drive Left-Axis", RobotContainer.controller.getRawAxis(Constants.leftTankAxis));
+    // Drive Right Axis Widget
+    //dashboard.driveRightAxisWidget.setNumber(RobotContainer.controller.getRawAxis(Constants.rightTankAxis));
+    SmartDashboard.putNumber("Drive Right-Axis", RobotContainer.controller.getRawAxis(Constants.rightTankAxis));
     // Shooter Current running RPM Widget
-    dashboard.shooterCurrentRpm.setNumber(Shooter.currentRpm);
-    // Magazine Fully Loaded Shuffleboard Status
-    dashboard.sensorShooter.setBoolean(Magazine.getShooterSensor()); 
+    //dashboard.shooterCurrentRpm.setNumber(Shooter.currentRpm);
+    SmartDashboard.putNumber("Shooter Current RPM", Shooter.currentRpm);
+    // Magazine Fully Loaded Status
+    //dashboard.sensorShooter.setBoolean(Magazine.getShooterSensor()); 
+    SmartDashboard.putBoolean("Mag Fully Loaded", Magazine.getShooterSensor());
     
     // Update Encoder values
-    dashboard.leftFrontEncoder.setNumber(DriveEncoders.lfEncoderValue);
-    dashboard.leftRearEncoder.setNumber(DriveEncoders.lrEncoderValue);
-    dashboard.rightFrontEncoder.setNumber(DriveEncoders.rfEncoderValue);
-    dashboard.rightRearEncoder.setNumber(DriveEncoders.rrEncoderValue);
+    //dashboard.leftFrontEncoder.setNumber(DriveEncoders.lfEncoderValue);
+    //dashboard.leftRearEncoder.setNumber(DriveEncoders.lrEncoderValue);
+    //dashboard.rightFrontEncoder.setNumber(DriveEncoders.rfEncoderValue);
+    //dashboard.rightRearEncoder.setNumber(DriveEncoders.rrEncoderValue);
 
 
     // Gyro current heading Widget
-    dashboard.gyroCurrentPosition.setNumber(DriveTrain.ahrs.getAngle());
+    //dashboard.gyroCurrentPosition.setNumber(DriveTrain.ahrs.getAngle());
+    SmartDashboard.putNumber("Gyro Position", DriveTrain.ahrs.getAngle());
     
     // Limelight X Axis Widget
-    dashboard.limeLightX.setNumber(Limelight.getLimeLightX());
+    //dashboard.limeLightX.setNumber(Limelight.getLimeLightX());
+    SmartDashboard.putNumber("limeLight X", Limelight.getLimeLightX());
     // Limelight Y Axis Widget
-    dashboard.limeLightY.setNumber(Limelight.getLimeLightY());
+    //dashboard.limeLightY.setNumber(Limelight.getLimeLightY());
+    SmartDashboard.putNumber("limeLight Y", Limelight.getLimeLightY());
     // Limelight Area Widget
-    dashboard.limeLightArea.setNumber(Limelight.getLimeLightArea());
+    //dashboard.limeLightArea.setNumber(Limelight.getLimeLightArea());
+    SmartDashboard.putNumber("limeLight Area", Limelight.getLimeLightArea());
     // Limelight Valid Target Widget
-    dashboard.limeLightV.setNumber(Limelight.getLimeLightV());
+    //dashboard.limeLightV.setNumber(Limelight.getLimeLightV());
+    SmartDashboard.putNumber("limeLight Valid Target", Limelight.getLimeLightV());
     // Limelight Skew Widget
-    dashboard.limeLightS.setNumber(Limelight.getLimeLightS());
+    //dashboard.limeLightS.setNumber(Limelight.getLimeLightS());
+    SmartDashboard.putNumber("limeLight Skew", Limelight.getLimeLightS());
     // Limelight Shortest Sidelength Widget
-    dashboard.limeLightS.setNumber(Limelight.getLimeLighttshort());
+    //dashboard.limeLightS.setNumber(Limelight.getLimeLighttshort());
+    SmartDashboard.putNumber("limeLight Short Sidelength", Limelight.getLimeLighttshort());
     // Limelight Longest Sidelength Widget
-    dashboard.limeLighttlong.setNumber(Limelight.getLimeLighttlong());
+    //dashboard.limeLighttlong.setNumber(Limelight.getLimeLighttlong());
+    SmartDashboard.putNumber("limeLight Long Sidelength", Limelight.getLimeLighttlong());
     // Limelight Horizontal Sidelength Widget
-    dashboard.limeLightthor.setNumber(Limelight.getLimeLightthor());
+    //dashboard.limeLightthor.setNumber(Limelight.getLimeLightthor());
+    SmartDashboard.putNumber("limelight Horizontal Sidelength", Limelight.getLimeLightthor());
     // Limelight Vertical Sidelength Widget
-    dashboard.limeLighttvert.setNumber(Limelight.getLimeLighttvert());
+    //dashboard.limeLighttvert.setNumber(Limelight.getLimeLighttvert());
+    SmartDashboard.putNumber("limeLight Vertical Sidelength", Limelight.getLimeLighttvert());
   }
 
   /** This function is called once each time the robot enters Disabled mode. */
