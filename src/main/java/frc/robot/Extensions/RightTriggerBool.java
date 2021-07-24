@@ -24,4 +24,10 @@ public class RightTriggerBool extends Trigger {
             return false;
         }
     }
+
+	public void whileActiveContinuous(double d) {
+	}
+
+	public void microAdjustCommand() {
+	}
 }

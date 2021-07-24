@@ -115,14 +115,14 @@ public class DriveTrain extends SubsystemBase {
   // speedLimiter = value to limit the speed of the motors
   // if else statement to swap between arcade and tank
   public void driveWithController(XboxController controller, double speedLimiter) {
-    drive.tankDrive(controller.getRawAxis(Constants.rightTankAxis) * speedLimiter * -1,
-       controller.getRawAxis(Constants.leftTankAxis) * speedLimiter * -1);
+    drive.tankDrive(controller.getRawAxis(Constants.leftTankAxis) * speedLimiter * Constants.driveDirection,
+       controller.getRawAxis(Constants.rightTankAxis) * speedLimiter * Constants.driveDirection);
 
 }
 
 // Duplicate the right controller output onto left and right tank drive
 public void driveStraitWithController(XboxController controller,double speedLimiter){
- double rightSpeed = controller.getRawAxis(Constants.rightTankAxis) * speedLimiter * -1;
+ double rightSpeed = controller.getRawAxis(Constants.rightTankAxis) * speedLimiter * Constants.driveDirection;
  drive.tankDrive(rightSpeed,rightSpeed);
 }
 

@@ -26,7 +26,7 @@ public class DriveStraightWithController extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    driveTrain.driveStraitWithController(RobotContainer.controller, Constants.speedLimitDefault);
+    driveTrain.driveStraitWithController(RobotContainer.controller, Constants.speedLimitCurrent);
   }
 
   // Called once the command ends or is interrupted.
