@@ -17,7 +17,6 @@ import edu.wpi.first.wpilibj.kinematics.DifferentialDriveWheelSpeeds;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 import frc.robot.TrajectoryRepo;
-import frc.robot.Extensions.Dashboard_Outputs;
 import edu.wpi.first.wpilibj.SPI;
 import frc.robot.Extensions.DriveEncoders;
 import frc.robot.Extensions.Limelight;
@@ -41,9 +40,6 @@ public class DriveTrain extends SubsystemBase {
 
   // Odometry
   DifferentialDriveOdometry odometry;
-
-  // Drive Type
-  Dashboard_Outputs dashOut;
 
   // Internal time
   public static double time;
@@ -87,9 +83,6 @@ public class DriveTrain extends SubsystemBase {
 
     // Init the gyro
     ahrs = new AHRS(SPI.Port.kMXP);
-
-    // Setup the dashboard input object
-    dashOut = new Dashboard_Outputs();
 
     // Odometry
     odometry = new DifferentialDriveOdometry(Rotation2d.fromDegrees(-getGyroAngle()), Constants.startPosition);
