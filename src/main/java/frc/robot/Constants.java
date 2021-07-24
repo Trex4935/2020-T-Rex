@@ -70,7 +70,9 @@ public final class Constants {
     public static final int rightArcadeAxis = 4;
 
     // Used to limit speed of the robot
-    public static final double speedLimitDefault = 0.75;
+    public static double speedLimitCurrent = 0.75;
+    public static final double speedLimitSlow = 0.35;
+    public static final double speedLimitFast = 0.75;
 
     // Changes from tank drive to arcade drive
     public static final boolean arcadeDrive = false;
@@ -78,8 +80,8 @@ public final class Constants {
     // Open loop ramp value to keep the motors going from 0-100
     public static final double openLoopRamp = 0.2;
 
-    // Change the what direction is the front of the robot
-    public static final int driveDirection = -1;
+    // Change the what direction is the front of the robot (-1 should be intake front)
+    public static final int driveDirection = 1;
 
     // Change the inversion of the robot
     public static final boolean inversion = true;

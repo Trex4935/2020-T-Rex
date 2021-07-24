@@ -8,6 +8,7 @@ package frc.robot;
 import frc.robot.commands.*;
 import frc.robot.subsystems.*;
 import frc.robot.Extensions.*;
+
 import edu.wpi.first.wpilibj.DriverStation;
 // import needed WPI methods
 import edu.wpi.first.wpilibj.XboxController;
@@ -48,6 +49,7 @@ public class RobotContainer {
   private final EmptyMagToShooterCommand emptyMag;
   public static int station;
   private final AutoForwardCommand autoForward;
+  private final microAdjustCommand microAdjust;
 
   public RobotContainer() {
 
@@ -57,6 +59,7 @@ public class RobotContainer {
     driveWithController.addRequirements(driveTrain);
     driveStraightWithController = new DriveStraightWithController(driveTrain);
     driveTrain.setDefaultCommand(driveWithController);
+    microAdjust = new microAdjustCommand();
 
     // Controller
     controller = new XboxController(Constants.xboxControllerPort);
@@ -115,8 +118,11 @@ public class RobotContainer {
     new LeftTriggerBool().whileActiveContinuous(emptyMag.alongWith(shootPID));
     // new LeftTriggerBool().whenActive(reverseMagazine.withTimeout(0.1).andThen(emptyMag).alongWith(shootPID));
 
-    // Runs magazine and sets shooter motor with PID
-    new RightTriggerBool().whileActiveContinuous(highBelt.alongWith(shootPID2));
+    // Runs magazine and sets shooter motor with PID -- DONT DELETE... possible usage in the future
+    /// new RightTriggerBool().whileActiveContinuous(highBelt.alongWith(shootPID2));
+
+    // Available for micro-adjustments for shooting, intake, etc. Changes speed of robot to a slower value.
+    new RightTriggerBool().whileActiveContinuous(microAdjust);
     
     // whileActiveContinuous(emptyMag.alongWith(shootPID));
 
@@ -128,7 +134,7 @@ public class RobotContainer {
     // Y -
     //
     // LT - Hold to spin up Shooter and Empty Magazine when shooter at speed
-    // RT -
+    // RT - 
     //
     // LB - 
     // RB - Hold to drive straight
