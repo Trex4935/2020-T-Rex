@@ -38,17 +38,17 @@ public class RobotContainer {
   private final ReverseMagazineCommand reverseMagazine;
   private final SingulateBallCommand singulateBall;
   private final DriveStraightWithController driveStraightWithController;
-  private final HighBeltCommand highBelt;
+  
   private final Elevator elevator;
   private final ElevatorUpCommand elevatorup;
   private final ElevatorDownCommand elevatordown;
-  private final ElevSolenoidCommand elevatorsolenoid;
+  
   private final AutoTripleMagazineCommand autonomousTripleShoot;
   private final ShootPIDCommand shootPID;
-  private final ShootPIDCommand shootPID2;
+  
   private final EmptyMagToShooterCommand emptyMag;
   public static int station;
-  private final AutoForwardCommand autoForward;
+  
   private final microAdjustCommand microAdjust;
 
   public RobotContainer() {
@@ -68,24 +68,24 @@ public class RobotContainer {
     shooter = new Shooter();
     // shoot = new ShootCommand(shooter);
     shootPID = new ShootPIDCommand(shooter);
-    shootPID2 = new ShootPIDCommand(shooter);
+    
     
     // Magazine
     magazine = new Magazine();
     reverseMagazine = new ReverseMagazineCommand(magazine);
     singulateBall = new SingulateBallCommand(magazine);
-    highBelt = new HighBeltCommand(magazine);
+    
     emptyMag = new EmptyMagToShooterCommand(magazine);
 
     // Autonomous
     autonomousTripleShoot = new AutoTripleMagazineCommand(driveTrain, shooter, magazine);
-    autoForward = new AutoForwardCommand(driveTrain);
+    
 
     // Elevator
     elevator = new Elevator();
     elevatorup = new ElevatorUpCommand(elevator);
     elevatordown = new ElevatorDownCommand(elevator);
-    elevatorsolenoid = new ElevSolenoidCommand(elevator);
+
 
     // Station
     station = DriverStation.getInstance().getLocation();
@@ -134,7 +134,7 @@ public class RobotContainer {
     // Y -
     //
     // LT - Hold to spin up Shooter and Empty Magazine when shooter at speed
-    // RT - 
+    // RT - Slows robot for micro-adjustments
     //
     // LB - 
     // RB - Hold to drive straight
