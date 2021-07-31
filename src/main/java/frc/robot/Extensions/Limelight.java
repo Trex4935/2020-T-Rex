@@ -24,6 +24,13 @@ static NetworkTableEntry tlong = table.getEntry("tlong");
 static NetworkTableEntry thor = table.getEntry("thor");
 static NetworkTableEntry tvert = table.getEntry("tvert");
 
+// Writting Limelight values in NetworkTables for Camera Control Settings.
+static NetworkTableEntry ledMode = table.getEntry("ledMode");
+static NetworkTableEntry camMode = table.getEntry("camMode");
+static NetworkTableEntry pipeline = table.getEntry("pipeline");
+static NetworkTableEntry stream = table.getEntry("stream");
+static NetworkTableEntry snapshot = table.getEntry("snapshot");
+
 // Limelight X axis value read into object
 public static double getLimeLightX() {
     double limeLightX = tx.getDouble(0.0);
@@ -83,4 +90,26 @@ public static double getLimeLighttvert() {
     double limeLighttvert = tvert.getDouble(0.0);
     return limeLighttvert; 
 }
+
+public static void setLimeLightLedMode(int ledModeVal) {
+     ledMode.setNumber(ledModeVal);
+}
+
+public static void setLimeLightCamMode(int camModeVal) {
+    camMode.setNumber(camModeVal);
+}
+
+public static void setLimeLightPipeline(int pipelineVal) {
+    pipeline.setNumber(pipelineVal);
+}
+
+public static void setLimeLightStream(int streamVal) {
+    stream.setNumber(streamVal);
+}
+
+public static void setLimeLightSnapshot(int snapshotVal) {
+    snapshot.setNumber(snapshotVal);
+}
+
+
 }
