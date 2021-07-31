@@ -71,7 +71,7 @@ public final class Constants {
 
     // Used to limit speed of the robot
     public static double speedLimitCurrent = 0.75;
-    public static final double speedLimitSlow = 0.35;
+    public static final double speedLimitSlow = 0.4;
     public static final double speedLimitFast = 0.75;
 
     // Changes from tank drive to arcade drive
