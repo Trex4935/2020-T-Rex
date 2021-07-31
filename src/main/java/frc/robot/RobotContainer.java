@@ -38,6 +38,7 @@ public class RobotContainer {
   private final DriveWithControllerCommand driveWithController;
   private final ShootCommand shoot;
   private final ReverseMagazineCommand reverseMagazine;
+  private final ReverseMagazineCommand reverseMagazine2;
   private final SingulateBallCommand singulateBall;
   private final DriveStraightWithController driveStraightWithController;
   private final ElevatorUpCommand elevatorup;
@@ -69,6 +70,7 @@ public class RobotContainer {
     // Magazine
     magazine = new Magazine();
     reverseMagazine = new ReverseMagazineCommand(magazine);
+    reverseMagazine2 = new ReverseMagazineCommand(magazine);
     singulateBall = new SingulateBallCommand(magazine);
 
     emptyMag = new EmptyMagToShooterCommand(magazine);
@@ -94,7 +96,7 @@ public class RobotContainer {
 
     // Run intake ... stops when the shoot sensor is triggered
     new JoystickButton(controller, XboxController.Button.kB.value)
-        .toggleWhenPressed(singulateBall.withInterrupt(Magazine::getShooterSensor).andThen(shoot));
+        .toggleWhenPressed(singulateBall.withInterrupt(Magazine::getShooterSensor).andThen(reverseMagazine2.withTimeout(0.1)).andThen(shoot));
 
     // Runs pulley + intake to reverse a ball thru the magazine
     new JoystickButton(controller, XboxController.Button.kX.value).whenHeld(reverseMagazine);
