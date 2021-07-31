@@ -18,6 +18,7 @@ static NetworkTableEntry ty = table.getEntry("ty");
 static NetworkTableEntry ta = table.getEntry("ta");
 static NetworkTableEntry tv = table.getEntry("tv");
 static NetworkTableEntry ts = table.getEntry("ts");
+static NetworkTableEntry tl = table.getEntry("tl");
 static NetworkTableEntry tshort = table.getEntry("tshort");
 static NetworkTableEntry tlong = table.getEntry("tlong");
 static NetworkTableEntry thor = table.getEntry("thor");
@@ -51,6 +52,12 @@ public static double getLimeLightV() {
 public static double getLimeLightS() {
     double limeLightS = ts.getDouble(0.0);
     return limeLightS;
+}
+
+// Limelight Skew read into object
+public static double getLimeLightL() {
+    double limeLightL = tl.getDouble(0.0);
+    return limeLightL;
 }
 
 // Limelight Shortest Sidelength read into object
