@@ -32,23 +32,20 @@ public class RobotContainer {
   public final Magazine magazine;
   private final Shooter shooter;
   public static XboxController controller;
+  private final Elevator elevator;
+
   // Commands
   private final DriveWithControllerCommand driveWithController;
-  // private final ShootCommand shoot;
+  private final ShootCommand shoot;
   private final ReverseMagazineCommand reverseMagazine;
   private final SingulateBallCommand singulateBall;
   private final DriveStraightWithController driveStraightWithController;
-  
-  private final Elevator elevator;
   private final ElevatorUpCommand elevatorup;
   private final ElevatorDownCommand elevatordown;
-  
   private final AutoTripleMagazineCommand autonomousTripleShoot;
   private final ShootPIDCommand shootPID;
-  
   private final EmptyMagToShooterCommand emptyMag;
   public static int station;
-  
   private final microAdjustCommand microAdjust;
 
   public RobotContainer() {
@@ -66,26 +63,23 @@ public class RobotContainer {
 
     // Shooter
     shooter = new Shooter();
-    // shoot = new ShootCommand(shooter);
+    shoot = new ShootCommand(shooter);
     shootPID = new ShootPIDCommand(shooter);
-    
-    
+
     // Magazine
     magazine = new Magazine();
     reverseMagazine = new ReverseMagazineCommand(magazine);
     singulateBall = new SingulateBallCommand(magazine);
-    
+
     emptyMag = new EmptyMagToShooterCommand(magazine);
 
     // Autonomous
     autonomousTripleShoot = new AutoTripleMagazineCommand(driveTrain, shooter, magazine);
-    
 
     // Elevator
     elevator = new Elevator();
     elevatorup = new ElevatorUpCommand(elevator);
     elevatordown = new ElevatorDownCommand(elevator);
-
 
     // Station
     station = DriverStation.getInstance().getLocation();
@@ -100,7 +94,7 @@ public class RobotContainer {
 
     // Run intake ... stops when the shoot sensor is triggered
     new JoystickButton(controller, XboxController.Button.kB.value)
-        .toggleWhenPressed(singulateBall.withInterrupt(Magazine::getShooterSensor));
+        .toggleWhenPressed(singulateBall.withInterrupt(Magazine::getShooterSensor).andThen(shoot));
 
     // Runs pulley + intake to reverse a ball thru the magazine
     new JoystickButton(controller, XboxController.Button.kX.value).whenHeld(reverseMagazine);
@@ -116,19 +110,22 @@ public class RobotContainer {
 
     // Empties magazine using left trigger
     new LeftTriggerBool().whileActiveContinuous(emptyMag.alongWith(shootPID));
-    // new LeftTriggerBool().whenActive(reverseMagazine.withTimeout(0.1).andThen(emptyMag).alongWith(shootPID));
+    // new
+    // LeftTriggerBool().whenActive(reverseMagazine.withTimeout(0.1).andThen(emptyMag).alongWith(shootPID));
 
-    // Runs magazine and sets shooter motor with PID -- DONT DELETE... possible usage in the future
+    // Runs magazine and sets shooter motor with PID -- DONT DELETE... possible
+    // usage in the future
     /// new RightTriggerBool().whileActiveContinuous(highBelt.alongWith(shootPID2));
 
-    // Available for micro-adjustments for shooting, intake, etc. Changes speed of robot to a slower value.
+    // Available for micro-adjustments for shooting, intake, etc. Changes speed of
+    // robot to a slower value.
     new RightTriggerBool().whileActiveContinuous(microAdjust);
-    
+
     // whileActiveContinuous(emptyMag.alongWith(shootPID));
 
     /// CONTROLLER MAP
     //
-    // A - 
+    // A -
     // B - Turn on Intake
     // X - Reverse Magazine
     // Y -
@@ -136,7 +133,7 @@ public class RobotContainer {
     // LT - Hold to spin up Shooter and Empty Magazine when shooter at speed
     // RT - Slows robot for micro-adjustments
     //
-    // LB - 
+    // LB -
     // RB - Hold to drive straight
     //
     // LStick - Control left side drive train
@@ -197,16 +194,17 @@ public class RobotContainer {
     // Constants.kRamseteZeta), Constants.kDriveKinematics, driveTrain::move,
     // driveTrain);
 
-    //new RamseteCommand(TrajectoryRepo.trajectory, driveTrain::getPose,
-   //     new RamseteController(Constants.kRamseteB, Constants.kRamseteZeta), Constants.kDriveKinematics,
-   //     driveTrain::move, driveTrain);
+    // new RamseteCommand(TrajectoryRepo.trajectory, driveTrain::getPose,
+    // new RamseteController(Constants.kRamseteB, Constants.kRamseteZeta),
+    // Constants.kDriveKinematics,
+    // driveTrain::move, driveTrain);
 
     // Encoder Position, Encoder Speed, Gyro-Data based Trajectory Command
     // (TBD)
 
     // Ramsete Autonomous command;
     // Command autonomousCommand = ramseteCommand;
-    //Command autonomousCommand = bouncePath;
+    // Command autonomousCommand = bouncePath;
 
     // Command autonomousCommand = autoShootSpeed;
 
@@ -215,22 +213,22 @@ public class RobotContainer {
     // Shooter SRuns Autonomous
     // Command autonomousCommand = autonomousSRunsAndShoot;
 
-  //   if (station==1) {
-  //     Command autonomousCommand = autonomousTripleShoot;
-  //     return autonomousCommand;
-  //   }
-  //  else if (station ==2) {
-  //   Command autonomousCommand = autoForward;
-  //   return autonomousCommand;
-  //  }
-  //  else {
-  //   Command autonomousCommand = autonomousTripleShoot;
-  //   return autonomousCommand;
-     
-  //  }
+    // if (station==1) {
+    // Command autonomousCommand = autonomousTripleShoot;
+    // return autonomousCommand;
+    // }
+    // else if (station ==2) {
+    // Command autonomousCommand = autoForward;
+    // return autonomousCommand;
+    // }
+    // else {
+    // Command autonomousCommand = autonomousTripleShoot;
+    // return autonomousCommand;
 
-   Command autonomousCommand = autonomousTripleShoot;
-   return autonomousCommand;
+    // }
+
+    Command autonomousCommand = autonomousTripleShoot;
+    return autonomousCommand;
 
   }
 }

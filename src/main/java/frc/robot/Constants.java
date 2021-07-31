@@ -95,7 +95,7 @@ public final class Constants {
     // ================================
 
     // Shooter motor speed
-    public static final double shooterSpeed = 0.3;
+    public static final double shooterSpeed = 0.4;
     public static final int rtTrigger = 3;
     public static final int ltTrigger = 2;
     public static boolean atSpeed = false;
