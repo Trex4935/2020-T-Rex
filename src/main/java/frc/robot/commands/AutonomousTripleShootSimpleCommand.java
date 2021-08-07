@@ -24,8 +24,8 @@ public class AutonomousTripleShootSimpleCommand extends SequentialCommandGroup  
 
     //replace dt::getPose with driveTrain::getPosition to use simulated encoder and gyro data for simulation and debugging
     addCommands(
-      new EmptyMagToShooterCommand(mag).alongWith(new ShootPIDCommand(shooter)).withTimeout(7),
-      new RamseteCommand(TrajectoryRepo.trajectoryFront, dt::getPose, new RamseteController(Constants.kRamseteB, Constants.kRamseteZeta), Constants.kDriveKinematics, dt::move, dt).alongWith(new SingulateBallCommand(mag).withTimeout(7))
+      new EmptyMagToShooterCommand(mag).alongWith(new ShootPIDCommand(shooter)).withTimeout(4),
+      new RamseteCommand(TrajectoryRepo.trajectoryFront, dt::getPose, new RamseteController(Constants.kRamseteB, Constants.kRamseteZeta), Constants.kDriveKinematics, dt::move, dt).alongWith(new SingulateBallCommand(mag).withTimeout(12))
       //new RamseteCommand(TrajectoryRepo.trajectoryBack, dt::getPose, new RamseteController(Constants.kRamseteB, Constants.kRamseteZeta), Constants.kDriveKinematics, dt::move, dt)
       );
   }
