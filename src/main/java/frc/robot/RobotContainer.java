@@ -37,6 +37,7 @@ public class RobotContainer {
   // Commands
   private final DriveWithControllerCommand driveWithController;
   private final ShootCommand shoot;
+  private final LimeLightAimCommand limeLightAim;
   private final ReverseMagazineCommand reverseMagazine;
   private final ReverseMagazineCommand reverseMagazine2;
   private final SingulateBallCommand singulateBall;
@@ -58,6 +59,7 @@ public class RobotContainer {
     driveStraightWithController = new DriveStraightWithController(driveTrain);
     driveTrain.setDefaultCommand(driveWithController);
     microAdjust = new microAdjustCommand();
+    limeLightAim = new LimeLightAimCommand(driveTrain);
 
     // Controller
     controller = new XboxController(Constants.xboxControllerPort);
@@ -122,6 +124,8 @@ public class RobotContainer {
     // Available for micro-adjustments for shooting, intake, etc. Changes speed of
     // robot to a slower value.
     new RightTriggerBool().whileActiveContinuous(microAdjust);
+
+    new JoystickButton(controller, XboxController.Button.kY.value).whenHeld(limeLightAim);
 
     // whileActiveContinuous(emptyMag.alongWith(shootPID));
 
