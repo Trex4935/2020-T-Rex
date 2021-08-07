@@ -167,7 +167,7 @@ public final class Constants {
 
     // region Elevator
     // ================================
-    public static final double elevatorMotorSpeed = 0.6;
+    public static final double elevatorMotorSpeed = 0.9;
 
     // Elevator Sensors DIO Locations on the Roborio 
     public static final int elevatorLimitorTopDIO = 0;
