@@ -12,6 +12,8 @@ import frc.robot.Extensions.*;
 import edu.wpi.first.wpilibj.DriverStation;
 // import needed WPI methods
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.POVButton;
@@ -48,6 +50,9 @@ public class RobotContainer {
   private final EmptyMagToShooterCommand emptyMag;
   public static int station;
   private final microAdjustCommand microAdjust;
+  
+  // SendableChooser to pick automomous runs
+  SendableChooser<Command> AutoRun_Picker = new SendableChooser<>();
 
   public RobotContainer() {
 
@@ -77,6 +82,10 @@ public class RobotContainer {
 
     // Autonomous
     autonomousTripleShoot = new AutoTripleMagazineCommand(driveTrain, shooter, magazine);
+
+    // Autonomous Chooser
+    AutoRun_Picker.setDefaultOption("Triple Shoot", autonomousTripleShoot);
+    SmartDashboard.putData(AutoRun_Picker);
 
     // Elevator
     elevator = new Elevator();

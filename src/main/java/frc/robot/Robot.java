@@ -27,8 +27,10 @@ public class Robot extends TimedRobot {
 
   private RobotContainer m_robotContainer;
 
-  // Initialize the tabs on the Shuffleboard
-  //public Init_Dashboard dashboard;
+  // Poll the SmartDashboard for the Autonomus Run Selection
+  public Command getAutonomousCommand() {
+    return m_robotContainer.AutoRun_Picker.getSelected();
+  }
 
   // Limelight object
   public Limelight limelight;
@@ -77,20 +79,15 @@ public class Robot extends TimedRobot {
     // This must be called from the robot's periodic block in order for anything in
     // the Command-based framework to work.
     CommandScheduler.getInstance().run();
-
+   
     /// Outputting running robot data to SmartDashboard widgets
-
     // Drive Left Axis Widget
-    //dashboard.driveLeftAxisWidget.setNumber(RobotContainer.controller.getRawAxis(Constants.leftTankAxis));
     SmartDashboard.putNumber("Drive Left-Axis", RobotContainer.controller.getRawAxis(Constants.leftTankAxis));
     // Drive Right Axis Widget
-    //dashboard.driveRightAxisWidget.setNumber(RobotContainer.controller.getRawAxis(Constants.rightTankAxis));
     SmartDashboard.putNumber("Drive Right-Axis", RobotContainer.controller.getRawAxis(Constants.rightTankAxis));
     // Shooter Current running RPM Widget
-    //dashboard.shooterCurrentRpm.setNumber(Shooter.currentRpm);
     SmartDashboard.putNumber("Shooter Current RPM", Shooter.currentRpm);
     // Magazine Fully Loaded Status
-    //dashboard.sensorShooter.setBoolean(Magazine.getShooterSensor()); 
     SmartDashboard.putBoolean("Mag Fully Loaded", Magazine.getShooterSensor());
     
     // Update Encoder values
@@ -204,4 +201,5 @@ public class Robot extends TimedRobot {
   @Override
   public void testPeriodic() {
   }
+  
 }
