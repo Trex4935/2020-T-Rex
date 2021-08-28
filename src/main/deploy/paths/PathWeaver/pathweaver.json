@@ -3,7 +3,7 @@
   "exportUnit": "Same as Project",
   "maxVelocity": 0.5,
   "maxAcceleration": 0.8,
-  "wheelBase": 1.0668,
+  "wheelBase": 0.8,
   "gameName": "Infinite Recharge",
   "outputDir": ".."
 }
