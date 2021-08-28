@@ -42,15 +42,13 @@
               "_source0": "network_table:///SmartDashboard/Shooter Current RPM",
               "_title": "Shooter Current RPM",
               "Graph/Visible time": 30.0,
-              "Graph/X-axis auto scrolling": true,
               "Y-axis/Automatic bounds": true,
               "Y-axis/Upper bound": 1.0,
               "Y-axis/Lower bound": -1.0,
-              "Y-axis/Unit": "ul",
               "Visible data/SmartDashboard/Shooter Current RPM": true
             }
           },
-          "3,0": {
+          "2,0": {
             "size": [
               1,
               1
@@ -63,7 +61,7 @@
               "Colors/Color when false": "#8B0000FF"
             }
           },
-          "3,1": {
+          "2,1": {
             "size": [
               1,
               1
@@ -185,6 +183,17 @@
               "Wheels/Number of wheels": 4,
               "Wheels/Wheel diameter": 80.0,
               "Visuals/Show velocity vectors": true
+            }
+          },
+          "3,0": {
+            "size": [
+              2,
+              1
+            ],
+            "content": {
+              "_type": "ComboBox Chooser",
+              "_source0": "network_table:///SmartDashboard/SendableChooser[0]",
+              "_title": "SendableChooser[0]"
             }
           }
         }
