@@ -193,7 +193,7 @@
             "content": {
               "_type": "ComboBox Chooser",
               "_source0": "network_table:///SmartDashboard/SendableChooser[0]",
-              "_title": "SendableChooser[0]"
+              "_title": "Autonomous Run Chooser"
             }
           }
         }
@@ -394,30 +394,6 @@
               "_title": "Elevator",
               "Layout/Label position": "BOTTOM",
               "_children": []
-            }
-          }
-        }
-      }
-    },
-    {
-      "title": "Test",
-      "autoPopulate": false,
-      "autoPopulatePrefix": "",
-      "widgetPane": {
-        "gridSize": 128.0,
-        "showGrid": true,
-        "hgap": 16.0,
-        "vgap": 16.0,
-        "tiles": {
-          "3,0": {
-            "size": [
-              3,
-              1
-            ],
-            "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///Shuffleboard/Driver Info/Current Gyro Heading",
-              "_title": "Shuffleboard/Driver Info/Current Gyro Heading"
             }
           }
         }
