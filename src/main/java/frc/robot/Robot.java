@@ -27,10 +27,11 @@ public class Robot extends TimedRobot {
 
   private RobotContainer m_robotContainer;
 
+  /// Grabing the value in RobotContainer insead of running here.
   // Poll the SmartDashboard for the Autonomus Run Selection
-  public Command getAutonomousCommand() {
-    return m_robotContainer.AutoRun_Picker.getSelected();
-  }
+  // public Command getAutonomousCommand() {
+  // return m_robotContainer.AutoRun_Picker.getSelected();
+  //}
 
   // Limelight object
   public Limelight limelight;

@@ -237,9 +237,11 @@ public class RobotContainer {
     // return autonomousCommand;
 
     // }
-
-    Command autonomousCommand = autonomousTripleShoot;
-    return autonomousCommand;
+    // Poll the SmartDashboard for the Autonomus Run Selection
+    return AutoRun_Picker.getSelected();
+    // Use below if specifying one autonomous command
+    //Command autonomousCommand = autonomousTripleShoot;
+    //return autonomousCommand;
 
   }
 }
