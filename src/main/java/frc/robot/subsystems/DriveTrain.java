@@ -228,6 +228,7 @@ public class DriveTrain extends SubsystemBase {
     // If the encoder is >= to the distance stop the robot
     if (DriveEncoders.rfEncoderValue >= autoDriveDistance) {
       stopDriveTrain();
+      System.out.println(DriveEncoders.rfEncoderValue);
     }
     // Move forward at the set speed
     else {
@@ -237,21 +238,27 @@ public class DriveTrain extends SubsystemBase {
 
   // Turn the robot a specified number of degrees left or right
   // + = Right Turn; - = Left Turn
-  public void RotateDegrees(double degrees) {
-    double leftspeed = Constants.rotationSpeed;
-    double rightspeed = Constants.rotationSpeed;
+  public void RotateDegrees(double targetDegrees) {
+    double KpAim = -0.1;
+    double min_aim_command = 0.05;
 
-    // If zero then we aren't going to move so set the speed to zero
-    if (degrees == 0) {
-      leftspeed = 0;
-      rightspeed = 0;
-      // if negative we are turning left so set the left to run backwards
-    } else if (degrees < 0) {
-      leftspeed = leftspeed * -1;
-      // if positive we are turning right so set the right to run backwards
-    } else {
-      rightspeed = rightspeed * -1;
+    double tx = ahrs.getAngle() + targetDegrees;
+
+    double heading_error = -tx;
+    // double distance_error = -ty;
+    double steering_adjust = 0.0f;
+
+    if (tx > 1.0) {
+      steering_adjust = KpAim * heading_error - min_aim_command;
+    } else if (tx < 1.0) {
+      steering_adjust = KpAim * heading_error + min_aim_command;
     }
+
+    // double distance_adjust = KpDistance * distance_error;
+
+    double left_command = steering_adjust;
+    double right_command = steering_adjust * -1;
+    drive.tankDrive(left_command, right_command);
 
   }
 
