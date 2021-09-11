@@ -231,7 +231,7 @@ public class DriveTrain extends SubsystemBase {
   public void DriveStraight(double autoDriveDistance, double autoDriveSpeed) {
     // Make two drivetrain opjects to be albe set each side a separate speeds
     autoDriveSpeedLeft=autoDriveSpeed;
-    autoDriveSpeedRight=autoDriveSpeed-0.025;
+    autoDriveSpeedRight=autoDriveSpeed-0.09;
     // If the encoder is >= to the distance stop the robot
     if (DriveEncoders.rfEncoderValue >= autoDriveDistance) {
       stopDriveTrain();
