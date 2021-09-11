@@ -59,7 +59,7 @@ public class RobotContainer {
     driveStraightWithController = new DriveStraightWithController(driveTrain);
     driveTrain.setDefaultCommand(driveWithController);
     microAdjust = new microAdjustCommand();
-    autoDriveStrait = new AutoDriveStraitCommand(driveTrain, 40000, -0.9);
+    autoDriveStrait = new AutoDriveStraitCommand(driveTrain, 100000, -0.5);
 
     // Controller
     controller = new XboxController(Constants.xboxControllerPort);
