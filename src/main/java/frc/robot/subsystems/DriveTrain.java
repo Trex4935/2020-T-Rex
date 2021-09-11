@@ -54,19 +54,19 @@ public class DriveTrain extends SubsystemBase {
     // Going to set any whole game settings here as well (like motor inversion)
     leftFront = new WPI_TalonFX(Constants.leftFrontCanID);
     leftFront.setInverted(Constants.inversion);
-    //leftFront.configOpenloopRamp(Constants.openLoopRamp);
+    // leftFront.configOpenloopRamp(Constants.openLoopRamp);
 
     rightFront = new WPI_TalonFX(Constants.rightFrontCanID);
     rightFront.setInverted(Constants.inversion);
-    //rightFront.configOpenloopRamp(Constants.openLoopRamp);
+    // rightFront.configOpenloopRamp(Constants.openLoopRamp);
 
     leftRear = new WPI_TalonFX(Constants.leftRearCanID);
     leftRear.setInverted(Constants.inversion);
-    //leftRear.configOpenloopRamp(Constants.openLoopRamp);
+    // leftRear.configOpenloopRamp(Constants.openLoopRamp);
 
     rightRear = new WPI_TalonFX(Constants.rightRearCanID);
     rightRear.setInverted(Constants.inversion);
-    //rightRear.configOpenloopRamp(Constants.openLoopRamp);
+    // rightRear.configOpenloopRamp(Constants.openLoopRamp);
 
     // Create the encoders object
     driveEncoders = new DriveEncoders();
@@ -98,7 +98,7 @@ public class DriveTrain extends SubsystemBase {
         ticksToPosition(leftFront.getSelectedSensorPosition(), Constants.wheelDiameter, Constants.driveTrainGearRatio),
         ticksToPosition(-rightFront.getSelectedSensorPosition(), Constants.wheelDiameter,
             Constants.driveTrainGearRatio));
-     
+
     driveEncoders.SetDriveEncoders(leftFront.getSelectedSensorPosition(), leftRear.getSelectedSensorPosition(),
         rightFront.getSelectedSensorPosition(), rightRear.getSelectedSensorPosition());
   }
@@ -109,15 +109,15 @@ public class DriveTrain extends SubsystemBase {
   // if else statement to swap between arcade and tank
   public void driveWithController(XboxController controller, double speedLimiter) {
     drive.tankDrive(controller.getRawAxis(Constants.leftTankAxis) * speedLimiter * Constants.driveDirection,
-       controller.getRawAxis(Constants.rightTankAxis) * speedLimiter * Constants.driveDirection);
+        controller.getRawAxis(Constants.rightTankAxis) * speedLimiter * Constants.driveDirection);
 
-}
+  }
 
-// Duplicate the right controller output onto left and right tank drive
-public void driveStraitWithController(XboxController controller,double speedLimiter){
- double rightSpeed = controller.getRawAxis(Constants.rightTankAxis) * speedLimiter * Constants.driveDirection;
- drive.tankDrive(rightSpeed,rightSpeed);
-}
+  // Duplicate the right controller output onto left and right tank drive
+  public void driveStraitWithController(XboxController controller, double speedLimiter) {
+    double rightSpeed = controller.getRawAxis(Constants.rightTankAxis) * speedLimiter * Constants.driveDirection;
+    drive.tankDrive(rightSpeed, rightSpeed);
+  }
 
   // Move us forward during auto
   public void autoForward(double seconds) {
@@ -132,12 +132,13 @@ public void driveStraitWithController(XboxController controller,double speedLimi
     resetEncoders();
     odometry.resetPosition(new Pose2d(0, 0, new Rotation2d()), Rotation2d.fromDegrees(-getGyroAngle()));
   }
+
   public void resetOdometry(Pose2d startPosition) {
     resetEncoders();
     odometry.resetPosition(startPosition, Rotation2d.fromDegrees(-getGyroAngle()));
   }
 
-  public void resetGyro(){
+  public void resetGyro() {
     ahrs.reset();
   }
 
@@ -162,10 +163,10 @@ public void driveStraitWithController(XboxController controller,double speedLimi
 
   // Takes in speed setpoints,convert them to volts and drive robot
   public void move(double LeftSpeed, double RightSpeed) {
-    
+
     rightSide.setVoltage(-(LeftSpeed / Constants.kvVoltSecondsPerMeter) * Constants.autoCalibrate * (1)); // Or 12 or
-                                                                                                           // kvVoltSecondsPerMeter
-                                                                                                           // *WheelRatio
+                                                                                                          // kvVoltSecondsPerMeter
+                                                                                                          // *WheelRatio
     leftSide.setVoltage((RightSpeed / Constants.kvVoltSecondsPerMeter) * Constants.autoCalibrate * (1)); // Or 12
     drive.feed();
   }
@@ -199,14 +200,18 @@ public void driveStraitWithController(XboxController controller,double speedLimi
     double distanceTravel = nbTurnWheel * Math.PI * wheelDiameter;
     return distanceTravel;
   }
-        // calculating motor + wheel rotations
-  //private int velocityToNativeUnits(double velocityMetersPerSecond, double wheelDiameter, double gearRatio) {
-    //double wheelRotationsPerSecond = velocityMetersPerSecond / (Math.PI * wheelDiameter);
-    //double motorRotationsPerSecond = wheelRotationsPerSecond * gearRatio;
-    //double motorRotationsPer100ms = motorRotationsPerSecond / Constants.k100msPerSecond;
-    //int sensorTicksPer100ms = (int) (motorRotationsPer100ms * Constants.encoderTicksPerTurn);
-    //return sensorTicksPer100ms;
-  //} 
+  // calculating motor + wheel rotations
+  // private int velocityToNativeUnits(double velocityMetersPerSecond, double
+  // wheelDiameter, double gearRatio) {
+  // double wheelRotationsPerSecond = velocityMetersPerSecond / (Math.PI *
+  // wheelDiameter);
+  // double motorRotationsPerSecond = wheelRotationsPerSecond * gearRatio;
+  // double motorRotationsPer100ms = motorRotationsPerSecond /
+  // Constants.k100msPerSecond;
+  // int sensorTicksPer100ms = (int) (motorRotationsPer100ms *
+  // Constants.encoderTicksPerTurn);
+  // return sensorTicksPer100ms;
+  // }
 
   private double NativeUnitsToVelocity(double sensorTicksPer100ms, double wheelDiameter, double gearRatio) {
     double motorRotationsPer100ms = (double) (sensorTicksPer100ms / Constants.encoderTicksPerTurn);
@@ -223,6 +228,7 @@ public void driveStraitWithController(XboxController controller,double speedLimi
     // If the encoder is >= to the distance stop the robot
     if (DriveEncoders.rfEncoderValue >= autoDriveDistance) {
       stopDriveTrain();
+      System.out.println(DriveEncoders.rfEncoderValue);
     }
     // Move forward at the set speed
     else {
@@ -232,21 +238,27 @@ public void driveStraitWithController(XboxController controller,double speedLimi
 
   // Turn the robot a specified number of degrees left or right
   // + = Right Turn; - = Left Turn
-  public void RotateDegrees(double degrees) {
-    double leftspeed = Constants.rotationSpeed;
-    double rightspeed = Constants.rotationSpeed;
+  public void RotateDegrees(double targetDegrees) {
+    double KpAim = -0.1;
+    double min_aim_command = 0.05;
 
-    // If zero then we aren't going to move so set the speed to zero
-    if (degrees == 0) {
-      leftspeed = 0;
-      rightspeed = 0;
-      // if negative we are turning left so set the left to run backwards
-    } else if (degrees < 0) {
-      leftspeed = leftspeed * -1;
-      // if positive we are turning right so set the right to run backwards
-    } else {
-      rightspeed = rightspeed * -1;
+    double tx = ahrs.getAngle() + targetDegrees;
+
+    double heading_error = -tx;
+    // double distance_error = -ty;
+    double steering_adjust = 0.0f;
+
+    if (tx > 1.0) {
+      steering_adjust = KpAim * heading_error - min_aim_command;
+    } else if (tx < 1.0) {
+      steering_adjust = KpAim * heading_error + min_aim_command;
     }
+
+    // double distance_adjust = KpDistance * distance_error;
+
+    double left_command = steering_adjust;
+    double right_command = steering_adjust * -1;
+    drive.tankDrive(left_command, right_command);
 
   }
 

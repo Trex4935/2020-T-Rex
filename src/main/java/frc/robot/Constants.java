@@ -99,6 +99,8 @@ public final class Constants {
     public static final int rtTrigger = 3;
     public static final int ltTrigger = 2;
     public static boolean atSpeed = false;
+	public static double distance = 200000;
+	public static double speed = -0.5;
 
     // PID stuff
     public static final int kSlotIdx = 0;
