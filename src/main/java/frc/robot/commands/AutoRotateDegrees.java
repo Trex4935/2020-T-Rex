@@ -7,34 +7,35 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.DriveTrain;
 
-public class AutoDriveStraitCommand extends CommandBase {
+public class AutoRotateDegrees extends CommandBase {
   private final DriveTrain driveTrain;
-  private double l_autoDriveDistance;
-  private double l_autoDriveSpeed;
+  private double l_degrees;
 
-  /** Creates a new AutoForward. */
-  public AutoDriveStraitCommand(DriveTrain dt,double autoDriveDistance, double autoDriveSpeed) {
+  /** Creates a new AutoRotateDegrees. */
+  public AutoRotateDegrees(DriveTrain dt, double autoDegrees) {
     // Use addRequirements() here to declare subsystem dependencies.
     driveTrain = dt;
-    l_autoDriveDistance = autoDriveDistance;
-    l_autoDriveSpeed = autoDriveSpeed;
+    l_degrees = autoDegrees;
     addRequirements(driveTrain);
   }
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {}
+  public void initialize() {
+  }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    driveTrain.DriveStraight(l_autoDriveDistance, l_autoDriveSpeed);
+    driveTrain.RotateDegrees(l_degrees);
+    ;
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
     driveTrain.stopDriveTrain();
+
   }
 
   // Returns true when the command should end.
