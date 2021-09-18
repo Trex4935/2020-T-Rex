@@ -239,27 +239,33 @@ public class DriveTrain extends SubsystemBase {
   // Turn the robot a specified number of degrees left or right
   // + = Right Turn; - = Left Turn
   public void RotateDegrees(double targetDegrees) {
-    double KpAim = -0.1;
-    double min_aim_command = 0.05;
+    
+  }
 
-    double tx = ahrs.getAngle() + targetDegrees;
+  public void RotateEncoder(double turnDistance,int direction){
 
-    double heading_error = -tx;
-    // double distance_error = -ty;
-    double steering_adjust = 0.0f;
+    double rotateSpeed = 0.4;
+    double rightSpeed = rotateSpeed;
+    double leftSpeed = rotateSpeed;
 
-    if (tx > 1.0) {
-      steering_adjust = KpAim * heading_error - min_aim_command;
-    } else if (tx < 1.0) {
-      steering_adjust = KpAim * heading_error + min_aim_command;
+    // Set direction
+    if (direction < 0){
+      rightSpeed = rightSpeed * -1;  
+    }
+    else {
+      leftSpeed = leftSpeed * -1;
     }
 
-    // double distance_adjust = KpDistance * distance_error;
+    // While the encoder reads < than our turn value keep turning
+    if (DriveEncoders.rfEncoderValue >= turnDistance) {
+      stopDriveTrain();
+    }
+    // Turn at the set speed
+    else {
+      move(leftSpeed, rightSpeed);
+    } 
 
-    double left_command = steering_adjust;
-    double right_command = steering_adjust * -1;
-    drive.tankDrive(left_command, right_command);
-
+    
   }
 
   public DifferentialDriveWheelSpeeds getWheelSpeeds() {
