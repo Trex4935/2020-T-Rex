@@ -224,48 +224,58 @@ public class DriveTrain extends SubsystemBase {
   ;
 
   // Move the robot forward for a set distance at a set speed
-  public void DriveStraight(double autoDriveDistance, double autoDriveSpeed) {
+  public boolean DriveStraight(double autoDriveDistance, double autoDriveSpeed) {
     // If the encoder is >= to the distance stop the robot
+    System.out.println(DriveEncoders.rfEncoderValue);
     if (DriveEncoders.rfEncoderValue >= autoDriveDistance) {
-      stopDriveTrain();
-      System.out.println(DriveEncoders.rfEncoderValue);
+      return true;
     }
     // Move forward at the set speed
     else {
       move(autoDriveSpeed, autoDriveSpeed);
+      return false;
     }
   }
 
   // Turn the robot a specified number of degrees left or right
   // + = Right Turn; - = Left Turn
   public void RotateDegrees(double targetDegrees) {
-    
+
   }
 
-  public void RotateEncoder(double turnDistance,int direction){
+  public boolean RotateEncoder(double turnDistance, int direction) {
 
     double rotateSpeed = 0.4;
     double rightSpeed = rotateSpeed;
     double leftSpeed = rotateSpeed;
 
+    System.out.println(driveEncoders.rfEncoderValue);
+
     // Set direction
-    if (direction < 0){
-      rightSpeed = rightSpeed * -1;  
-    }
-    else {
+    if (direction < 0) {
+      rightSpeed = rightSpeed * -1;
+    } else {
       leftSpeed = leftSpeed * -1;
     }
 
     // While the encoder reads < than our turn value keep turning
-    if (DriveEncoders.rfEncoderValue >= turnDistance) {
-      stopDriveTrain();
+    if (Math.abs(driveEncoders.rfEncoderValue) >= turnDistance) {
+      return true;
     }
     // Turn at the set speed
     else {
       move(leftSpeed, rightSpeed);
-    } 
+      return false;
+    }
 
-    
+  }
+
+  // Reset encoders to 0
+  public void ResetEncoderValues (){
+    leftFront.setSelectedSensorPosition(0);
+    leftRear.setSelectedSensorPosition(0);
+    rightFront.setSelectedSensorPosition(0);
+    rightRear.setSelectedSensorPosition(0); 
   }
 
   public DifferentialDriveWheelSpeeds getWheelSpeeds() {

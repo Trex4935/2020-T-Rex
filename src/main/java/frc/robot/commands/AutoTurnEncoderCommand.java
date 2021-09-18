@@ -17,18 +17,23 @@ public class AutoTurnEncoderCommand extends CommandBase {
     // Use addRequirements() here to declare subsystem dependencies.
     driveTrain = dt;
     l_turnDistance = turnDistance;
-    l_turnDirection = turnDirection;    
+    l_turnDirection = turnDirection;
     addRequirements(driveTrain);
   }
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {}
+  public void initialize() {
+    driveTrain.resetEncoders();
+
+  }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    driveTrain.RotateEncoder(l_turnDistance, l_turnDirection);
+    if (driveTrain.RotateEncoder(l_turnDistance, l_turnDirection)) {
+      end(true);
+    }
   }
 
   // Called once the command ends or is interrupted.

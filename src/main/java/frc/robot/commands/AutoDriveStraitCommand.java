@@ -13,7 +13,7 @@ public class AutoDriveStraitCommand extends CommandBase {
   private double l_autoDriveSpeed;
 
   /** Creates a new AutoForward. */
-  public AutoDriveStraitCommand(DriveTrain dt,double autoDriveDistance, double autoDriveSpeed) {
+  public AutoDriveStraitCommand(DriveTrain dt, double autoDriveDistance, double autoDriveSpeed) {
     // Use addRequirements() here to declare subsystem dependencies.
     driveTrain = dt;
     l_autoDriveDistance = autoDriveDistance;
@@ -23,12 +23,15 @@ public class AutoDriveStraitCommand extends CommandBase {
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {}
+  public void initialize() {
+  }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    driveTrain.DriveStraight(l_autoDriveDistance, l_autoDriveSpeed);
+    if (driveTrain.DriveStraight(l_autoDriveDistance, l_autoDriveSpeed)) {
+      end(true);
+    }
   }
 
   // Called once the command ends or is interrupted.
