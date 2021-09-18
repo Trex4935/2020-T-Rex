@@ -11,6 +11,7 @@ public class AutoDriveStraitCommand extends CommandBase {
   private final DriveTrain driveTrain;
   private double l_autoDriveDistance;
   private double l_autoDriveSpeed;
+  private boolean finished;
 
   /** Creates a new AutoForward. */
   public AutoDriveStraitCommand(DriveTrain dt, double autoDriveDistance, double autoDriveSpeed) {
@@ -18,6 +19,7 @@ public class AutoDriveStraitCommand extends CommandBase {
     driveTrain = dt;
     l_autoDriveDistance = autoDriveDistance;
     l_autoDriveSpeed = autoDriveSpeed;
+    finished = false;
     addRequirements(driveTrain);
   }
 
@@ -38,11 +40,12 @@ public class AutoDriveStraitCommand extends CommandBase {
   @Override
   public void end(boolean interrupted) {
     driveTrain.stopDriveTrain();
+    finished = true;
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+    return finished;
   }
 }
