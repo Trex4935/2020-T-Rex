@@ -117,8 +117,6 @@ public class RobotContainer {
 
     // Empties magazine using left trigger
     new LeftTriggerBool().whileActiveContinuous(emptyMag.alongWith(shootPID));
-    // new
-    // LeftTriggerBool().whenActive(reverseMagazine.withTimeout(0.1).andThen(emptyMag).alongWith(shootPID));
 
     // Runs magazine and sets shooter motor with PID -- DONT DELETE... possible
     // usage in the future
