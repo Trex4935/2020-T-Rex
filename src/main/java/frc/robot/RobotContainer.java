@@ -168,7 +168,7 @@ public class RobotContainer {
   }
 }
 
-/// Code from the controlls for possible later use
+/// Code from the controls for possible later use
 
 // Empties magazine using left bumper
 // new JoystickButton(controller,
