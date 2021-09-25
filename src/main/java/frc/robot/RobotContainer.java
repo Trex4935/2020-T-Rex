@@ -152,10 +152,6 @@ public class RobotContainer {
     // Left -
     //
     /// END MAP
-    
-    // Run the magazine + intake when the intake sensor sees a ball
-    // new
-    // IntakeTrigger().whenActive(runBothMotors.withTimeout(Constants.intakeTimeOut));
 
   }
 
