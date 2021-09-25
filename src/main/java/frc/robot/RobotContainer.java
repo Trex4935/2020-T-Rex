@@ -162,39 +162,6 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
 
-    // new RamseteCommand(TrajectoryRepo.trajectory, driveTrain::getPose,
-    // new RamseteController(Constants.kRamseteB, Constants.kRamseteZeta),
-    // Constants.kDriveKinematics,
-    // driveTrain::move, driveTrain);
-
-    // Encoder Position, Encoder Speed, Gyro-Data based Trajectory Command
-    // (TBD)
-
-    // Ramsete Autonomous command;
-    // Command autonomousCommand = ramseteCommand;
-    // Command autonomousCommand = bouncePath;
-
-    // Command autonomousCommand = autoShootSpeed;
-
-    // Galactic Search Autonomous
-    // Command autonomousCommand = autoAndMagazine;
-    // Shooter SRuns Autonomous
-    // Command autonomousCommand = autonomousSRunsAndShoot;
-
-    // if (station==1) {
-    // Command autonomousCommand = autonomousTripleShoot;
-    // return autonomousCommand;
-    // }
-    // else if (station ==2) {
-    // Command autonomousCommand = autoForward;
-    // return autonomousCommand;
-    // }
-    // else {
-    // Command autonomousCommand = autonomousTripleShoot;
-    // return autonomousCommand;
-
-    // }
-
     Command autonomousCommand = autonomousTripleShoot;
     return autonomousCommand;
 
