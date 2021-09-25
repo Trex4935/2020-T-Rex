@@ -152,10 +152,7 @@ public class RobotContainer {
     // Left -
     //
     /// END MAP
-
-    // Runs shootPID when left trigger is pulled
-    // new LeftTriggerBool().whileActiveContinuous(shootPID);
-
+    
     // Run the magazine + intake when the intake sensor sees a ball
     // new
     // IntakeTrigger().whenActive(runBothMotors.withTimeout(Constants.intakeTimeOut));
