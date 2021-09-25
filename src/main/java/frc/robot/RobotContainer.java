@@ -70,7 +70,7 @@ public class RobotContainer {
     // Shooter
     shooter = new Shooter();
     shoot = new ShootCommand(shooter);
-    shootPID = new ShootPIDCommand(shooter);
+    shootPID = new ShootPIDCommand(shooter, Constants.targetRPM);
 
     // Magazine
     magazine = new Magazine();

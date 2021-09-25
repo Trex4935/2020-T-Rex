@@ -66,13 +66,13 @@ public class Shooter extends SubsystemBase {
     currentRpm = (shooterMotor.getSelectedSensorVelocity(Constants.kPIDLoopIdx)*600)/2048;
   }
 
-  public void shootPID() {
+  public void shootPID(int shooterRpm) {
     /**
      * Convert RPM into Position Change per 100ms 2048 Encoder Units / Revolution;
      * 600msu (100ms units) / minute; So positionchange_100ms = (2048 * TargetRPM) /
      * 600msu;
      */
-    double targetRPM = Constants.targetRPM;
+    double targetRPM = shooterRpm;
     double targetUnits_100ms = (2048 * targetRPM) / 600;
     shooterMotor.set(TalonFXControlMode.Velocity, targetUnits_100ms);
     currentRpm = (shooterMotor.getSelectedSensorVelocity(Constants.kPIDLoopIdx) * 600) / 2048;

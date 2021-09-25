@@ -9,11 +9,13 @@ import frc.robot.subsystems.Shooter;
 
 public class ShootPIDCommand extends CommandBase {
   private final Shooter shooter;
-  
+  private int l_shooterRPM;
+
   /** Creates a new ShootPID. */
-  public ShootPIDCommand(Shooter sh) {
+  public ShootPIDCommand(Shooter sh, int shooterRpm) {
     // Use addRequirements() here to declare subsystem dependencies.
     shooter = sh;
+    l_shooterRPM = shooterRpm;
     addRequirements(shooter);
   }
 
@@ -24,7 +26,7 @@ public class ShootPIDCommand extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    shooter.shootPID();    
+    shooter.shootPID(l_shooterRPM);    
   }
 
   // Called once the command ends or is interrupted.

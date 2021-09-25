@@ -19,7 +19,7 @@ public class AutoTurnEncoderCommand extends CommandBase {
     l_turnDistance = turnDistance;
     l_turnDirection = turnDirection;
     addRequirements(driveTrain);
-    finished = false;
+        finished = false;
   }
 
   // Called when the command is initially scheduled.
