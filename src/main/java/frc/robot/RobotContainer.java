@@ -126,8 +126,6 @@ public class RobotContainer {
     // robot to a slower value.
     new RightTriggerBool().whileActiveContinuous(microAdjust);
 
-    // whileActiveContinuous(emptyMag.alongWith(shootPID));
-
     /// CONTROLLER MAP
     //
     // A -
