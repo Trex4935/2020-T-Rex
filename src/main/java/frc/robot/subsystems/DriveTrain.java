@@ -47,6 +47,10 @@ public class DriveTrain extends SubsystemBase {
   // Encoders object
   public static DriveEncoders driveEncoders;
 
+  // Seting Auto Drive Straight Speed Objects
+  public static double autoDriveSpeedLeft;
+  public static double autoDriveSpeedRight;
+
   /** Creates a new DriveTrain. */
   public DriveTrain() {
 
@@ -224,7 +228,11 @@ public class DriveTrain extends SubsystemBase {
   ;
 
   // Move the robot forward for a set distance at a set speed
-  public boolean DriveStraight(double autoDriveDistance, double autoDriveSpeed) {
+  public void DriveStraight(double autoDriveDistance, double autoDriveSpeed) {
+    // Make two drivetrain opjects to be albe set each side a separate speeds
+    autoDriveSpeedLeft=autoDriveSpeed;
+    autoDriveSpeedRight=autoDriveSpeed-0.09;
+
     // If the encoder is >= to the distance stop the robot
     System.out.println(DriveEncoders.rfEncoderValue);
     if (DriveEncoders.rfEncoderValue >= autoDriveDistance) {

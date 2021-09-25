@@ -63,6 +63,7 @@ public class RobotContainer {
     autoDriveStrait = new AutoDriveStraitCommand(driveTrain, 100000, -0.5);
     autoTurnEncoderCommand = new AutoTurnEncoderCommand(driveTrain, 10000,-1);
 
+
     // Controller
     controller = new XboxController(Constants.xboxControllerPort);
 
@@ -104,8 +105,6 @@ public class RobotContainer {
 
     // Runs pulley + intake to reverse a ball thru the magazine
     new JoystickButton(controller, XboxController.Button.kX.value).whenHeld(reverseMagazine);
-
-    new JoystickButton(controller, XboxController.Button.kA.value).whenPressed(autoTurnEncoderCommand);
 
     // Makes sure the robot only goes straight by using right bumper
     new JoystickButton(controller, XboxController.Button.kBumperRight.value).whenHeld(driveStraightWithController);
