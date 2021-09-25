@@ -162,12 +162,6 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
 
-    // Simulated Trajectory Command
-    // RamseteCommand ramseteCommand = new RamseteCommand(TrajectoryRepo.trajectory,
-    // driveTrain::getPosition, new RamseteController(Constants.kRamseteB,
-    // Constants.kRamseteZeta), Constants.kDriveKinematics, driveTrain::move,
-    // driveTrain);
-
     // new RamseteCommand(TrajectoryRepo.trajectory, driveTrain::getPose,
     // new RamseteController(Constants.kRamseteB, Constants.kRamseteZeta),
     // Constants.kDriveKinematics,
