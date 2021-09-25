@@ -232,41 +232,58 @@ public class DriveTrain extends SubsystemBase {
     // Make two drivetrain opjects to be albe set each side a separate speeds
     autoDriveSpeedLeft=autoDriveSpeed;
     autoDriveSpeedRight=autoDriveSpeed-0.09;
+
     // If the encoder is >= to the distance stop the robot
+    System.out.println(DriveEncoders.rfEncoderValue);
     if (DriveEncoders.rfEncoderValue >= autoDriveDistance) {
-      stopDriveTrain();
-      System.out.println(DriveEncoders.rfEncoderValue);
+      return true;
     }
     // Move forward at the set speed
     else {
-      move(autoDriveSpeedLeft, autoDriveSpeedRight);
+      move(autoDriveSpeed, autoDriveSpeed);
+      return false;
     }
   }
 
   // Turn the robot a specified number of degrees left or right
   // + = Right Turn; - = Left Turn
   public void RotateDegrees(double targetDegrees) {
-    double KpAim = -0.1;
-    double min_aim_command = 0.05;
 
-    double tx = ahrs.getAngle() + targetDegrees;
+  }
 
-    double heading_error = -tx;
-    // double distance_error = -ty;
-    double steering_adjust = 0.0f;
+  public boolean RotateEncoder(double turnDistance, int direction) {
 
-    if (tx > 1.0) {
-      steering_adjust = KpAim * heading_error - min_aim_command;
-    } else if (tx < 1.0) {
-      steering_adjust = KpAim * heading_error + min_aim_command;
+    double rotateSpeed = 0.4;
+    double rightSpeed = rotateSpeed;
+    double leftSpeed = rotateSpeed;
+
+    System.out.println(driveEncoders.rfEncoderValue);
+
+    // Set direction
+    if (direction < 0) {
+      rightSpeed = rightSpeed * -1;
+    } else {
+      leftSpeed = leftSpeed * -1;
     }
 
-    // double distance_adjust = KpDistance * distance_error;
+    // While the encoder reads < than our turn value keep turning
+    if (Math.abs(driveEncoders.rfEncoderValue) >= turnDistance) {
+      return true;
+    }
+    // Turn at the set speed
+    else {
+      move(leftSpeed, rightSpeed);
+      return false;
+    }
 
-    double left_command = steering_adjust;
-    double right_command = steering_adjust * -1;
-    drive.tankDrive(left_command, right_command);
+  }
 
+  // Reset encoders to 0
+  public void ResetEncoderValues (){
+    leftFront.setSelectedSensorPosition(0);
+    leftRear.setSelectedSensorPosition(0);
+    rightFront.setSelectedSensorPosition(0);
+    rightRear.setSelectedSensorPosition(0); 
   }
 
   public DifferentialDriveWheelSpeeds getWheelSpeeds() {

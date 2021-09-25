@@ -49,7 +49,7 @@ public class RobotContainer {
   public static int station;
   private final microAdjustCommand microAdjust;
   private final AutoDriveStraitCommand autoDriveStrait;
-  private final AutoRotateDegrees autoRotateDegrees;
+  private final AutoTurnEncoderCommand autoTurnEncoderCommand;
 
   public RobotContainer() {
 
@@ -60,8 +60,9 @@ public class RobotContainer {
     driveStraightWithController = new DriveStraightWithController(driveTrain);
     driveTrain.setDefaultCommand(driveWithController);
     microAdjust = new microAdjustCommand();
-    autoDriveStrait = new AutoDriveStraitCommand(driveTrain, 200000, -0.5);
-    autoRotateDegrees = new AutoRotateDegrees(driveTrain, 90);
+    autoDriveStrait = new AutoDriveStraitCommand(driveTrain, 100000, -0.5);
+    autoTurnEncoderCommand = new AutoTurnEncoderCommand(driveTrain, 10000,-1);
+
 
     // Controller
     controller = new XboxController(Constants.xboxControllerPort);
@@ -104,8 +105,6 @@ public class RobotContainer {
 
     // Runs pulley + intake to reverse a ball thru the magazine
     new JoystickButton(controller, XboxController.Button.kX.value).whenHeld(reverseMagazine);
-
-    new JoystickButton(controller, XboxController.Button.kA.value).toggleWhenPressed(autoDriveStrait);
 
     // Makes sure the robot only goes straight by using right bumper
     new JoystickButton(controller, XboxController.Button.kBumperRight.value).whenHeld(driveStraightWithController);
@@ -194,7 +193,7 @@ public class RobotContainer {
   public Command getAutonomousCommand() {
 
     // An ExampleCommand will run in autonomous
-    DriveTrain.resetTime();
+    //DriveTrain.resetTime();
 
     // Simulated Trajectory Command
     // RamseteCommand ramseteCommand = new RamseteCommand(TrajectoryRepo.trajectory,

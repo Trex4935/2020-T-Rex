@@ -3,37 +3,37 @@
 // the WPILib BSD license file in the root directory of this project.
 
 package frc.robot.commands;
-
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.DriveTrain;
 
-public class AutoDriveStraitCommand extends CommandBase {
+public class AutoTurnEncoderCommand extends CommandBase {
   private final DriveTrain driveTrain;
-  private double l_autoDriveDistance;
-  private double l_autoDriveSpeed;
+  private double l_turnDistance;
+  private int l_turnDirection;
   private boolean finished;
 
-  /** Creates a new AutoForward. */
-  public AutoDriveStraitCommand(DriveTrain dt, double autoDriveDistance, double autoDriveSpeed) {
+  /** Creates a new AutoTurnEncoderCommand. */
+  public AutoTurnEncoderCommand(DriveTrain dt, double turnDistance, int turnDirection) {
     // Use addRequirements() here to declare subsystem dependencies.
     driveTrain = dt;
-    l_autoDriveDistance = autoDriveDistance;
-    l_autoDriveSpeed = autoDriveSpeed;
-    finished = false;
+    l_turnDistance = turnDistance;
+    l_turnDirection = turnDirection;
     addRequirements(driveTrain);
+    finished = false;
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
     driveTrain.resetEncoders();
+
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if (driveTrain.DriveStraight(l_autoDriveDistance, l_autoDriveSpeed)) {
-      end(true);
+    if (driveTrain.RotateEncoder(l_turnDistance, l_turnDirection)) {
+     end(true);
     }
   }
 
