@@ -162,9 +162,6 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
 
-    // An ExampleCommand will run in autonomous
-    //DriveTrain.resetTime();
-
     // Simulated Trajectory Command
     // RamseteCommand ramseteCommand = new RamseteCommand(TrajectoryRepo.trajectory,
     // driveTrain::getPosition, new RamseteController(Constants.kRamseteB,
