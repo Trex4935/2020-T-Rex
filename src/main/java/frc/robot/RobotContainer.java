@@ -153,12 +153,6 @@ public class RobotContainer {
     //
     /// END MAP
 
-    // Run the magazine + intake for a set time period
-    // At the moment taking this off a button ... we need to figure out how to put
-    // this back!
-    // new JoystickButton(controller,
-    // XboxController.Button.kY.value).whenPressed(runBothMotors.withTimeout(Constants.intakeTimeOut));
-
     // Runs shootPID when left trigger is pulled
     // new LeftTriggerBool().whileActiveContinuous(shootPID);
 
