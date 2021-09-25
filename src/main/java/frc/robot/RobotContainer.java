@@ -170,15 +170,6 @@ public class RobotContainer {
     // new
     // IntakeTrigger().whenActive(runBothMotors.withTimeout(Constants.intakeTimeOut));
 
-    // Not using
-    // new Trigger(()->controller.getRawAxis(3)>=0.25).whileActiveContinuous(shoot);
-    // new JoystickButton(controller,
-    // XboxController.Button.kA.value).whenHeld(intakeBall);
-    // new JoystickButton(controller,
-    // XboxController.Button.kX.value).whenHeld(spitBall);
-    // new JoystickButton(controller, XboxController.Button.kA.value).whenHeld(new
-    // ParallelCommandGroup(intakeBall,spitBall));
-
   }
 
   /**
