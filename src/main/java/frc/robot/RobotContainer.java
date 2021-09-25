@@ -170,10 +170,6 @@ public class RobotContainer {
 
 /// Code from the controls for possible later use
 
-// Empties magazine using left bumper
-// new JoystickButton(controller,
-// XboxController.Button.kBumperLeft.value).whenHeld(emptyMag.alongWith(shootPID));
-
 // Run the magazine + intake for a set time period
 // At the moment taking this off a button ... we need to figure out how to put
 // this back!
