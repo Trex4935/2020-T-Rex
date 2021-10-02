@@ -23,6 +23,7 @@ public class Magazine extends SubsystemBase {
   public static WPI_TalonSRX highBeltMotor;
   WPI_TalonSRX lowBeltMotor;
   WPI_TalonSRX reverseIntakeMotor;
+  int i = 0;
 
   /// Smacna
   private static DigitalInput magazineSensor;
@@ -74,8 +75,8 @@ public class Magazine extends SubsystemBase {
   public void moveLowBelt() {
     lowBeltMotor.set(Constants.intakeMotorSpeed);
   }
-  
-  //Toggle light for intake
+
+  // Toggle light for intake
   public void lightOn() {
     intakeLight.set(1);
   }
@@ -128,12 +129,18 @@ public class Magazine extends SubsystemBase {
     if (getMagazineSensor()) {
       moveHighBelt();
       lightOn();
+      i = 0;
     }
     // When it no longer sees a ball then it is "in" the magazine so we stop the
     // motor
     else {
-      stopHighBelt();
-      stopLight();
+      if (i == 10) {
+        stopHighBelt();
+        stopLight();
+      } else {
+        i++;
+      }
+
     }
   }
 
@@ -149,8 +156,8 @@ public class Magazine extends SubsystemBase {
     intakeLight.set(1);
   }
 
-public void stopLight() {
-  intakeLight.stopMotor();
-}
+  public void stopLight() {
+    intakeLight.stopMotor();
+  }
 
 }

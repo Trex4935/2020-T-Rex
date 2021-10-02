@@ -51,8 +51,7 @@ public final class Constants {
 
     // Magazine motor speed
     public static final double beltMotorSpeed = 0.95;
-    public static final double intakeMotorSpeed = 0.7;
-
+    public static final double intakeMotorSpeed = 0.9;
     public static int ballCount = 0;
     public static final int actualBallCount = ballCount++;
 
@@ -81,7 +80,8 @@ public final class Constants {
     // Open loop ramp value to keep the motors going from 0-100
     public static final double openLoopRamp = 0.2;
 
-    // Change the what direction is the front of the robot (-1 should be intake front)
+    // Change the what direction is the front of the robot (-1 should be intake
+    // front)
     public static final int driveDirection = 1;
 
     // Change the inversion of the robot
@@ -100,8 +100,8 @@ public final class Constants {
     public static final int rtTrigger = 3;
     public static final int ltTrigger = 2;
     public static boolean atSpeed = false;
-	public static double distance = 200000;
-	public static double speed = -0.5;
+    public static double distance = 200000;
+    public static double speed = -0.5;
 
     // PID stuff
     public static final int kSlotIdx = 0;
@@ -110,7 +110,8 @@ public final class Constants {
     public static final int PIDRange = 200;
 
     // Pid values kP kI kD kF Iz PeakOut
-    // public final static Gains kGains_Velocity_Shooter = new Gains(0.74, 0.001, 5, 1023.0 / 20660.0, 300, 1.00);
+    // public final static Gains kGains_Velocity_Shooter = new Gains(0.74, 0.001, 5,
+    // 1023.0 / 20660.0, 300, 1.00);
     public final static Gains kGains_Velocity_Shooter = new Gains(0.9, 0.0, 0, 0.055, 300, 1.00);
 
     // Target RPM value for shooter motor
@@ -164,7 +165,6 @@ public final class Constants {
     // Path Strings
     public static final String pathSim = "..\\.\\deploy\\paths\\";
     public static final String pathRobot = "/home/lvuser/deploy/paths/";
-	
 
     // endregion
 
@@ -172,9 +172,9 @@ public final class Constants {
     // ================================
     public static final double elevatorMotorSpeed = 0.9;
 
-    // Elevator Sensors DIO Locations on the Roborio 
+    // Elevator Sensors DIO Locations on the Roborio
     public static final int elevatorLimitorTopDIO = 0;
-    public static final int elevatorLimitorBottomDIO = 1; 
+    public static final int elevatorLimitorBottomDIO = 1;
 
     // endregion
 }
