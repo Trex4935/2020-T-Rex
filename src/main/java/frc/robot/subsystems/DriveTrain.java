@@ -257,7 +257,7 @@ public class DriveTrain extends SubsystemBase {
     double rightSpeed = rotateSpeed;
     double leftSpeed = rotateSpeed;
 
-    System.out.println(driveEncoders.rfEncoderValue);
+    System.out.println(DriveEncoders.rfEncoderValue);
 
     // Set direction
     if (direction < 0) {
@@ -267,7 +267,7 @@ public class DriveTrain extends SubsystemBase {
     }
 
     // While the encoder reads < than our turn value keep turning
-    if (Math.abs(driveEncoders.rfEncoderValue) >= turnDistance) {
+    if (Math.abs(DriveEncoders.rfEncoderValue) >= turnDistance) {
       return true;
     }
     // Turn at the set speed
