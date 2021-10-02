@@ -118,7 +118,7 @@ public class Magazine extends SubsystemBase {
   // Singulation of the ball when intake mode is turned on
   // Intake mode turns on the LB via the LM
   public void singulateBall() {
-    
+
     // When the magazine sensor sees a ball run the HB
     if (getMagazineSensor()) {
       moveHighBelt();
@@ -134,13 +134,12 @@ public class Magazine extends SubsystemBase {
     if (atSpeed) {
       moveBothBelts();
     } else {
-      stopBothBelts();}
-    }
-
-    public void isIntakeLight(boolean input) {
-        intakeLight.set(1);
-      }
-
+      stopBothBelts();
     }
   }
+
+  public void isIntakeLight(boolean input) {
+    intakeLight.set(1);
+  }
+
 }
