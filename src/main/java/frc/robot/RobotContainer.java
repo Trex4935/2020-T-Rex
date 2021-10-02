@@ -94,6 +94,7 @@ public class RobotContainer {
   // Setup controller bindings
   private void configureButtonBindings() {
 
+
     // Run intake ... stops when the shoot sensor is triggered
     new JoystickButton(controller, XboxController.Button.kB.value)
         .toggleWhenPressed(singulateBall.withInterrupt(Magazine::getShooterSensor).andThen(reverseMagazine2.withTimeout(0.1)).andThen(shoot));

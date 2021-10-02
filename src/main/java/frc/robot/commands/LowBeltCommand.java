@@ -27,6 +27,7 @@ public class LowBeltCommand extends CommandBase {
   @Override
   public void execute() {
     magazine.moveLowBelt();
+    //magazine.isIntakeLight(true);
   }
 
   // Called once the command ends or is interrupted.

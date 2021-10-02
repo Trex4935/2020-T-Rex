@@ -74,6 +74,11 @@ public class Magazine extends SubsystemBase {
   public void moveLowBelt() {
     lowBeltMotor.set(Constants.intakeMotorSpeed);
   }
+  
+  //Toggle light for intake
+  public void lightOn() {
+    intakeLight.set(1);
+  }
 
   // Run both belts at a constant speed
   public void moveBothBelts() {
@@ -122,11 +127,13 @@ public class Magazine extends SubsystemBase {
     // When the magazine sensor sees a ball run the HB
     if (getMagazineSensor()) {
       moveHighBelt();
+      lightOn();
     }
     // When it no longer sees a ball then it is "in" the magazine so we stop the
     // motor
     else {
       stopHighBelt();
+      stopLight();
     }
   }
 
@@ -141,5 +148,9 @@ public class Magazine extends SubsystemBase {
   public void isIntakeLight(boolean input) {
     intakeLight.set(1);
   }
+
+public void stopLight() {
+  intakeLight.stopMotor();
+}
 
 }
