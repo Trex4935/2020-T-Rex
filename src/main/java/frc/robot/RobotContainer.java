@@ -48,8 +48,6 @@ public class RobotContainer {
   private final EmptyMagToShooterCommand emptyMag;
   public static int station;
   private final microAdjustCommand microAdjust;
-  private final AutoDriveStraitCommand autoDriveStrait;
-  private final AutoTurnEncoderCommand autoTurnEncoderCommand;
 
   public RobotContainer() {
 
@@ -60,9 +58,6 @@ public class RobotContainer {
     driveStraightWithController = new DriveStraightWithController(driveTrain);
     driveTrain.setDefaultCommand(driveWithController);
     microAdjust = new microAdjustCommand();
-    autoDriveStrait = new AutoDriveStraitCommand(driveTrain, 100000, -0.5);
-    autoTurnEncoderCommand = new AutoTurnEncoderCommand(driveTrain, 10000,-1);
-
 
     // Controller
     controller = new XboxController(Constants.xboxControllerPort);
