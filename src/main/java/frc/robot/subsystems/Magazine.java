@@ -28,6 +28,9 @@ public class Magazine extends SubsystemBase {
   private static DigitalInput magazineSensor;
   private static DigitalInput shooterSensor;
 
+  /// Intake Light
+  public static WPI_TalonSRX intakeLight;
+
   /** Creates a new Magazine. */
   public Magazine() {
 
@@ -42,6 +45,10 @@ public class Magazine extends SubsystemBase {
     // Create sensor objects
     magazineSensor = new DigitalInput(Constants.magazineSensorDIO);
     shooterSensor = new DigitalInput(Constants.shooterSensorDIO);
+
+    // Intake Light
+    intakeLight = new WPI_TalonSRX(Constants.intakeLightID);
+    intakeLight.setInverted(false);
   }
 
   @Override
@@ -127,7 +134,13 @@ public class Magazine extends SubsystemBase {
     if (atSpeed) {
       moveBothBelts();
     } else {
-      stopBothBelts();
+      stopBothBelts();}
+    }
+
+    public void isIntakeLight(boolean input) {
+        intakeLight.set(1);
+      }
+
     }
   }
 }

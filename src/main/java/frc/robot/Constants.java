@@ -33,6 +33,7 @@ public final class Constants {
     // Magazine motors
     public static final int beltMotorCanID = 3;
     public static final int intakeMotorCanID = 2;
+    public static final int intakeLightID = 1;
 
     // Shooter motors
     public static final int shooterMotorID = 21;
