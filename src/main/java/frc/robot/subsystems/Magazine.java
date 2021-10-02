@@ -71,6 +71,11 @@ public class Magazine extends SubsystemBase {
     highBeltMotor.set(Constants.beltMotorSpeed);
   }
 
+  // Move the HB at a constant speed
+  public void shootHighBelt() {
+    highBeltMotor.set(Constants.shootBeltMotorSpeed);
+  }
+
   // Move the LB at a constant speed
   public void moveLowBelt() {
     lowBeltMotor.set(Constants.intakeMotorSpeed);
@@ -86,6 +91,12 @@ public class Magazine extends SubsystemBase {
     moveLowBelt();
     moveHighBelt();
   }
+
+    // Run both belts at a constant speed
+    public void shootBothBelts() {
+      moveLowBelt();
+      shootHighBelt();
+    }
 
   // Stop the LB
   public void stopLowBelt() {
@@ -133,10 +144,10 @@ public class Magazine extends SubsystemBase {
     }
     // When it no longer sees a ball then it is "in" the magazine so we stop the
     // motor
-    else {
+    else {      
       if (i == 10) {
-        stopHighBelt();
         stopLight();
+        stopHighBelt();
       } else {
         i++;
       }
@@ -146,7 +157,7 @@ public class Magazine extends SubsystemBase {
 
   public void emptyMagToShooter(boolean atSpeed) {
     if (atSpeed) {
-      moveBothBelts();
+      shootBothBelts();
     } else {
       stopBothBelts();
     }

@@ -9,6 +9,7 @@ import frc.robot.subsystems.Magazine;
 
 public class SingulateBallCommand extends CommandBase {
   private final Magazine magazine;
+
   /** Creates a new SingulateBallCommand. */
   public SingulateBallCommand(Magazine mag) {
     magazine = mag;
@@ -32,11 +33,9 @@ public class SingulateBallCommand extends CommandBase {
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-   magazine.stopHighBelt(); 
-   magazine.stopLowBelt();
-   if (Magazine.getShooterSensor()) {
+    magazine.stopHighBelt();
     magazine.stopLowBelt();
-  }
+
   }
 
   // Returns true when the command should end.
